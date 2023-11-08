@@ -5,20 +5,19 @@ import { Navbar } from '../Navbar/page';
 
 // import Logo from "./../images/Logo.jpg"
 
-export default function GuccHome() {
+export default function Home() {
     return (
       <div>
         <Navbar />
         <Body />
       </div>
-      
     );
   }
 
   
 function Body() {
   return (
-    <div>
+    <div className="bg-RES_SAGE">
       <Templates />
       <Companies />
     </div>
@@ -26,18 +25,70 @@ function Body() {
 }
 
 function Templates(){
-  return(<p>THis will hold the Recent templates</p>);
+  return(<p>This will hold the Recent templates</p>);
 }
 
 function Companies(){
   return(
-    <CompanyElement />
+    <div>
+      <br></br><br></br><br></br><br></br>
+      <h1 className='text-3xl'>All Companies</h1>
+        <CompanyHeader />
+        <CompanyElement />
+        <CompanyElement />
+        <CompanyElement />
+        <CompanyElement />
+    </div>
+  );
+}
+
+function CompanyHeader(){
+  return(
+    <div className='inherit'>
+      <div className='grid grid-cols-8 p-4'>
+        <div className='col-start-2 col-end-3'>
+          <h2 className="text-lg">Company Name</h2>
+        </div>
+        <div className='col-start-3 col-end-4'>
+          <h2 className='text-lg'>Number of Assets</h2>
+        </div>
+      </div>
+      <hr className="h-0.5 bg-white"></hr>
+    </div>
   );
 }
 
 function CompanyElement(){
   return(
-    <p>This will hold the list of Companies' </p>
+    <div>
+      <div className='grid grid-cols-8 p-4'>
+        <div className='text-center'>
+            <h1 className='text-lg '>LOGO</h1>
+        </div>
+          <div className=''>
+            <h2 className=''>Company</h2>
+          </div>
+        <div className=''>
+            <h2 className=''>NUMBER</h2>
+          </div>
+        <div className='col-start-8'>
+          <ViewPortfolio />
+        </div>
+      </div>
+      <hr className="h-0.5 bg-GRIDLINES border-none mr-4 ml-"></hr>
+    </div>
+
+  );
+}
+
+function ViewPortfolio(){
+  return(
+    <div className='text-center'>
+      <div className="grid grid-cols-3 rounded-xl p-4 bg-RES_BLUE border-black border-2">
+        <p className=''>little img</p>
+        <p className="text-black col-span-2">View Portfolio</p>
+      </div>
+    </div>
   );
 }
 
