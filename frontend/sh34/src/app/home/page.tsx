@@ -1,35 +1,51 @@
 import Link from 'next/link';
-import Image from 'next/image'
+import Image from 'next/image';
+import { Main } from 'next/document';
+import { Navbar } from '../Navbar/page';
+
 // import Logo from "./../images/Logo.jpg"
 
 export default function GuccHome() {
     return (
       <div>
-        <header>
-          <Navbar />
-        </header>
-        <body>
-        </body> 
-      </div> 
+        <Navbar />
+        <Body />
+      </div>
+      
     );
   }
 
   
-function About() {
+function Body() {
   return (
     <div>
-      <MainElement />
-      <MainElement />
-      <MainElement />
+      <Templates />
+      <Companies />
     </div>
+  );
+}
+
+function Templates(){
+  return(<p>THis will hold the Recent templates</p>);
+}
+
+function Companies(){
+  return(
+    <CompanyElement />
+  );
+}
+
+function CompanyElement(){
+  return(
+    <p>This will hold the list of Companies' </p>
   );
 }
 
 function MainElement() {
   return (
     <div className="p-4">
-      <div className="md:flex bg-slate-100 rounded-xl p-8 md:p-2 dark:bg-slate-400">
-        <p className="text-black inline-block">
+      <div className="md:flex bg-slate-100 rounded-xl p-8 dark:bg-slate-400">
+        <p className="text-black">
         Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
         </p>
       </div>
@@ -79,36 +95,4 @@ function Sidebar() {
   }
 
   
- export const Navbar = () => {
-    return (
-      <nav className="h-1/10 bg-orange-400 p-6">
-        <div className="flex justify-around items-center relative">
-          {/* <ul className=""> */}
-            {/* <li>
-              <HomeButton />
-            </li> */}
-              <li className='list-none'>
-                <Link href="/home">
-                  <h1 className="text-black text-2xl font-bold align-middle">Home</h1>
-                </Link>
-              </li>
-              <li className="list-none">
-                <Link href="/">
-                  <h1 className="text-black text-2xl font-bold">Assets</h1>
-                </Link>
-              </li>
-              <li className="list-none">
-                <Link href="/">
-                  <h1 className="text-black text-2xl font-bold">Example</h1>
-                </Link>
-              </li>
-              <li className="list-none">
-                <Link href="/inventory">
-                  <h1 className="text-black text-2xl font-bold">Example</h1>
-                </Link>
-              </li>
-        {/* </ul> */}
-        </div>
-      </nav>
-    );
-  };
+ 
