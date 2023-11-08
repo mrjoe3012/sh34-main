@@ -1,0 +1,1 @@
+from .plotly_interface import generate_graph
