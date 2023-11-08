@@ -1,0 +1,7 @@
+{
+    "graph-type": "bar",
+    "title": "USA GDP",
+    "x_axis_name": "Years",
+    "y_axis_name": "GPD (USD) Millions",
+    "colour": "purple"
+}
