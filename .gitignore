@@ -1,3 +1,4 @@
 **/__pycache__
 **/*.egg-info
 /return_plot
+src/test_artifacts

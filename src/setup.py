@@ -12,8 +12,6 @@ setup(
     entry_points = {
         'console_scripts' : [
             'sh34-backend=backend.main:main',
-            'sh34-test-backend=backend_tests.test_json:main',
-            'sh34-test-generation=backend_tests.test_generation:main',
         ]
     }
 )
