@@ -27,5 +27,6 @@ unit-test-job:   # This job runs in the test stage.
     - mkdir test_artifacts
     - scripts/run_tests.bash -o test_artifacts
   artifacts:
+    when: always
     paths:
       - "test_artifacts/"
