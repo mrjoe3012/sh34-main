@@ -7,8 +7,8 @@
 # pre-requisite packages
 apt update
 apt install -y \
-    python3.10 python3.10-venv python3-pip git
-    # sudo shellcheck nano \
+    python3.10 python3.10-venv python3-pip git \
+    sudo shellcheck nano
 
 # create virtual environment
 mkdir /root/.venv
