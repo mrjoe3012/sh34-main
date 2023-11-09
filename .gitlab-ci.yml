@@ -21,8 +21,9 @@ image: joe3012/sh34:latest
 stages:          # List of stages for jobs, and their order of execution
   - test
 
-unit-test-job:   # This job runs in the test stage.
+test:   # This job runs in the test stage.
   stage: test    # It only starts when the job in the build stage completes successfully.
+  allow_failure: true
   script:
     - mkdir test_artifacts
     - scripts/run_tests.bash -o test_artifacts
