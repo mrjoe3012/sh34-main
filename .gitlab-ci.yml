@@ -16,16 +16,21 @@
 # This specific template is located at:
 # https://gitlab.com/gitlab-org/gitlab/-/blob/master/lib/gitlab/ci/templates/Getting-Started.gitlab-ci.yml
 
+image: joe3012/sh34:latest
+
 stages:          # List of stages for jobs, and their order of execution
   - test
 
-unit-test-job:   # This job runs in the test stage.
+test:   # This job runs in the test stage.
   stage: test    # It only starts when the job in the build stage completes successfully.
   script:
     - mkdir test_artifacts
-    - ls scripts
-    - pwd
+    - source /root/.venv/sh34/bin/activate
+    - set -o xtrace
     - scripts/run_tests.bash -o test_artifacts
   artifacts:
+    when: always
     paths:
-      - "test_artifacts/"
+      - "test_artifacts/*"
+    reports:
+      junit: test_artifacts/pytest.xml
