@@ -25,7 +25,7 @@ unit-test-job:   # This job runs in the test stage.
     - mkdir test_artifacts
     - ls scripts
     - pwd
-    - bash scripts/run_tests.bash -o test_artifacts
+    - /bin/bash scripts/run_tests.bash -o test_artifacts
   artifacts:
     paths:
       - "test_artifacts/"
