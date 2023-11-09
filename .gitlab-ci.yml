@@ -25,7 +25,7 @@ test:   # This job runs in the test stage.
   stage: test    # It only starts when the job in the build stage completes successfully.
   script:
     - mkdir test_artifacts
-    - bash scripts/run_tests.bash -o test_artifacts
+    - bash -x scripts/run_tests.bash -o test_artifacts
   artifacts:
     when: always
     paths:
