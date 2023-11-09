@@ -1,7 +1,8 @@
 {
-    "graph-type": "bar",
-    "title": "USA GDP",
-    "x_axis_name": "Years",
-    "y_axis_name": "GPD (USD) Millions",
-    "colour": "purple"
+    "graph-type": "line",
+    "title": "Wind over time",
+    "x_axis_name": "Days",
+    "y_axis_name": "Wind Speed",
+    "colour": "#538181",
+    "graph_name": "Production"
 }

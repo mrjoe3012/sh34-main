@@ -1,1 +1,1 @@
-from .plotly_interface import generate_graph
+from .plotly_interface import generate_graph, data_extract
