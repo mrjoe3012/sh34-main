@@ -1,3 +1,4 @@
+"""Setup instructions for the sh34 backend code."""
 from setuptools import setup, find_packages
 
 packages = [
