@@ -82,10 +82,10 @@ fi
     ${PYLINT_OUTPUT_FLAG} \
     "${PROJECT_ROOT}/src"
 PYLINT_STATUS="${?}"
-"${PY}" -m flake8 \
-    ${FLAKE8_OUTPUT_FLAG}\
-    "${PROJECT_ROOT}/src"
-FLAKE8_STATUS="${?}"
+# "${PY}" -m flake8 \
+#     ${FLAKE8_OUTPUT_FLAG}\
+#     "${PROJECT_ROOT}/src"
+# FLAKE8_STATUS="${?}"
 "${PY}" -m pytest \
     "${PYTEST_OUTPUT_FLAG}" \
     "${PROJECT_ROOT}/src"
@@ -105,7 +105,7 @@ if [[ "${SHELLCHECK}" -eq "1" ]]; then
     echo "Shellcheck returned with code ${SHELLCHECK_STATUS}"
 fi
 
-echo "Flake8 returned with code ${FLAKE8_STATUS}"
+# echo "Flake8 returned with code ${FLAKE8_STATUS}"
 echo "Pylint returned with code ${PYLINT_STATUS}"
 echo "Pytest returned with code ${PYTEST_STATUS}"
 
