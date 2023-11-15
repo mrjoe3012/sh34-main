@@ -91,6 +91,9 @@ FLAKE8_STATUS="${?}"
     "${PROJECT_ROOT}/src"
 PYTEST_STATUS="${?}"
 
+# convert to junit
+flake8_junit "${REPORT_DIR}/flake8.out" "${REPORT_DIR}/flake8.xml"
+
 # run shellcheck
 SHELLCHECK_STATUS=0
 if [[ "${SHELLCHECK}" -eq "1" ]]; then
