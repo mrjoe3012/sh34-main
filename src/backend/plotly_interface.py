@@ -27,25 +27,32 @@ def generate_graph(graph_info, data):
     y_axis_name = graph_info['y_axis_name']
     colour = graph_info['colour']
     name = graph_info['graph_name']
-    df = data_extract(data, name)
+    try:
+        first_value = graph_info["y_axis"]
+    except Exception:
+        first_value = "value"
+
+    df = data_extract(data, name, first_value)
     
     
     #We have to use color_discrete_sequence=[colour] to enforce the colour in the Json
 
     match graph_type:
         case 'bar':
-            fig = px.bar(df, x='date', y='value' ,color_discrete_sequence=[colour] , title = title, height = 500)
+            fig = px.bar(df, x='x', y='y' ,color_discrete_sequence=[colour] , title = title, height = 500)
             fig.update_layout(xaxis_title = x_axis_name, yaxis_title = y_axis_name)
         case 'line':
-            fig = px.line(df, x="date", y='value' ,color_discrete_sequence=[colour], title=title, height=500)
+            fig = px.line(df, x="x", y='y' ,color_discrete_sequence=[colour], title=title, height=500)
 
             fig.update_layout(xaxis_title = x_axis_name, yaxis_title = y_axis_name)
             fig.update_traces(line=dict(width=4))
         case 'pie':
             #A very very simple pie chart 
-            fig = px.pie(df, x="date", y='value' ,color_discrete_sequence=[colour], title=title, height=500)
+            fig = px.pie(df, x="x", y='y' ,color_discrete_sequence=[colour], title=title, height=500)
+            fig.update_layout(xaxis_title = x_axis_name, yaxis_title = y_axis_name)
         case 'scatter':
-            fig = px.scatter(df, x="date", y='value' ,color_discrete_sequence=[colour], title=title, height=500)
+            fig = px.scatter(df, x="x", y='y' ,color_discrete_sequence=[colour], title=title, height=500)
+            fig.update_layout(xaxis_title = x_axis_name, yaxis_title = y_axis_name)
         case 'special':
             fig = px.scatter_polar(data, r="frequency", theta="direction", color="strength", symbol="strength",color_discrete_sequence=px.colors.sequential.Plasma_r)
             
@@ -65,24 +72,42 @@ def generate_graph(graph_info, data):
         #There is a solution online that suggest returning fig would work done like so
         #return fig
 
-def data_extract(data_json,name):
+def data_extract(data_json,name,first_value):
     #with open(data_json, 'r') as file:
     #    graph_data = json.load(file)
 
-    data_dict = {"date":[],"value":[]}
+    data_dict = {"x":[],"y":[]}
     monthly_data = data_json["month"]
-    breakdowns = monthly_data["breakdown_by_indicator"]
-    named_data = breakdowns[name]
+    graph_name_split = name.split('/')
+    level1 = graph_name_split[1]
+    named_data = monthly_data[level1]
+    if len(graph_name_split)== 3:
+        level2 = graph_name_split[2]
+        named_data = named_data[level2]
+    
+    #print(named_data)
+    asset_data = data_json["asset"]
+    company_name = asset_data["client_name"]
+    plant_loc = asset_data["location"]
+    currency = asset_data["currency"]
+
+
+    #for key,value in data_json.items():
+    #    print(key)
+
+    #print(data_json.items()[0])
+    #print(company_name)
 
     for entry in named_data:
-        #print(entry.keys())
-        data_dict["date"].append(entry["date"])
-        data_dict["value"].append(entry["value"])
+        first_key = list(entry.keys())[0]
+
+        data_dict["x"].append(entry[first_key])
+        data_dict["y"].append(entry[first_value])
     df = pd.DataFrame(data_dict)
-    print(df)
+    #print(df)
     return df
     
- 
+
 
 
 

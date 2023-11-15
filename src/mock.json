@@ -1,8 +1,8 @@
 {
-    "graph-type": "line",
+    "graph-type": "scatter",
     "title": "Wind over time",
     "x_axis_name": "Days",
     "y_axis_name": "Wind Speed",
-    "colour": "#538181",
-    "graph_name": "Production"
+    "colour": "#E87511",
+    "graph_name": "/breakdown_by_indicator/TemperatureMean"
 }
