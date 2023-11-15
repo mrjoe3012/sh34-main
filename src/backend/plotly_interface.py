@@ -27,6 +27,8 @@ def generate_graph(graph_info, data):
     y_axis_name = graph_info['y_axis_name']
     colour = graph_info['colour']
     name = graph_info['graph_name']
+
+    ##You can set a value or the value will be automatically set. This is done via the mock.json 
     try:
         first_value = graph_info["y_axis"]
     except Exception:
