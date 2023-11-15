@@ -40,3 +40,5 @@ test:   # This job runs in the test stage.
       - "test_artifacts/*"
     reports:
       junit: test_artifacts/pytest.xml
+      junit: test_artifacts/flake8.xml
+      junit: test_artifacts/pylint.xml
