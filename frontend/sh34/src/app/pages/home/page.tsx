@@ -1,10 +1,10 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { Main } from 'next/document';
-import { Navbar } from '../Navbar/page';
-import Document from "./../images/Document-icon.png"
-import Alogo from "./../images/Alogo.png"
-import UKflag from "./../images/UKflag.png"
+import { Navbar } from '../../components/Navbar/navbar';
+import Document from "./../../images/Document-icon.png"
+import Alogo from "./../../images/Alogo.png"
+import UKflag from "./../../images/UKflag.png"
 
 export default function Home() {
     return (
@@ -69,7 +69,7 @@ function RecentElement(){
             </div>
             <div className='w-1/3'>
               <div className='relative'> 
-                <h1 className='text-lg '>FLAG</h1> {/* this line is needed to display the flag must be creating a space for the img */}
+              <h1 className='text-lg '>FLAG</h1>{/* this line is needed to display the flag must be creating a space for the img */}
                 <Image src={UKflag} alt="UK Flag" fill={true} /> 
               </div>
             </div>
