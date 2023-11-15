@@ -20,7 +20,9 @@ const config: Config = {
         RES_DULLER_ORANGE:"#D0940C",
         RES_DULLER_GREEN:"#489C54",
         RES_BROWN:"#805C0C",
-        test:"#53B1B1"
+        test:"#53B1B1",
+        COMPLETE:"#00AF54",
+        FINISH:"#007CBE"
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
