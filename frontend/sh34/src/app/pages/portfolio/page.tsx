@@ -7,10 +7,13 @@ import WindFarm from "./../../images/windfarmlogo.png"
 
 export default function Portfolio() {
     return (
-      <div className="text-black">
-        <Navbar />
-        <hr className="h-0.5 border-none bg-RES"></hr>
-        <Body />
+      <div className="text-black bg-white">
+        <div className='mx-10'>
+            <Navbar />
+            <hr className="h-0.5 border-none"></hr>
+            <Body />
+        </div>
+
       </div>
     );
 }
@@ -30,9 +33,14 @@ function Body() {
 function Recents(){
     return(
     <div>
-       <span className='text-2xl text-RES_ORANGE font-bold ml-12'>Recent <span className='text-black'>COMAPNY</span> Templates</span> {/* TOTO: Replace Hardcoded COMAPNY with actualy Company Name */}
+        <div className='flex'>
+            <span className='text-2xl text-RES_ORANGE font-bold ml-12 basis-1/4 pr-0'>Recent <span className='text-black'>COMAPNY</span> Templates</span> {/* TOTO: Replace Hardcoded COMAPNY with actualy Company Name */}
+            <hr className='h-1 basis-3/4 m-auto'></hr>
+        </div>
+        
+       
         <RecentElements />
-      </div>
+    </div>
     );
   }
   
@@ -88,7 +96,7 @@ function RecentElementPortfolio (){
 
 function Assets(){
     return(
-      <div className='m-10'>
+      <div className=''>
         <br></br><br></br>
         <h1 className='text-2xl text-RES_ORANGE font-bold ml-12'>All Companies</h1>
             <AssetsHeader />
@@ -103,52 +111,89 @@ function Assets(){
   function AssetsHeader(){
     return(
       <div className=''>
-        <div className='grid grid-cols-8 p-4'>
-          <div className='col-start-2 col-end-3'>
-            <h2 className="text-lg">Company Name</h2>
+        <div className='grid grid-cols-6 p-4'>
+
+          <div className='col-start-1'>
+            <h2 className="text-lg font-bold">Type</h2>
           </div>
-          <div className='col-start-3 col-end-4'>
-            <h2 className='text-lg'>No. of Assets</h2>
+
+          <div className='col-start-2'>
+            <h2 className='text-lg font-bold'>Asset Name</h2>
           </div>
+
+          <div className='col-start-3'>
+            <h2 className='text-lg font-bold'>Last Modified</h2>
+          </div>
+
+          <div className='col-start-4'>
+            <h2 className='text-lg font-bold'>Creation Date</h2>
+          </div>
+
+
         </div>
-        <hr className="h-1 bg-RES_ORANGE boder-none "></hr>
+
+        <hr className="h-[2px] bg-GRIDLINES boder-none "></hr>
+
       </div>
     );
   }
+
+
   
   function AssetElement(){
+
     return(
       <div>
-        <div className='grid grid-cols-8 p-4 items-center'>
-          <div className='relative align-baseline'> 
-            <Image src={Alogo} alt="test" fill={true} className="rounded object-contain p-0"/>
-            <h1 className='text-lg '>LOGO</h1>
+        <div className='grid grid-cols-6 p-4 items-center'>
+
+          <div className='relative align-baseline col-span-1'> 
+            <h1 className='text-lg '>ICON</h1>
           </div>  
-          <div className="">
-            <h2 className=''>Company</h2>
+
+          <div className="col-span-1">
+            <h2 className='text-lg'>WindFarm1</h2>
           </div>
-          <div>
-              <h2>NUMBER</h2>
-            </div>
-          <div className='col-start-7 col-span-2 px-10'> {/* breakpoints needed to stop it from going over 2 lines on smaller screen OR more elegant solution */}
-            <GeneralButton />
+
+          <div className="col-span-1">
+              <h2 className='text-lg'>15/10/23</h2>
           </div>
+
+          <div className="col-span-1">
+              <h2 className='text-lg'>15/10/23</h2>
+          </div>
+
+          <div className='col-span-1 px-0.5'> {/* breakpoints needed to stop it from going over 2 lines on smaller screen OR more elegant solution */}
+            <EditButton />
+          </div>
+
+          <div className='col-span-1 px-0.5'> {/* breakpoints needed to stop it from going over 2 lines on smaller screen OR more elegant solution */}
+            <ExportButton />
+          </div>
+
         </div>
-        <hr className="h-0.5 bg-GRIDLINES border-none mr-4 ml-4"></hr>
+        <hr></hr>
       </div>
   
     );
+
   }
   
-  function GeneralButton(){
+  
+  function EditButton(){
     return(
-      <div className='text-center'>
-        <div className="flex rounded-xl p-2 border-black border-2 relative bg-test">
-          {/* <p className='text-white'>little img</p> */}
-          <div className='relative p-0 basis-1/3'> 
-            <Image src={UKflag} alt="test" fill={true} className="self-center rounded object-contain p-0"/>
-          </div>
-          <p className="text-black basis-10/11">View Portfolio</p>
+      <div className='text-center w-5/6'>
+        <div className="justify-center flex rounded-xl p-2 border-black border-2 relative bg-[#616673]">
+          <p className="text-slate-50 basis-10/11">Edit</p>
+        </div>
+      </div>
+    );
+  }
+
+  function ExportButton(){
+    return(
+      <div className='text-center w-5/6'>
+        <div className="justify-center flex rounded-xl p-2 border-black border-2 relative bg-[#346DFF]">
+          <p className="text-slate-50 basis-10/11">Export</p>
         </div>
       </div>
     );
