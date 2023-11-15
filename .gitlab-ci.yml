@@ -39,6 +39,7 @@ test:   # This job runs in the test stage.
     paths:
       - "test_artifacts/*"
     reports:
-      junit: test_artifacts/pytest.xml
-      junit: test_artifacts/flake8.xml
-      junit: test_artifacts/pylint.xml
+      junit:
+        - test_artifacts/pytest.xml
+        - test_artifacts/flake8.xml
+        - test_artifacts/pylint.xml
