@@ -2,37 +2,90 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Main } from 'next/document';
 import { Navbar } from '../Navbar/page';
-
-// import Logo from "./../images/Logo.jpg"
+import Document from "./../images/Document-icon.png"
+import Alogo from "./../images/Alogo.png"
+import UKflag from "./../images/UKflag.png"
 
 export default function Home() {
     return (
-      <div>
+      <div className="text-black">
         <Navbar />
+        <hr className="h-0.5 border-none bg-RES"></hr>
         <Body />
       </div>
     );
-  }
+  } 
 
   
 function Body() {
   return (
-    <div className="bg-RES_SAGE">
-      <Templates />
+    <div className="bg-white"> {/*bg-orange-200 could be quite nice */} 
+      <h1 className="text-4xl text-RES_ORANGE font-bold p-6">Home</h1>
+      <Recents />
       <Companies />
     </div>
   );
 }
 
-function Templates(){
-  return(<p>This will hold the Recent templates</p>);
+function Recents(){
+  return(
+  <div>
+     <h1 className='text-2xl text-RES_ORANGE font-bold ml-12'>Recent Templates</h1>
+      <RecentElements />
+    </div>
+  );
+}
+
+function RecentElements(){
+  return(
+    <div className="justify-center align-middle">
+      <div className="flex p-2 justify-between mx-20">
+        <RecentElement />
+        <RecentElement />
+        <RecentElement />
+        <RecentElement />
+        <RecentElement />
+      </div>  
+    </div>
+  );
+}
+
+function RecentElement(){
+  return(
+    <div className='container rounded border border-black w-40 bg-slate-200 pt-1'> {/* background as the image on the wireframe */}
+          <div className="grid grid-cols-3">
+            <div className='relative'>
+                {/* <h1 className='text-sm'>LOGO</h1> */}
+                <Image src={Alogo} alt="test" fill={true} className="self-center object-cover"/>
+            </div>
+            <div className='text-center col-span-2'>
+                <h1 className='text-sm'>Company</h1>
+            </div>
+          </div>
+          <hr></hr>
+          <div className='m-1'>
+            <div className='text-left'>
+              <h1 className='text-base'>Asset Name</h1>
+            </div>
+            <div className='w-1/3'>
+              <div className='relative'> 
+                <h1 className='text-lg '>FLAG</h1> {/* this line is needed to display the flag must be creating a space for the img */}
+                <Image src={UKflag} alt="UK Flag" fill={true} /> 
+              </div>
+            </div>
+            <div>
+              <p>Last Modified: 15/02/2023</p>
+            </div>
+          </div>
+        </div>
+  )
 }
 
 function Companies(){
   return(
     <div>
-      <br></br><br></br><br></br><br></br>
-      <h1 className='text-3xl'>All Companies</h1>
+      <br></br><br></br>
+      <h1 className='text-2xl text-RES_ORANGE font-bold ml-12'>All Companies</h1>
         <CompanyHeader />
         <CompanyElement />
         <CompanyElement />
@@ -50,10 +103,10 @@ function CompanyHeader(){
           <h2 className="text-lg">Company Name</h2>
         </div>
         <div className='col-start-3 col-end-4'>
-          <h2 className='text-lg'>Number of Assets</h2>
+          <h2 className='text-lg'>No. of Assets</h2>
         </div>
       </div>
-      <hr className="h-0.5 bg-white"></hr>
+      <hr className="h-1 bg-RES_ORANGE boder-none "></hr>
     </div>
   );
 }
@@ -61,21 +114,22 @@ function CompanyHeader(){
 function CompanyElement(){
   return(
     <div>
-      <div className='grid grid-cols-8 p-4'>
-        <div className='text-center'>
-            <h1 className='text-lg '>LOGO</h1>
+      <div className='grid grid-cols-8 p-4 items-center'>
+        <div className='relative align-baseline'> 
+          <Image src={Alogo} alt="test" fill={true} className="rounded object-contain p-0"/>
+          <h1 className='text-lg '>LOGO</h1>
+        </div>  
+        <div className="">
+          <h2 className=''>Company</h2>
         </div>
-          <div className=''>
-            <h2 className=''>Company</h2>
+        <div>
+            <h2>NUMBER</h2>
           </div>
-        <div className=''>
-            <h2 className=''>NUMBER</h2>
-          </div>
-        <div className='col-start-8'>
+        <div className='col-start-7 col-span-2 px-10'> {/* breakpoints needed to stop it from going over 2 lines on smaller screen OR more elegant solution */}
           <ViewPortfolio />
         </div>
       </div>
-      <hr className="h-0.5 bg-GRIDLINES border-none mr-4 ml-"></hr>
+      <hr className="h-0.5 bg-GRIDLINES border-none mr-4 ml-4"></hr>
     </div>
 
   );
@@ -84,9 +138,12 @@ function CompanyElement(){
 function ViewPortfolio(){
   return(
     <div className='text-center'>
-      <div className="grid grid-cols-3 rounded-xl p-4 bg-RES_BLUE border-black border-2">
-        <p className=''>little img</p>
-        <p className="text-black col-span-2">View Portfolio</p>
+      <div className="flex rounded-xl p-2 border-black border-2 relative bg-test">
+        {/* <p className='text-white'>little img</p> */}
+        <div className='relative p-0 basis-1/3'> 
+          <Image src={Document} alt="test" fill={true} className="self-center rounded object-contain p-0"/>
+        </div>
+        <p className="text-black basis-10/11">View Portfolio</p>
       </div>
     </div>
   );
@@ -135,15 +192,6 @@ function Sidebar() {
     );
   }
 
-  function HomeButton(){
-    return (
-      <div className="relative w-16 h-16 ">
-        <Link href="/">
-          {/* <Image src={Logo} alt="test" fill={true} className="self-center rounded"/> */}
-        </Link>
-      </div>
-    )
-  }
 
   
  
