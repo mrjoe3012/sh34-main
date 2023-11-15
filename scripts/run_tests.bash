@@ -73,8 +73,8 @@ FLAKE8_OUTPUT_FLAG=""
 PYLINT_OUTPUT_FLAG=""
 PYTEST_OUTPUT_FLAG=""
 if [[ -n "${REPORT_DIR}" ]]; then
-    FLAKE8_OUTPUT_FLAG="--output-file ${REPORT_DIR}/pylint.out"
-    PYLINT_OUTPUT_FLAG="--output ${REPORT_DIR}/flake8.out"
+    FLAKE8_OUTPUT_FLAG="--output-file ${REPORT_DIR}/pylint.xml"
+    PYLINT_OUTPUT_FLAG="--output ${REPORT_DIR}/flake8.out --output-format=pylint_junit.JUnitReporter"
     PYTEST_OUTPUT_FLAG="--junit-xml=${REPORT_DIR}/pytest.xml"
 fi
 "${PY}" -m pylint \
@@ -90,6 +90,11 @@ FLAKE8_STATUS="${?}"
     "${PYTEST_OUTPUT_FLAG}" \
     "${PROJECT_ROOT}/src"
 PYTEST_STATUS="${?}"
+
+# convert to junit
+if [[ -n "${REPORT_DIR}" ]]; then
+    flake8_junit "${REPORT_DIR}/flake8.out" "${REPORT_DIR}/flake8.xml"
+fi
 
 # run shellcheck
 SHELLCHECK_STATUS=0
