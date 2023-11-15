@@ -2,3 +2,6 @@
 **/*.egg-info
 /return_plot
 src/test_artifacts
+docker-build.log
+docker/setup-files/sh34
+
