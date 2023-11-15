@@ -32,14 +32,14 @@ test:   # This job runs in the test stage.
     - backend_pid="${!}"
     - sleep 5
     - set -o xtrace
-    - scripts/run_tests.bash -o test_artifacts
+    - scripts/run_tests.bash
     - kill "${backend_pid}"
-  artifacts:
-    when: always
-    paths:
-      - "test_artifacts/*"
-    reports:
-      junit:
-        - test_artifacts/pytest.xml
-        - test_artifacts/flake8.xml
-        - test_artifacts/pylint.xml
+  # artifacts:
+  #   when: always
+  #   paths:
+  #     - "test_artifacts/*"
+  #   reports:
+  #     junit:
+  #       - test_artifacts/pytest.xml
+  #       - test_artifacts/flake8.xml
+  #       - test_artifacts/pylint.xml
