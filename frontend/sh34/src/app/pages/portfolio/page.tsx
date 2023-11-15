@@ -10,10 +10,8 @@ export default function Portfolio() {
       <div className="text-black bg-white">
         <div className=''>
             <Navbar />
-            <hr className="h-[2px] border-none bg-gray-200"></hr>
             <Body />
         </div>
-
       </div>
     );
 }
@@ -21,21 +19,34 @@ export default function Portfolio() {
   
 function Body() {
     return (
-      <div className="bg-white mx-10"> {/*bg-orange-200 could be quite nice */} 
-        <h1 className="text-4xl text-RES_ORANGE font-bold p-6">Asset Portfolio</h1>
-        <Recents />
-        <Assets />
+      <div className="bg-white mx-10">
+        <Header />
+        <div className='mx-5'>
+            <Recents />
+            <Assets />
+        </div>
       </div>
     );
 }
 
+function Header(){
+    return(
+        <div className='grid grid-cols-2 place-content-center'>
+            <h1 className="text-4xl text-RES_ORANGE font-bold my-7">Asset Portfolio</h1>
+            <div className='justify-self-end self-center grid grid-cols-2'>
+                <Image className="w-40" src={Alogo} alt="TestLogo"/>
+                <span className='font-bold text-4xl self-center grid'> COMPANY </span>
+            </div>
+        </div>
+    );
+}
 
 function Recents(){
     return(
     <div className=''>
         <div className='flex my-3'>
-            <span className='text-2xl text-RES_ORANGE font-bold basis-1/4 pr-0'>Recent <span className='text-black'>COMPANY</span> Templates</span> {/* TOTO: Replace Hardcoded COMAPNY with actualy Company Name */}
-            <hr className='h-1 basis-3/4 m-auto'></hr>
+            <span className='w-fit mr-5 text-2xl text-RES_ORANGE font-bold pr-0'>Recent <span className='text-black'>COMPANY</span> Templates</span>
+            <hr className='flex-grow h-1 basis-3/4 m-auto'></hr>
         </div>
         <RecentElements />
     </div>
@@ -59,7 +70,8 @@ function RecentElements(){
 
 function RecentElementPortfolio (){
   return(
-    <div className='container rounded-xl border-4 border-black w-44 min-w-[150px] bg-slate-200 p-1.5' > {/* background as the image on the wireframe */}
+    <div className='container rounded-xl border-4 border-[#434343] w-44 min-w-[150px] bg-slate-200 p-1.5' > {/* background as the image on the wireframe */}
+          
           <div className="grid grid-flow-col pb-1">
             <div className='relative'>
                 <Image src={UKflag} alt="test" className="w-10 h-6 self-center object-cover rounded"/>
@@ -86,6 +98,7 @@ function RecentElementPortfolio (){
                     <p>15/02/2023</p>
                 </div>
             </div>
+
           </div>
         </div>
   )
@@ -94,7 +107,10 @@ function RecentElementPortfolio (){
 function Assets(){
     return(
       <div className='my-10'>
-        <h1 className='text-2xl text-RES_ORANGE font-bold'>All Companies</h1>
+        <div className='flex my-3'>
+            <h1 className='w-fit mr-5 text-2xl text-RES_ORANGE font-bold'>All Companies</h1>
+            <hr className='flex-grow h-1 m-auto'></hr>
+        </div>
             <AssetsHeader />
             <AssetElement />
             <AssetElement />
@@ -107,7 +123,7 @@ function Assets(){
   function AssetsHeader(){
     return(
       <div className=''>
-        <div className='grid grid-cols-6 p-4'>
+        <div className='grid grid-cols-7 p-4'>
 
           <div className='col-start-1'>
             <h2 className="text-lg font-bold">Type</h2>
@@ -125,22 +141,18 @@ function Assets(){
             <h2 className='text-lg font-bold'>Creation Date</h2>
           </div>
 
-
         </div>
-
-        <hr className="h-[2px] bg-GRIDLINES boder-none "></hr>
-
+        <hr className='bg-slate-900'></hr>
       </div>
     );
   }
 
 
-  
   function AssetElement(){
 
     return(
       <div>
-        <div className='grid grid-cols-6 p-4 items-center'>
+        <div className='grid grid-cols-7 p-4 items-center auto-rows-[40px]'>
 
           <div className='relative align-baseline col-span-1'> 
             <h1 className='text-lg '>ICON</h1>
@@ -158,16 +170,16 @@ function Assets(){
               <h2 className='text-lg'>15/10/23</h2>
           </div>
 
-          <div className='col-span-1 px-0.5'> {/* breakpoints needed to stop it from going over 2 lines on smaller screen OR more elegant solution */}
+          <div className='col-span-1 col-start-6 px-0.5'> {/* breakpoints needed to stop it from going over 2 lines on smaller screen OR more elegant solution */}
             <EditButton />
           </div>
 
-          <div className='col-span-1 px-0.5'> {/* breakpoints needed to stop it from going over 2 lines on smaller screen OR more elegant solution */}
+          <div className='col-span-1 col-start-7 px-0.5'> {/* breakpoints needed to stop it from going over 2 lines on smaller screen OR more elegant solution */}
             <ExportButton />
           </div>
 
         </div>
-        <hr></hr>
+        <hr className='w-[95%] mx-auto'></hr>
       </div>
   
     );
