@@ -26,8 +26,14 @@ test:   # This job runs in the test stage.
   script:
     - mkdir test_artifacts
     - source /root/.venv/sh34/bin/activate
+    - python3 -m pip install -e src
+    - python3 -m pip install -r src/requirements.txt
+    - sh34-backend &> /dev/null &
+    - backend_pid="${!}"
+    - sleep 5
     - set -o xtrace
     - scripts/run_tests.bash -o test_artifacts
+    - kill "${backend_pid}"
   artifacts:
     when: always
     paths:
