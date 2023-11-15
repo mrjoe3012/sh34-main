@@ -73,12 +73,13 @@ FLAKE8_OUTPUT_FLAG=""
 PYLINT_OUTPUT_FLAG=""
 PYTEST_OUTPUT_FLAG=""
 if [[ -n "${REPORT_DIR}" ]]; then
-    FLAKE8_OUTPUT_FLAG="--output-file ${REPORT_DIR}/pylint.out"
+    FLAKE8_OUTPUT_FLAG="--output-file ${REPORT_DIR}/pylint.xml"
     PYLINT_OUTPUT_FLAG="--output ${REPORT_DIR}/flake8.out"
     PYTEST_OUTPUT_FLAG="--junit-xml=${REPORT_DIR}/pytest.xml"
 fi
 "${PY}" -m pylint \
     --recursive=y \
+    --output-format=pylint_junit.JUnitReporter \
     ${PYLINT_OUTPUT_FLAG} \
     "${PROJECT_ROOT}/src"
 PYLINT_STATUS="${?}"
