@@ -10,11 +10,11 @@ export default function Home() {
     return (
       <div className="text-black">
         <Navbar />
-        <hr className="h-0.5 border-none bg-RES"></hr>
+        <hr className="h-[2px] border-none"></hr>
         <Body />
       </div>
     );
-  } 
+} 
 
   
 function Body() {

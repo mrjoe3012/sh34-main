@@ -8,9 +8,9 @@ import WindFarm from "./../../images/windfarmlogo.png"
 export default function Portfolio() {
     return (
       <div className="text-black bg-white">
-        <div className='mx-10'>
+        <div className=''>
             <Navbar />
-            <hr className="h-0.5 border-none"></hr>
+            <hr className="h-[2px] border-none bg-gray-200"></hr>
             <Body />
         </div>
 
@@ -21,7 +21,7 @@ export default function Portfolio() {
   
 function Body() {
     return (
-      <div className="bg-white"> {/*bg-orange-200 could be quite nice */} 
+      <div className="bg-white mx-10"> {/*bg-orange-200 could be quite nice */} 
         <h1 className="text-4xl text-RES_ORANGE font-bold p-6">Asset Portfolio</h1>
         <Recents />
         <Assets />
@@ -32,13 +32,11 @@ function Body() {
 
 function Recents(){
     return(
-    <div>
-        <div className='flex'>
-            <span className='text-2xl text-RES_ORANGE font-bold ml-12 basis-1/4 pr-0'>Recent <span className='text-black'>COMAPNY</span> Templates</span> {/* TOTO: Replace Hardcoded COMAPNY with actualy Company Name */}
+    <div className=''>
+        <div className='flex my-3'>
+            <span className='text-2xl text-RES_ORANGE font-bold basis-1/4 pr-0'>Recent <span className='text-black'>COMPANY</span> Templates</span> {/* TOTO: Replace Hardcoded COMAPNY with actualy Company Name */}
             <hr className='h-1 basis-3/4 m-auto'></hr>
         </div>
-        
-       
         <RecentElements />
     </div>
     );
@@ -48,7 +46,6 @@ function RecentElements(){
     return(
       <div className="justify-center align-middle">
         <div className="flex flex-wrap gap-y-2 p-2 justify-between mx-20">
-          <RecentElementPortfolio />
           <RecentElementPortfolio />
           <RecentElementPortfolio />
           <RecentElementPortfolio />
@@ -96,9 +93,8 @@ function RecentElementPortfolio (){
 
 function Assets(){
     return(
-      <div className=''>
-        <br></br><br></br>
-        <h1 className='text-2xl text-RES_ORANGE font-bold ml-12'>All Companies</h1>
+      <div className='my-10'>
+        <h1 className='text-2xl text-RES_ORANGE font-bold'>All Companies</h1>
             <AssetsHeader />
             <AssetElement />
             <AssetElement />
