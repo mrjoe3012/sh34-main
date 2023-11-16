@@ -25,6 +25,7 @@ def generate_graph(graph_info:dict[str:Any], data_json:dict[str,Any]) -> str:
     Generates graphs for a given json config and data file.
     :param graph_info: Config Json file.
     :param data: Data file containing the data to be graphed.
+    :returns: a html string of the graph. 
     """
     graph_type = graph_info['graph-type']
     title = graph_info['title']
@@ -76,11 +77,7 @@ def generate_graph(graph_info:dict[str:Any], data_json:dict[str,Any]) -> str:
                 title=title, height=500
             )
             fig.update_layout(xaxis_title = x_axis_name, yaxis_title = y_axis_name)
-        case 'special':
-            fig = px.scatter_polar(data, r="frequency", theta="direction",
-                color="strength", symbol="strength",
-                color_discrete_sequence=px.colors.sequential.Plasma_r
-            )
+        
         case _:
             print('\n')
             raise ValueError(
@@ -101,12 +98,14 @@ def generate_graph(graph_info:dict[str:Any], data_json:dict[str,Any]) -> str:
         #return fig
     raise ValueError("Was not able to plot a graph")
 
-def data_extract(data_json,name,first_value):
+def data_extract(data_json:dict[str,Any],name:str,first_value:str) -> pd.DataFrame:
     """
-    Extracts the data from json format to a numpy DataFrame
-    :param data_json: The Json file that data is to be extracted from
-    :param name: Name of the data field to be put in a DF
-    :param first_value: If a value in the data json is specified this will be the y axis of the graph 
+    Extracts the data from json format to a numpy DataFrame.
+    :param data_json: The Json file that data is to be extracted from.
+    :param name: Name of the data field to be put in a DF.
+    :param first_value: If a value in the data json is specified this will be the y axis of the graph.
+    :returns: a Pandas Data Frame 
+
     """
     #with open(data_json, 'r') as file:
     #    graph_data = json.load(file)
