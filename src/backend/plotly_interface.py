@@ -1,7 +1,7 @@
 """Here we define all plotly-related interactions such as generating charts from json input."""
 
 #Mustafa Onur Cay - 19/10/2023
-from typing import Any 
+from typing import Any
 import os
 import json
 import plotly_express as px
@@ -76,8 +76,7 @@ def generate_graph(graph_info:dict[str:Any], data_json:dict[str,Any]) -> str:
                 color_discrete_sequence=[colour],
                 title=title, height=500
             )
-            fig.update_layout(xaxis_title = x_axis_name, yaxis_title = y_axis_name)
-        
+            fig.update_layout(xaxis_title = x_axis_name, yaxis_title = y_axis_name)        
         case _:
             print('\n')
             raise ValueError(
@@ -89,11 +88,16 @@ def generate_graph(graph_info:dict[str:Any], data_json:dict[str,Any]) -> str:
         # Path to be returned to
         directory = "return_plot/"
         os.makedirs(directory, exist_ok=True)
-        path_html = os.path.join(directory, 'figure.html')
-        path_png = os.path.join(directory, 'figure.png')
-        #Return Html and PNG
-        return pio.to_html(fig)
+
+        ####################################################
+        # Uncomment the next 3 lines to write HTML and PNG #
+        ####################################################
+
+        #path_html = os.path.join(directory, 'figure.html')
+        #path_png = os.path.join(directory, 'figure.png')
         #return pio.write_html(fig,path_html), pio.write_image(fig,path_png)
+
+        return pio.to_html(fig)
         #There is a solution online that suggest returning fig would work done like so
         #return fig
     raise ValueError("Was not able to plot a graph")
@@ -103,9 +107,9 @@ def data_extract(data_json:dict[str,Any],name:str,first_value:str) -> pd.DataFra
     Extracts the data from json format to a numpy DataFrame.
     :param data_json: The Json file that data is to be extracted from.
     :param name: Name of the data field to be put in a DF.
-    :param first_value: If a value in the data json is specified this will be the y axis of the graph.
-    :returns: a Pandas Data Frame 
-
+    :param first_value: If a value in the data json is specified this \
+    will be the y axis of the graph.
+    :returns: a Pandas Data Frame
     """
     #with open(data_json, 'r') as file:
     #    graph_data = json.load(file)
@@ -146,5 +150,5 @@ def data_extract(data_json:dict[str,Any],name:str,first_value:str) -> pd.DataFra
 
 
 if __name__ == "__main__":
-    generate_graph(unpack_json('../mock.json'),unpack_json('../fixed.json'))
+    #generate_graph(unpack_json('../mock.json'),unpack_json('../fixed.json'))
     pass
