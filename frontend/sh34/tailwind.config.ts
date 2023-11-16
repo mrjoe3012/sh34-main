@@ -29,6 +29,13 @@ const config: Config = {
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
+      height: theme => ({
+        sidebar: "90.7%",
+        navbar: "10%",
+      }),
+      width: theme => ({
+        footer: "88%",
+      }),
     },
   },
   plugins: [],   
