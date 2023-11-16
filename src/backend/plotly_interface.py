@@ -1,14 +1,14 @@
 """Here we define all plotly-related interactions such as generating charts from json input."""
 
-#This script is meant for showing some example features of plotly and mock graph generation
 #Mustafa Onur Cay - 19/10/2023
+from typing import Any 
 import os
 import json
 import plotly_express as px
 import plotly.io as pio
 import pandas as pd
 
-def unpack_json(json_file_path: str) -> dict:
+def unpack_json(json_file_path: str) -> dict[str:Any]:
     """
     Use the json library to read a json file.
     :param json_file_path: The json file path string.
@@ -20,9 +20,11 @@ def unpack_json(json_file_path: str) -> dict:
     return graph_data
 
 
-def generate_graph(graph_info, data):
+def generate_graph(graph_info:dict[str:Any], data_json:dict[str,Any]) -> str:
     """
-    @onur
+    Generates graphs for a given json config and data file.
+    :param graph_info: Config Json file.
+    :param data: Data file containing the data to be graphed.
     """
     graph_type = graph_info['graph-type']
     title = graph_info['title']
@@ -37,7 +39,7 @@ def generate_graph(graph_info, data):
     except KeyError:
         first_value = "value"
 
-    df = data_extract(data, name, first_value)
+    df = data_extract(data_json, name, first_value)
 
 
     # We have to use color_discrete_sequence=[colour] to enforce the colour in the Json
@@ -93,13 +95,19 @@ def generate_graph(graph_info, data):
         path_html = os.path.join(directory, 'figure.html')
         path_png = os.path.join(directory, 'figure.png')
         #Return Html and PNG
-        #return pio.to_html(fig)
-        return pio.write_html(fig,path_html), pio.write_image(fig,path_png)
+        return pio.to_html(fig)
+        #return pio.write_html(fig,path_html), pio.write_image(fig,path_png)
         #There is a solution online that suggest returning fig would work done like so
         #return fig
+    raise ValueError("Was not able to plot a graph")
 
 def data_extract(data_json,name,first_value):
-    """@onur"""
+    """
+    Extracts the data from json format to a numpy DataFrame
+    :param data_json: The Json file that data is to be extracted from
+    :param name: Name of the data field to be put in a DF
+    :param first_value: If a value in the data json is specified this will be the y axis of the graph 
+    """
     #with open(data_json, 'r') as file:
     #    graph_data = json.load(file)
 
@@ -131,7 +139,7 @@ def data_extract(data_json,name,first_value):
         data_dict["x"].append(entry[first_key])
         data_dict["y"].append(entry[first_value])
     df = pd.DataFrame(data_dict)
-    #print(df)
+    print(df.astype)
     return df
 
 
@@ -139,5 +147,5 @@ def data_extract(data_json,name,first_value):
 
 
 if __name__ == "__main__":
-    #generate_graph("mock.json")
+    generate_graph(unpack_json('../mock.json'),unpack_json('../fixed.json'))
     pass
