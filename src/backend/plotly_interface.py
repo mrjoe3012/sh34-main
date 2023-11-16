@@ -50,15 +50,16 @@ def generate_graph(graph_info:dict[str:Any], data_json:dict[str,Any]) -> str:
             fig = px.bar(
                 df, x='x', y='y',
                 color_discrete_sequence=[colour],
-                title = title,
-                height = 500
+                title=title,
+                height=500
             )
             fig.update_layout(xaxis_title = x_axis_name, yaxis_title = y_axis_name)
         case 'line':
             fig = px.line(
-                df, x="x", y='y',
+                df, x='x', y='y',
                 color_discrete_sequence=[colour],
-                title=title, height=500
+                title=title,
+                height=500
             )
 
             fig.update_layout(xaxis_title = x_axis_name, yaxis_title = y_axis_name)
@@ -67,16 +68,18 @@ def generate_graph(graph_info:dict[str:Any], data_json:dict[str,Any]) -> str:
             # A very very simple pie chart
             fig = px.pie(
                 df, color_discrete_sequence=[colour],
-                title=title, height=500
+                title=title,
+                height=500
             )
             fig.update_layout(xaxis_title = x_axis_name, yaxis_title = y_axis_name)
         case 'scatter':
             fig = px.scatter(
-                df, x="x", y='y',
+                df, x='x', y='y',
                 color_discrete_sequence=[colour],
-                title=title, height=500
+                title=title,
+                height=500
             )
-            fig.update_layout(xaxis_title = x_axis_name, yaxis_title = y_axis_name)        
+            fig.update_layout(xaxis_title = x_axis_name, yaxis_title = y_axis_name)
         case _:
             print('\n')
             raise ValueError(
@@ -142,7 +145,6 @@ def data_extract(data_json:dict[str,Any],name:str,first_value:str) -> pd.DataFra
         data_dict["x"].append(entry[first_key])
         data_dict["y"].append(entry[first_value])
     df = pd.DataFrame(data_dict)
-    print(df.astype)
     return df
 
 
