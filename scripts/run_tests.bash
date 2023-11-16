@@ -69,11 +69,11 @@ if ! "${PY}" "${PROJECT_ROOT}/scripts/in_venv.py"; then
 fi
 
 # run the tests
-FLAKE8_OUTPUT_FLAG=""
+#FLAKE8_OUTPUT_FLAG=""
 PYLINT_OUTPUT_FLAG=""
 PYTEST_OUTPUT_FLAG=""
 if [[ -n "${REPORT_DIR}" ]]; then
-    FLAKE8_OUTPUT_FLAG="--output-file ${REPORT_DIR}/pylint.xml"
+    #FLAKE8_OUTPUT_FLAG="--output-file ${REPORT_DIR}/pylint.xml"
     PYLINT_OUTPUT_FLAG="--output ${REPORT_DIR}/flake8.out --output-format=pylint_junit.JUnitReporter"
     PYTEST_OUTPUT_FLAG="--junit-xml=${REPORT_DIR}/pytest.xml"
 fi
