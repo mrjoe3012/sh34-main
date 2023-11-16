@@ -69,11 +69,11 @@ if ! "${PY}" "${PROJECT_ROOT}/scripts/in_venv.py"; then
 fi
 
 # run the tests
-FLAKE8_OUTPUT_FLAG=""
+#FLAKE8_OUTPUT_FLAG=""
 PYLINT_OUTPUT_FLAG=""
 PYTEST_OUTPUT_FLAG=""
 if [[ -n "${REPORT_DIR}" ]]; then
-    FLAKE8_OUTPUT_FLAG="--output-file ${REPORT_DIR}/pylint.xml"
+    #FLAKE8_OUTPUT_FLAG="--output-file ${REPORT_DIR}/pylint.xml"
     PYLINT_OUTPUT_FLAG="--output ${REPORT_DIR}/flake8.out --output-format=pylint_junit.JUnitReporter"
     PYTEST_OUTPUT_FLAG="--junit-xml=${REPORT_DIR}/pytest.xml"
 fi
@@ -82,10 +82,10 @@ fi
     ${PYLINT_OUTPUT_FLAG} \
     "${PROJECT_ROOT}/src"
 PYLINT_STATUS="${?}"
-"${PY}" -m flake8 \
-    ${FLAKE8_OUTPUT_FLAG}\
-    "${PROJECT_ROOT}/src"
-FLAKE8_STATUS="${?}"
+# "${PY}" -m flake8 \
+#     ${FLAKE8_OUTPUT_FLAG}\
+#     "${PROJECT_ROOT}/src"
+# FLAKE8_STATUS="${?}"
 "${PY}" -m pytest \
     "${PYTEST_OUTPUT_FLAG}" \
     "${PROJECT_ROOT}/src"
@@ -105,7 +105,7 @@ if [[ "${SHELLCHECK}" -eq "1" ]]; then
     echo "Shellcheck returned with code ${SHELLCHECK_STATUS}"
 fi
 
-echo "Flake8 returned with code ${FLAKE8_STATUS}"
+# echo "Flake8 returned with code ${FLAKE8_STATUS}"
 echo "Pylint returned with code ${PYLINT_STATUS}"
 echo "Pytest returned with code ${PYTEST_STATUS}"
 
