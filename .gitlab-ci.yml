@@ -25,6 +25,7 @@ test-backend:
     - kill "${backend_pid}"
 
 build-image:
+  stage: .post
   rules:
     - when: manual
   script:
