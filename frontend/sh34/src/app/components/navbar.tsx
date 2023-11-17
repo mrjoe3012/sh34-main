@@ -1,8 +1,8 @@
 import Link from 'next/link';
 import Image from 'next/image';
 
-import header from "./../../images/header-logo.svg"
-import profile from "./../../images/profile-pic.svg"
+import header from "./../images/header-logo.svg"
+import profile from "./../images/profile-pic.svg"
 
 export const Navbar = () => {
     return (
