@@ -26,7 +26,7 @@ test-backend:
 
 build-image:
   rules:
-    when: manual
+    - when: manual
   script:
     - docker build -t stgit.dcs.gla.ac.uk:5050/team-project-h/2023/sh34/sh34-main:latest -f docker/Dockerfile .
     - docker push stgit.dcs.gla.ac.uk:5050/team-project-h/2023/sh34/sh34-main:latest
