@@ -8,7 +8,7 @@ import plotly_express as px
 import plotly.io as pio
 import pandas as pd
 
-def unpack_json(json_file_path: str) -> dict[str:Any]:
+def unpack_json(json_file_path: str) -> dict[str,Any]:
     """
     Use the json library to read a json file.
     :param json_file_path: The json file path string.
@@ -20,7 +20,7 @@ def unpack_json(json_file_path: str) -> dict[str:Any]:
     return graph_data
 
 
-def generate_graph(graph_info:dict[str:Any], data_json:dict[str,Any]) -> str:
+def generate_graph(graph_info:dict[str,Any], data_json:dict[str,Any]) -> str:
     """
     Generates graphs for a given json config and data file.
     :param graph_info: Config Json file.
