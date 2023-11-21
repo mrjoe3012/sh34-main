@@ -100,7 +100,7 @@ def generate_graph(graph_info:dict[str,Any], data_json:dict[str,Any]) -> str:
         #path_png = os.path.join(directory, 'figure.png')
         #return pio.write_html(fig,path_html), pio.write_image(fig,path_png)
 
-        return pio.to_html(fig)
+        return pio.to_html(fig, full_html=False)
         #There is a solution online that suggest returning fig would work done like so
         #return fig
     raise ValueError("Was not able to plot a graph")
