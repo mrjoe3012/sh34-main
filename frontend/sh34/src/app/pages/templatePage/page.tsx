@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { Main } from 'next/document';
-import { Navbar } from '../../components/Navbar/navbar';
+import { Navbar } from '../../components/navbar';
 import Document from "./../../images/Document-icon.png"
 import Alogo from "./../../images/Alogo.png"
 import UKflag from "./../../images/UKflag.png"
