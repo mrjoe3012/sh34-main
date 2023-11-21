@@ -7,7 +7,6 @@ app = Flask(__name__)
 
 DEFAULT_GRAPH_INFO_PATH = 'src/mock.json'
 DEFAULT_DATA_PATH = 'src/fixed.json'
-INDICATORS = None
 
 def main():
     """Function to run the webserver"""
@@ -38,7 +37,7 @@ def load_indicators(filename: str = "mock.json") -> list[str]:
     :param filename: JSON file to load from.
     :returns: A list of indicator names from the json file.
     """
-    with open(filename, 'r') as f:
+    with open(filename, 'r', encoding="utf-8") as f:
         data = json.load(f)
     indicators = list(data['month']['breakdown_by_indicator'].keys())
     return indicators
@@ -49,16 +48,13 @@ def test_plot_generation():
     This method returns an html interface for generating plots. It can also return
     the html for a generated plot configuration.
     """
-    global INDICATORS
-    if not INDICATORS:
-        INDICATORS = load_indicators(DEFAULT_DATA_PATH)
+    indicators = load_indicators(DEFAULT_DATA_PATH)
     if 'indicator' in request.args:
         indicator = request.args.get("indicator")
-        indicator = INDICATORS[int(indicator)]
+        indicator = indicators[int(indicator)]
         html = gen_plot(indicator)
         return Response(html, mimetype="text/plain")
-    else:
-        return render_template("plot_generation.html", indicators=INDICATORS)
+    return render_template("plot_generation.html", indicators=indicators)
 
 if __name__ == "__main__":
     main()
