@@ -1,197 +1,164 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { Main } from 'next/document';
-import { Navbar } from '../../components/Navbar/navbar';
+import { Navbar } from '../../components/navbar';
+import { RecentElement } from '../../components/recentelement';
 import Document from "./../../images/Document-icon.png"
 import Alogo from "./../../images/Alogo.png"
 import UKflag from "./../../images/UKflag.png"
 
 export default function Home() {
     return (
-      <div className="text-black">
-        <Navbar />
-        <hr className="h-0.5 border-none bg-RES"></hr>
-        <Body />
+      <div className="text-black bg-white">
+        <div className=''>
+            <Navbar />
+            <Body />
+        </div>
       </div>
     );
-  } 
+} 
 
   
 function Body() {
   return (
-    <div className="bg-white"> {/*bg-orange-200 could be quite nice */} 
-      <h1 className="text-4xl text-RES_ORANGE font-bold p-6">Home</h1>
-      <Recents />
-      <Companies />
+    <div className="bg-white mx-10">
+      <Header />
+      <div className='mx-5'>
+        <RecentTemplateList />
+        <CompaniesSection />
+      </div>
     </div>
   );
 }
 
-function Recents(){
+function Header(){
   return(
-  <div>
-     <h1 className='text-2xl text-RES_ORANGE font-bold ml-12'>Recent Templates</h1>
+      <div className=''>
+          <h1 className="text-4xl text-RES_ORANGE font-bold my-7">Home</h1>
+      </div>
+  );
+}
+
+function RecentTemplateList(){
+  return(
+  <div className=''>
+      <div className='flex my-3'>
+          <span className='w-fit mr-5 text-2xl text-RES_ORANGE font-bold pr-0'>Recent Templates</span>
+          <hr className='flex-grow h-1 basis-3/4 m-auto'></hr>
+      </div>
       <RecentElements />
-    </div>
+  </div>
   );
 }
 
 function RecentElements(){
-  return(
-    <div className="justify-center align-middle">
-      <div className="flex p-2 justify-between mx-20">
-        <RecentElement />
-        <RecentElement />
-        <RecentElement />
-        <RecentElement />
-        <RecentElement />
-      </div>  
-    </div>
-  );
-}
-
-function RecentElement(){
-  return(
-    <div className='container rounded border border-black w-40 bg-slate-200 pt-1'> {/* background as the image on the wireframe */}
-          <div className="grid grid-cols-3">
-            <div className='relative'>
-                {/* <h1 className='text-sm'>LOGO</h1> */}
-                <Image src={Alogo} alt="test" fill={true} className="self-center object-cover"/>
-            </div>
-            <div className='text-center col-span-2'>
-                <h1 className='text-sm'>Company</h1>
-            </div>
-          </div>
-          <hr></hr>
-          <div className='m-1'>
-            <div className='text-left'>
-              <h1 className='text-base'>Asset Name</h1>
-            </div>
-            <div className='w-1/3'>
-              <div className='relative'> 
-              <h1 className='text-lg '>FLAG</h1>{/* this line is needed to display the flag must be creating a space for the img */}
-                <Image src={UKflag} alt="UK Flag" fill={true} /> 
-              </div>
-            </div>
-            <div>
-              <p>Last Modified: 15/02/2023</p>
-            </div>
-          </div>
-        </div>
-  )
-}
-
-function Companies(){
-  return(
-    <div>
-      <br></br><br></br>
-      <h1 className='text-2xl text-RES_ORANGE font-bold ml-12'>All Companies</h1>
-        <CompanyHeader />
-        <CompanyElement />
-        <CompanyElement />
-        <CompanyElement />
-        <CompanyElement />
-    </div>
-  );
-}
-
-function CompanyHeader(){
-  return(
-    <div className='inherit'>
-      <div className='grid grid-cols-8 p-4'>
-        <div className='col-start-2 col-end-3'>
-          <h2 className="text-lg">Company Name</h2>
-        </div>
-        <div className='col-start-3 col-end-4'>
-          <h2 className='text-lg'>No. of Assets</h2>
-        </div>
-      </div>
-      <hr className="h-1 bg-RES_ORANGE boder-none "></hr>
-    </div>
-  );
-}
-
-function CompanyElement(){
-  return(
-    <div>
-      <div className='grid grid-cols-8 p-4 items-center'>
-        <div className='relative align-baseline'> 
-          <Image src={Alogo} alt="test" fill={true} className="rounded object-contain p-0"/>
-          <h1 className='text-lg '>LOGO</h1>
+    return(
+      <div className="justify-center align-middle">
+        <div className="flex flex-wrap gap-y-2 p-2 justify-between mx-20">
+          <RecentElement />
+          <RecentElement />
+          <RecentElement />
+          <RecentElement />
+          <RecentElement />
+          <RecentElement />
         </div>  
-        <div className="">
-          <h2 className=''>Company</h2>
-        </div>
-        <div>
-            <h2>NUMBER</h2>
-          </div>
-        <div className='col-start-7 col-span-2 px-10'> {/* breakpoints needed to stop it from going over 2 lines on smaller screen OR more elegant solution */}
-          <ViewPortfolio />
-        </div>
       </div>
-      <hr className="h-0.5 bg-GRIDLINES border-none mr-4 ml-4"></hr>
+    );
+}
+
+
+
+
+
+function CompaniesSection(){
+  return(
+    <div className='my-10'>
+      <div className='flex my-3'>
+          <h1 className='w-fit mr-5 text-2xl text-RES_ORANGE font-bold'>All Companies</h1>
+          <hr className='flex-grow h-1 m-auto'></hr>
+      </div>
+          <CompanyTableHeader />
+          <CompanyTableElement />
+          <CompanyTableElement />
+          <CompanyTableElement />
+          <CompanyTableElement />
+    </div>
+  );
+}
+
+function CompanyTableHeader(){
+  return(
+    <div className=''>
+      <div className='grid p-4 grid-cols-companyTableHeaderLayout'>
+
+        <div className='col-start-1'>
+          
+        </div>
+
+        <div className='col-start-2 justify-self-center self-center'>
+          <h2 className='text-lg font-bold'>Company Name</h2>
+        </div>
+
+        <div className='col-start-3 justify-self-center self-center'>
+          <h2 className='text-lg font-bold'>No. Assets</h2>
+        </div>
+
+      </div>
+      <hr className='bg-slate-900'></hr>
+    </div>
+  );
+}
+
+
+function CompanyTableElement(){
+
+  return(
+    <div>
+      <div className='grid p-4 grid-cols-companyTableElementLayout auto-rows-[40px]'>
+
+        <div className='relative align-baseline col-span-1 justify-self-center self-center'> 
+          <Image src={Alogo} alt="test" className="w-20 h-10 self-center object-cover rounded"/>
+        </div>  
+
+        <div className="col-span-1 justify-self-center self-center">
+          <h2 className='text-lg'>Company</h2>
+        </div>
+
+        <div className="col-span-1 justify-self-center self-center">
+            <h2 className='text-lg'>2</h2>
+        </div>
+
+        <div>
+        </div>
+
+        <div className="">
+            <ViewPortfolio />
+        </div>
+
+
+      </div>
+      <hr className='w-[95%] mx-auto'></hr>
     </div>
 
   );
+
 }
+
+
+
+
 
 function ViewPortfolio(){
   return(
-    <div className='text-center'>
-      <div className="flex rounded-xl p-2 border-black border-2 relative bg-test">
-        {/* <p className='text-white'>little img</p> */}
-        <div className='relative p-0 basis-1/3'> 
-          <Image src={Document} alt="test" fill={true} className="self-center rounded object-contain p-0"/>
+      <div className='text-center w-5/6'>
+        <div className="justify-center flex gap-x-2 rounded-xl p-2 border-black border-2 relative bg-[#346DFF]">
+          <Image alt='documentlogo' src={Document} className='object-contain w-[25px] h-[25px]'/>
+          <p className="text-slate-50 basis-10/11">View Portfolio</p>
         </div>
-        <p className="text-black basis-10/11">View Portfolio</p>
       </div>
-    </div>
   );
 }
 
-function MainElement() {
-  return (
-    <div className="p-4">
-      <div className="md:flex bg-slate-100 rounded-xl p-8 dark:bg-slate-400">
-        <p className="text-black">
-        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-        </p>
-      </div>
-    </div>
-  );
-}
-
-function Sidebar() {
-    return (
-      <div className="h-full bg-slate-50">
-        {/* <HomeButton /> */}
-        <div className="h-5/6 pt-6 flex flex-col space-y-6">
-          <SidebarElement />
-          <SidebarElement />
-          <SidebarElement />
-          <SidebarElement />
-          <SidebarElement />
-        </div>
-      </div>
-    );
-  }
-
-  function SidebarElement() {
-    return (
-      <div className="rounded h-1/4 bg-slate-500 mx-2">
-        <Link href="/">
-          <button>
-            <h1 className="text-lg">Event</h1>
-            <h2 className="text-base">Date</h2>
-            <p className="text-sm">Lorem ipsum dolor sit amet, consectetur.</p>
-          </button>
-        </Link>
-      </div>
-        
-  
-    );
-  }
 
 
-  
  
