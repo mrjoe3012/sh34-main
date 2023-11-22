@@ -28,6 +28,7 @@ def gen_plot(indicator: str | None = None ,graph_type: str | None = None ):
     if indicator:
         graph_info['graph_name'] = f"/breakdown_by_indicator/{indicator}"
         graph_info['title'] = indicator
+        graph_info['y_axis_name'] = indicator
     if graph_type:
         graph_info['graph-type'] = graph_type
     html = generate_graph(graph_info, data)
