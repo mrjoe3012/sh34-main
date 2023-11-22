@@ -7,6 +7,7 @@ import json
 import plotly_express as px
 import plotly.io as pio
 import pandas as pd
+import re
 
 def unpack_json(json_file_path: str) -> dict[str,Any]:
     """
@@ -51,7 +52,7 @@ def generate_graph(graph_info:dict[str,Any], data_json:dict[str,Any]) -> str:
             fig = px.bar(
                 df, x='x', y='y',
                 color_discrete_sequence=[colour],
-                title=title,
+                title=pascalSplitName(title),
                 height=500
             )
             fig.update_layout(xaxis_title = x_axis_name, yaxis_title = y_axis_name)
@@ -151,7 +152,10 @@ def data_extract(data_json:dict[str,Any],name:str,first_value:str) -> pd.DataFra
     df = pd.DataFrame(data_dict)
     return df
 
-
+def pascalSplitName(string:str) -> str:
+    words = re.findall(r'[A-Z][a-z]*', string)
+    words = ' '.join(words)
+    return words
 
 
 
