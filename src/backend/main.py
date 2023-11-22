@@ -13,7 +13,7 @@ def main():
     app.run(host="localhost", port=7575, debug=True)
 
 @app.route("/", methods=["GET", "POST"])
-def gen_plot(indicator: str | None = None):
+def gen_plot(indicator: str | None = None ,graph_type: str | None = None ):
     """
     Test function for flask endpoint
     :param indicator: Optionally specify an indicator to display.
@@ -28,6 +28,8 @@ def gen_plot(indicator: str | None = None):
     if indicator:
         graph_info['graph_name'] = f"/breakdown_by_indicator/{indicator}"
         graph_info['title'] = indicator
+    if graph_type:
+        graph_info['graph-type'] = graph_type
     html = generate_graph(graph_info, data)
     return html
 
@@ -49,12 +51,14 @@ def test_plot_generation():
     the html for a generated plot configuration.
     """
     indicators = load_indicators(DEFAULT_DATA_PATH)
-    if 'indicator' in request.args:
+    if 'indicator' in request.args and 'graph_type' in request.args: 
         indicator = request.args.get("indicator")
+        graph_type = request.args.get("graph_type")
         indicator = indicators[int(indicator)]
-        html = gen_plot(indicator)
+        html = gen_plot(indicator, graph_type)
         return Response(html, mimetype="text/plain")
     return render_template("plot_generation.html", indicators=indicators)
+
 
 if __name__ == "__main__":
     main()
