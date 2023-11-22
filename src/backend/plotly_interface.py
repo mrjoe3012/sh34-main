@@ -28,6 +28,7 @@ def generate_graph(graph_info:dict[str,Any], data_json:dict[str,Any]) -> str:
     :returns: a html string of the graph. 
     """
     graph_type = graph_info['graph-type']
+    print(graph_info)
     title = graph_info['title']
     x_axis_name = graph_info['x_axis_name']
     y_axis_name = graph_info['y_axis_name']
@@ -100,7 +101,7 @@ def generate_graph(graph_info:dict[str,Any], data_json:dict[str,Any]) -> str:
         #path_png = os.path.join(directory, 'figure.png')
         #return pio.write_html(fig,path_html), pio.write_image(fig,path_png)
 
-        return pio.to_html(fig)
+        return pio.to_html(fig, full_html=False)
         #There is a solution online that suggest returning fig would work done like so
         #return fig
     raise ValueError("Was not able to plot a graph")
@@ -143,7 +144,10 @@ def data_extract(data_json:dict[str,Any],name:str,first_value:str) -> pd.DataFra
         first_key = list(entry.keys())[0]
 
         data_dict["x"].append(entry[first_key])
-        data_dict["y"].append(entry[first_value])
+        try:
+            data_dict["y"].append(entry[first_value])
+        except KeyError:
+            data_dict["y"].append(None)
     df = pd.DataFrame(data_dict)
     return df
 
