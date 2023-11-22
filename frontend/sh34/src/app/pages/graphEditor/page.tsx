@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { Main } from 'next/document';
-import { Navbar } from '../../components/Navbar/navbar';
+import { Navbar } from '../../components/navbar';
 import Document from "./../../images/Document-icon.png"
 
 export default function graphEditor() {
@@ -68,8 +68,5 @@ function Footer(){
                 <hr className="h-1 bg-RES_ORANGE boder-none "></hr>
             </div>
         </footer>
-
-
-
     );
 }
