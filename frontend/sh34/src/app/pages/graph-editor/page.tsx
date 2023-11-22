@@ -1,12 +1,11 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { Main } from 'next/document';
 import { Navbar } from '../../components/navbar';
 import Document from "./../../images/Document-icon.png"
 
 export default function graphEditor() {
     return (
-      <div className="text-black h-screen ">
+      <div className="text-black h-screen">
         <Navbar />       
         <Body />
       </div>
