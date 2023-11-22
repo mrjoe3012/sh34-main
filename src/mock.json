@@ -1,7 +1,8 @@
 {
-    "graph-type": "bar",
-    "title": "USA GDP",
-    "x_axis_name": "Years",
-    "y_axis_name": "GPD (USD) Millions",
-    "colour": "purple"
+    "graph-type": "scatter",
+    "title": "Wind over time",
+    "x_axis_name": "Days",
+    "y_axis_name": "Site Availability",
+    "colour": "#E87511",
+    "graph_name": "/breakdown_by_indicator/SiteAvailability"
 }

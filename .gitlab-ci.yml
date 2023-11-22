@@ -1,0 +1,26 @@
+image: stgit.dcs.gla.ac.uk:5050/team-project-h/2023/sh34/sh34-main:latest
+
+stages:          # List of stages for jobs, and their order of execution
+  - build-test
+
+build-frontend:
+  stage: build-test
+  script:
+    - cd frontend/sh34
+    - npm install
+    - npm run build
+
+test-backend:
+  stage: build-test
+  script:
+    - mkdir test_artifacts
+    - source /root/.venv/sh34/bin/activate
+    - python3 -m pip install -e src
+    - python3 -m pip install -r src/requirements.txt
+    - sh34-backend &> /dev/null &
+    - backend_pid="${!}"
+    - sleep 5
+    - set -o xtrace
+    - scripts/run_tests.bash
+    - kill "${backend_pid}"
+
