@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { Main } from 'next/document';
 import { Navbar } from '../../components/navbar';
 import { RecentElement } from '../../components/recentelement';
 import Document from "./../../images/Document-icon.png"
