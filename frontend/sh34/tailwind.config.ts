@@ -33,7 +33,6 @@ const config: Config = {
         'companyTableHeaderLayout': '15% 15% 15% auto',
         'companyTableElementLayout': '15% 15% 15% auto 20%',
       },
-<<<<<<< frontend/sh34/tailwind.config.ts
       height: theme => ({
         sidebar: "90.7%",
         navbar: "10%",
@@ -41,8 +40,6 @@ const config: Config = {
       width: theme => ({
         footer: "88%",
       }),
-=======
->>>>>>> frontend/sh34/tailwind.config.ts
     },
   },
   plugins: [],   
