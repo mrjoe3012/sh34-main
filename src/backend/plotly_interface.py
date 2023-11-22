@@ -3,7 +3,6 @@
 #Mustafa Onur Cay - 19/10/2023
 from typing import Any
 import os
-import re
 import json
 import plotly_express as px
 import plotly.io as pio
@@ -29,7 +28,6 @@ def generate_graph(graph_info:dict[str,Any], data_json:dict[str,Any]) -> str:
     :returns: a html string of the graph. 
     """
     graph_type = graph_info['graph-type']
-    print(graph_info)
     title = graph_info['title']
     x_axis_name = graph_info['x_axis_name']
     y_axis_name = graph_info['y_axis_name']
@@ -155,12 +153,28 @@ def data_extract(data_json:dict[str,Any],name:str,first_value:str) -> pd.DataFra
     df = pd.DataFrame(data_dict)
     return df
 
-def pascal_split_name(string:str) -> str:
-    """Function for turning pascalCase to normal english"""
-    words = re.findall(r'[A-Z][a-z]*', string)
-    words_string = ' '.join(words)
-    return words_string
+def pascal_split_name(value:str) -> str:
+    """Function for turning PascalCase to normal english"""
+    if value is None:
+        return None
+    if len(value) <= 1:
+        return value
 
+    result = []
+    i = 0
+
+    while i < len(value):
+        if value[i].isupper():
+            if i > 0 and value[i - 1].islower():
+                result.append(' ')
+            elif i > 0 and i + 1 < len(value) and value[i + 1].islower():
+                result.append(' ')
+            result.append(value[i])
+        else:
+            result.append(value[i])
+        i += 1
+
+    return ''.join(result).strip()
 
 
 if __name__ == "__main__":
