@@ -16,7 +16,7 @@ export default function graphEditor() {
   
 function Body() {
   return (
-    <div className="bg-gray-600 h-[88%]">
+    <div className="bg-gray-600 h-[86.5%]">
     <Sidebar />
     <Footer />
     </div>
@@ -25,7 +25,7 @@ function Body() {
 
 function Sidebar() {
     return(
-        <div className="p-3 h-full bg-white z-10 fixed w-60 left-0 flex-col justify-center">
+        <div className="p-3 top-1/10 bottom-0 bg-white z-10 fixed w-60 left-0 flex-col justify-center">
             <div className="flex-grow">
                 <h1 className="text-4xl text-RES_ORANGE font-bold p-6 flex justify-center hover:font-bold">Title</h1>
                 <hr className="h-0.5 border-none bg-RES bg-gray-500"></hr>  
@@ -46,7 +46,7 @@ function Sidebar() {
 
 function Footer(){
     return(
-        <footer className="fixed bottom-0 w-footer bg-white z-11 right-0 h-[20%]">
+        <footer className="fixed bottom-0 left-60 bg-white z-11 right-0 h-[20%]">
             <div className='inherit'>
                 <div className='grid grid-cols-6 p-3'>
                     <div className='col-start-1 col-end-2'>
