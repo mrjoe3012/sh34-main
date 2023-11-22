@@ -46,7 +46,7 @@ function Sidebar() {
     return(
         <div className="p-3 h-[87%] bottom-0 bg-white z-10 fixed w-60 left-0 flex-col justify-center">
             <div className="flex-grow">
-                <div className="flex justify-center w-10"><select name="cars" id="cars">
+                <div className="flex justify-center"><select>
                     <option selected disabled>Graph Type</option>
                     <option value="scatter">Scatter</option>
                     <option value="line">Line</option>
@@ -57,7 +57,7 @@ function Sidebar() {
                 <h3 className="text-2xl text-RES_ORANGE font-bold p-6 flex justify-center hover:font-bold">General</h3>
                 <h3 className="text-2xl text-RES_ORANGE font-bold p-6 flex justify-center hover:font-bold">Labelling</h3>
                 <h3 className="text-2xl text-RES_ORANGE font-bold p-6 flex justify-center hover:font-bold">Visual</h3>
-                <div className="flex justify-center"><select name="cars" id="cars">
+                <div className="flex justify-center"><select name="indicator" id="indicator">
                     <option selected disabled>Indicator</option>
                     {indicators}
                 </select></div>
