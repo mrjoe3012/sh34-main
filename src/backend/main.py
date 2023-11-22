@@ -52,7 +52,7 @@ def test_plot_generation():
     the html for a generated plot configuration.
     """
     indicators = load_indicators(DEFAULT_DATA_PATH)
-    if 'indicator' in request.args and 'graph_type' in request.args: 
+    if 'indicator' in request.args and 'graph_type' in request.args:
         indicator = request.args.get("indicator")
         graph_type = request.args.get("graph_type")
         indicator = indicators[int(indicator)]

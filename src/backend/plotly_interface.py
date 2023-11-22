@@ -153,9 +153,10 @@ def data_extract(data_json:dict[str,Any],name:str,first_value:str) -> pd.DataFra
     return df
 
 def pascalSplitName(string:str) -> str:
+    """Function for turning pascalCase to normal english"""
     words = re.findall(r'[A-Z][a-z]*', string)
-    words = ' '.join(words)
-    return words
+    words_string = ' '.join(words)
+    return words_string
 
 
 
