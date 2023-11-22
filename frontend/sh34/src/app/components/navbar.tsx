@@ -16,7 +16,7 @@ export const Navbar = () => {
                 </li>
                 <li className="list-none ">
                   <Link href="/profile">
-                    <h1 className="text-black text-2xl font-bold align-right"><Image src={profile} width={50} height={50}alt="profile" /></h1>
+                    <h1 className="text-black text-2xl font-bold align-right"><Image src={profile} width={60} height={60}alt="profile" /></h1>
                   </Link>
                 </li>
           </div>
