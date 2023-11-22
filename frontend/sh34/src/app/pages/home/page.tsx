@@ -9,7 +9,7 @@ import UKflag from "./../../images/UKflag.png"
 
 export default function Home() {
     return (
-      <div className="text-black bg-white">
+      <div className="text-black bg-white overflow-hidden">
         <div className=''>
             <Navbar />
             <Body />
@@ -43,28 +43,28 @@ function RecentTemplateList(){
   return(
   <div className=''>
       <div className='flex my-3'>
-          <span className='w-fit mr-5 text-2xl text-RES_ORANGE font-bold pr-0'>Recent Templates</span>
+          <span className='whitespace-nowrap w-fit mr-5 text-2xl text-RES_ORANGE font-bold pr-0'>Recent Templates</span>
           <hr className='flex-grow h-1 basis-3/4 m-auto'></hr>
       </div>
       <RecentElements />
   </div>
   );
 }
-
 function RecentElements(){
-    return(
-      <div className="justify-center align-middle">
-        <div className="flex flex-wrap gap-y-2 p-2 justify-between mx-20">
-          <RecentElement />
-          <RecentElement />
-          <RecentElement />
-          <RecentElement />
-          <RecentElement />
-          <RecentElement />
-        </div>  
-      </div>
-    );
+  return(
+    <div className="justify-center align-middle flex">
+      <div className="flex flex-nowrap gap-y-2 gap-x-2 2xl:gap-x-[75px] xl:gap-x-5 p-2 mx-20">
+        <RecentElement />
+        <RecentElement />
+        <RecentElement />
+        <RecentElement />
+        <RecentElement />
+        <RecentElement />
+      </div>  
+    </div>
+  );
 }
+
 
 
 

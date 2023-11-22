@@ -30,6 +30,9 @@ const config: Config = {
       gridTemplateColumns: {
         'companyTableHeaderLayout': '15% 15% 15% auto',
         'companyTableElementLayout': '15% 15% 15% auto 20%',
+      },
+      screens: {
+        "2xl":"1650px",
       }
     },
   },
