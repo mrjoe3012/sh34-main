@@ -4,7 +4,7 @@ import Alogo from "./../images/Alogo.png"
 
 export const RecentElement = () =>{
     return(
-      <div className='container rounded-xl border-4 border-[#434343] w-44 min-w-[150px] h-[165px] bg-slate-200 p-1.5' > {/* background as the image on the wireframe */}
+      <div className='container rounded-xl border-4 border-[#434343] w-44 2xl:w-52 min-w-[150px] xl:h-[165px] 2xl:h-[200px] bg-slate-200 p-1.5' > {/* background as the image on the wireframe */}
             
             <div className="grid grid-flow-col pb-2 pt-1">
               <div className='relative self-center justify-self-center'>
@@ -19,16 +19,16 @@ export const RecentElement = () =>{
   
             <div className='m-1'>
               <div className='text-left'>
-                <h1 className='font-semibold text-xl'>Asset Name</h1>
+                <h1 className='font-semibold text-xl 2xl:text-2xl'>Asset Name</h1>
               </div>
   
               <div className="text-sm">
                 <div className='relative self-center justify-self-center mt-1 mb-1'>
-                    <Image src={UKflag} alt="test" className="w-12 h-6 self-center object-cover rounded"/>
+                    <Image src={UKflag} alt="test" className="w-12 h-6 2xl:w-14 2xl:h-8 self-center object-cover rounded"/>
                 </div>
                   <div>
-                      <p className="font-medium">Last Modified</p>
-                      <p>15/02/2023</p>
+                      <p className="font-medium 2xl:text-lg">Last Modified</p>
+                      <p className="2xl:text-base">15/02/2023</p>
                   </div>
               </div>
   

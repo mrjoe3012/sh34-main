@@ -40,6 +40,9 @@ const config: Config = {
       width: theme => ({
         footer: "84.5%",
       }),
+      screens: {
+        "2xl":"1650px",
+      },
     },
   },
   plugins: [],   
