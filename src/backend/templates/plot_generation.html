@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Indicator Generator</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+
+    <form>
+        <label for="indicator">Indicator:</label>
+        <select id="indicator" name="indicator">
+            {% for indicator in indicators: %}
+            <option value="{{ loop.index0 }}">{{ indicator }}</option>
+            {% endfor %}
+        </select>
+        <br><br>
+        <button type="button" onclick="generate()">Generate</button>
+    </form>
+
+    <div id="plot-container">
+
+    </div>
+
+    <script>
+        function generate() {
+            var selectedIndicator = document.getElementById("indicator").value;
+            const xhr = new XMLHttpRequest();
+            xhr.open("GET", "http://localhost:7575/test/plot-generation?indicator="+selectedIndicator);
+            xhr.send();
+            xhr.responseType = "text";
+            xhr.onload = () => {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    $('#plot-container').html(xhr.responseText);
+                } else {
+                    console.log(`Error: ${xhr.status}`);
+                }
+            };
+        }
+    </script>
+
+</body>
+</html>
