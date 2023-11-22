@@ -55,33 +55,33 @@ def generate_graph(graph_info:dict[str,Any], data_json:dict[str,Any]) -> str:
                 title=pascalSplitName(title),
                 height=500
             )
-            fig.update_layout(xaxis_title = x_axis_name, yaxis_title = y_axis_name)
+            fig.update_layout(xaxis_title = x_axis_name, yaxis_title = pascalSplitName(y_axis_name))
         case 'line':
             fig = px.line(
                 df, x='x', y='y',
                 color_discrete_sequence=[colour],
-                title=title,
+                title=pascalSplitName(title),
                 height=500
             )
 
-            fig.update_layout(xaxis_title = x_axis_name, yaxis_title = y_axis_name)
+            fig.update_layout(xaxis_title = x_axis_name, yaxis_title = pascalSplitName(y_axis_name))
             fig.update_traces(line={ 'width' : 4})
         case 'pie':
             # A very very simple pie chart
             fig = px.pie(
                 df, color_discrete_sequence=[colour],
-                title=title,
+                title=pascalSplitName(title),
                 height=500
             )
-            fig.update_layout(xaxis_title = x_axis_name, yaxis_title = y_axis_name)
+            fig.update_layout(xaxis_title = x_axis_name, yaxis_title = pascalSplitName(y_axis_name))
         case 'scatter':
             fig = px.scatter(
                 df, x='x', y='y',
                 color_discrete_sequence=[colour],
-                title=title,
+                title=pascalSplitName(title),
                 height=500
             )
-            fig.update_layout(xaxis_title = x_axis_name, yaxis_title = y_axis_name)
+            fig.update_layout(xaxis_title = x_axis_name, yaxis_title = pascalSplitName(y_axis_name))
         case _:
             print('\n')
             raise ValueError(
