@@ -38,7 +38,7 @@ const config: Config = {
         navbar: "10%",
       }),
       width: theme => ({
-        footer: "88%",
+        footer: "84.5%",
       }),
     },
   },

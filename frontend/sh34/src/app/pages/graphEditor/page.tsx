@@ -6,7 +6,7 @@ import Document from "./../../images/Document-icon.png"
 
 export default function graphEditor() {
     return (
-      <div className="text-black h-screen overflow-hidden">
+      <div className="text-black h-screen ">
         <Navbar />       
         <Body />
       </div>
@@ -16,7 +16,7 @@ export default function graphEditor() {
   
 function Body() {
   return (
-    <div className="bg-gray-600 h-screen">
+    <div className="bg-gray-600 h-[88%]">
     <Sidebar />
     <Footer />
     </div>
@@ -25,7 +25,7 @@ function Body() {
 
 function Sidebar() {
     return(
-        <div className="p-3 w-1/2 h-sidebar bg-white z-10 fixed -left-96 lg:w-60 lg:left-0 flex-col relative justify-center">
+        <div className="p-3 h-full bg-white z-10 fixed w-60 left-0 flex-col justify-center">
             <div className="flex-grow">
                 <h1 className="text-4xl text-RES_ORANGE font-bold p-6 flex justify-center hover:font-bold">Title</h1>
                 <hr className="h-0.5 border-none bg-RES bg-gray-500"></hr>  
@@ -35,10 +35,10 @@ function Sidebar() {
                 <h3 className="text-2xl text-RES_ORANGE font-bold p-6 flex justify-center hover:font-bold">Data Mapping</h3>
             </div>
 
-            <div className="absolute bottom-0 lex items-center justify-center w-1/2">
-                <div className="p-1 felx"><button className="bg-COMPLETE text-2xl text-white font-bold p-4 min-w-[12rem]">Refresh</button></div>
-                <div className="p-1 min-w-[13rem] flex items-center justify-center" ><button className="bg-gray-300 text-2xl text-black font-bold p-4 min-w-[12rem]">Upload</button></div>
-                <div className="p-1 min-w-[13rem]"><button className="bg-FINISH text-2xl text-white font-bold p-4 min-w-[12rem]">Finish</button></div>
+            <div className="flex flex-col items-center justify-center w-full gap-y-2">
+                <div className="p-1 w-[80%] flex flex-col items-center bg-COMPLETE"><button className=" text-2xl text-white font-bold p-4">Refresh</button></div>
+                <div className="p-1 w-[80%] flex flex-col items-center bg-gray-300" ><button className=" text-2xl text-black font-bold p-4 ">Upload</button></div>
+                <div className="p-1 w-[80%] flex flex-col items-center bg-FINISH"><button className=" text-2xl text-white font-bold p-4">Finish</button></div>
             </div>
         </div>
     );
@@ -46,11 +46,11 @@ function Sidebar() {
 
 function Footer(){
     return(
-        <footer className="fixed bottom-0 w-footer bg-white z-1000 right-50 lg:w-18 lg:right-0 h-40">
+        <footer className="fixed bottom-0 w-footer bg-white z-11 right-0 h-[20%]">
             <div className='inherit'>
                 <div className='grid grid-cols-6 p-3'>
-                    <div className='col-start-2 col-end-3'>
-                    <h2 className="text-lg">Company Name</h2>
+                    <div className='col-start-1 col-end-2'>
+                    <h2 className="text-lg">Plot type</h2>
                     </div>
                     <div className='col-start-3 col-end-4'>
                     <h2 className='text-lg'>No. of Assets</h2>
