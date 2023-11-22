@@ -1,8 +1,8 @@
 {
-  "name": "testproject",
+  "name": "DatabasePop",
   "version": "1.0.0",
-  "description": "test project to attempt working with images",
-  "main": "insert.js",
+  "description": "Population Script for Companies, Templates, and Assets",
+  "main": "insertCompany.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

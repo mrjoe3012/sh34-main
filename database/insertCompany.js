@@ -16,11 +16,17 @@ async function run() {
  
     const collection_Data = database.collection("Company_Data");
  
-    const base64ImageData1 = btoa("abc.png")
-    const base64imageData2 = btoa("cp_company.png")
-    const base64imageData3 = btoa("coca_cola.png")
-    const base64imageData4 = btoa("canon.png")
-    const base64imageData5 = btoa("bolton.png")
+    const base64ImageData1 = btoa("images/abc.png")
+    const base64imageData2 = btoa("images/cp_company.png")
+    const base64imageData3 = btoa("images/coca_cola.png")
+    const base64imageData4 = btoa("images/canon.png")
+    const base64imageData5 = btoa("images/bolton.png")
+    const base64ImageData6 = btoa("images/apple.png")
+    const base64imageData7 = btoa("images/company1_logo.png")
+    const base64imageData8 = btoa("images/company2_logo.png")
+    const base64imageData9 = btoa("images/heinz.png")
+    const base64imageData0 = btoa("images/ibm.png")
+
  
     // Create a document to insert
  
@@ -71,6 +77,56 @@ async function run() {
       company_logo : {
         format : format,
         data : base64imageData3,
+        width : width,
+        height : height
+        }
+      },
+      {
+      company_name : "apple",
+      no_assets : 3,
+      company_logo : {
+        format : format,
+        data : base64ImageData6,
+        width : width,
+        height : height
+      }
+      },
+      {
+      company_name : "company1",
+      no_assets : 2,
+      company_logo : {
+        format: format,
+        data : base64imageData7,
+        width : width,
+        height : height
+      }
+      },
+      {
+      company_name : "company2",
+      no_assets : 3,
+      company_logo : {
+        format : format,
+        data : base64imageData8,
+        width : width,
+        height : height
+        }
+      },
+      {
+      company_name : "heinz",
+      no_assets : 2,
+      company_logo : {
+        format : format,
+        data : base64imageData9,
+        width : width,
+        height : height
+        }
+      },
+      {
+      company_name : "IBM",
+      no_assets : 3,
+      company_logo : {
+        format : format,
+        data : base64imageData10,
         width : width,
         height : height
         }

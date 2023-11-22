@@ -15,11 +15,11 @@ async function run() {
     const database = client.db("Templates");
     const collection_Data = database.collection("Asset_Data");
 
-    const base64ImageData1 = btoa("UK_flag.png")
-    const base64imageData2 = btoa("Iceland_flag.png")
-    const base64imageData3 = btoa("Denmark_flag.png")
-    const base64imageData4 = btoa("USA_flag.png")
-    const base64imageData5 = btoa("France_flag.png")
+    const base64ImageData1 = btoa("images/UK_flag.png")
+    const base64imageData2 = btoa("images/Iceland_flag.png")
+    const base64imageData3 = btoa("images/Denmark_flag.png")
+    const base64imageData4 = btoa("images/USA_flag.png")
+    const base64imageData5 = btoa("images/France_flag.png")
 
     // Create a document to insert
 
