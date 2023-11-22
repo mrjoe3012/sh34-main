@@ -9,7 +9,7 @@ import UKflag from "./../../images/UKflag.png"
 
 export default function Home() {
     return (
-      <div className="text-black bg-white overflow-hidden">
+      <div className="text-black bg-white overflow-hidden min-w-[1200px] h-screen">
         <div className=''>
             <Navbar />
             <Body />

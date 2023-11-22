@@ -7,7 +7,7 @@ import { RecentElement } from '../../components/recentelement';
 
 export default function Portfolio() {
     return (
-      <div className="text-black bg-white overflow-hidden">
+      <div className="text-black bg-white overflow-hidden min-w-[1200px] h-screen">
         <div className=''>
             <Navbar />
             <Body />
