@@ -143,7 +143,10 @@ def data_extract(data_json:dict[str,Any],name:str,first_value:str) -> pd.DataFra
         first_key = list(entry.keys())[0]
 
         data_dict["x"].append(entry[first_key])
-        data_dict["y"].append(entry[first_value])
+        try:
+            data_dict["y"].append(entry[first_value])
+        except KeyError:
+            data_dict["y"].append(None)
     df = pd.DataFrame(data_dict)
     return df
 
