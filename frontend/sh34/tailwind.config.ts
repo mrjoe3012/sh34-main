@@ -20,7 +20,9 @@ const config: Config = {
         RES_DULLER_ORANGE:"#D0940C",
         RES_DULLER_GREEN:"#489C54",
         RES_BROWN:"#805C0C",
-        test:"#53B1B1"
+        test:"#53B1B1",
+        COMPLETE:"#00AF54",
+        FINISH:"#007CBE"
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
@@ -30,7 +32,17 @@ const config: Config = {
       gridTemplateColumns: {
         'companyTableHeaderLayout': '15% 15% 15% auto',
         'companyTableElementLayout': '15% 15% 15% auto 20%',
-      }
+      },
+<<<<<<< frontend/sh34/tailwind.config.ts
+      height: theme => ({
+        sidebar: "90.7%",
+        navbar: "10%",
+      }),
+      width: theme => ({
+        footer: "88%",
+      }),
+=======
+>>>>>>> frontend/sh34/tailwind.config.ts
     },
   },
   plugins: [],   
