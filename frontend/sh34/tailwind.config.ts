@@ -33,13 +33,6 @@ const config: Config = {
         'companyTableHeaderLayout': '15% 15% 15% auto',
         'companyTableElementLayout': '15% 15% 15% auto 20%',
       },
-      height: theme => ({
-        sidebar: "90.7%",
-        navbar: "10%",
-      }),
-      width: theme => ({
-        footer: "84.5%",
-      }),
       screens: {
         "2xl":"1650px",
       },
