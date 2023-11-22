@@ -60,6 +60,11 @@ def test_plot_generation():
         return Response(html, mimetype="text/plain")
     return render_template("plot_generation.html", indicators=indicators)
 
+@app.route("/api/load-indicators", methods=['GET'])
+def api_load_indicators():
+    indicators = load_indicators(DEFAULT_DATA_PATH)
+    indicators_json = json.dumps(indicators)
+    return Response(indicators_json, mimetype="application/json")
 
 if __name__ == "__main__":
     main()

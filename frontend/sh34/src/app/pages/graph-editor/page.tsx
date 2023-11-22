@@ -1,7 +1,9 @@
+'use client';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Navbar } from '../../components/navbar';
 import Document from "./../../images/Document-icon.png"
+import { useState, useEffect } from 'react'
 
 export default function graphEditor() {
     return (
@@ -22,16 +24,33 @@ function Body() {
   );
 }
 
+function updatePlot() {
+    // uses the api to retrieve a plot's html
+}
+
 function Sidebar() {
+    const [indicators, setIndicators] = useState([]);
+    useEffect(() => {
+        fetch('/api/load-indicators')
+            .then((response) => response.json())
+            .then((data) => {
+                data = data.map((x) => {
+                    return <option value={x}>{x}</option>;
+                });
+                setIndicators(data);
+            })
+            .catch((err) => {
+                console.log(err.message);
+            });
+    }, []);
     return(
         <div className="p-3 h-[87%] bottom-0 bg-white z-10 fixed w-60 left-0 flex-col justify-center">
             <div className="flex-grow">
-                <div className="flex justify-center"><select name="cars" id="cars">
+                <div className="flex justify-center w-10"><select name="cars" id="cars">
                     <option selected disabled>Graph Type</option>
-                    <option value="volvo">Volvo</option>
-                    <option value="saab">Saab</option>
-                    <option value="mercedes">Mercedes</option>
-                    <option value="audi">Audi</option>
+                    <option value="scatter">Scatter</option>
+                    <option value="line">Line</option>
+                    <option value="bar">Bar</option>
                 </select></div>
                 <h1 className="text-4xl text-RES_ORANGE font-bold p-6 flex justify-center hover:font-bold">Title</h1>
                 <hr className="h-0.5 border-none bg-RES bg-gray-500"></hr>  
@@ -40,15 +59,12 @@ function Sidebar() {
                 <h3 className="text-2xl text-RES_ORANGE font-bold p-6 flex justify-center hover:font-bold">Visual</h3>
                 <div className="flex justify-center"><select name="cars" id="cars">
                     <option selected disabled>Indicator</option>
-                    <option value="volvo">Volvo</option>
-                    <option value="saab">Saab</option>
-                    <option value="mercedes">Mercedes</option>
-                    <option value="audi">Audi</option>
+                    {indicators}
                 </select></div>
             </div>
 
             <div className="flex flex-col items-center justify-center w-full gap-y-2">
-                <div className="p-1 w-[80%] flex flex-col items-center bg-COMPLETE"><button className=" text-2xl text-white font-bold p-4">Refresh</button></div>
+                <div className="p-1 w-[80%] flex flex-col items-center bg-COMPLETE"><button className=" text-2xl text-white font-bold p-4" onClick={updatePlot}>Refresh</button></div>
                 <div className="p-1 w-[80%] flex flex-col items-center bg-gray-300" ><button className=" text-2xl text-black font-bold p-4 ">Upload</button></div>
                 <div className="p-1 w-[80%] flex flex-col items-center bg-FINISH"><button className=" text-2xl text-white font-bold p-4">Finish</button></div>
             </div>
