@@ -45,7 +45,7 @@ def load_indicators(filename: str = "mock.json") -> list[str]:
     indicators = list(data['month']['breakdown_by_indicator'].keys())
     return indicators
 
-@app.route("/test/plot-generation", methods=["GET", "POST"])
+@app.route("/api/generate-plot", methods=["GET", "POST"])
 def test_plot_generation():
     """
     This method returns an html interface for generating plots. It can also return
