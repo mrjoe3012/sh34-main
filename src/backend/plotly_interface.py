@@ -3,11 +3,11 @@
 #Mustafa Onur Cay - 19/10/2023
 from typing import Any
 import os
+import re
 import json
 import plotly_express as px
 import plotly.io as pio
 import pandas as pd
-import re
 
 def unpack_json(json_file_path: str) -> dict[str,Any]:
     """
@@ -52,36 +52,39 @@ def generate_graph(graph_info:dict[str,Any], data_json:dict[str,Any]) -> str:
             fig = px.bar(
                 df, x='x', y='y',
                 color_discrete_sequence=[colour],
-                title=pascalSplitName(title),
+                title=pascal_split_name(title),
                 height=500
             )
-            fig.update_layout(xaxis_title = x_axis_name, yaxis_title = pascalSplitName(y_axis_name))
+            fig.update_layout(xaxis_title = x_axis_name,
+                              yaxis_title = pascal_split_name(y_axis_name))
         case 'line':
             fig = px.line(
                 df, x='x', y='y',
                 color_discrete_sequence=[colour],
-                title=pascalSplitName(title),
+                title=pascal_split_name(title),
                 height=500
             )
-
-            fig.update_layout(xaxis_title = x_axis_name, yaxis_title = pascalSplitName(y_axis_name))
+            fig.update_layout(xaxis_title = x_axis_name,
+                              yaxis_title = pascal_split_name(y_axis_name))
             fig.update_traces(line={ 'width' : 4})
         case 'pie':
             # A very very simple pie chart
             fig = px.pie(
                 df, color_discrete_sequence=[colour],
-                title=pascalSplitName(title),
+                title=pascal_split_name(title),
                 height=500
             )
-            fig.update_layout(xaxis_title = x_axis_name, yaxis_title = pascalSplitName(y_axis_name))
+            fig.update_layout(xaxis_title = x_axis_name,
+                              yaxis_title = pascal_split_name(y_axis_name))
         case 'scatter':
             fig = px.scatter(
                 df, x='x', y='y',
                 color_discrete_sequence=[colour],
-                title=pascalSplitName(title),
+                title=pascal_split_name(title),
                 height=500
             )
-            fig.update_layout(xaxis_title = x_axis_name, yaxis_title = pascalSplitName(y_axis_name))
+            fig.update_layout(xaxis_title = x_axis_name,
+                              yaxis_title = pascal_split_name(y_axis_name))
         case _:
             print('\n')
             raise ValueError(
@@ -152,7 +155,7 @@ def data_extract(data_json:dict[str,Any],name:str,first_value:str) -> pd.DataFra
     df = pd.DataFrame(data_dict)
     return df
 
-def pascalSplitName(string:str) -> str:
+def pascal_split_name(string:str) -> str:
     """Function for turning pascalCase to normal english"""
     words = re.findall(r'[A-Z][a-z]*', string)
     words_string = ' '.join(words)
