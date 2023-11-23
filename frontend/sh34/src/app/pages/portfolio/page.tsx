@@ -3,6 +3,7 @@ import { Navbar } from '../../components/navbar';
 import Alogo from "./../../images/Alogo.png"
 import UKflag from "./../../images/UKflag.png"
 import { RecentElement } from '../../components/recentelement';
+import Link from 'next/link';
 
 
 export default function Portfolio() {
@@ -14,7 +15,7 @@ export default function Portfolio() {
         </div>
       </div>
     );
-} 
+}
 
   
 function Body() {
@@ -155,11 +156,13 @@ function Assets(){
   
   function EditButton(){
     return(
-      <div className='text-center w-5/6'>
-        <div className="justify-center flex rounded-xl p-2 border-black border-2 relative bg-[#616673]">
-          <p className="text-slate-50 basis-10/11">Edit</p>
+      <Link href="/pages/template-page">
+        <div className='text-center w-5/6'>
+          <div className="justify-center flex rounded-xl p-2 border-black border-2 relative bg-[#616673]">
+            <p className="text-slate-50 basis-10/11">Edit</p>
+          </div>
         </div>
-      </div>
+      </Link>
     );
   }
 

@@ -112,7 +112,8 @@ function CompanyTableHeader(){
 function CompanyTableElement(){
 
   return(
-    <div>
+
+    <Link href="/pages/portfolio">
       <div className='grid p-4 grid-cols-companyTableElementLayout auto-rows-[40px]'>
 
         <div className='relative align-baseline col-span-1 justify-self-center self-center'> 
@@ -137,7 +138,7 @@ function CompanyTableElement(){
 
       </div>
       <hr className='w-[95%] mx-auto'></hr>
-    </div>
+    </Link>
 
   );
 
