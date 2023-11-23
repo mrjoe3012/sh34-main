@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { Main } from 'next/document';
 import { Navbar } from '../../components/navbar';
 import { RecentElement } from '../../components/recentelement';
 import Document from "./../../images/Document-icon.png"
@@ -9,12 +8,12 @@ import UKflag from "./../../images/UKflag.png"
 
 export default function Home() {
     return (
-      <div className="text-black bg-white overflow-hidden min-w-[1200px] h-screen">
-        <div className=''>
-            <Navbar />
-            <Body />
+        <div className="text-black min-w-[1200px] h-screen">
+          <div className='bg-white'>
+              <Navbar />
+              <Body />
+          </div>
         </div>
-      </div>
     );
 } 
 
