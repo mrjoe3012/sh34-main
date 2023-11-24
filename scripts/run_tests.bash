@@ -69,27 +69,31 @@ if ! "${PY}" "${PROJECT_ROOT}/scripts/in_venv.py"; then
 fi
 
 # run the tests
-FLAKE8_OUTPUT_FLAG=""
 PYLINT_OUTPUT_FLAG=""
 PYTEST_OUTPUT_FLAG=""
+MYPY_OUTPUT_FLAG=""
+MYPY_IGNORE_FLAGS="\
+    --disable-error-code import-untyped \
+    --disable-error-code var-annotated"
 if [[ -n "${REPORT_DIR}" ]]; then
-    FLAKE8_OUTPUT_FLAG="--output-file ${REPORT_DIR}/pylint.xml"
     PYLINT_OUTPUT_FLAG="--output ${REPORT_DIR}/flake8.out --output-format=pylint_junit.JUnitReporter"
     PYTEST_OUTPUT_FLAG="--junit-xml=${REPORT_DIR}/pytest.xml"
+    MYPY_OUTPUT_FLAG="--junit-xml=${REPORT_DIR}/mypy.xml"
 fi
 "${PY}" -m pylint \
     --recursive=y \
     ${PYLINT_OUTPUT_FLAG} \
     "${PROJECT_ROOT}/src"
 PYLINT_STATUS="${?}"
-"${PY}" -m flake8 \
-    ${FLAKE8_OUTPUT_FLAG}\
-    "${PROJECT_ROOT}/src"
-FLAKE8_STATUS="${?}"
 "${PY}" -m pytest \
     "${PYTEST_OUTPUT_FLAG}" \
     "${PROJECT_ROOT}/src"
 PYTEST_STATUS="${?}"
+"${PY}" -m mypy \
+    ${MYPY_OUTPUT_FLAG} \
+    ${MYPY_IGNORE_FLAGS} \
+    "${PROJECT_ROOT}/src"
+MYPY_STATUS="${?}"
 
 # convert to junit
 if [[ -n "${REPORT_DIR}" ]]; then
@@ -105,13 +109,14 @@ if [[ "${SHELLCHECK}" -eq "1" ]]; then
     echo "Shellcheck returned with code ${SHELLCHECK_STATUS}"
 fi
 
-echo "Flake8 returned with code ${FLAKE8_STATUS}"
+# echo "Flake8 returned with code ${FLAKE8_STATUS}"
 echo "Pylint returned with code ${PYLINT_STATUS}"
 echo "Pytest returned with code ${PYTEST_STATUS}"
+echo "Mypy returned with code ${MYPY_STATUS}"
 
 if \
 [[ "${PYLINT_STATUS}" -ne "0" ]] || \
-[[ "${FLAKE8_STATUS}" -ne "0" ]] || \
+[[ "${MYPY_STATUS}" -ne "0" ]] || \
 [[ "${PYTEST_STATUS}" -ne "0" ]] || \
 [[ "${SHELLCHECK_STATUS}" -ne "0" ]]; then
     echo "Tests have failed."
