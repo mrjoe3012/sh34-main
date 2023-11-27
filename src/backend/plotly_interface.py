@@ -50,36 +50,39 @@ def generate_graph(graph_info:dict[str,Any], data_json:dict[str,Any]) -> str:
             fig = px.bar(
                 df, x='x', y='y',
                 color_discrete_sequence=[colour],
-                title=title,
+                title=pascal_split_name(title),
                 height=500
             )
-            fig.update_layout(xaxis_title = x_axis_name, yaxis_title = y_axis_name)
+            fig.update_layout(xaxis_title = x_axis_name,
+                              yaxis_title = pascal_split_name(y_axis_name))
         case 'line':
             fig = px.line(
                 df, x='x', y='y',
                 color_discrete_sequence=[colour],
-                title=title,
+                title=pascal_split_name(title),
                 height=500
             )
-
-            fig.update_layout(xaxis_title = x_axis_name, yaxis_title = y_axis_name)
+            fig.update_layout(xaxis_title = x_axis_name,
+                              yaxis_title = pascal_split_name(y_axis_name))
             fig.update_traces(line={ 'width' : 4})
         case 'pie':
             # A very very simple pie chart
             fig = px.pie(
                 df, color_discrete_sequence=[colour],
-                title=title,
+                title=pascal_split_name(title),
                 height=500
             )
-            fig.update_layout(xaxis_title = x_axis_name, yaxis_title = y_axis_name)
+            fig.update_layout(xaxis_title = x_axis_name,
+                              yaxis_title = pascal_split_name(y_axis_name))
         case 'scatter':
             fig = px.scatter(
                 df, x='x', y='y',
                 color_discrete_sequence=[colour],
-                title=title,
+                title=pascal_split_name(title),
                 height=500
             )
-            fig.update_layout(xaxis_title = x_axis_name, yaxis_title = y_axis_name)
+            fig.update_layout(xaxis_title = x_axis_name,
+                              yaxis_title = pascal_split_name(y_axis_name))
         case _:
             print('\n')
             raise ValueError(
@@ -100,7 +103,7 @@ def generate_graph(graph_info:dict[str,Any], data_json:dict[str,Any]) -> str:
         #path_png = os.path.join(directory, 'figure.png')
         #return pio.write_html(fig,path_html), pio.write_image(fig,path_png)
 
-        return pio.to_html(fig)
+        return pio.to_html(fig, full_html=False)
         #There is a solution online that suggest returning fig would work done like so
         #return fig
     raise ValueError("Was not able to plot a graph")
@@ -143,12 +146,35 @@ def data_extract(data_json:dict[str,Any],name:str,first_value:str) -> pd.DataFra
         first_key = list(entry.keys())[0]
 
         data_dict["x"].append(entry[first_key])
-        data_dict["y"].append(entry[first_value])
+        try:
+            data_dict["y"].append(entry[first_value])
+        except KeyError:
+            data_dict["y"].append(None)
     df = pd.DataFrame(data_dict)
     return df
 
+def pascal_split_name(value:str) -> str:
+    """Function for turning PascalCase to normal english"""
+    if value is None:
+        return None
+    if len(value) <= 1:
+        return value
 
+    result = []
+    i = 0
 
+    while i < len(value):
+        if value[i].isupper():
+            if i > 0 and value[i - 1].islower():
+                result.append(' ')
+            elif i > 0 and i + 1 < len(value) and value[i + 1].islower():
+                result.append(' ')
+            result.append(value[i])
+        else:
+            result.append(value[i])
+        i += 1
+
+    return ''.join(result).strip()
 
 
 if __name__ == "__main__":
