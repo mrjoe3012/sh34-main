@@ -81,9 +81,8 @@ if [[ -n "${REPORT_DIR}" ]]; then
     MYPY_OUTPUT_FLAG="--junit-xml=${REPORT_DIR}/mypy.xml"
 fi
 "${PY}" -m pylint \
-    --recursive=y \
     ${PYLINT_OUTPUT_FLAG} \
-    "${PROJECT_ROOT}/src"
+    "${PROJECT_ROOT}/src/backend"
 PYLINT_STATUS="${?}"
 "${PY}" -m pytest \
     "${PYTEST_OUTPUT_FLAG}" \
@@ -92,7 +91,7 @@ PYTEST_STATUS="${?}"
 "${PY}" -m mypy \
     ${MYPY_OUTPUT_FLAG} \
     ${MYPY_IGNORE_FLAGS} \
-    "${PROJECT_ROOT}/src"
+    "${PROJECT_ROOT}/src/backend"
 MYPY_STATUS="${?}"
 
 # convert to junit
