@@ -7,7 +7,7 @@ import UKflag from "./../../images/UKflag.png"
 
 export default function Home() {
     return (
-      <div className="text-black">
+      <div className="text-black h-screen flex flex-col h-screen">
         <Navbar />
         <hr className="h-0.5 border-none bg-RES"></hr>
         <Body />
@@ -18,14 +18,43 @@ export default function Home() {
   
 function Body() {
   return (
-    <div className="bg-white flex flex-row">
-        <div className='basis-[15%] h-screen bg-red-600'>Sidebar</div>
-        <div className='basis-[85%]'>
+    <div className="bg-white flex flex-row flex-1 overflow-auto">
+        <div className='basis-[15%] flex flex-col bg-[#F6F8FC]'>
+
+          <div className='p-2'>
+            <p>Return to COMPANY</p>
+          </div>
+          <hr></hr>
+
+          <div className='flex p-2'>
+            <Image src={UKflag} alt='UkFlag' className='basis-[20%] w-15 h-10 rounded'/>
+            <div className='text-center w-full self-center'>
+              <p>Wind Farm 1</p>
+            </div>
+          </div>
+          <hr></hr>
+
+          <div className=''> 
+            <div className='p-2 pl-10 '> Info </div>
+            <div className='p-2 pl-10 '> Structure </div>
+            <div className='p-2 pl-10 '> Tab 3 </div>
+            <div className='p-2 pl-10 '> Tab 4 </div>
+            <div className='p-2 pl-10'> Tab 5 </div>
+          </div>
+          <div className='mt-auto'>
+            <div className='p-2 text-center'> Preview </div>
+            <div className='p-2 text-center'> Export </div>
+          </div>
+
+        </div>
+        <div className='basis-[85%] bg-[#e1e3e8]'>
             <PlotList />
         </div>
+
     </div>
   );
 }
+
 
 function PlotList(){
     return (
