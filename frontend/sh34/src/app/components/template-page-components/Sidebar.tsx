@@ -5,7 +5,7 @@ import { SidebarTemplateHeader } from "./SidebarTemplateHeader";
 
 export const Sidebar = () => {
     return (
-        <div className='basis-[15%] flex flex-col bg-[#F6F8FC]'>
+        <div className='basis-[15%] flex flex-col bg-white border-r-2'>
 
           <SidebarReturn /> 
           <hr></hr>
