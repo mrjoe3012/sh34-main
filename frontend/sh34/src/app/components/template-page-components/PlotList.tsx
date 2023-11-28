@@ -1,14 +1,14 @@
 import { PlotElement } from "./PlotElement"
 
-export const PlotList = () => {
+export const StructurePage = () => {
+    // Arbitrary number for now. When integrated wtih backend. Find number of plots for this template.
+    const numPlots = 10;   
+
     return (
         <div className='flex flex-col gap-y-5'>
-          <PlotElement />
-          <PlotElement />
-          <PlotElement />
-          <PlotElement />
-          <PlotElement />
-          <PlotElement />
+            {[...Array(numPlots)].map((e, i) => <PlotElement />)}
         </div>
       )
+
+
   };
