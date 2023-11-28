@@ -6,7 +6,7 @@ export const StructurePage = () => {
 
     return (
         <div className='flex flex-col gap-y-5'>
-            {[...Array(numPlots)].map((e, i) => <PlotElement />)}
+            {[...Array(numPlots)].map((e, i) => <PlotElement key={i} />)}
         </div>
       )
 
