@@ -33,6 +33,9 @@ function Header(){
         <div className='grid grid-cols-2 place-content-center'>
             <h1 className="text-4xl text-RES_ORANGE font-bold my-7">Home</h1>
             <div className='justify-self-end self-center grid grid-cols-2 my-7'>
+              <div className='pr-2'>
+                <NewTemplateButton />
+              </div>
                 {/* <span className='font-bold text-4xl self-center grid'> COMPANY </span> */}
             </div>
         </div>
@@ -152,3 +155,12 @@ function ExportButton(){
   );
 }
 
+function NewTemplateButton(){
+  return(
+    <div className='text-center w-9/10'>
+      <div className="justify-center flex rounded p-2 border-black border-2 font-semibold relative bg-green-600 text-white  ">
+        <p className="basis-10/11 inline-block">New Template</p>
+      </div>
+    </div>
+  );
+}
