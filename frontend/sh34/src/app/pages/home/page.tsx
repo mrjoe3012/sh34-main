@@ -30,22 +30,27 @@ function Body() {
 
 function Header(){
     return(
+      <div>
         <div className='grid grid-cols-2 place-content-center'>
             <h1 className="text-4xl text-RES_ORANGE font-bold my-7">Home</h1>
-            <div className='justify-self-end self-center grid grid-cols-2 my-7'>
-              <div className='pr-2'>
-                <NewTemplateButton />
-              </div>
-                {/* <span className='font-bold text-4xl self-center grid'> COMPANY </span> */}
-            </div>
         </div>
+        <div className='float-right'>
+          <div className='inline-block'>
+            <NewTemplateButton />
+          </div>
+          <div className='inline-block pl-4'>
+            <SearchBar />
+          </div>
+            {/* <span className='font-bold text-4xl self-center grid'> COMPANY </span> */}
+        </div>
+      </div>
     );
 }
 
 
 function Templates(){
     return(
-      <div className='my-10'>
+      <div className='my-20'>
         <div className='flex my-3'>
             <h1 className='w-fit mr-5 text-2xl text-RES_ORANGE font-bold'>Templates</h1>
             <hr className='flex-grow h-1 m-auto'></hr>
@@ -158,9 +163,18 @@ function ExportButton(){
 function NewTemplateButton(){
   return(
     <div className='text-center w-9/10'>
-      <div className="justify-center flex rounded p-2 border-black border-2 font-semibold relative bg-green-600 text-white  ">
+      <div className="h-full justify-center flex rounded p-2 border-black border-2 font-semibold relative bg-green-600 text-white  ">
         <p className="basis-10/11 inline-block">New Template</p>
       </div>
     </div>
   );
+}
+
+function SearchBar(){
+  return(
+    <div className='w-9/10'>
+      <input className="p-2 rounded border-black border-2 bg-slate-200 text-black" type="text" placeholder="Search.."></input>
+      <button type='submit'><i className="fa fa-search"></i></button>
+    </div>
+  )
 }
