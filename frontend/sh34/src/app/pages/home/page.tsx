@@ -81,6 +81,11 @@ function CompaniesSection(){
           <CompanyTableElement />
           <CompanyTableElement />
           <CompanyTableElement />
+          <CompanyTableElement />
+          <CompanyTableElement />
+          <CompanyTableElement />
+          <CompanyTableElement />
+          <CompanyTableElement />
     </div>
   );
 }
