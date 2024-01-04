@@ -1,71 +1,31 @@
-import Link from 'next/link';
-import Image from 'next/image';
-import { Navbar } from '../../components/navbar';
-import Document from "./../../images/Document-icon.png"
+"use client";
 
-export default function graphEditor() {
+import Link from 'next/link';
+import { useState } from 'react';
+import { Navbar } from '../../components/navbar';
+import { Sidebar } from '../../components/graph-editor-components/Sidebar';
+import { BodyContent } from '@/app/components/graph-editor-components/BodyContent';
+
+export default function Home() {
     return (
-      <div className="text-black h-screen">
-        <Navbar />       
+      <div className="text-black flex flex-col h-screen">
+        <Navbar />
+        <hr className='h-[1.5px]'></hr>
         <Body />
       </div>
     );
   } 
-
   
 function Body() {
+
+  const [bodyContent,setBodyContent] = useState(<div> N/A </div>);
+
+  // Calling the Sidebar Component passes as a prop a function to change what the BodyContent component displays, Sidebar then passes it to its children, and so on.
+  // Passing down the switchBodyContent function as a prop through many children components who don't use the prop is called "Prop-Drilling", not great.
   return (
-    <div className="bg-gray-600 h-[86.5%]">
-    <Sidebar />
-    <Footer />
+    <div className="bg-white flex flex-row flex-1 overflow-auto">
+        <Sidebar switchPageFunc={setBodyContent}/>
+        <BodyContent pageSelected={bodyContent} />
     </div>
   );
-}
-
-function Sidebar() {
-    return(
-        <div className="p-3 top-1/10 bottom-0 bg-white z-10 fixed w-60 left-0 flex-col justify-center">
-            <div className="flex-grow">
-                <h1 className="text-4xl text-RES_ORANGE font-bold p-6 flex justify-center hover:font-bold">Title</h1>
-                <hr className="h-0.5 border-none bg-RES bg-gray-500"></hr>  
-                <h3 className="text-2xl text-RES_ORANGE font-bold p-6 flex justify-center hover:font-bold">General</h3>
-                <h3 className="text-2xl text-RES_ORANGE font-bold p-6 flex justify-center hover:font-bold">Labelling</h3>
-                <h3 className="text-2xl text-RES_ORANGE font-bold p-6 flex justify-center hover:font-bold">Visual</h3>
-                <h3 className="text-2xl text-RES_ORANGE font-bold p-6 flex justify-center hover:font-bold">Data Mapping</h3>
-            </div>
-
-            <div className="flex flex-col items-center justify-center w-full gap-y-2">
-                <div className="p-1 w-[80%] flex flex-col items-center bg-COMPLETE"><button className=" text-2xl text-white font-bold p-4">Refresh</button></div>
-                <div className="p-1 w-[80%] flex flex-col items-center bg-gray-300" ><button className=" text-2xl text-black font-bold p-4 ">Upload</button></div>
-                <div className="p-1 w-[80%] flex flex-col items-center bg-FINISH"><button className=" text-2xl text-white font-bold p-4">Finish</button></div>
-            </div>
-        </div>
-    );
-}
-
-function Footer(){
-    return(
-        <footer className="fixed bottom-0 left-60 bg-white z-11 right-0 h-[20%]">
-            <div className='inherit'>
-                <div className='grid grid-cols-6 p-3'>
-                    <div className='col-start-1 col-end-2'>
-                    <h2 className="text-lg">Plot type</h2>
-                    </div>
-                    <div className='col-start-3 col-end-4'>
-                    <h2 className='text-lg'>No. of Assets</h2>
-                    </div>
-                    <div className='col-start-4 col-end-5'>
-                    <h2 className='text-lg'>No. of Assets</h2>
-                    </div>
-                    <div className='col-start-5 col-end-6'>
-                    <h2 className='text-lg'>No. of Assets</h2>
-                    </div>
-                    <div className='col-start-6 col-end-7'>
-                    <h2 className='text-lg'>No. of Assets</h2>
-                    </div>
-                </div>
-                <hr className="h-1 bg-RES_ORANGE boder-none "></hr>
-            </div>
-        </footer>
-    );
 }
