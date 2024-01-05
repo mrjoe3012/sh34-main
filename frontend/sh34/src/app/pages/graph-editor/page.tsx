@@ -3,7 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Navbar } from '../../components/navbar';
 import Document from "./../../images/Document-icon.png"
-import { useState, useEffect, ChangeEvent } from 'react'
+import { useState, useEffect, ChangeEventHandler } from 'react'
 import { NextPage } from 'next';
 import $ from 'jquery';
 
@@ -49,11 +49,11 @@ const Sidebar: NextPage<SidebarProps> = ({ setPlotHTML }) => {
 				console.log(err.message);
 			});
 	}, []);
-	const onGraphTypeChange = (e: ChangeEvent<HTMLInputElement>) => {
+	const onGraphTypeChange: ChangeEventHandler<HTMLSelectElement> = (e) => {
 		const {name, value} = e.target;
 		setSelGraphType(value);
 	}
-	const onIndicatorChange = (e: ChangeEvent<HTMLInputElement>) => {
+	const onIndicatorChange: ChangeEventHandler<HTMLSelectElement> = (e) => {
 		const {name, value} = e.target;
 		setSelIndicator(value);
 	}
