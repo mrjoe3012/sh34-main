@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { Navbar } from '../../components/navbar';
 import Document from "./../../images/Document-icon.png"
 import { useState, useEffect } from 'react'
+import { NextPage } from 'next';
 import $ from 'jquery';
 
 export default function graphEditor() {
@@ -27,7 +28,11 @@ function Body() {
 	);
 }
 
-function Sidebar({ setPlotHTML }) {
+interface SidebarProps {
+	setPlotHTML: (html: string) => void;
+}
+
+const Sidebar: NextPage<SidebarProps> = ({ setPlotHTML }) => {
 	const [indicators, setIndicators] = useState([]);
 	const [selIndicator, setSelIndicator] = useState(null);
 	const [selGraphType, setSelGraphType] = useState(null);
