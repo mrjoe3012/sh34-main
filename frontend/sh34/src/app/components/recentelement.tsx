@@ -6,7 +6,7 @@ import Link from 'next/link';
 export const RecentElement = () =>{
     return(
       <Link href="/pages/template-page">
-        <div className='container rounded-xl border-4 border-[#434343] w-44 2xl:w-52 min-w-[150px] xl:h-[165px] 2xl:h-[200px] bg-slate-200 p-1.5' > {/* background as the image on the wireframe */}
+        <div className='container rounded-xl border-4 border-[#434343] w-44 2xl:w-52 min-w-[150px] xl:h-[165px] 2xl:h-[200px] bg-slate-200 p-1.5  shadow-lg' > {/* background as the image on the wireframe */}
               
               <div className="grid grid-flow-col pb-2 pt-1">
                 <div className='relative self-center justify-self-center'>
