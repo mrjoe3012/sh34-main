@@ -1,106 +1,96 @@
-import Link from 'next/link';
 import Image from 'next/image';
 import { Navbar } from '../../components/navbar';
-import { RecentElement } from '../../components/recentelement';
-import Document from "./../../images/Document-icon.png"
 import Alogo from "./../../images/Alogo.png"
 import UKflag from "./../../images/UKflag.png"
+import Link from 'next/link';
 
-export default function Home() {
+
+export default function Portfolio() {
     return (
-        <div className="text-black min-w-[1200px] h-screen">
-          <div className='bg-white'>
-              <Navbar />
-              <Body />
-          </div>
+      <div className="text-black min-w-[1200px] h-screen bg-white">
+        <div className='bg-white'>
+            <Navbar />
+            <Body />
         </div>
+      </div>
     );
-} 
+}
 
   
 function Body() {
-  return (
-    <div className="bg-white mx-10">
-      <Header />
-      <div className='mx-5'>
-        <RecentTemplateList />
-        <CompaniesSection />
+    return (
+      <div className="bg-white mx-10">
+        <Header />
+        <div className='mx-5'>
+            <Templates />
+        </div>
       </div>
-    </div>
-  );
+    );
 }
 
 function Header(){
-  return(
-      <div className=''>
-          <h1 className="text-4xl text-RES_ORANGE font-bold my-7">Home</h1>
+    return(
+      <div>
+        <div className='grid grid-cols-2 place-content-center'>
+            <h1 className="text-4xl text-RES_ORANGE font-bold my-7">Home</h1>
+        </div>
+        <div className='float-right'>
+          <div className='inline-block'>
+            <NewTemplateButton />
+          </div>
+          <div className='inline-block pl-4'>
+            <SearchBar />
+          </div>
+            {/* <span className='font-bold text-4xl self-center grid'> COMPANY </span> */}
+        </div>
       </div>
-  );
+    );
 }
 
-function RecentTemplateList(){
-  return(
-  <div className=''>
-      <div className='flex my-3'>
-          <span className='whitespace-nowrap w-fit mr-5 text-2xl text-RES_ORANGE font-bold pr-0'>Recent Templates</span>
-          <hr className='flex-grow h-1 basis-3/4 m-auto'></hr>
+
+function Templates(){
+    return(
+      <div className='my-20'>
+        <div className='flex my-3'>
+            <h1 className='w-fit mr-5 text-2xl text-RES_ORANGE font-bold'>Templates</h1>
+            <hr className='flex-grow h-1 m-auto'></hr>
+        </div>
+            <AssetsHeader />
+            <AssetElement />
+            <AssetElement />
+            <AssetElement />
+            <AssetElement />
       </div>
-      <RecentElements />
-  </div>
-  );
-}
-function RecentElements(){
-  return(
-    <div className="justify-center align-middle flex">
-      <div className="flex flex-nowrap gap-y-2 gap-x-2 2xl:gap-x-[75px] xl:gap-x-5 p-2 mx-20">
-        <RecentElement />
-        <RecentElement />
-        <RecentElement />
-        <RecentElement />
-        <RecentElement />
-        <RecentElement />
-      </div>  
-    </div>
-  );
-}
+    );
+  }
 
-
-
-
-
-
-function CompaniesSection(){
-  return(
-    <div className='my-10'>
-      <div className='flex my-3'>
-          <h1 className='w-fit mr-5 text-2xl text-RES_ORANGE font-bold'>All Companies</h1>
-          <hr className='flex-grow h-1 m-auto'></hr>
-      </div>
-          <CompanyTableHeader />
-          <CompanyTableElement />
-          <CompanyTableElement />
-          <CompanyTableElement />
-          <CompanyTableElement />
-    </div>
-  );
-}
-
-function CompanyTableHeader(){
+function AssetsHeader(){
   return(
     <div className=''>
-      <div className='grid p-4 grid-cols-companyTableHeaderLayout'>
+      <div className='grid grid-cols-7 p-4'>
 
         <div className='col-start-1'>
-          
+          <h2 className="text-lg font-bold">Type/TemplateID</h2>
         </div>
 
-        <div className='col-start-2 justify-self-center self-center'>
-          <h2 className='text-lg font-bold'>Company Name</h2>
+        <div className='col-start-2'>
+          <h2 className='text-lg font-bold'>Template Name</h2>
         </div>
 
-        <div className='col-start-3 justify-self-center self-center'>
-          <h2 className='text-lg font-bold'>No. Assets</h2>
+        <div className='col-start-3'>
+          <h2 className='text-lg font-bold'>Creation Date</h2>
         </div>
+
+        <div className='col-start-4'>
+          <h2 className='text-lg font-bold'>Last Modified</h2>  
+        </div>
+
+        <div className='col-start-7'>
+          <h2 className='text-lg inline'>Sort </h2>  
+          <h2 className='font-bold inline'>A-Z</h2>
+        </div>
+
+
 
       </div>
       <hr className='bg-slate-900'></hr>
@@ -109,56 +99,82 @@ function CompanyTableHeader(){
 }
 
 
-function CompanyTableElement(){
+function AssetElement(){
 
   return(
+    <div>
+      <div className='grid grid-cols-7 p-4 items-center auto-rows-[40px]'>
 
-    <Link href="/pages/portfolio">
-      <div className='grid p-4 grid-cols-companyTableElementLayout auto-rows-[40px]'>
-
-        <div className='relative align-baseline col-span-1 justify-self-center self-center'> 
-          <Image src={Alogo} alt="test" className="w-20 h-10 self-center object-cover rounded"/>
+        <div className='relative align-baseline col-span-1'> 
+          <h1 className='text-lg '>ICON/No</h1>
         </div>  
 
-        <div className="col-span-1 justify-self-center self-center">
-          <h2 className='text-lg'>Company</h2>
+        <div className="col-span-1">
+          <h2 className='text-lg'>TemplateNo</h2>
         </div>
 
-        <div className="col-span-1 justify-self-center self-center">
-            <h2 className='text-lg'>2</h2>
+        <div className="col-span-1">
+            <h2 className='text-lg'>15/10/23</h2>
         </div>
 
-        <div>
+        <div className="col-span-1">
+            <h2 className='text-lg'>15/10/23</h2>
         </div>
 
-        <div className="">
-            <ViewPortfolio />
+        <div className='col-span-1 col-start-6 px-0.5'> {/* breakpoints needed to stop it from going over 2 lines on smaller screen OR more elegant solution */}
+          <EditButton />
         </div>
 
+        <div className='col-span-1 col-start-7 px-0.5'> {/* breakpoints needed to stop it from going over 2 lines on smaller screen OR more elegant solution */}
+          <ExportButton />
+        </div>
 
       </div>
       <hr className='w-[95%] mx-auto'></hr>
-    </Link>
+    </div>
 
   );
 
 }
 
 
-
-
-
-function ViewPortfolio(){
+function EditButton(){
   return(
+    <Link href="/pages/template-page">
       <div className='text-center w-5/6'>
-        <div className="justify-center flex gap-x-2 rounded-xl p-2 border-black border-2 relative bg-[#346DFF]">
-          <Image alt='documentlogo' src={Document} className='object-contain w-[25px] h-[25px]'/>
-          <p className="text-slate-50 basis-10/11">View Portfolio</p>
+        <div className="justify-center flex rounded-xl p-2 border-black border-2 relative bg-[#616673]">
+          <p className="text-slate-50 basis-10/11">Edit</p>
         </div>
       </div>
+    </Link>
   );
 }
 
+function ExportButton(){
+  return(
+    <div className='text-center w-5/6'>
+      <div className="justify-center flex rounded-xl p-2 border-black border-2 relative bg-[#346DFF]">
+        <p className="text-slate-50 basis-10/11">Export</p>
+      </div>
+    </div>
+  );
+}
 
+function NewTemplateButton(){
+  return(
+    <div className='text-center w-9/10'>
+      <div className="h-full justify-center flex rounded p-2 border-black border-2 font-semibold relative bg-green-600 text-white  ">
+        <p className="basis-10/11 inline-block">New Template</p>
+      </div>
+    </div>
+  );
+}
 
- 
+function SearchBar(){
+  return(
+    <div className='w-9/10'>
+      <input className="p-2 rounded border-black border-2 bg-slate-200 text-black" type="text" placeholder="Search.."></input>
+      <button type='submit'><i className="fa fa-search"></i></button>
+    </div>
+  )
+}
