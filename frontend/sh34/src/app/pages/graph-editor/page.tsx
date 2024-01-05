@@ -40,7 +40,7 @@ const Sidebar: NextPage<SidebarProps> = ({ setPlotHTML }) => {
 		fetch('/api/load-indicators')
 			.then((response) => response.json())
 			.then((data) => {
-				data = data.map((x, i) => {
+				data = data.map((x: string, i: number) => {
 					return <option key={x} value={i}>{x}</option>;
 				});
 				setIndicators(data);
