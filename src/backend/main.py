@@ -62,6 +62,10 @@ def test_plot_generation():
 
 @app.route("/api/load-indicators", methods=['GET'])
 def api_load_indicators():
+    """
+    This endpoint returns a list of strings which are valid indicators
+    to be loaded from the json file.
+    """
     indicators = load_indicators(DEFAULT_DATA_PATH)
     indicators_json = json.dumps(indicators)
     return Response(indicators_json, mimetype="application/json")
