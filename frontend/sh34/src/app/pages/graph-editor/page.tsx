@@ -3,7 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Navbar } from '../../components/navbar';
 import Document from "./../../images/Document-icon.png"
-import { useState, useEffect } from 'react'
+import { useState, useEffect, ChangeEvent } from 'react'
 import { NextPage } from 'next';
 import $ from 'jquery';
 
@@ -34,8 +34,8 @@ interface SidebarProps {
 
 const Sidebar: NextPage<SidebarProps> = ({ setPlotHTML }) => {
 	const [indicators, setIndicators] = useState([]);
-	const [selIndicator, setSelIndicator] = useState(null);
-	const [selGraphType, setSelGraphType] = useState(null);
+	const [selIndicator, setSelIndicator] = useState('');
+	const [selGraphType, setSelGraphType] = useState('');
 	useEffect(() => {
 		fetch('/api/load-indicators')
 			.then((response) => response.json())
@@ -49,11 +49,11 @@ const Sidebar: NextPage<SidebarProps> = ({ setPlotHTML }) => {
 				console.log(err.message);
 			});
 	}, []);
-	const onGraphTypeChange = (e) => {
+	const onGraphTypeChange = (e: ChangeEvent<HTMLInputElement>) => {
 		const {name, value} = e.target;
 		setSelGraphType(value);
 	}
-	const onIndicatorChange = (e) => {
+	const onIndicatorChange = (e: ChangeEvent<HTMLInputElement>) => {
 		const {name, value} = e.target;
 		setSelIndicator(value);
 	}
