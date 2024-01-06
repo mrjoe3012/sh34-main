@@ -5,7 +5,7 @@ export const StructurePage = () => {
     const numPlots = 10;   
 
     return (
-        <div className='flex flex-col gap-y-5'>
+        <div className='flex flex-col gap-y-5 items-center'>
             {[...Array(numPlots)].map((e, i) => <PlotElement key={i} />)}
         </div>
       )

@@ -10,7 +10,7 @@ import EditIcon from "./../../images/edit-icon.svg"
 
 export const PlotElement = () => {
     return(
-        <div className='flex text-black'>
+        <div className='flex text-black drop-shadow-lg	' >
   
           {/* The movement control and delete div */}
           <div className='flex flex-col justify-center items-center'>
