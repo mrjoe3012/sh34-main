@@ -3,12 +3,13 @@
 import Link from 'next/link';
 import { useState } from 'react';
 import { Navbar } from '../../components/navbar';
-import { StructurePage } from '@/app/components/template-page-components/PlotList';
+import { StructurePage } from '@/app/components/template-page-components/StructurePage';
+import { InfoPage } from '@/app/components/template-page-components/InfoPage';
 
 export default function TemplateEditor() {
     return (
-      <div className="text-black min-w-[1200px] h-screen">
-        <div className='bg-white'>
+      <div className="text-black min-w-[1200px] h-screen bg-white">
+        <div className='bg-white h-fit'>
           <Navbar />
           <Body />
         </div>
@@ -58,21 +59,7 @@ function TemplateExportButton() {
   );
 }
   
-function NewPlotButton() {
-  return (
-    <div className={`text-center text-xl font-medium text-white h-[60px] w-[170px] bg-[#44C125] rounded-xl flex justify-center items-center border-[2px] border-slate-700`}>
-      <p> New Plot </p>
-    </div>
-  );
-}
 
-function PlotSearchBar() {
-  return(
-    <div className={`text-center text-xl font-medium text-[#8E8E8E] h-[60px] w-[200px] bg-[#EAEAEA] rounded-xl flex justify-center items-center border-[2px] `}>
-      <p> Look for a Plot </p>
-    </div>
-  );
-}
 
 function Body() {
 
@@ -81,7 +68,7 @@ function Body() {
   // Calling the Sidebar Component passes as a prop a function to change what the BodyContent component displays, Sidebar then passes it to its children, and so on.
   // Passing down the switchBodyContent function as a prop through many children components who don't use the prop is called "Prop-Drilling", not great.
   return (
-    <div className="bg-white overflow-auto mx-10">
+    <div className="overflow-auto mx-10">
 
       <div className='flex justify-between w-full'>
         <Header />
@@ -98,15 +85,12 @@ function Body() {
           </div>
         </div>
 
-        <hr className='h-[10px]'></hr>
+        <hr className='h-[10px] mb-3'></hr>
 
-        <div className='mt-3 mb-5 flex justify-between'>
-          <NewPlotButton />
-          <PlotSearchBar />
+        <div className='mx-4'>
+          <InfoPage  />
         </div>
-
-        <StructurePage />
-
+        
       </div>
 
     </div>
