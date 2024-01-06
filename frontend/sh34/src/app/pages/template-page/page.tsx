@@ -3,8 +3,15 @@
 import Link from 'next/link';
 import { useState } from 'react';
 import { Navbar } from '../../components/navbar';
+
 import { StructurePage } from '@/app/components/template-page-components/StructurePage';
 import { InfoPage } from '@/app/components/template-page-components/InfoPage';
+
+import { PageTitle } from '@/app/components/template-page-components/general-components/PageTitle';
+import { TemplateInfo } from '@/app/components/template-page-components/general-components/TemplateInfo';
+import { TemplatePageSwitcher } from '@/app/components/template-page-components/general-components/TemplatePageSwitcher';
+import { TemplateSaveButton } from '@/app/components/template-page-components/general-components/TemplateSaveButton';
+import { TemplateExportButton } from '@/app/components/template-page-components/general-components/TemplateExportButton';
 
 export default function TemplateEditor() {
     return (
@@ -17,61 +24,16 @@ export default function TemplateEditor() {
     );
   }
 
-function Header(){
-    return(
-      <h1 className="text-4xl text-RES_ORANGE font-bold">Template Editor</h1>
-    );
-}
-
-function TemplateInfo() {
-  return(
-    <div className="flex text-2xl text-[#575757] font-semibold">
-      <div className='mr-3'> ID </div>
-      <div> | </div>
-      <div className='ml-3'> Template Name </div>
-    </div>
-  );
-}
-
-function TemplatePageSwitcher() {
-  return(
-    <div className='flex flex-row bg-[#EAEAEA] w-[350px] h-[60px] items-center justify-center rounded-xl'>
-      <div className='mr-2 text-2xl w-[45%]  text-center'> Info </div>
-      <div className='bg-[#D5D5D5] w-1 h-[80%] self-center'></div>
-      <div className='ml-2 text-2xl w-[50%] text-center'>Structure</div>
-    </div>
-  );
-}
-
-function TemplateSaveButton() {
-  return (
-    <div className={`text-center text-xl font-medium text-white h-[60px] w-[150px] bg-[#346DFF] rounded-xl flex justify-center items-center border-[2px] border-slate-700`}>
-      <p> Save </p>
-    </div>
-  );
-}
-
-function TemplateExportButton() {
-  return (
-    <div className={`text-center text-xl font-medium text-white h-[60px] w-[150px] bg-[#7D7D7D] rounded-xl flex justify-center items-center border-[2px] border-slate-700`}>
-      <p> Export </p>
-    </div>
-  );
-}
-  
-
 
 function Body() {
 
-  const [bodyContent,setBodyContent] = useState(<div> N/A </div>);
+  const [bodyContent,setBodyContent] = useState(<StructurePage />);
 
-  // Calling the Sidebar Component passes as a prop a function to change what the BodyContent component displays, Sidebar then passes it to its children, and so on.
-  // Passing down the switchBodyContent function as a prop through many children components who don't use the prop is called "Prop-Drilling", not great.
   return (
     <div className="overflow-auto mx-10">
 
       <div className='flex justify-between w-full'>
-        <Header />
+        <PageTitle />
         <TemplateInfo />
       </div>
 
@@ -88,7 +50,7 @@ function Body() {
         <hr className='h-[10px] mb-3'></hr>
 
         <div className='mx-4'>
-          <InfoPage  />
+          {bodyContent}
         </div>
         
       </div>

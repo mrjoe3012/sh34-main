@@ -1,4 +1,3 @@
-import { StructurePage } from "./PlotList"
 
 interface BodyContentProps {
     pageSelected: JSX.Element;
