@@ -1,4 +1,4 @@
-import { GeneralGraphOptions } from "./graph-edit-options/GeneralGraphOptions";
+import { GeneralGraphOptions } from "../graph-edit-options/general-tab-components/GeneralGraphOptions";
 
 interface OptionsListOptionProps {
     optionName: string;

@@ -1,8 +1,8 @@
 import { ListOption } from "./SidebarListOption"
-import { GeneralGraphOptions } from "./graph-edit-options/GeneralGraphOptions";
-import { LabellingGraphOptions } from "./graph-edit-options/LabellingGraphOptions";
-import { VisualGraphOptions } from "./graph-edit-options/VisualGraphOptions";
-import { DataMapGraphOptions } from "./graph-edit-options/DataMapGraphOptions";
+import { GeneralGraphOptions } from "../graph-edit-options/general-tab-components/GeneralGraphOptions";
+import { LabellingGraphOptions } from "../graph-edit-options/labelling-tab-components/LabellingGraphOptions";
+import { VisualGraphOptions } from "../graph-edit-options/visual-tab-components/VisualGraphOptions";
+import { DataMapGraphOptions } from "../graph-edit-options/datamap-tab-components/DataMapGraphOptions";
 
 interface SidebarProps {
     switchPageFunc: (someComponent: JSX.Element) => void;
