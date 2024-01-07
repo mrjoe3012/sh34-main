@@ -1,7 +1,7 @@
+import { VisualTabSwitcher } from "./VisualGraphOptionTabSwitcher"
+
 export const VisualGraphOptions = () => {
     return(
-        <div>
-            Visual Graphing Options
-        </div>
+        <VisualTabSwitcher />
     )
 }

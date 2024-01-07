@@ -8,7 +8,7 @@ export const PlotSizeOption = () => {
                         <div className="ml-1">
                             <input 
                             placeholder="" 
-                            className=" font-medium placeholder-[#ACACAC] h-[40px] w-[90px] bg-[#DCDCDC] rounded-xl flex items-center pl-4 border-2 border-[#B3B3B3] focus:ring-2 focus:ring-RES_ORANGE" />
+                            className=" font-medium placeholder-[#ACACAC] h-[40px] w-[90px] bg-[#DCDCDC] rounded-xl flex items-center pl-4 border-2 border-[#B3B3B3] focus:ring-2 focus:ring-RES_ORANGE focus:outline-none focus:border-none" />
                         </div>
                     </div>
                     <div className="flex justify-between">
@@ -16,7 +16,7 @@ export const PlotSizeOption = () => {
                         <div className="ml-1">
                             <input 
                             placeholder="" 
-                            className=" font-medium placeholder-[#ACACAC] h-[40px] w-[90px] bg-[#DCDCDC] rounded-xl flex items-center pl-4  border-2 border-[#B3B3B3] focus:ring-2 focus:ring-RES_ORANGE" />
+                            className=" font-medium placeholder-[#ACACAC] h-[40px] w-[90px] bg-[#DCDCDC] rounded-xl flex items-center pl-4 border-2 border-[#B3B3B3] focus:ring-2 focus:ring-RES_ORANGE focus:outline-none focus:border-none" />
                         </div>
                     </div>
                 </div>
