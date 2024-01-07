@@ -31,7 +31,6 @@ function Body() {
 
   return (
     <div className="overflow-auto mx-10">
-
       <div className='flex justify-between w-full'>
         <PageTitle />
         <TemplateInfo />
@@ -40,21 +39,18 @@ function Body() {
       <div className='mx-10'> 
 
         <div className='mt-10 mb-5 flex justify-between'>
-          <TemplatePageSwitcher />
+          <TemplatePageSwitcher switchTabFunction={setBodyContent}/>
           <div className='flex gap-3'> 
             <TemplateSaveButton />
             <TemplateExportButton />
           </div>
         </div>
-
         <hr className='h-[10px] mb-3'></hr>
-
         <div className='mx-4'>
           {bodyContent}
         </div>
-        
-      </div>
 
+      </div>
     </div>
   );
 }
