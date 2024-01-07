@@ -10,7 +10,7 @@ export default function Home() {
     return (
       <div className="text-black flex flex-col h-screen">
         <Navbar />
-        <hr className='h-[1.5px]'></hr>
+        <hr className='h-[1.5px] bg-[#D3D3D3]'></hr>
         <Body />
       </div>
     );

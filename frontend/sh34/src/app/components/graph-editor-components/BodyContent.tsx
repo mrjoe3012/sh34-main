@@ -5,7 +5,7 @@ interface BodyContentProps {
 
 export const BodyContent = (props: BodyContentProps) => {
     return(
-        <div className='basis-[85%] bg-[#F6F8FC] p-16 flex justify-center overflow-auto'>
+        <div className='basis-[85%] bg-[#F6F8FC] bg-green-500 p-16 flex justify-center overflow-auto'>
             {props.pageSelected}
         </div>
     )
