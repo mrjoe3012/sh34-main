@@ -5,11 +5,9 @@ import { AxisLineOption } from "./option-components/AxisLineOption"
 export const GeneralGraphOptions = () => {
     return(
         <div>
-
             <PlotTypeOption />
             <PlotSizeOption />
             <AxisLineOption />
-            
         </div>
     )
 }
