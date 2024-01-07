@@ -1,12 +1,12 @@
 import Image from 'next/image';
 
-import TrashIcon from "./../../images/trash-icon.svg"
-import UpArrow from "./../../images/up-arrow.svg"
-import DownArrow from "./../../images/down-arrow.svg"
-import BarGraph from "./../../images/bar-graph.svg"
-import PieChart from "./../../images/pie-chart.svg"
-import ScatterGraph from "./../../images/scatter-graph.svg"
-import EditIcon from "./../../images/edit-icon.svg"
+import TrashIcon from "./../../../images/trash-icon.svg"
+import UpArrow from "./../../../images/up-arrow.svg"
+import DownArrow from "./../../../images/down-arrow.svg"
+import BarGraph from "./../../../images/bar-graph.svg"
+import PieChart from "./../../../images/pie-chart.svg"
+import ScatterGraph from "./../../../images/scatter-graph.svg"
+import EditIcon from "./../../../images/edit-icon.svg"
 
 export const PlotElement = () => {
     return(

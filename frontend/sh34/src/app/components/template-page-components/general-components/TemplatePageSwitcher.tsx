@@ -1,7 +1,7 @@
 // Component for the button to switch between Info/Structure tabs on Template Page
 import { useState } from 'react';
-import { InfoPage } from "../InfoPage";
-import { StructurePage } from "../StructurePage";
+import { InfoPage } from "../info-page-components/InfoPage";
+import { StructurePage } from "../structure-page-components/StructurePage";
 
 interface TemplatePageSwitcherProps {
   switchTabFunction: (someComponent: JSX.Element) => void;

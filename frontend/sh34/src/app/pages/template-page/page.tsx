@@ -4,8 +4,8 @@ import Link from 'next/link';
 import { useState } from 'react';
 import { Navbar } from '../../components/navbar';
 
-import { StructurePage } from '@/app/components/template-page-components/StructurePage';
-import { InfoPage } from '@/app/components/template-page-components/InfoPage';
+import { StructurePage } from '@/app/components/template-page-components/structure-page-components/StructurePage';
+import { InfoPage } from '@/app/components/template-page-components/info-page-components/InfoPage';
 
 import { PageTitle } from '@/app/components/template-page-components/general-components/PageTitle';
 import { TemplateInfo } from '@/app/components/template-page-components/general-components/TemplateInfo';
