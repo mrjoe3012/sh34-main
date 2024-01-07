@@ -27,9 +27,9 @@ function Body() {
   return (
     <div className="bg-white flex flex-row flex-1 overflow-auto">
         <Sidebar switchPageFunc={setPlotOptionsContent}/>
-        <div className='flex flex-col flex-1 overflow-auto'>
-          <PlotDisplay />
+        <div className='flex flex-row flex-1 overflow-auto'>
           <PlotOptions pageSelected={plotOptionsContent} />
+          <PlotDisplay />
         </div>
     </div>
   );
