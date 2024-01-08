@@ -1,4 +1,7 @@
 import { useState } from 'react';
+import { VisualTextTab } from "./VisualTextTab";
+import { VisualColourTab } from './VisualColourTab';
+import { VisualTraceTab } from './VisualTraceTab';
 
 interface VisualTabSwitcherProps {
     switchTabFunction: (someComponent: JSX.Element) => void;
@@ -15,21 +18,21 @@ export const VisualTabSwitcher = (props: VisualTabSwitcherProps) => {
         setTextClicked(true);
         setColourClicked(false);
         setTraceClicked(false);
-        props.switchTabFunction(<div> 1 </div>);
+        props.switchTabFunction(<VisualTextTab />);
     }
 
     const handleColourClick = () => {
         setTextClicked(false);
         setColourClicked(true);
         setTraceClicked(false);
-        props.switchTabFunction(<div> 2 </div>);
+        props.switchTabFunction(<VisualColourTab />);
     }
 
     const handleTraceClick = () => {
         setTextClicked(false);
         setColourClicked(false);
         setTraceClicked(true);
-        props.switchTabFunction(<div> 3 </div>);
+        props.switchTabFunction(<VisualTraceTab />);
 
     }
 
