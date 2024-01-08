@@ -6,7 +6,7 @@ export const VisualGraphOptions = () => {
     const [visualTabContent,setVisualTabContent] = useState(<VisualTextTab />);
 
     return(
-        <div className="w-full">
+        <div className="w-full flex flex-col items-center">
             <VisualTabSwitcher switchTabFunction={setVisualTabContent}/>
             {visualTabContent}
         </div>

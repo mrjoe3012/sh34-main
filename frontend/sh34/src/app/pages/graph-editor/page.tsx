@@ -16,8 +16,9 @@ export default function Home() {
         <Body />
       </div>
     );
-  } 
+} 
   
+
 function Body() {
 
   const [plotOptionsContent,setPlotOptionsContent] = useState(<GeneralGraphOptions />);
