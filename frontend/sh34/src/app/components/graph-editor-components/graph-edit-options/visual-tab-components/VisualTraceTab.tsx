@@ -1,4 +1,5 @@
 import { BarBorderOption } from "../option-components/BarBorderOption"
+import { BarWidthOption } from "../option-components/BarWidthOption"
 
 export const VisualTraceTab = () => {
     
@@ -6,6 +7,7 @@ export const VisualTraceTab = () => {
     return(
         <div className="flex flex-col gap-y-5">
             <BarBorderOption />
+            <BarWidthOption />
         </div>
     )
 }

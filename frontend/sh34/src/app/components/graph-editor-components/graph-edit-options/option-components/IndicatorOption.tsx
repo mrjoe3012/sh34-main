@@ -21,7 +21,7 @@ export const IndicatorOption = () => {
     return (
         <div>
             < OptionComponentTitle optionName="Plot Indicator" />
-            <select className="w-[80%] ml-3" name="plot-indicator" id="plot-indicator"> 
+            <select className="w-[80%] ml-3 border-2 border-[#B3B3B3] rounded bg-[#DCDCDC]" name="plot-indicator" id="plot-indicator"> 
                 { indicators }
             </select>
         </div>
