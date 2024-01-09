@@ -5,7 +5,7 @@ export const FontColourOption = () => {
     return(
         <div className="mb-5" >
             <OptionComponentTitle optionName="Font Colour" />
-            <div className="flex items-center">
+            <div className="flex items-center ml-3">
                 <div className="w-8 h-8 bg-red-500 rounded-3xl flex border-black border-2"> </div>
                 <div className="ml-1">
                     <input 

@@ -2,10 +2,10 @@ import { OptionComponentTitle } from "./OptionComponentTitle"
 
 export const PlotSizeOption = () => {
     return(
-        <div className="mb-10">
+        <div className="mb-5">
                 <OptionComponentTitle optionName="Plot Size" />
 
-                <div className="flex flex-col gap-y-1">
+                <div className="flex flex-col gap-y-1 ml-3">
 
                     <div className="flex gap-x-2">
                         <input placeholder="" className=" font-medium placeholder-[#ACACAC] h-[40px] w-[90px] bg-[#DCDCDC] rounded-xl flex items-center pl-4 border-2 border-[#B3B3B3] focus:ring-2 focus:ring-RES_ORANGE focus:outline-none focus:border-none" />

@@ -3,9 +3,9 @@ import { OptionComponentTitle } from "./OptionComponentTitle"
 export const FontTypefaceOption = () => {
     
     return(
-        <div className="mb-10">
+        <div className="mb-5">
             < OptionComponentTitle optionName="Typeface" />
-            <div className="ml-1">
+            <div className="ml-3">
                     <input 
                         maxLength={7}
                         placeholder="" 

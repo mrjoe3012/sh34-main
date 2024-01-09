@@ -19,9 +19,9 @@ export const IndicatorOption = () => {
             });
     }, []);
     return (
-        <div className="mb-10">
+        <div className="mb-5">
             < OptionComponentTitle optionName="Plot Indicator" />
-            <select className="width: [80%]" name="plot-indicator" id="plot-indicator"> 
+            <select className="w-[80%] ml-3" name="plot-indicator" id="plot-indicator"> 
                 { indicators }
             </select>
         </div>
