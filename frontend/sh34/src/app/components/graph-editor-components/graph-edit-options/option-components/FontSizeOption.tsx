@@ -1,3 +1,4 @@
+import { OptionComponentTitle } from "./OptionComponentTitle"
 import Image from 'next/image';
 import uptriangle from './../../../../images/uptriangle.png'
 import downtriangle from './../../../../images/downtriangle.png'
@@ -6,7 +7,7 @@ export const FontSizeOption = () => {
     
     return(
         <div className="mb-10 ">
-            <p className="text-xl"> Font Size </p>
+            < OptionComponentTitle optionName="Font Size" />
             <div className="ml-1 flex items-center gap-x-1">
                     <input 
                         maxLength={7}
