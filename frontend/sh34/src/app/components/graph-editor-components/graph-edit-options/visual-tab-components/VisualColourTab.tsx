@@ -4,7 +4,7 @@ import { DataPointColourOption } from "../option-components/datapoint-colour-com
 export const VisualColourTab = () => {
     
     return(
-        <div className="flex flex-col gap-y-5">
+        <div className="flex flex-col gap-y-7">
             <PlotColourOption />
             <DataPointColourOption />
         </div>

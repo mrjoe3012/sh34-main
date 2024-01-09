@@ -6,7 +6,7 @@ import { FontTypefaceOption } from "../option-components/FontTypefaceOption"
 export const VisualTextTab = () => {
     
     return(
-        <div className="flex flex-col gap-y-5">
+        <div className="flex flex-col gap-y-7">
             <FontColourOption />
             <FontSizeOption />
             <FontTypefaceOption />
