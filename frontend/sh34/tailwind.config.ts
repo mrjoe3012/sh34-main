@@ -24,6 +24,9 @@ const config: Config = {
         COMPLETE:"#00AF54",
         FINISH:"#007CBE"
       },
+      fontFamily: {
+        league: ['League Spartan']
+      },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':

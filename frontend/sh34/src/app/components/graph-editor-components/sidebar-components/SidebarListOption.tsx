@@ -9,7 +9,7 @@ interface OptionsListOptionProps {
 export const ListOption = (props: OptionsListOptionProps) => {
     return (
         <div>
-            <button className='p-2 pl-10' onClick={() => props.switchPageFunc(props.pageToSwitchTo)}> {props.optionName} </button>
+            <button className='p-2 pl-10 text-xl' onClick={() => props.switchPageFunc(props.pageToSwitchTo)}> {props.optionName} </button>
         </div>
     );
 };
