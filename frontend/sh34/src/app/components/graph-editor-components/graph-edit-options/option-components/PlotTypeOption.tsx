@@ -1,7 +1,11 @@
+import { OptionComponentTitle } from "./OptionComponentTitle"
+
 export const PlotTypeOption = () => {
     return(
     <div className="mb-10"> 
-        <p className="text-xl"> Plot Type </p>
+
+        < OptionComponentTitle optionName="Plot Type" />
+
         <div>
             <input className="mr-2" type="radio" name="PlotTypeSelect" value="Bar" id="Bar"></input>
             <label htmlFor="Bar">Bar</label>
@@ -14,6 +18,7 @@ export const PlotTypeOption = () => {
             <input className="mr-2" type="radio" name="PlotTypeSelect" value="Pie" id="Pie"></input>
             <label htmlFor="Bar">Line</label>
         </div>
+        
     </div>
     )
 }

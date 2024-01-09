@@ -1,7 +1,9 @@
+import { OptionComponentTitle } from "./OptionComponentTitle"
+
 export const AxisLineOption = () => {
     return(
         <div className="mb-10"> 
-                <p className="text-xl"> Axis Lines </p>
+                <OptionComponentTitle optionName="Axis Lines" />
                 <div>
                     <input className="mr-2" type="radio" name="AxisLineSelect" value="X-Axis" id="X-Axis"></input>
                     <label htmlFor="X-Axis">X-Axis</label>

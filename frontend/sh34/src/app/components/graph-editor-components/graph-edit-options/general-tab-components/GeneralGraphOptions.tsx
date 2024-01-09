@@ -11,7 +11,7 @@ export const GeneralGraphOptions = () => {
 
             <OptionTabTitle titleName="General Options" />
             
-            <div className="flex flex-col items-center w-full">
+            <div className="w-full">
                 <PlotTypeOption />
                 <IndicatorOption />
                 <PlotSizeOption />

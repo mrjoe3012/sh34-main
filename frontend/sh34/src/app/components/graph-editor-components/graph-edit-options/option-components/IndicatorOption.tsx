@@ -1,5 +1,6 @@
 'use client';
 import { useEffect, useState } from "react"
+import { OptionComponentTitle } from "./OptionComponentTitle";
 
 export const IndicatorOption = () => {
     const [indicators, setIndicators] = useState([]);
@@ -19,7 +20,7 @@ export const IndicatorOption = () => {
     }, []);
     return (
         <div className="mb-10">
-            <p className="text-xl">Plot Indicator</p>
+            < OptionComponentTitle optionName="Plot Indicator" />
             <select className="width: [80%]" name="plot-indicator" id="plot-indicator"> 
                 { indicators }
             </select>
