@@ -7,6 +7,7 @@ import BarGraph from "./../../../images/bar-graph.svg"
 import PieChart from "./../../../images/pie-chart.svg"
 import ScatterGraph from "./../../../images/scatter-graph.svg"
 import EditIcon from "./../../../images/edit-icon.svg"
+import Link from 'next/link';
 
 export const PlotElement = () => {
     return(
@@ -40,7 +41,9 @@ export const PlotElement = () => {
           
           {/* The Edit Plot Button */}
           <div className='flex flex-col justify-center items-center gap-y-10'>
-            <Image src={EditIcon} alt="EditIcon" />
+            <Link href="/pages/graph-editor">
+              <Image src={EditIcon} alt="EditIcon" />
+            </Link>
             <Image src={TrashIcon} alt='TrashIcon' className=''/>
           </div>
   
