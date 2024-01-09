@@ -17,11 +17,11 @@ export const IndicatorOption = () => {
                 console.log(err.message);
             });
     }, []);
-    console.log(indicators);
     return (
         <div className="mb-10">
             <p className="text-xl">Plot Indicator</p>
-            <select name="plot-indicator" id="plot-indicator"> 
+            <select className="width: [80%]" name="plot-indicator" id="plot-indicator"> 
+                { indicators }
             </select>
         </div>
     );
