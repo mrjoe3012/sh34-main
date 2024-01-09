@@ -2,7 +2,7 @@ import { OptionComponentTitle } from "./OptionComponentTitle"
 
 export const PlotTypeOption = () => {
     return(
-    <div className="mb-5"> 
+    <div> 
 
         < OptionComponentTitle optionName="Plot Type" />
 

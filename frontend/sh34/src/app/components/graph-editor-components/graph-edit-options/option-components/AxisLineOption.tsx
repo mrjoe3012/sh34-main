@@ -2,7 +2,7 @@ import { OptionComponentTitle } from "./OptionComponentTitle"
 
 export const AxisLineOption = () => {
     return(
-        <div className="mb-5"> 
+        <div> 
                 <OptionComponentTitle optionName="Axis Lines" />
                 <div className="ml-3">
                     <div>

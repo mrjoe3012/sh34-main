@@ -19,7 +19,7 @@ export const IndicatorOption = () => {
             });
     }, []);
     return (
-        <div className="mb-5">
+        <div>
             < OptionComponentTitle optionName="Plot Indicator" />
             <select className="w-[80%] ml-3" name="plot-indicator" id="plot-indicator"> 
                 { indicators }

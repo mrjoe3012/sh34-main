@@ -3,7 +3,7 @@ import { OptionComponentTitle } from "./OptionComponentTitle"
 export const FontTypefaceOption = () => {
     
     return(
-        <div className="mb-5">
+        <div>
             < OptionComponentTitle optionName="Typeface" />
             <div className="ml-3">
                     <select 
