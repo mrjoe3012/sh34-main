@@ -12,7 +12,7 @@ export const PlotTypeOption = () => {
         </div>
         <div>
             <input className="mr-2" type="radio" name="PlotTypeSelect" value="Pie" id="Pie"></input>
-            <label htmlFor="Bar">Pie</label>
+            <label htmlFor="Bar">Line</label>
         </div>
     </div>
     )
