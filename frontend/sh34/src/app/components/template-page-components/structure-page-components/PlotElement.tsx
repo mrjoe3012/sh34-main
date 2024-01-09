@@ -13,13 +13,13 @@ export const PlotElement = () => {
         <div className='flex text-black drop-shadow-lg	' >
   
           {/* The movement control and delete div */}
-          <div className='flex flex-col justify-center items-center'>
+          <div className='flex flex-col justify-center items-center '>
               <Image src={UpArrow} alt='UpArrow' className='w-10 h-10'/>
               <Image src={DownArrow} alt='DownArrow' className='w-10 h-10'/>
           </div> 
   
           {/* The plot box div */}
-          <div className='flex gap-x-5 w-[400px] bg-[#D3E3FD] p-3 rounded-xl border-4 border-black'>
+          <div className='flex gap-x-5 w-[400px] bg-[#D3E3FD] p-3 rounded-xl border-4 border-black shadow-lg'>
   
             <div className='flex flex-col w-[10%]'>
               <p className='text-3xl'> 1. </p>
