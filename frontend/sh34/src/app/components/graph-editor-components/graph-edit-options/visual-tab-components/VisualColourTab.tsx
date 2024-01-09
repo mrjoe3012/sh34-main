@@ -1,8 +1,12 @@
+import { PlotColourOption } from "../option-components/PlotColourOption"
+import { DataPointColourOption } from "../option-components/DataPointColourOption"
+
 export const VisualColourTab = () => {
     
     return(
         <div>
-            Colour Options
+            <PlotColourOption />
+            <DataPointColourOption />
         </div>
     )
 }
