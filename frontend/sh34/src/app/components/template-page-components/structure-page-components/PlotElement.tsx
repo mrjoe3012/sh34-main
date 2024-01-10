@@ -25,7 +25,7 @@ export const PlotElement = (props: PlotElementProps) => {
           </div> 
   
           {/* The plot box div */}
-          <div className={`flex gap-x-10 justify-between items-center w-[650px] h-[100px] ${props.backgroundColour} p-3 rounded-lg border-4 border-black`}>
+          <div className={`flex gap-x-10 justify-between items-center w-[650px] h-[100px] ${props.backgroundColour} p-3 rounded-lg border-4`}>
               <p className='text-3xl'> 1. </p>
               <Image src={BarGraph} alt='BarGraph' className='w-10  '/>
               <h1 className='text-3xl h-fit flex-grow font-medium'> Plot Title </h1>
