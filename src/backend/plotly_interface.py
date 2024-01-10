@@ -37,6 +37,7 @@ def generate_graph(graph_info:dict[str,Any], data_json:dict[str,Any]) -> str:
     y_axis_name = graph_info['y_axis_name']
     colour = graph_info['colour']
     name = graph_info['graph_name']
+    layer_colour = graph_info['layer_colour']
 
     # You can set a value or the value will be automatically set. This is done via the mock.json
     try:
@@ -53,7 +54,7 @@ def generate_graph(graph_info:dict[str,Any], data_json:dict[str,Any]) -> str:
         case 'bar':
             trace = go.Bar(
                 x=df['x'], y=df['y'],
-                marker=dict(color ="Blue"),
+                marker=dict(color = colour),
                 name = pascal_split_name(y_axis_name)
             )
             fig.update_layout(xaxis_title = x_axis_name,
@@ -63,15 +64,19 @@ def generate_graph(graph_info:dict[str,Any], data_json:dict[str,Any]) -> str:
                               )
             
         case 'line':
-            fig = px.line(
-                df, x='x', y='y',
-                color_discrete_sequence=[colour],
-                title=pascal_split_name(title),
-                height=500
-            )
+            trace = go.Line(
+                x=df['x'], y=df['y'],
+                marker=dict(color =colour),
+                name = pascal_split_name(y_axis_name),
+                mode = "lines+markers",
+                line = dict(width=3),
+                marker_size = 10
+                )
             fig.update_layout(xaxis_title = x_axis_name,
-                              yaxis_title = pascal_split_name(y_axis_name))
-            fig.update_traces(line={ 'width' : 4})
+                              yaxis_title = pascal_split_name(y_axis_name),
+                              title=pascal_split_name(title),
+                              height = 500)
+            fig.update_traces(line={ 'width' : 10000})
         case 'pie':
             # A very very simple pie chart
             fig = px.pie(
@@ -82,14 +87,18 @@ def generate_graph(graph_info:dict[str,Any], data_json:dict[str,Any]) -> str:
             fig.update_layout(xaxis_title = x_axis_name,
                               yaxis_title = pascal_split_name(y_axis_name))
         case 'scatter':
-            fig = px.scatter(
-                df, x='x', y='y',
-                color_discrete_sequence=[colour],
-                title=pascal_split_name(title),
-                height=500
+            trace = go.Scatter(
+                x=df['x'], y=df['y'],
+                marker=dict(color = colour),
+                name = pascal_split_name(y_axis_name),
+                mode = "markers",
+                line = dict(width=4),
+                marker_size = 10
             )
             fig.update_layout(xaxis_title = x_axis_name,
-                              yaxis_title = pascal_split_name(y_axis_name))
+                              yaxis_title = pascal_split_name(y_axis_name),
+                              title=pascal_split_name(title),
+                              height = 500)
         case _:
             print('\n')
             raise ValueError(
@@ -98,20 +107,30 @@ def generate_graph(graph_info:dict[str,Any], data_json:dict[str,Any]) -> str:
             )
     df2 = data_extract(data_json, layer_name, first_value)
     fig.add_trace(trace)
-    if layer_type is not "":
+    if layer_type != "":
+        fig.update_layout(yaxis_title = "")
         match layer_type:
             
             case 'bar':
-                print(df2)
-                trace2 = go.Bar(x = df2['x'], y = df2['y'], name = 'Wind', yaxis = 'y2')
-            
-                fig.add_trace(trace2)
-            case 'line':
-                pass
-            case 'scatter':
-                trace2 = go.Scatter(x = df2['x'], y = df2['y'], name = 'Wind', yaxis = 'y2')
+                trace2 = go.Bar(x = df2['x'], y = df2['y'],
+                                name = 'Wind', yaxis = 'y2', 
+                                opacity = 0.75, marker = dict(color = layer_colour))
             
                 fig.add_trace(trace2,secondary_y=True)
+            case 'line':
+                trace2 = go.Line(x = df2['x'], y = df2['y'], 
+                                 name = 'Wind', yaxis = 'y2', 
+                                 opacity = 0.75, marker = dict(color = layer_colour))
+            
+                fig.add_trace(trace2,secondary_y=True)
+            case 'scatter':
+                trace2 = go.Scatter(x = df2['x'], y = df2['y'], 
+                                    name = 'Wind', yaxis = 'y2', 
+                                    opacity = 0.75, marker = dict(color = layer_colour))
+                                    
+            
+                fig.add_trace(trace2,secondary_y=True)
+            
                 
 
     if fig is not None:
