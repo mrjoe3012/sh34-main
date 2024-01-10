@@ -13,6 +13,8 @@ import pandas as pd
 class GraphInfo:
     """This is graph info class used for managing the mock.json
     files content and make it more readable"""
+    # pylint: disable too-many-arguments
+    # pylint: disable too-many-instance-arguments
     def __init__(self, graph_type, title, x_axis_name, y_axis_name, colour,
                  graph_name, layer_colour, layer_type, layer_name, first_value=None):
 
@@ -38,7 +40,7 @@ def unpack_json(json_file_path: str) -> dict[str,Any]:
 
     return graph_data
 
-def populate_graph_info(graph_info:dict[str,Any]):
+def populate_graph_info(graph_info:dict[str,Any]) -> GraphInfo:
     graph_info = GraphInfo(
 
     graph_type = graph_info['graph_type'],
@@ -84,7 +86,7 @@ def generate_graph(graph_info:dict[str,Any], data_json:dict[str,Any]) -> str:
             )
             fig.update_layout(xaxis_title = g1.x_axis_name,
                               yaxis_title = pascal_split_name(g1.y_axis_name),
-                              title=pascal_split_name(title),
+                              title=pascal_split_name(g1.title),
                               height = 500
                               )
         case 'line':
