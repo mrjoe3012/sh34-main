@@ -1,12 +1,22 @@
+'use client';
 import { MainButton } from "./SidebarMainButton";
+import $ from "jquery"
 
 interface SidebarMainButtonsProps {
     selectedIndicator: string;
+    selectedPlotType: string;
 }
 
 export const SidebarMainButtons = (props: SidebarMainButtonsProps) => {
-    const onRefreshClicked = () => {
+    const onRefreshClicked = async () => {
         // fetch the plot and display it
+        try {
+            const response = await fetch('/api/generate-plot?' + 'indicator=' + props.selectedIndicator + '&graph_type=' + props.selectedPlotType);
+            const result = await response.text();
+            $('#plot-container').html(result);
+        } catch (error) {
+            console.error(error);
+        }
     };
 
     return (

@@ -6,6 +6,7 @@ import { IndicatorOption } from "../option-components/IndicatorOption"
 
 interface GeneralGraphOptionsProps {
     setSelectedIndicator: React.Dispatch<React.SetStateAction<string>>;
+    setSelectedPlotType: React.Dispatch<React.SetStateAction<string>>;
 };
 
 export const GeneralGraphOptions = (props: GeneralGraphOptionsProps) => {
@@ -15,7 +16,7 @@ export const GeneralGraphOptions = (props: GeneralGraphOptionsProps) => {
             <OptionTabTitle titleName="General Options" />
             
             <div className="w-full flex flex-col gap-y-7">
-                <PlotTypeOption />
+                <PlotTypeOption setSelectedPlotType={props.setSelectedPlotType} />
                 <IndicatorOption setSelectedIndicator={props.setSelectedIndicator} />
                 <PlotSizeOption />
                 <AxisLineOption />

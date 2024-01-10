@@ -7,8 +7,9 @@ import { SetStateAction, useState } from "react";
 interface SidebarProps {
   switchPageFunc: (someComponent: JSX.Element) => void;
   setSelectedIndicator: React.Dispatch<SetStateAction<string>>;
-  selectedIndicator: string;
-  
+  setSelectedPlotType: React.Dispatch<SetStateAction<string>>;
+  selectedIndicator: string; 
+  selectedPlotType: string;
 }
 
 
@@ -20,8 +21,8 @@ export const Sidebar = (props: SidebarProps) => {
         <hr></hr>
         <SidebarTemplateHeader />
         <hr></hr>
-        <SidebarOptionsList switchPageFunc={props.switchPageFunc} setSelectedIndicator={props.setSelectedIndicator} />
-        <SidebarMainButtons selectedIndicator={props.selectedIndicator} />
+        <SidebarOptionsList setSelectedPlotType={props.setSelectedPlotType} switchPageFunc={props.switchPageFunc} setSelectedIndicator={props.setSelectedIndicator} />
+        <SidebarMainButtons selectedPlotType={props.selectedPlotType} selectedIndicator={props.selectedIndicator} />
       </div>
   );
 };
