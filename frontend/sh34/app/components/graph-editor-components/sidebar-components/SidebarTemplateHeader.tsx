@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import UKflag from "./../../images/UKflag.png"
+import UKflag from "@app/images/UKflag.png"
 
 export const SidebarTemplateHeader = () => {
     return (

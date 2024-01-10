@@ -1,6 +1,6 @@
 import Image from 'next/image';
-import uptriangle from './../../../../../images/uptriangle.png'
-import downtriangle from './../../../../../images/downtriangle.png'
+import uptriangle from '@app/images/uptriangle.png'
+import downtriangle from '@app/images/downtriangle.png'
 
 
 export const ScatterPointSizeConstantOption = () => {

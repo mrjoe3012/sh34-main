@@ -1,5 +1,5 @@
 'use client';
-import { ErrorPopup } from "@/app/components/error-popup-components/ErrorPopup";
+import { ErrorPopup } from "@app/components/error-popup-components/ErrorPopup";
 import { error } from "console";
 import { ChangeEvent, useState } from "react";
 

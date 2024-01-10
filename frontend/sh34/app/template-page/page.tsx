@@ -2,16 +2,16 @@
 
 import Link from 'next/link';
 import { useState } from 'react';
-import { Navbar } from '../../components/navbar';
+import { Navbar } from '@app/components/navbar';
 
-import { StructurePage } from '@/app/components/template-page-components/structure-page-components/StructurePage';
-import { InfoPage } from '@/app/components/template-page-components/info-page-components/InfoPage';
+import { StructurePage } from '@app/components/template-page-components/structure-page-components/StructurePage';
+import { InfoPage } from '@app/components/template-page-components/info-page-components/InfoPage';
 
-import { PageTitle } from '@/app/components/template-page-components/general-components/PageTitle';
-import { TemplateInfo } from '@/app/components/template-page-components/general-components/TemplateInfo';
-import { TemplatePageSwitcher } from '@/app/components/template-page-components/general-components/TemplatePageSwitcher';
-import { TemplateSaveButton } from '@/app/components/template-page-components/general-components/TemplateSaveButton';
-import { TemplateExportButton } from '@/app/components/template-page-components/general-components/TemplateExportButton';
+import { PageTitle } from '@app/components/template-page-components/general-components/PageTitle';
+import { TemplateInfo } from '@app/components/template-page-components/general-components/TemplateInfo';
+import { TemplatePageSwitcher } from '@app/components/template-page-components/general-components/TemplatePageSwitcher';
+import { TemplateSaveButton } from '@app/components/template-page-components/general-components/TemplateSaveButton';
+import { TemplateExportButton } from '@app/components/template-page-components/general-components/TemplateExportButton';
 
 export default function TemplateEditor() {
     return (
