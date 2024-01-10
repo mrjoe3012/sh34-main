@@ -2,11 +2,11 @@
 
 import Link from 'next/link';
 import { useState } from 'react';
-import { Navbar } from '../../components/navbar';
-import { Sidebar } from '../../components/graph-editor-components/sidebar-components/Sidebar';
-import { PlotOptions } from '@/app/components/graph-editor-components/body-components/PlotOptions';
-import { PlotDisplay } from '@/app/components/graph-editor-components/body-components/PlotDisplay';
-import { GeneralGraphOptions } from '@/app/components/graph-editor-components/graph-edit-options/general-tab-components/GeneralGraphOptions';
+import { Navbar } from '@app/components/navbar';
+import { Sidebar } from '@app/components/graph-editor-components/sidebar-components/Sidebar';
+import { PlotOptions } from '@app/components/graph-editor-components/body-components/PlotOptions';
+import { PlotDisplay } from '@app/components/graph-editor-components/body-components/PlotDisplay';
+import { GeneralGraphOptions } from '@app/components/graph-editor-components/graph-edit-options/general-tab-components/GeneralGraphOptions';
 
 export default function Home() {
     return (
