@@ -10,7 +10,7 @@ DEFAULT_DATA_PATH = 'src/fixed.json'
 
 def main():
     """Function to run the webserver"""
-    app.run(host="localhost", port=7575, debug=True)
+    app.run(host="0.0.0.0", port=7575, debug=True)
 
 @app.route("/", methods=["GET", "POST"])
 def gen_plot(indicator: str | None = None ,graph_type: str | None = None ):
