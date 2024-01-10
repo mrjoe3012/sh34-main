@@ -28,6 +28,9 @@ def generate_graph(graph_info:dict[str,Any], data_json:dict[str,Any]) -> str:
     :returns: a html string of the graph. 
     """
     graph_type = graph_info['graph-type']
+    layer_type = graph_info['layer-type']
+    print(layer_type)
+    print("asdasd")
     title = graph_info['title']
     x_axis_name = graph_info['x_axis_name']
     y_axis_name = graph_info['y_axis_name']

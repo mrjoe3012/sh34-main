@@ -1,5 +1,6 @@
 {
     "graph-type": "scatter",
+    "layer-type": "bar",
     "title": "Wind over time",
     "x_axis_name": "Days",
     "y_axis_name": "Site Availability",
