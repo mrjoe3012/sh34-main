@@ -48,17 +48,20 @@ def generate_graph(graph_info:dict[str,Any], data_json:dict[str,Any]) -> str:
 
 
     # We have to use color_discrete_sequence=[colour] to enforce the colour in the Json
-    fig = go.Figure()
+    fig = make_subplots(specs=[[{"secondary_y": True}]])
     match graph_type:
         case 'bar':
             trace = go.Bar(
                 x=df['x'], y=df['y'],
-                marker=dict(color = colour),
-                title=pascal_split_name(title),
-                height=500
+                marker=dict(color ="Blue"),
+                name = pascal_split_name(y_axis_name)
             )
             fig.update_layout(xaxis_title = x_axis_name,
-                              yaxis_title = pascal_split_name(y_axis_name))
+                              yaxis_title = pascal_split_name(y_axis_name),
+                              title=pascal_split_name(title),
+                              height = 500
+                              )
+            
         case 'line':
             fig = px.line(
                 df, x='x', y='y',
@@ -94,18 +97,22 @@ def generate_graph(graph_info:dict[str,Any], data_json:dict[str,Any]) -> str:
                 'pie', 'scatter' or 'special' as your graph type."
             )
     df2 = data_extract(data_json, layer_name, first_value)
+    fig.add_trace(trace)
     if layer_type is not "":
         match layer_type:
             
             case 'bar':
                 print(df2)
-                trace = go.Bar(x = df2['x'], y = df2['y'], name = 'Wind', yaxis = 'y2')
+                trace2 = go.Bar(x = df2['x'], y = df2['y'], name = 'Wind', yaxis = 'y2')
             
-                fig.add_trace(trace)
+                fig.add_trace(trace2)
             case 'line':
                 pass
             case 'scatter':
-                pass
+                trace2 = go.Scatter(x = df2['x'], y = df2['y'], name = 'Wind', yaxis = 'y2')
+            
+                fig.add_trace(trace2,secondary_y=True)
+                
 
     if fig is not None:
         # Path to be returned to
