@@ -4,8 +4,11 @@ import { PlotSizeOption } from "../option-components/PlotSizeOption"
 import { AxisLineOption } from "../option-components/AxisLineOption"
 import { IndicatorOption } from "../option-components/IndicatorOption"
 
+interface GeneralGraphOptionsProps {
+    setSelectedIndicator: React.Dispatch<React.SetStateAction<string>>;
+};
 
-export const GeneralGraphOptions = () => {
+export const GeneralGraphOptions = (props: GeneralGraphOptionsProps) => {
     return(
         <div className="w-full">
 
@@ -13,7 +16,7 @@ export const GeneralGraphOptions = () => {
             
             <div className="w-full flex flex-col gap-y-7">
                 <PlotTypeOption />
-                <IndicatorOption />
+                <IndicatorOption setSelectedIndicator={props.setSelectedIndicator} />
                 <PlotSizeOption />
                 <AxisLineOption />
             </div>

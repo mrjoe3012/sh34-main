@@ -6,12 +6,13 @@ import { DataMapGraphOptions } from "../graph-edit-options/datamap-tab-component
 
 interface SidebarProps {
     switchPageFunc: (someComponent: JSX.Element) => void;
+    setSelectedIndicator: React.Dispatch<React.SetStateAction<string>>;
   }
 
 export const SidebarOptionsList = (props: SidebarProps) => {
     return (
         <div className='flex flex-col gap-y-5 mt-5'> 
-            <ListOption optionName="General" pageToSwitchTo={<GeneralGraphOptions />} switchPageFunc={props.switchPageFunc}/>
+            <ListOption optionName="General" pageToSwitchTo={<GeneralGraphOptions setSelectedIndicator={props.setSelectedIndicator} />} switchPageFunc={props.switchPageFunc}/>
             <ListOption optionName="Labelling" pageToSwitchTo={<LabellingGraphOptions />} switchPageFunc={props.switchPageFunc}/>
             <ListOption optionName="Visual" pageToSwitchTo={<VisualGraphOptions />} switchPageFunc={props.switchPageFunc}/>
             <ListOption optionName="Data Mapping" pageToSwitchTo={<DataMapGraphOptions />} switchPageFunc={props.switchPageFunc}/>
