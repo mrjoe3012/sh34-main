@@ -3,31 +3,54 @@
 import Link from 'next/link';
 import { useState } from 'react';
 import { Navbar } from '../../components/navbar';
-import { Sidebar } from '../../components/template-page-components/Sidebar';
-import { BodyContent } from '@/app/components/template-page-components/BodyContent';
-import { StructurePage } from '@/app/components/template-page-components/PlotList';
-import { InfoPage } from '@/app/components/template-page-components/InfoPage';
 
-export default function Home() {
+import { StructurePage } from '@/app/components/template-page-components/structure-page-components/StructurePage';
+import { InfoPage } from '@/app/components/template-page-components/info-page-components/InfoPage';
+
+import { PageTitle } from '@/app/components/template-page-components/general-components/PageTitle';
+import { TemplateInfo } from '@/app/components/template-page-components/general-components/TemplateInfo';
+import { TemplatePageSwitcher } from '@/app/components/template-page-components/general-components/TemplatePageSwitcher';
+import { TemplateSaveButton } from '@/app/components/template-page-components/general-components/TemplateSaveButton';
+import { TemplateExportButton } from '@/app/components/template-page-components/general-components/TemplateExportButton';
+
+export default function TemplateEditor() {
     return (
-      <div className="text-black flex flex-col h-screen">
-        <Navbar />
-        <hr className='h-[1.5px]'></hr>
-        <Body />
+      <div className="text-black min-w-[1200px] h-screen bg-white">
+        <div className='bg-white h-fit'>
+          <Navbar />
+          <Body />
+        </div>
       </div>
     );
-  } 
-  
+  }
+
+
 function Body() {
 
   const [bodyContent,setBodyContent] = useState(<StructurePage />);
 
-  // Calling the Sidebar Component passes as a prop a function to change what the BodyContent component displays, Sidebar then passes it to its children, and so on.
-  // Passing down the switchBodyContent function as a prop through many children components who don't use the prop is called "Prop-Drilling", not great.
   return (
-    <div className="bg-white flex flex-row flex-1 overflow-auto">
-        <Sidebar switchPageFunc={setBodyContent}/>
-        <BodyContent pageSelected={bodyContent} />
+    <div className="overflow-auto mx-10">
+      <div className='flex justify-between w-full'>
+        <PageTitle />
+        <TemplateInfo />
+      </div>
+
+      <div className='mx-10'> 
+
+        <div className='mt-10 mb-5 flex justify-between'>
+          <TemplatePageSwitcher switchTabFunction={setBodyContent}/>
+          <div className='flex gap-3'> 
+            <TemplateSaveButton />
+            <TemplateExportButton />
+          </div>
+        </div>
+        <hr className='h-[10px] mb-3'></hr>
+        <div className='mx-4'>
+          {bodyContent}
+        </div>
+
+      </div>
     </div>
   );
 }
