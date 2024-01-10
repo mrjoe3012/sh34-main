@@ -5,6 +5,8 @@ from typing import Any
 import os
 import json
 import plotly_express as px
+import plotly.graph_objs as go
+from plotly.subplots import make_subplots
 import plotly.io as pio
 import pandas as pd
 
@@ -27,10 +29,9 @@ def generate_graph(graph_info:dict[str,Any], data_json:dict[str,Any]) -> str:
     :param data: Data file containing the data to be graphed.
     :returns: a html string of the graph. 
     """
-    graph_type = graph_info['graph-type']
-    layer_type = graph_info['layer-type']
-    print(layer_type)
-    print("asdasd")
+    graph_type = graph_info['graph_type']
+    layer_type = graph_info['layer_type']
+    layer_name = graph_info['layer_name']
     title = graph_info['title']
     x_axis_name = graph_info['x_axis_name']
     y_axis_name = graph_info['y_axis_name']
@@ -47,12 +48,12 @@ def generate_graph(graph_info:dict[str,Any], data_json:dict[str,Any]) -> str:
 
 
     # We have to use color_discrete_sequence=[colour] to enforce the colour in the Json
-
+    fig = go.Figure()
     match graph_type:
         case 'bar':
-            fig = px.bar(
-                df, x='x', y='y',
-                color_discrete_sequence=[colour],
+            trace = go.Bar(
+                x=df['x'], y=df['y'],
+                marker=dict(color = colour),
                 title=pascal_split_name(title),
                 height=500
             )
@@ -92,6 +93,19 @@ def generate_graph(graph_info:dict[str,Any], data_json:dict[str,Any]) -> str:
                 "Please make sure you are entering 'bar', 'line', \
                 'pie', 'scatter' or 'special' as your graph type."
             )
+    df2 = data_extract(data_json, layer_name, first_value)
+    if layer_type is not "":
+        match layer_type:
+            
+            case 'bar':
+                print(df2)
+                trace = go.Bar(x = df2['x'], y = df2['y'], name = 'Wind', yaxis = 'y2')
+            
+                fig.add_trace(trace)
+            case 'line':
+                pass
+            case 'scatter':
+                pass
 
     if fig is not None:
         # Path to be returned to
