@@ -27,7 +27,7 @@ def generate_graph(graph_info:dict[str,Any], data_json:dict[str,Any]) -> str:
     Generates graphs for a given json config and data file.
     :param graph_info: Config Json file.
     :param data: Data file containing the data to be graphed.
-    :returns: a html string of the graph. 
+    :returns: a html string of the graph.
     """
     graph_type = graph_info['graph_type']
     layer_type = graph_info['layer_type']
@@ -54,7 +54,7 @@ def generate_graph(graph_info:dict[str,Any], data_json:dict[str,Any]) -> str:
         case 'bar':
             trace = go.Bar(
                 x=df['x'], y=df['y'],
-                marker=dict(color = colour),
+                marker={"color" : colour},
                 name = pascal_split_name(y_axis_name)
             )
             fig.update_layout(xaxis_title = x_axis_name,
@@ -62,21 +62,20 @@ def generate_graph(graph_info:dict[str,Any], data_json:dict[str,Any]) -> str:
                               title=pascal_split_name(title),
                               height = 500
                               )
-            
         case 'line':
             trace = go.Line(
                 x=df['x'], y=df['y'],
-                marker=dict(color =colour),
+                marker={"color" : colour},
                 name = pascal_split_name(y_axis_name),
                 mode = "lines+markers",
-                line = dict(width=3),
+                line = {"width":3},
                 marker_size = 10
                 )
             fig.update_layout(xaxis_title = x_axis_name,
                               yaxis_title = pascal_split_name(y_axis_name),
                               title=pascal_split_name(title),
                               height = 500)
-            fig.update_traces(line={ 'width' : 10000})
+            #fig.update_traces(line={ 'width' : 10000})
         case 'pie':
             # A very very simple pie chart
             fig = px.pie(
@@ -89,10 +88,10 @@ def generate_graph(graph_info:dict[str,Any], data_json:dict[str,Any]) -> str:
         case 'scatter':
             trace = go.Scatter(
                 x=df['x'], y=df['y'],
-                marker=dict(color = colour),
+                marker={"color" : colour},
                 name = pascal_split_name(y_axis_name),
                 mode = "markers",
-                line = dict(width=4),
+                line = {"width":3},
                 marker_size = 10
             )
             fig.update_layout(xaxis_title = x_axis_name,
@@ -110,45 +109,27 @@ def generate_graph(graph_info:dict[str,Any], data_json:dict[str,Any]) -> str:
     if layer_type != "":
         fig.update_layout(yaxis_title = "")
         match layer_type:
-            
             case 'bar':
                 trace2 = go.Bar(x = df2['x'], y = df2['y'],
-                                name = 'Wind', yaxis = 'y2', 
-                                opacity = 0.75, marker = dict(color = layer_colour))
-            
+                                name = 'Wind', yaxis = 'y2',
+                                opacity = 0.75, marker = {"color" : layer_colour})
                 fig.add_trace(trace2,secondary_y=True)
             case 'line':
-                trace2 = go.Line(x = df2['x'], y = df2['y'], 
-                                 name = 'Wind', yaxis = 'y2', 
-                                 opacity = 0.75, marker = dict(color = layer_colour))
-            
+                trace2 = go.Line(x = df2['x'], y = df2['y'],
+                                 name = 'Wind', yaxis = 'y2',
+                                 opacity = 0.75, marker = {"color" : layer_colour})
                 fig.add_trace(trace2,secondary_y=True)
             case 'scatter':
-                trace2 = go.Scatter(x = df2['x'], y = df2['y'], 
-                                    name = 'Wind', yaxis = 'y2', 
-                                    opacity = 0.75, marker = dict(color = layer_colour))
-                                    
-            
+                trace2 = go.Scatter(x = df2['x'], y = df2['y'],
+                                    name = 'Wind', yaxis = 'y2',
+                                    opacity = 0.75, marker = {"color" : layer_colour} )
                 fig.add_trace(trace2,secondary_y=True)
-            
-                
 
     if fig is not None:
         # Path to be returned to
         directory = "return_plot/"
         os.makedirs(directory, exist_ok=True)
-
-        ####################################################
-        # Uncomment the next 3 lines to write HTML and PNG #
-        ####################################################
-
-        #path_html = os.path.join(directory, 'figure.html')
-        #path_png = os.path.join(directory, 'figure.png')
-        #return pio.write_html(fig,path_html), pio.write_image(fig,path_png)
-
         return pio.to_html(fig, full_html=False)
-        #There is a solution online that suggest returning fig would work done like so
-        #return fig
     raise ValueError("Was not able to plot a graph")
 
 def data_extract(data_json:dict[str,Any],name:str,first_value:str) -> pd.DataFrame:
@@ -160,8 +141,6 @@ def data_extract(data_json:dict[str,Any],name:str,first_value:str) -> pd.DataFra
     will be the y axis of the graph.
     :returns: a Pandas Data Frame
     """
-    #with open(data_json, 'r') as file:
-    #    graph_data = json.load(file)
 
     data_dict = {"x":[],"y":[]}
     monthly_data = data_json["month"]
