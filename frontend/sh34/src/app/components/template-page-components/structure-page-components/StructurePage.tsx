@@ -1,4 +1,6 @@
 import { PlotElement } from "./PlotElement"
+import { PlotSearchInput } from "./PlotSearchInput";
+import { NewPlotButton } from "./NewPlotButton";
 
 
 export const StructurePage = () => {
@@ -10,18 +12,28 @@ export const StructurePage = () => {
         <div className="">
 
             <div className="mb-5 flex justify-between">
-                <div className={`text-center text-xl font-medium text-white h-[60px] w-[170px] bg-[#44C125] rounded-xl flex justify-center items-center border-[2px] border-slate-700`}>
-                    <p> New Plot </p>
-                </div>
-                <div className={`text-center text-xl font-medium text-[#8E8E8E] h-[60px] w-[200px] bg-[#EAEAEA] rounded-xl flex justify-center items-center border-[2px] `}>
-                    <p> Look for a Plot </p>
-                </div>
+                <NewPlotButton />
+                <PlotSearchInput />
             </div>
 
-            <div className='flex flex-col gap-y-5 items-center'>
-                {[...Array(numPlots)].map((e, i) => <PlotElement key={i} />)}
-            </div>
+            <div className='flex flex-col gap-y-8 items-center'>
+                
+                {/* <PlotElement backgroundColour="bg-[#7FC6A4]"  />
+                <PlotElement backgroundColour="bg-[#56BBF5]"  />
+                <PlotElement backgroundColour="bg-[#E76F51]"  />
+                <PlotElement backgroundColour="bg-[#7FC6A4]"  />
+                <PlotElement backgroundColour="bg-[#7FC6A4]"  />
+                <PlotElement backgroundColour="bg-[#56BBF5]"  />
+                <PlotElement backgroundColour="bg-[#E76F51]"  /> */}
+                <PlotElement backgroundColour="border-[#7FC6A4] border-[7px]"  />
+                <PlotElement backgroundColour="border-[#56BBF5] border-[7px]"  />
+                <PlotElement backgroundColour="border-[#E76F51] border-[7px]"  />
+                <PlotElement backgroundColour="border-[#7FC6A4] border-[7px]"  />
+                <PlotElement backgroundColour="border-[#7FC6A4] border-[7px]"  />
+                <PlotElement backgroundColour="border-[#E76F51] border-[7px]"  />
+                <PlotElement backgroundColour="border-[#56BBF5] border-[7px]"  />
 
+            </div>
         </div>
       )
 
