@@ -11,7 +11,11 @@ import plotly.io as pio
 import pandas as pd
 
 class GraphInfo:
-    def __init__(self, graph_type, title, x_axis_name, y_axis_name, colour, graph_name, layer_colour, layer_type, layer_name, first_value=None):
+    """This is graph info class used for managing the mock.json
+    files content and make it more readable"""
+    def __init__(self, graph_type, title, x_axis_name, y_axis_name, colour,
+                 graph_name, layer_colour, layer_type, layer_name, first_value=None):
+
         self.graph_type = graph_type
         self.title = title
         self.x_axis_name = x_axis_name
@@ -57,17 +61,7 @@ def generate_graph(graph_info:dict[str,Any], data_json:dict[str,Any]) -> str:
     :param data: Data file containing the data to be graphed.
     :returns: a html string of the graph.
     """
-    """
-    graph_type = graph_info['graph_type']
-    title = graph_info['title']
-    x_axis_name = graph_info['x_axis_name']
-    y_axis_name = graph_info['y_axis_name']
-    colour = graph_info['colour']
-    name = graph_info['graph_name']
-    layer_colour = graph_info['layer_colour']
-    layer_type = graph_info['layer_type']
-    layer_name = graph_info['layer_name']
-    """
+
     g1 = populate_graph_info(graph_info)
 
     # You can set a value or the value will be automatically set. This is done via the mock.json
@@ -147,11 +141,11 @@ def generate_graph(graph_info:dict[str,Any], data_json:dict[str,Any]) -> str:
             case 'line':
                 trace2 = go.Line(x = df2['x'], y = df2['y'],
                                  name = 'Wind', yaxis = 'y2',
-                                 opacity = 0.75, marker = {"color" : layer_colour})
+                                 opacity = 0.75, marker = {"color" : g1.layer_colour})
             case 'scatter':
                 trace2 = go.Scatter(x = df2['x'], y = df2['y'],
                                     name = 'Wind', yaxis = 'y2',
-                                    opacity = 0.75, marker = {"color" : layer_colour} )
+                                    opacity = 0.75, marker = {"color" : g1.layer_colour} )
         fig.add_trace(trace2,secondary_y=True)
 
     if fig is not None:
