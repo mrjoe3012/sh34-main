@@ -1,4 +1,5 @@
 import { PlotElement } from "./PlotElement"
+import { PlotSearchInput } from "./PlotSearchInput";
 
 
 export const StructurePage = () => {
@@ -13,9 +14,7 @@ export const StructurePage = () => {
                 <div className={`text-center text-xl font-medium text-white h-[60px] w-[170px] bg-[#44C125] rounded-xl flex justify-center items-center border-[2px] border-slate-700`}>
                     <p> New Plot </p>
                 </div>
-                <div className={`text-center text-xl font-medium text-[#8E8E8E] h-[60px] w-[200px] bg-[#EAEAEA] rounded-xl flex justify-center items-center border-[2px] `}>
-                    <p> Look for a Plot </p>
-                </div>
+                <PlotSearchInput />
             </div>
 
             <div className='flex flex-col gap-y-5 items-center'>
