@@ -17,9 +17,23 @@ export const StructurePage = () => {
             </div>
 
             <div className='flex flex-col gap-y-5 items-center'>
-                {[...Array(numPlots)].map((e, i) => <PlotElement key={i} />)}
-            </div>
+                
+                {/* <PlotElement backgroundColour="bg-[#7FC6A4]"  />
+                <PlotElement backgroundColour="bg-[#56BBF5]"  />
+                <PlotElement backgroundColour="bg-[#E76F51]"  />
+                <PlotElement backgroundColour="bg-[#7FC6A4]"  />
+                <PlotElement backgroundColour="bg-[#7FC6A4]"  />
+                <PlotElement backgroundColour="bg-[#56BBF5]"  />
+                <PlotElement backgroundColour="bg-[#E76F51]"  /> */}
+                <PlotElement backgroundColour="border-[#7FC6A4]"  />
+                <PlotElement backgroundColour="border-[#56BBF5]"  />
+                <PlotElement backgroundColour="border-[#E76F51]"  />
+                <PlotElement backgroundColour="border-[#7FC6A4]"  />
+                <PlotElement backgroundColour="border-[#7FC6A4]"  />
+                <PlotElement backgroundColour="border-[#E76F51]"  />
+                <PlotElement backgroundColour="border-[#56BBF5]"  />
 
+            </div>
         </div>
       )
 

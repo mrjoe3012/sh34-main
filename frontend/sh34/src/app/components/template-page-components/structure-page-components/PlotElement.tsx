@@ -8,8 +8,13 @@ import PieChart from "./../../../images/pie-chart.svg"
 import ScatterGraph from "./../../../images/scatter-graph.svg"
 import EditIcon from "./../../../images/edit-icon.svg"
 import Link from 'next/link';
+import Eye from "./../../../images/eye.png"
 
-export const PlotElement = () => {
+interface PlotElementProps {
+  backgroundColour: string;
+}
+
+export const PlotElement = (props: PlotElementProps) => {
     return(
         <div className='flex text-black drop-shadow-lg	' >
   
@@ -20,32 +25,18 @@ export const PlotElement = () => {
           </div> 
   
           {/* The plot box div */}
-          <div className='flex gap-x-5 w-[400px] bg-[#D3E3FD] p-3 rounded-xl border-4 border-black shadow-lg'>
-  
-            <div className='flex flex-col w-[10%]'>
+          <div className={`flex gap-x-10 justify-between items-center w-[650px] h-[100px] ${props.backgroundColour} p-3 rounded-xl border-4 border-black`}>
               <p className='text-3xl'> 1. </p>
-              <Image src={BarGraph} alt='BarGraph' className='w-10 mt-auto'/>
-            </div>
-  
-            <div className='flex flex-col '>
-              <h1 className='text-2xl'> Plot Title. </h1>
-              <div>
-                <p> Lorem ipsum: 431 </p>
-                <p> Consectetur adipiscing - 233 </p>
-                <p> Tempor incididunt ut - 81 </p>
-                <p> Labore et dolore - 789 </p>
+              <Image src={BarGraph} alt='BarGraph' className='w-10  '/>
+              <h1 className='text-3xl h-fit flex-grow font-medium'> Plot Title </h1>
+              <div className='flex gap-x-10'>
+                <Image src={Eye} alt='Preview' className='w-8 h-8'/>
+                <Image src={EditIcon} alt="EditIcon" className='w-8 h-8'/>
+                <Image src={TrashIcon} alt='TrashIcon' className='w-8 h-8'/>
               </div>
-            </div>
-  
+
           </div>
-          
-          {/* The Edit Plot Button */}
-          <div className='flex flex-col justify-center items-center gap-y-10'>
-            <Link href="/pages/graph-editor">
-              <Image src={EditIcon} alt="EditIcon" />
-            </Link>
-            <Image src={TrashIcon} alt='TrashIcon' className=''/>
-          </div>
+
   
   
         </div>
