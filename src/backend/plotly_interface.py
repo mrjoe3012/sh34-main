@@ -10,6 +10,19 @@ from plotly.subplots import make_subplots
 import plotly.io as pio
 import pandas as pd
 
+class GraphInfo:
+    def __init__(self, graph_type, title, x_axis_name, y_axis_name, colour, graph_name, layer_colour, layer_type, layer_name, first_value=None):
+        self.graph_type = graph_type
+        self.title = title
+        self.x_axis_name = x_axis_name
+        self.y_axis_name = y_axis_name
+        self.colour = colour
+        self.graph_name = graph_name
+        self.layer_colour = layer_colour
+        self.layer_type = layer_type
+        self.layer_name = layer_name
+        self.first_value = first_value
+
 def unpack_json(json_file_path: str) -> dict[str,Any]:
     """
     Use the json library to read a json file.
@@ -21,6 +34,21 @@ def unpack_json(json_file_path: str) -> dict[str,Any]:
 
     return graph_data
 
+def populate_graph_info(graph_info:dict[str,Any]):
+    graph_info = GraphInfo(
+
+    graph_type = graph_info['graph_type'],
+    title = graph_info['title'],
+    x_axis_name = graph_info['x_axis_name'],
+    y_axis_name = graph_info['y_axis_name'],
+    colour = graph_info['colour'],
+    graph_name = graph_info['graph_name'],
+    layer_colour = graph_info['layer_colour'],
+    layer_type = graph_info['layer_type'],
+    layer_name = graph_info['layer_name'],
+    )
+
+    return graph_info
 
 def generate_graph(graph_info:dict[str,Any], data_json:dict[str,Any]) -> str:
     """
@@ -29,15 +57,18 @@ def generate_graph(graph_info:dict[str,Any], data_json:dict[str,Any]) -> str:
     :param data: Data file containing the data to be graphed.
     :returns: a html string of the graph.
     """
+    """
     graph_type = graph_info['graph_type']
-    layer_type = graph_info['layer_type']
-    layer_name = graph_info['layer_name']
     title = graph_info['title']
     x_axis_name = graph_info['x_axis_name']
     y_axis_name = graph_info['y_axis_name']
     colour = graph_info['colour']
     name = graph_info['graph_name']
     layer_colour = graph_info['layer_colour']
+    layer_type = graph_info['layer_type']
+    layer_name = graph_info['layer_name']
+    """
+    g1 = populate_graph_info(graph_info)
 
     # You can set a value or the value will be automatically set. This is done via the mock.json
     try:
@@ -45,58 +76,58 @@ def generate_graph(graph_info:dict[str,Any], data_json:dict[str,Any]) -> str:
     except KeyError:
         first_value = "value"
 
-    df = data_extract(data_json, name, first_value)
+    df = data_extract(data_json, g1.graph_name, first_value)
 
 
     # We have to use color_discrete_sequence=[colour] to enforce the colour in the Json
     fig = make_subplots(specs=[[{"secondary_y": True}]])
-    match graph_type:
+    match g1.graph_type:
         case 'bar':
             trace = go.Bar(
                 x=df['x'], y=df['y'],
-                marker={"color" : colour},
-                name = pascal_split_name(y_axis_name)
+                marker={"color" : g1.colour},
+                name = pascal_split_name(g1.y_axis_name)
             )
-            fig.update_layout(xaxis_title = x_axis_name,
-                              yaxis_title = pascal_split_name(y_axis_name),
+            fig.update_layout(xaxis_title = g1.x_axis_name,
+                              yaxis_title = pascal_split_name(g1.y_axis_name),
                               title=pascal_split_name(title),
                               height = 500
                               )
         case 'line':
             trace = go.Line(
                 x=df['x'], y=df['y'],
-                marker={"color" : colour},
-                name = pascal_split_name(y_axis_name),
+                marker={"color" : g1.colour},
+                name = pascal_split_name(g1.y_axis_name),
                 mode = "lines+markers",
                 line = {"width":3},
                 marker_size = 10
                 )
-            fig.update_layout(xaxis_title = x_axis_name,
-                              yaxis_title = pascal_split_name(y_axis_name),
-                              title=pascal_split_name(title),
+            fig.update_layout(xaxis_title = g1.x_axis_name,
+                              yaxis_title = pascal_split_name(g1.y_axis_name),
+                              title=pascal_split_name(g1.title),
                               height = 500)
             #fig.update_traces(line={ 'width' : 10000})
         case 'pie':
             # A very very simple pie chart
             fig = px.pie(
-                df, color_discrete_sequence=[colour],
-                title=pascal_split_name(title),
+                df, color_discrete_sequence=[g1.colour],
+                title=pascal_split_name(g1.title),
                 height=500
             )
-            fig.update_layout(xaxis_title = x_axis_name,
-                              yaxis_title = pascal_split_name(y_axis_name))
+            fig.update_layout(xaxis_title = g1.x_axis_name,
+                              yaxis_title = pascal_split_name(g1.y_axis_name))
         case 'scatter':
             trace = go.Scatter(
                 x=df['x'], y=df['y'],
-                marker={"color" : colour},
-                name = pascal_split_name(y_axis_name),
+                marker={"color" : g1.colour},
+                name = pascal_split_name(g1.y_axis_name),
                 mode = "markers",
                 line = {"width":3},
                 marker_size = 10
             )
-            fig.update_layout(xaxis_title = x_axis_name,
-                              yaxis_title = pascal_split_name(y_axis_name),
-                              title=pascal_split_name(title),
+            fig.update_layout(xaxis_title = g1.x_axis_name,
+                              yaxis_title = pascal_split_name(g1.y_axis_name),
+                              title=pascal_split_name(g1.title),
                               height = 500)
         case _:
             print('\n')
@@ -104,26 +135,24 @@ def generate_graph(graph_info:dict[str,Any], data_json:dict[str,Any]) -> str:
                 "Please make sure you are entering 'bar', 'line', \
                 'pie', 'scatter' or 'special' as your graph type."
             )
-    df2 = data_extract(data_json, layer_name, first_value)
+    df2 = data_extract(data_json, g1.layer_name, first_value)
     fig.add_trace(trace)
-    if layer_type != "":
+    if g1.layer_type != "":
         fig.update_layout(yaxis_title = "")
-        match layer_type:
+        match g1.layer_type:
             case 'bar':
                 trace2 = go.Bar(x = df2['x'], y = df2['y'],
                                 name = 'Wind', yaxis = 'y2',
-                                opacity = 0.75, marker = {"color" : layer_colour})
-                fig.add_trace(trace2,secondary_y=True)
+                                opacity = 0.75, marker = {"color" : g1.layer_colour})
             case 'line':
                 trace2 = go.Line(x = df2['x'], y = df2['y'],
                                  name = 'Wind', yaxis = 'y2',
                                  opacity = 0.75, marker = {"color" : layer_colour})
-                fig.add_trace(trace2,secondary_y=True)
             case 'scatter':
                 trace2 = go.Scatter(x = df2['x'], y = df2['y'],
                                     name = 'Wind', yaxis = 'y2',
                                     opacity = 0.75, marker = {"color" : layer_colour} )
-                fig.add_trace(trace2,secondary_y=True)
+        fig.add_trace(trace2,secondary_y=True)
 
     if fig is not None:
         # Path to be returned to
