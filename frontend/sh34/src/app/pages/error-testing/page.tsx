@@ -16,7 +16,7 @@ export default function ErrorTesting() {
         setErrorMessage(null);
     }
 
-    const onTextChange = (event: ChangeEvent) => {
+    const onTextChange = (event: ChangeEvent<HTMLInputElement>) => {
         setMessage(event.target.value);
     }
 
@@ -31,7 +31,7 @@ export default function ErrorTesting() {
             <input onChange={onTextChange} id="error-msg" name="error-msg" value={message} className="border-2" type="text"/>
             <br/>
             <button className="" onClick={() => {showError()}}>Click To Show Error</button> 
-            {errorMessage && <ErrorPopup message={errorMessage} onClose={onClose}/>}
+            {errorMessage && <ErrorPopup message={errorMessage} onClose={onClose} />}
         </div>
     );
 }
