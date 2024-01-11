@@ -10,8 +10,8 @@ export const TitleLabelOptions = () => {
     const [titleOptionMode, setTitleOptionMode] = useState(<TitleLabelDefaultMode />)
 
     return(
-        <div> 
-                <OptionComponentTitle optionName="Title Options" />
+        <div className="bg-[#e6e7eb] py-3 rounded-md"> 
+                <OptionComponentTitle optionName="Title Label Options" />
                 <TwoTabSwitcher switchTabFunction={setTitleOptionMode}
                                 firstTabContent={<TitleLabelDefaultMode />} 
                                 secondTabContent={<TitleLabelCustomMode />}

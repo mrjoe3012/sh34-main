@@ -26,7 +26,7 @@ export const TwoTabSwitcher = (props : TwoTabSwitcherProps) => {
     }
 
     return (
-        <div className="w-40 h-[35px] bg-[#EAEAEA] border-2 border-[#B3B3B3] rounded flex items-center mb-2 ml-3">
+        <div className="ml-auto mr-auto w-40 h-[35px] bg-[#EAEAEA] border-2 border-[#B3B3B3] rounded flex items-center mb-2 ml-3">
             <button className={`w-[50%] flex-grow text-center h-full rounded ${option1Selected ? 'text-RES_ORANGE font-semibold' : ''}`} onClick={handleOption1Clicked}>{props.switcherLabel1}</button>
             <div className={`w-px bg-gray-300 w-[2px] h-[70%]`}></div>
             <button className={`w-[50%] flex-grow text-center h-full rounded ${option2Selected ? 'text-RES_ORANGE font-semibold' : ''}`} onClick={handleOption2Clicked}>{props.switcherLabel2}</button>

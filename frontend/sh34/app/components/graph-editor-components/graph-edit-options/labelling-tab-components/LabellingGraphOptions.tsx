@@ -9,7 +9,7 @@ export const LabellingGraphOptions = () => {
 
             <OptionTabTitle titleName="Labelling Options" />
             
-            <div className="w-full flex flex-col gap-y-7">
+            <div className="w-full flex flex-col gap-y-5">
                 <TitleLabelOptions />
                 <XAxisLabelOption />
                 <YAxisLabelOption />

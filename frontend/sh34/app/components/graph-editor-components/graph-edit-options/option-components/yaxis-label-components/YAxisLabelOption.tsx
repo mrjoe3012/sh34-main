@@ -11,8 +11,8 @@ export const YAxisLabelOption = () => {
     const [xaxisOptionMode, setXAxisOptionMode] = useState(<YAxisLabelDefaultMode />)
 
     return(
-        <div> 
-                <OptionComponentTitle optionName="X-Axis Options" />
+        <div className="bg-[#e6e7eb] py-3 rounded-md"> 
+                <OptionComponentTitle optionName="Y-Axis Label Options" />
                 <TwoTabSwitcher switchTabFunction={setXAxisOptionMode}
                                 firstTabContent={<YAxisLabelDefaultMode />}
                                 secondTabContent={<YAxisLabelCustomMode />}
