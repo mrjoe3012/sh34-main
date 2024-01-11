@@ -1,9 +1,9 @@
 import { OptionComponentTitle } from "./OptionComponentTitle"
 
-export const TitleNameOption = () => {
+export const YAxisNameOption = () => {
     return(
         <div> 
-                <OptionComponentTitle optionName="Title Name" />
+                <OptionComponentTitle optionName="Y-Axis Label" />
                 <div className="ml-3 mr-3">
                 <input 
                         placeholder="" 
