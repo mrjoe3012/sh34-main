@@ -7,7 +7,7 @@ import { GenericTypefaceOption } from "./generic-labelling-components/GenericTyp
 export const YAxisLabelOption = () => {
     return(
         <div> 
-                <OptionComponentTitle optionName="X-Axis Label" />
+                <OptionComponentTitle optionName="X-Axis Options" />
                 <div className="ml-3 mr-3 flex flex-col gap-y-1">
                     <GenericNameOption />
                     <GenericFontSizeOption />

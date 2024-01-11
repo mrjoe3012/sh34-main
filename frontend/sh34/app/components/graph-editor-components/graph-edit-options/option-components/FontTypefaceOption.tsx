@@ -4,7 +4,7 @@ export const FontTypefaceOption = () => {
     
     return(
         <div>
-            < OptionComponentTitle optionName="Typeface" />
+            < OptionComponentTitle optionName="Default Typeface" />
             <div className="ml-3">
                     <select 
                         placeholder="" 

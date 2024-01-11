@@ -1,5 +1,5 @@
 import { OptionTabTitle } from "../OptionTabTitle"
-import { TitleLabelOptions } from "../option-components/TitleLabelOptions"
+import { TitleLabelOptions } from "../option-components/title-label-components/TitleLabelOptions"
 import { XAxisLabelOption } from "../option-components/XAxisLabelOption"
 import { YAxisLabelOption } from "../option-components/YAxisLabelOption"
 

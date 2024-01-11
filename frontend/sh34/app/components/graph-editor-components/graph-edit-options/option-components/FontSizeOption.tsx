@@ -7,7 +7,7 @@ export const FontSizeOption = () => {
     
     return(
         <div>
-            < OptionComponentTitle optionName="Font Size" />
+            < OptionComponentTitle optionName="Default Font Size" />
             <div className="ml-3 flex items-center gap-x-1">
                     <input 
                         maxLength={7}
