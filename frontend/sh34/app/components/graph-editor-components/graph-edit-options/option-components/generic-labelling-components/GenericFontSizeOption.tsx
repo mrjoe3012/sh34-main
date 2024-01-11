@@ -2,7 +2,7 @@ import Image from "next/image"
 import uptriangle from '@app/images/uptriangle.png'
 import downtriangle from '@app/images/downtriangle.png'
 
-export const TitleFontSizeOption = () => {
+export const GenericFontSizeOption = () => {
     return(
         <div className="flex items-center gap-x-1">
             <div className="basis-[30%]"> Font Size </div>

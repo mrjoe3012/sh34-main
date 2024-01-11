@@ -1,4 +1,4 @@
-export const TitleFontColourOption = () => {
+export const GenericFontColourOption = () => {
     return (
         <div className="flex items-center">
             <div className="basis-[30%]"> Colour </div>

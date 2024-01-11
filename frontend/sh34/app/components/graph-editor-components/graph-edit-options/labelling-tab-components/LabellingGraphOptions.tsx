@@ -1,6 +1,6 @@
 import { OptionTabTitle } from "../OptionTabTitle"
-import { TitleLabelOptions } from "../option-components/title-label-components/TitleLabelOptions"
-import { XAxisNameOption } from "../option-components/XAxisNameOption"
+import { TitleLabelOptions } from "../option-components/TitleLabelOptions"
+import { XAxisNameOption } from "../option-components/XAxisLabelOption"
 import { YAxisNameOption } from "../option-components/YAxisNameOption"
 
 export const LabellingGraphOptions = () => {

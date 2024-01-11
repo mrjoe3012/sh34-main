@@ -1,4 +1,4 @@
-export const TitleTypefaceOption = () => {
+export const GenericTypefaceOption = () => {
     return (
         <div className="flex gap-x-1">
             <div className="basis-[30%]"> Typeface</div>
