@@ -14,7 +14,8 @@ class GraphInfo:
     """This is graph info class used for managing the mock.json
     files content and make it more readable"""
     #Had to add this line to circumvent pylint size limitations
-    #pylint: disable-all
+    #Disabling Too many args, Too many instance attrs, too few public methods
+    #pylint: disable=R0902,R0913,R0903
     def __init__(self, graph_type, title, x_axis_name, y_axis_name, colour,
                  graph_name, layer_colour, layer_type, layer_name, first_value=None):
 
@@ -41,6 +42,8 @@ def unpack_json(json_file_path: str) -> dict[str,Any]:
     return graph_data
 
 def populate_graph_info(graph_info:dict[str,Any]) -> GraphInfo:
+    """The Function is used to create an instance of
+    GraphInfo that is then used to create the graphs"""
     info = GraphInfo(
 
     graph_type = graph_info['graph_type'],
