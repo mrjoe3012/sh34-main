@@ -4,7 +4,7 @@ import { GenericFontSizeOption } from "./generic-labelling-components/GenericFon
 import { GenericFontColourOption } from "./generic-labelling-components/GenericFontColourOption"
 import { GenericTypefaceOption } from "./generic-labelling-components/GenericTypefaceOption"
 
-export const XAxisNameOption = () => {
+export const XAxisLabelOption = () => {
     return(
         <div> 
                 <OptionComponentTitle optionName="X-Axis Label" />

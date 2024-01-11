@@ -1,7 +1,7 @@
 import { OptionTabTitle } from "../OptionTabTitle"
 import { TitleLabelOptions } from "../option-components/TitleLabelOptions"
-import { XAxisNameOption } from "../option-components/XAxisLabelOption"
-import { YAxisNameOption } from "../option-components/YAxisNameOption"
+import { XAxisLabelOption } from "../option-components/XAxisLabelOption"
+import { YAxisLabelOption } from "../option-components/YAxisLabelOption"
 
 export const LabellingGraphOptions = () => {
     return(
@@ -11,8 +11,8 @@ export const LabellingGraphOptions = () => {
             
             <div className="w-full flex flex-col gap-y-7">
                 <TitleLabelOptions />
-                <XAxisNameOption />
-                <YAxisNameOption />
+                <XAxisLabelOption />
+                <YAxisLabelOption />
             </div>
         </div>
     )
