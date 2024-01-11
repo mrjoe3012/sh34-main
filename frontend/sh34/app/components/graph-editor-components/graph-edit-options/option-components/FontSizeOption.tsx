@@ -6,7 +6,7 @@ import downtriangle from '@app/images/downtriangle.png'
 export const FontSizeOption = () => {
     
     return(
-        <div>
+        <div className="bg-[#e6e7eb] py-3 rounded-md">
             < OptionComponentTitle optionName="Default Font Size" />
             <div className="ml-3 flex items-center gap-x-1">
                     <input 

@@ -5,7 +5,7 @@ import downtriangle from '@app/images/downtriangle.png'
 
 export const ScatterPointBorderOption = () => {
     return (
-        <div>
+        <div className="bg-[#e6e7eb] py-3 rounded-md">
             <OptionComponentTitle optionName="Point Border Settings" />
             <div className="flex items-center ml-3 mb-2">
             <div className="mr-2"> Colour </div>

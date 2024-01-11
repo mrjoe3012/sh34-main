@@ -43,7 +43,7 @@ export const PlotTypeOption = (props: PlotTypeOptionProps) => {
     };
 
     return(
-    <div> 
+    <div className="bg-[#e6e7eb] py-3 rounded-md"> 
 
         < OptionComponentTitle optionName="Plot Type" />
 

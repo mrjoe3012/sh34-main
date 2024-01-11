@@ -8,7 +8,7 @@ export const DataPointColourOption = () => {
     const [datapointTabContent, setDataPointTabContent] = useState(<DataPointConstantOption />)
 
     return(
-        <div>
+        <div className="bg-[#e6e7eb] py-3 rounded-md">
             <OptionComponentTitle optionName="Data Point Colour Theme" />
             <DataPointColourTabSwitcher switchTabFunction={setDataPointTabContent}/>
             <div className="ml-2"> {datapointTabContent}</div>

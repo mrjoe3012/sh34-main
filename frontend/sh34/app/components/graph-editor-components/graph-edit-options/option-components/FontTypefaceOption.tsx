@@ -3,7 +3,7 @@ import { OptionComponentTitle } from "./OptionComponentTitle"
 export const FontTypefaceOption = () => {
     
     return(
-        <div>
+        <div className="bg-[#e6e7eb] py-3 rounded-md">
             < OptionComponentTitle optionName="Default Typeface" />
             <div className="ml-3">
                     <select 

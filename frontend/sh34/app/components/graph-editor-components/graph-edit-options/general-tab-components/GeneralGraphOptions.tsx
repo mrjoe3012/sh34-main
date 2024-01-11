@@ -15,7 +15,7 @@ export const GeneralGraphOptions = (props: GeneralGraphOptionsProps) => {
 
             <OptionTabTitle titleName="General Options" />
             
-            <div className="w-full flex flex-col gap-y-7">
+            <div className="w-full flex flex-col gap-y-5">
                 <PlotTypeOption setSelectedPlotType={props.setSelectedPlotType} />
                 <IndicatorOption setSelectedIndicator={props.setSelectedIndicator} />
                 <PlotSizeOption />

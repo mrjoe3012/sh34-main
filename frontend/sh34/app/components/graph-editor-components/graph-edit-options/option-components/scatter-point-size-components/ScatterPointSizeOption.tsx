@@ -9,7 +9,7 @@ export const ScatterPointSizeOption = () => {
     const [pointSizeSetting, setPointSizeSetting] = useState(<ScatterPointSizeConstantOption />)
 
     return(
-        <div>
+        <div className="bg-[#e6e7eb] py-3 rounded-md">
             <OptionComponentTitle optionName="Point Size" />
             <ScatterPointSizeTabSwitcher switchTabFunction={setPointSizeSetting}/>
             <div className="ml-2"> {pointSizeSetting} </div>

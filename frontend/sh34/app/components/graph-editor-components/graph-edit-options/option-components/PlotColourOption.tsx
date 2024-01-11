@@ -3,7 +3,7 @@ import { OptionComponentTitle } from "./OptionComponentTitle"
 export const PlotColourOption = () => {
     
     return(
-        <div>
+        <div className="bg-[#e6e7eb] py-3 rounded-md">
             <OptionComponentTitle optionName="Plot Colour" />
             <div className="flex items-center ml-3">
                 <div className="w-8 h-8 bg-red-500 rounded-3xl flex border-black border-2"> </div>

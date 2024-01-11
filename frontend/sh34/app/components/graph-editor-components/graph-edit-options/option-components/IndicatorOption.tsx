@@ -29,7 +29,7 @@ export const IndicatorOption = (props: IndicatorOptionProps) => {
         props.setSelectedIndicator(event.target.value);
     };
     return (
-        <div>
+        <div className="bg-[#e6e7eb] py-3 rounded-md">
             < OptionComponentTitle optionName="Plot Indicator" />
             <select className="w-[80%] ml-3 border-2 border-[#B3B3B3] rounded bg-[#DCDCDC]" name="plot-indicator" id="plot-indicator" onChange={onIndicatorChange}> 
                 { indicators }
