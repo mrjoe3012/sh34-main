@@ -13,6 +13,7 @@ import pandas as pd
 class GraphInfo:
     """This is graph info class used for managing the mock.json
     files content and make it more readable"""
+    #Had to add this line to circumvent pylint size limitations
     #pylint: disable-all
     def __init__(self, graph_type, title, x_axis_name, y_axis_name, colour,
                  graph_name, layer_colour, layer_type, layer_name, first_value=None):
@@ -40,7 +41,7 @@ def unpack_json(json_file_path: str) -> dict[str,Any]:
     return graph_data
 
 def populate_graph_info(graph_info:dict[str,Any]) -> GraphInfo:
-    graph_info = GraphInfo(
+    info = GraphInfo(
 
     graph_type = graph_info['graph_type'],
     title = graph_info['title'],
@@ -52,8 +53,7 @@ def populate_graph_info(graph_info:dict[str,Any]) -> GraphInfo:
     layer_type = graph_info['layer_type'],
     layer_name = graph_info['layer_name'],
     )
-
-    return graph_info
+    return info
 
 def generate_graph(graph_info:dict[str,Any], data_json:dict[str,Any]) -> str:
     """

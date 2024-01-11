@@ -75,9 +75,7 @@ MYPY_OUTPUT_FLAG=""
 MYPY_IGNORE_FLAGS="\
     --disable-error-code import-untyped \
     --disable-error-code var-annotated"
-PYLINT_IGNORE_FLAGS="\
-    disable = R0902, R0913, R0903
-"
+
 if [[ -n "${REPORT_DIR}" ]]; then
     PYLINT_OUTPUT_FLAG="--output ${REPORT_DIR}/flake8.out --output-format=pylint_junit.JUnitReporter"
     PYTEST_OUTPUT_FLAG="--junit-xml=${REPORT_DIR}/pytest.xml"
@@ -85,7 +83,6 @@ if [[ -n "${REPORT_DIR}" ]]; then
 fi
 "${PY}" -m pylint \
     ${PYLINT_OUTPUT_FLAG} \
-    ${PYLINT_IGNORE_FLAGS} \
     "${PROJECT_ROOT}/src/backend"
 PYLINT_STATUS="${?}"
 "${PY}" -m pytest \
