@@ -2,6 +2,7 @@ import { OptionComponentTitle } from "../OptionComponentTitle"
 import { TitleNameOption } from "./TitleNameOption"
 import { TitleFontSizeOption } from "./TitleFontSizeOption"
 import { TitleFontColourOption } from "./TitleFontColourOption"
+import { TitleTypefaceOption } from "./TitleTypefaceOption"
 
 export const TitleLabelOptions = () => {
     return(
@@ -11,6 +12,7 @@ export const TitleLabelOptions = () => {
                     <TitleNameOption />
                     <TitleFontSizeOption />
                     <TitleFontColourOption />
+                    <TitleTypefaceOption />
                 </div>
                     
         </div>
