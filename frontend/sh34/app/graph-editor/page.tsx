@@ -6,7 +6,7 @@ import { Navbar } from '@app/components/navbar';
 import { Sidebar } from '@app/components/graph-editor-components/sidebar-components/Sidebar';
 import { PlotOptions } from '@app/components/graph-editor-components/body-components/PlotOptions';
 import { PlotDisplay } from '@app/components/graph-editor-components/body-components/PlotDisplay';
-import { GeneralGraphOptions } from '@app/components/graph-editor-components/graph-edit-options/general-tab-components/GeneralGraphOptions';
+import { GeneralGraphOptions } from '@app/components/graph-editor-components/editor-components/general-tab-components/GeneralTab';
 
 export default function Home() {
     return (
