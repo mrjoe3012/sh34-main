@@ -1,5 +1,5 @@
 'use client';
-import { PlotTypeContext } from "@app/graph-editor/page";
+import { PlotTypeContext } from "@app/graph-editor/PlotTypeContext";
 import { PlotOptions } from "../../../body-components/PlotOptions";
 import { OptionComponentTitle } from "../../OptionComponentTitle"
 import { useContext, useState, useEffect } from "react";

@@ -6,7 +6,8 @@ import { Sidebar } from '@app/components/graph-editor-components/sidebar-compone
 import { PlotOptions } from '@app/components/graph-editor-components/body-components/PlotOptions';
 import { PlotDisplay } from '@app/components/graph-editor-components/body-components/PlotDisplay';
 import { GeneralTab } from '@app/components/graph-editor-components/editor-components/general-tab-components/GeneralTab';
-import React, {useContext, createContext, useState, Dispatch, SetStateAction} from "react";
+import React, { useState } from "react";
+import { PlotTypeContext } from './PlotTypeContext';
 
 export default function Home() {
     return (
@@ -18,16 +19,7 @@ export default function Home() {
     );
 } 
 
-interface PlotTypeContextType {
-  plotType: string,
-  setPlotType: Dispatch<SetStateAction<string>>
-}
 
-export const PlotTypeContext = createContext<PlotTypeContextType>({
-  plotType: "",
-  setPlotType: () => {}
-});
-  
 function Body() {
 
   const [selectedIndicator, setSelectedIndicator] = useState("");

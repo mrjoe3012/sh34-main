@@ -1,7 +1,7 @@
 import Image from "next/image"
 import InfoIcon from '@app/images/info-icon.png'
 import { useContext } from "react";
-import { PlotTypeContext } from "@app/graph-editor/page";
+import { PlotTypeContext } from "@app/graph-editor/PlotTypeContext";
 
 export const TabDisclaimer = () => {
 

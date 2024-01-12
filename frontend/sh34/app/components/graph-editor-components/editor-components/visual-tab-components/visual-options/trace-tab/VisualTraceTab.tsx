@@ -2,7 +2,7 @@ import { TraceTabBarOptions } from "./bar-options/TraceTabBarOptions"
 import { TraceTabScatterOptions } from "./scatter-options/TraceTabScatterOptions"
 import { TabDisclaimer } from "./TabDisclaimer"
 import { useContext } from "react";
-import { PlotTypeContext } from "@app/graph-editor/page";
+import { PlotTypeContext } from "@app/graph-editor/PlotTypeContext";
 
 export const VisualTraceTab = () => {
     
