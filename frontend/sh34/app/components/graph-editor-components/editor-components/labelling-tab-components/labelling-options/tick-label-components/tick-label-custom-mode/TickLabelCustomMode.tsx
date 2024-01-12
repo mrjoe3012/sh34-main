@@ -3,6 +3,7 @@ import { GenericFontSizeOption } from "@app/components/graph-editor-components/e
 import { GenericFontColourOption } from "@app/components/graph-editor-components/editor-components/generic-labelling-components/GenericFontColourOption"
 import { GenericTypefaceOption } from "@app/components/graph-editor-components/editor-components/generic-labelling-components/GenericTypefaceOption"
 import { TickLabelAngleOption } from "./TickLabelAngleOption"
+import { TickLabelPositionOption } from "./TickLabelPositionOption"
 
 export const TickLabelCustomMode = () => {
     return (
@@ -12,6 +13,7 @@ export const TickLabelCustomMode = () => {
             <GenericFontColourOption />
             <GenericTypefaceOption />
             <TickLabelAngleOption />
+            <TickLabelPositionOption />
         </div>
     )
 }
