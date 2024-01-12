@@ -33,7 +33,6 @@ export const VisualTabPageSwitcher = (props: VisualTabSwitcherProps) => {
         setColourClicked(false);
         setTraceClicked(true);
         props.switchTabFunction(<VisualTraceTab />);
-
     }
 
     return(
