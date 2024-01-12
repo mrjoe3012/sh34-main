@@ -3,6 +3,7 @@ import { PlotTypeOption } from "./general-options/PlotTypeOption"
 import { PlotSizeOption } from "./general-options/PlotSizeOption"
 import { AxisLineOption } from "./general-options/AxisLineOption"
 import { IndicatorOption } from "./general-options/IndicatorOption"
+import { OrientationOption } from "./general-options/OrientationOption"
 
 interface GeneralTabProps {
     setSelectedIndicator: React.Dispatch<React.SetStateAction<string>>;
@@ -20,6 +21,7 @@ export const GeneralTab = (props: GeneralTabProps) => {
                 <IndicatorOption setSelectedIndicator={props.setSelectedIndicator} />
                 <PlotSizeOption />
                 <AxisLineOption />
+                <OrientationOption />
             </div>
         </div>
     )
