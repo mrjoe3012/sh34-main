@@ -1,9 +1,9 @@
 import { OptionTabTitle } from "../OptionTabTitle"
 
-export const DataMappingTab = () => {
+export const AnnotationTab = () => {
     return(
         <div className="w-full">
-            <OptionTabTitle titleName="Data Map Options" />
+            <OptionTabTitle titleName="Annotation Options" />
         </div>
     )
 }

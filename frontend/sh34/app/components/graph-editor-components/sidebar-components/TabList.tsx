@@ -1,8 +1,11 @@
 import { ListOption } from "./ListOption"
+
 import { GeneralTab } from "../editor-components/general-tab-components/GeneralTab";
 import { LabellingTab } from "../editor-components/labelling-tab-components/LabellingTab";
 import { VisualTab } from "../editor-components/visual-tab-components/VisualTab";
 import { DataMappingTab } from "../editor-components/mapping-tab-components/DataMappingTab";
+import { AnnotationTab } from "../editor-components/annotation-tab-components/AnnotationTab";
+
 import React, {useContext, createContext, useState, Dispatch, SetStateAction} from "react";
 
 interface TabListProps {
@@ -19,6 +22,7 @@ export const TabList = (props: TabListProps) => {
             <ListOption optionName="Visual" pageToSwitchTo={<VisualTab />} switchPageFunc={props.switchPageFunc}/>
             <ListOption optionName="Labelling" pageToSwitchTo={<LabellingTab />} switchPageFunc={props.switchPageFunc}/>
             <ListOption optionName="Data Mapping" pageToSwitchTo={<DataMappingTab />} switchPageFunc={props.switchPageFunc}/>
+            <ListOption optionName="Annotation" pageToSwitchTo={<AnnotationTab />} switchPageFunc={props.switchPageFunc} />
         </div>
     );
   };
