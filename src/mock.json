@@ -1,9 +1,9 @@
 {
-    "graph_type": "pie",
+    "graph_type": "bar",
     "title": "Wind over time",
     "x_axis_name": "Days",
     "y_axis_name": "Site Availability",
-    "ind_1": "subcategory",
+    "ind_1": "category",
     "ind_2": "hours",
     "colour": "#E87511",
     "graph_name": "/downtimes/dailyLosses",
