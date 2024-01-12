@@ -8,7 +8,7 @@ export const TickLabelCustomMode = () => {
     return (
         <div className="flex flex-col gap-y-1">
             <GenericSizeIncrementerOption labelName={"Font Size"} displayLabel={true}/>
-            <GenericColourOption displayLabel={true}/>
+            <GenericColourOption labelName="Colour" displayLabel={true}/>
             <GenericTypefaceOption displayLabel={true}/>
             <TickLabelAngleOption />
             <TickLabelPositionOption />
