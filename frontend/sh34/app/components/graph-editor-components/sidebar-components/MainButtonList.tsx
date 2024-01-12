@@ -1,13 +1,13 @@
 'use client';
-import { MainButton } from "./SidebarMainButton";
+import { MainButton } from "./MainButton";
 import $ from "jquery"
 
-interface SidebarMainButtonsProps {
+interface MainButtonListProps {
     selectedIndicator: string;
     selectedPlotType: string;
 }
 
-export const SidebarMainButtons = (props: SidebarMainButtonsProps) => {
+export const MainButtonList = (props: MainButtonListProps) => {
     const onRefreshClicked = async () => {
         // fetch the plot and display it
         try {

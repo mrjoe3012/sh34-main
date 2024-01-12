@@ -6,7 +6,7 @@ import { Navbar } from '@app/components/navbar';
 import { Sidebar } from '@app/components/graph-editor-components/sidebar-components/Sidebar';
 import { PlotOptions } from '@app/components/graph-editor-components/body-components/PlotOptions';
 import { PlotDisplay } from '@app/components/graph-editor-components/body-components/PlotDisplay';
-import { GeneralGraphOptions } from '@app/components/graph-editor-components/editor-components/general-tab-components/GeneralTab';
+import { GeneralTab } from '@app/components/graph-editor-components/editor-components/general-tab-components/GeneralTab';
 
 export default function Home() {
     return (
@@ -23,7 +23,7 @@ function Body() {
 
   const [selectedIndicator, setSelectedIndicator] = useState("");
   const [selectedPlotType, setSelectedPlotType] = useState("");
-  const [plotOptionsContent,setPlotOptionsContent] = useState(<GeneralGraphOptions setSelectedPlotType={setSelectedPlotType} setSelectedIndicator={setSelectedIndicator} />);
+  const [plotOptionsContent,setPlotOptionsContent] = useState(<GeneralTab setSelectedPlotType={setSelectedPlotType} setSelectedIndicator={setSelectedIndicator} />);
 
   // Calling the Sidebar Component passes as a prop a function to change what the BodyContent component displays, Sidebar then passes it to its children, and so on.
   // Passing down the switchBodyContent function as a prop through many children components who don't use the prop is called "Prop-Drilling", not great.
