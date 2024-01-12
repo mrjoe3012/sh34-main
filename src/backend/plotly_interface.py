@@ -4,7 +4,6 @@
 from typing import Any
 import os
 import json
-import plotly_express as px
 import plotly.graph_objs as go
 from plotly.subplots import make_subplots
 import plotly.io as pio
@@ -71,13 +70,6 @@ def generate_graph(graph_info:dict[str,Any], data_json:dict[str,Any]) -> str:
     """
 
     g1 = populate_graph_info(graph_info)
-
-    # You can set a value for pie chart indicator or the value will be automatically set. This is done via the mock.json
-    #try:
-    #    first_value = graph_info["pie_ind"]
-    #except KeyError:
-    #    first_value = "value"
-
     df = data_extract(data_json, g1.graph_name, g1.ind_1, g1.ind_2)
 
 
@@ -109,7 +101,6 @@ def generate_graph(graph_info:dict[str,Any], data_json:dict[str,Any]) -> str:
                               title=pascal_split_name(g1.title),
                               height = 500)
         case 'pie':
-            # A very very simple pie chart
             trace = go.Pie(
                 labels=df['x'], values=df['y']
 
