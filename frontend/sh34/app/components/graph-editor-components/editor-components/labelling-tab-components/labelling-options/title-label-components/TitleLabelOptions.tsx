@@ -18,7 +18,6 @@ export const TitleLabelOptions = () => {
                                 switcherLabel1="Default"
                                 switcherLabel2="Custom"/>
                 {titleOptionMode}
-
         </div>
     )
 }

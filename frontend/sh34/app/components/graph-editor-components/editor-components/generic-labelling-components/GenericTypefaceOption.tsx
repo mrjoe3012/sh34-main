@@ -1,6 +1,6 @@
 export const GenericTypefaceOption = () => {
     return (
-        <div className="flex gap-x-1">
+        <div className="flex gap-x-1 items-center">
             <div className="basis-[30%]"> Typeface</div>
             <select 
                 placeholder="" 
