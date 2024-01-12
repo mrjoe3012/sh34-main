@@ -5,11 +5,11 @@ import { GenericTypefaceOption } from "../../../generic-labelling-components/Gen
 
 export const TitleLabelCustomMode = () => {
     return (
-        <div className="ml-3 mr-3 flex flex-col gap-y-1">
+        <div className="flex flex-col gap-y-1">
             <GenericNameOption />
-            <GenericFontSizeOption />
-            <GenericFontColourOption />
-            <GenericTypefaceOption />
+            <GenericFontSizeOption displayLabel={true} />
+            <GenericFontColourOption displayLabel={true}/>
+            <GenericTypefaceOption displayLabel={true}/>
         </div>
     )
 }

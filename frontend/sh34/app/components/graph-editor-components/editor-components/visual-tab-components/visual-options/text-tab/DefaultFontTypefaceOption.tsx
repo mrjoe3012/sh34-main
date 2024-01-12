@@ -1,15 +1,12 @@
 import { OptionComponentTitle } from "../../../OptionComponentTitle"
+import { GenericTypefaceOption } from "../../../generic-labelling-components/GenericTypefaceOption"
 
 export const FontTypefaceOption = () => {
     
     return(
         <div className="bg-[#e6e7eb] py-3 rounded-md">
             < OptionComponentTitle optionName="Default Typeface" />
-            <div className="mx-3">
-                    <select 
-                        placeholder="" 
-                        className=" font-medium placeholder-[#ACACAC] h-[35px] w-full bg-[#DCDCDC] rounded-lg flex items-center pl-4 border-2 border-[#B3B3B3] focus:ring-2 focus:ring-RES_ORANGE focus:outline-none focus:border-none" />
-                </div>
+            < GenericTypefaceOption displayLabel={false}/>
         </div>
     )
 }
