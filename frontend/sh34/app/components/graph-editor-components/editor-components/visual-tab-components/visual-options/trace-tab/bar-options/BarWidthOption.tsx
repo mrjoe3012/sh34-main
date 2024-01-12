@@ -6,7 +6,7 @@ import downtriangle from '@app/images/downtriangle.png'
 export const BarWidthOption = () => {
     
     return(
-        <div>
+        <div className="bg-[#e6e7eb] py-3 rounded-md">
             <OptionComponentTitle optionName="Bar Width" />
             <div className="ml-3 flex items-center gap-x-1">
 

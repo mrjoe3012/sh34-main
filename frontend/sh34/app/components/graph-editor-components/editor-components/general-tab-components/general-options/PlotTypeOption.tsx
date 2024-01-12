@@ -40,6 +40,7 @@ export const PlotTypeOption = (props: PlotTypeOptionProps) => {
 
     const onRadioChanged = (plotOption: {id: string, name: string}) => {
         setPlotType(plotOption.name)
+        console.log(plotOption.name)
         props.setSelectedPlotType(plotOption.id);
         let c = [...checked];
         for (let i = 0; i < plotTypes.length; i++) {
