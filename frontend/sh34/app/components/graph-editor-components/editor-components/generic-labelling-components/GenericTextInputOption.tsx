@@ -2,7 +2,6 @@ interface GenericTextInputOptionProps {
     placeholder: string,
     labelName: string,
     displayLabel: boolean
-    additionalCSSRules: string,
 }
 
 export const GenericTextInputOption = (props : GenericTextInputOptionProps) => {
