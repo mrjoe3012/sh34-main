@@ -1,6 +1,6 @@
 import { TraceTabBarOptions } from "./bar-options/TraceTabBarOptions"
 import { TraceTabScatterOptions } from "./scatter-options/TraceTabScatterOptions"
-import { TabDisclaimer } from "../../TabDisclaimer"
+import { TabDisclaimer } from "./TabDisclaimer"
 
 export const VisualTraceTab = () => {
     

@@ -1,13 +1,18 @@
 'use client';
+import { PlotTypeContext } from "@app/graph-editor/page";
 import { PlotOptions } from "../../../body-components/PlotOptions";
 import { OptionComponentTitle } from "../../OptionComponentTitle"
-import { useState, useEffect } from "react";
+import { useContext, useState, useEffect } from "react";
+import { event } from "jquery";
 
 interface PlotTypeOptionProps {
     setSelectedPlotType: React.Dispatch<React.SetStateAction<string>>;
 }
 
 export const PlotTypeOption = (props: PlotTypeOptionProps) => {
+
+    // Take the setPlotType function from the PlotTypeContext so it can alter the PlotType whenever a Radio Button is changed.
+    const { setPlotType } = useContext(PlotTypeContext)
 
     // define allowed plot types and 
     // load them dynamically
@@ -34,6 +39,7 @@ export const PlotTypeOption = (props: PlotTypeOptionProps) => {
     }, []);
 
     const onRadioChanged = (plotOption: {id: string, name: string}) => {
+        setPlotType(plotOption.name)
         props.setSelectedPlotType(plotOption.id);
         let c = [...checked];
         for (let i = 0; i < plotTypes.length; i++) {
@@ -41,6 +47,7 @@ export const PlotTypeOption = (props: PlotTypeOptionProps) => {
         }
         setChecked(c);
     };
+
 
     return(
     <div className="bg-[#e6e7eb] py-3 rounded-md"> 
