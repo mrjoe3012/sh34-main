@@ -1,6 +1,7 @@
 import { useState } from "react"
 
 import { OptionComponentTitle } from "../../../OptionComponentTitle"
+import { GenericTextInputOption } from "../../../generic-labelling-components/GenericTextInputOption"
 import { YAxisLabelDefaultMode } from "./YAxisLabelDefaultMode"
 import { YAxisLabelCustomMode } from "./YAxisLabelCustomMode"
 
@@ -13,6 +14,8 @@ export const YAxisLabelOption = () => {
     return(
         <div className="bg-[#e6e7eb] py-3 rounded-md"> 
                 <OptionComponentTitle optionName="Y-Axis Label Options" />
+                <div className="mb-2"><GenericTextInputOption placeholder="" labelName={"Text"} displayLabel={true} /></div>
+                <div className="mx-3"><OptionComponentTitle optionName="Font Options" /></div>
                 <TwoTabSwitcher switchTabFunction={setXAxisOptionMode}
                                 firstTabContent={<YAxisLabelDefaultMode />}
                                 secondTabContent={<YAxisLabelCustomMode />}

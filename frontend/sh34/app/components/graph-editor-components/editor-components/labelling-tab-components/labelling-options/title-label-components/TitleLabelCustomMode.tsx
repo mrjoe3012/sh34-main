@@ -6,7 +6,7 @@ import { GenericTypefaceOption } from "../../../generic-labelling-components/Gen
 export const TitleLabelCustomMode = () => {
     return (
         <div className="flex flex-col gap-y-1">
-            <GenericTextInputOption placeholder="" labelName={"Text"} displayLabel={true} />
+            
             <GenericSizeIncrementerOption labelName={"Font Size"} displayLabel={true} />
             <GenericColourOption labelName="Colour" displayLabel={true}/>
             <GenericTypefaceOption displayLabel={true}/>
