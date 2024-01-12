@@ -1,12 +1,12 @@
 import { OptionComponentTitle } from "../../../OptionComponentTitle"
-import { GenericFontColourOption } from "../../../generic-labelling-components/GenericFontColourOption"
+import { GenericColourOption } from "../../../generic-labelling-components/GenericColourOption"
 
 export const PlotColourOption = () => {
     
     return(
         <div className="bg-[#e6e7eb] py-3 rounded-md">
             <OptionComponentTitle optionName="Plot Colour" />
-            < GenericFontColourOption displayLabel={false} />
+            < GenericColourOption displayLabel={false} />
         </div>
     )
 }

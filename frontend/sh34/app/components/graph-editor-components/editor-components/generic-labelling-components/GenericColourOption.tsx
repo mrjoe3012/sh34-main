@@ -1,8 +1,8 @@
-interface GenericFontColourOptionProps {
+interface GenericColourOptionProps {
     displayLabel: boolean;
 }
 
-export const GenericFontColourOption = (props : GenericFontColourOptionProps) => {
+export const GenericColourOption = (props : GenericColourOptionProps) => {
     return (
         <div className="flex items-center ml-3 mr-3 ">
             {props.displayLabel && <div className="w-[70px] min-w-[70px]">Colour</div>}

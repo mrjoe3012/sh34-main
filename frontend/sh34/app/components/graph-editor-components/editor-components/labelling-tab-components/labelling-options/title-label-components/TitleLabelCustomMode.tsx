@@ -1,6 +1,6 @@
 import { GenericNameOption } from "../../../generic-labelling-components/GenericNameOption"
 import { GenericFontSizeOption } from "../../../generic-labelling-components/GenericFontSizeOption"
-import { GenericFontColourOption } from "../../../generic-labelling-components/GenericFontColourOption"
+import { GenericColourOption } from "../../../generic-labelling-components/GenericColourOption"
 import { GenericTypefaceOption } from "../../../generic-labelling-components/GenericTypefaceOption"
 
 export const TitleLabelCustomMode = () => {
@@ -8,7 +8,7 @@ export const TitleLabelCustomMode = () => {
         <div className="flex flex-col gap-y-1">
             <GenericNameOption />
             <GenericFontSizeOption displayLabel={true} />
-            <GenericFontColourOption displayLabel={true}/>
+            <GenericColourOption displayLabel={true}/>
             <GenericTypefaceOption displayLabel={true}/>
         </div>
     )
