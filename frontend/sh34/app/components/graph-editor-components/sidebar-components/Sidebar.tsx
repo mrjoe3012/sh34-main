@@ -1,7 +1,7 @@
-import { SidebarMainButtons } from "./SidebarMainButtons";
-import { SidebarOptionsList } from "./SidebarOptionsList";
-import { SidebarReturn } from "./SidebarReturn";
-import { SidebarTemplateHeader } from "./SidebarTemplateHeader";
+import { MainButtonList } from "./MainButtonList";
+import { TabList } from "./TabList";
+import { ReturnButton } from "./ReturnButton";
+import { PlotTitle } from "./PlotTitle";
 import { SetStateAction, useState } from "react";
 
 interface SidebarProps {
@@ -16,13 +16,13 @@ interface SidebarProps {
 export const Sidebar = (props: SidebarProps) => {
   // contains the currently selected graph indicator
   return (
-      <div className='basis-[15%] flex flex-col bg-white border-r-2'>
-        <SidebarReturn /> 
+      <div className='basis-[15%] flex flex-col bg-white border-r-2 min-w-[250px]'>
+        <ReturnButton /> 
         <hr></hr>
-        <SidebarTemplateHeader />
+        <PlotTitle />
         <hr></hr>
-        <SidebarOptionsList setSelectedPlotType={props.setSelectedPlotType} switchPageFunc={props.switchPageFunc} setSelectedIndicator={props.setSelectedIndicator} />
-        <SidebarMainButtons selectedPlotType={props.selectedPlotType} selectedIndicator={props.selectedIndicator} />
+        <TabList setSelectedPlotType={props.setSelectedPlotType} switchPageFunc={props.switchPageFunc} setSelectedIndicator={props.setSelectedIndicator} />
+        <MainButtonList selectedPlotType={props.selectedPlotType} selectedIndicator={props.selectedIndicator} />
       </div>
   );
 };
