@@ -61,7 +61,7 @@ export const PlotTypeOption = (props: PlotTypeOptionProps) => {
                 return (
                     <div key={index}>
                         <input checked={checked[index]} className="mr-2" type="radio" name={plotOption.id} id={"plot-type-option-" + plotOption.id} value={plotOption.id} onChange={() => {onRadioChanged(plotOption)}}/>
-                        <label htmlFor={"plot-type-option-" + plotOption.id}>{plotOption.name}</label>
+                        <label className="select-none" htmlFor={"plot-type-option-" + plotOption.id}>{plotOption.name}</label>
                     </div>
                 );
             })}
