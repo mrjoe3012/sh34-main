@@ -1,21 +1,22 @@
+import { useState } from "react"
 import { OptionComponentTitle } from "../../../OptionComponentTitle"
-import { GenericNameOption } from "../../../generic-labelling-components/GenericNameOption"
-import { GenericFontSizeOption } from "../../../generic-labelling-components/GenericFontSizeOption"
-import { GenericFontColourOption } from "../../../generic-labelling-components/GenericFontColourOption"
-import { GenericTypefaceOption } from "../../../generic-labelling-components/GenericTypefaceOption"
-import { TickLabelAngleOption } from "./TickLabelAngleOption"
+import { TitleLabelDefaultMode } from "./TickLabelDefaultMode"
+import { TickLabelCustomMode } from "./tick-label-custom-mode/TickLabelCustomMode"
+import { TwoTabSwitcher } from "../../../GenericTwoTabSwitcher"
 
 export const TickLabelOption = () => {
+
+    const [tickLabelOptionMode, setTickLabelOptionMode] = useState(<TitleLabelDefaultMode />)
+
     return(
         <div className="bg-[#e6e7eb] py-3 rounded-md"> 
             <OptionComponentTitle optionName="Tick Label Options" />
-            <div className="ml-3 mr-3 flex flex-col gap-y-1">
-                <GenericNameOption />
-                <GenericFontSizeOption />
-                <GenericFontColourOption />
-                <GenericTypefaceOption />
-                <TickLabelAngleOption />
-            </div>
+            <TwoTabSwitcher switchTabFunction={setTickLabelOptionMode}
+                                firstTabContent={<TitleLabelDefaultMode />} 
+                                secondTabContent={<TickLabelCustomMode />}
+                                switcherLabel1="Default"
+                                switcherLabel2="Custom"/>
+            {tickLabelOptionMode}
         </div>
     )
 }
