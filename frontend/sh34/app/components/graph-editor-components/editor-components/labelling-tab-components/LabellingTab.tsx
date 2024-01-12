@@ -3,7 +3,7 @@ import { TitleLabelOptions } from "./labelling-options/title-label-components/Ti
 import { XAxisLabelOption } from "./labelling-options/xaxis-label-components/XAxisLabelOption"
 import { YAxisLabelOption } from "./labelling-options/yaxis-label-components/YAxisLabelOption"
 
-export const LabellingGraphOptions = () => {
+export const LabellingTab = () => {
     return(
         <div className="w-full">
 

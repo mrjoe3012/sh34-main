@@ -1,4 +1,4 @@
-export const DataMapGraphOptions = () => {
+export const DataMappingTab = () => {
     return(
         <div>
             Data Mapping Graphing Options

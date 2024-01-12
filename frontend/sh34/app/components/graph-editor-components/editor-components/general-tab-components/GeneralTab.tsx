@@ -4,12 +4,12 @@ import { PlotSizeOption } from "./general-options/PlotSizeOption"
 import { AxisLineOption } from "./general-options/AxisLineOption"
 import { IndicatorOption } from "./general-options/IndicatorOption"
 
-interface GeneralGraphOptionsProps {
+interface GeneralTabProps {
     setSelectedIndicator: React.Dispatch<React.SetStateAction<string>>;
     setSelectedPlotType: React.Dispatch<React.SetStateAction<string>>;
 };
 
-export const GeneralGraphOptions = (props: GeneralGraphOptionsProps) => {
+export const GeneralTab = (props: GeneralTabProps) => {
     return(
         <div className="w-full">
 

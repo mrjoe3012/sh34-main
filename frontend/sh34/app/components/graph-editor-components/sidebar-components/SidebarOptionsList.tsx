@@ -1,8 +1,8 @@
 import { ListOption } from "./SidebarListOption"
-import { GeneralGraphOptions } from "../editor-components/general-tab-components/GeneralTab";
-import { LabellingGraphOptions } from "../editor-components/labelling-tab-components/LabellingTab";
-import { VisualGraphOptions } from "../editor-components/visual-tab-components/VisualTab";
-import { DataMapGraphOptions } from "../editor-components/mapping-tab-components/DataMappingTab";
+import { GeneralTab } from "../editor-components/general-tab-components/GeneralTab";
+import { LabellingTab } from "../editor-components/labelling-tab-components/LabellingTab";
+import { VisualTab } from "../editor-components/visual-tab-components/VisualTab";
+import { DataMappingTab } from "../editor-components/mapping-tab-components/DataMappingTab";
 
 interface SidebarProps {
     switchPageFunc: (someComponent: JSX.Element) => void;
@@ -13,10 +13,10 @@ interface SidebarProps {
 export const SidebarOptionsList = (props: SidebarProps) => {
     return (
         <div className='flex flex-col gap-y-5 mt-5'> 
-            <ListOption optionName="General" pageToSwitchTo={<GeneralGraphOptions setSelectedPlotType={props.setSelectedPlotType} setSelectedIndicator={props.setSelectedIndicator} />} switchPageFunc={props.switchPageFunc}/>
-            <ListOption optionName="Visual" pageToSwitchTo={<VisualGraphOptions />} switchPageFunc={props.switchPageFunc}/>
-            <ListOption optionName="Labelling" pageToSwitchTo={<LabellingGraphOptions />} switchPageFunc={props.switchPageFunc}/>
-            <ListOption optionName="Data Mapping" pageToSwitchTo={<DataMapGraphOptions />} switchPageFunc={props.switchPageFunc}/>
+            <ListOption optionName="General" pageToSwitchTo={<GeneralTab setSelectedPlotType={props.setSelectedPlotType} setSelectedIndicator={props.setSelectedIndicator} />} switchPageFunc={props.switchPageFunc}/>
+            <ListOption optionName="Visual" pageToSwitchTo={<VisualTab />} switchPageFunc={props.switchPageFunc}/>
+            <ListOption optionName="Labelling" pageToSwitchTo={<LabellingTab />} switchPageFunc={props.switchPageFunc}/>
+            <ListOption optionName="Data Mapping" pageToSwitchTo={<DataMappingTab />} switchPageFunc={props.switchPageFunc}/>
         </div>
     );
   };
