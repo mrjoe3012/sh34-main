@@ -13,11 +13,12 @@ import pandas as pd
 class GraphInfo:
     """This is graph info class used for managing the mock.json
     files content and make it more readable"""
+
     #Had to add this line to circumvent pylint size limitations
     #Disabling Too many args, Too many instance attrs, too few public methods
     #pylint: disable=R0902,R0913,R0903
     def __init__(self, graph_type, title, x_axis_name, y_axis_name, colour,
-                 graph_name, layer_colour, layer_type, layer_name, pie_ind=None):
+                 graph_name, layer_colour, layer_type, layer_name, ind_1, ind_2):
 
         self.graph_type = graph_type
         self.title = title
@@ -28,7 +29,8 @@ class GraphInfo:
         self.layer_colour = layer_colour
         self.layer_type = layer_type
         self.layer_name = layer_name
-        self.pie_ind = pie_ind
+        self.ind_1 = ind_1
+        self.ind_2 = ind_2
 
 def unpack_json(json_file_path: str) -> dict[str,Any]:
     """
@@ -46,16 +48,17 @@ def populate_graph_info(graph_info:dict[str,Any]) -> GraphInfo:
     GraphInfo that is then used to create the graphs"""
     info = GraphInfo(
 
-    graph_type = graph_info['graph_type'],
-    title = graph_info['title'],
-    x_axis_name = graph_info['x_axis_name'],
-    y_axis_name = graph_info['y_axis_name'],
-    colour = graph_info['colour'],
-    graph_name = graph_info['graph_name'],
-    layer_colour = graph_info['layer_colour'],
-    layer_type = graph_info['layer_type'],
-    layer_name = graph_info['layer_name'],
-    pie_ind = graph_info.get('pie_ind', 'value')
+    graph_type = graph_info.get('graph_type'),
+    title = graph_info.get('title'),
+    x_axis_name = graph_info.get('x_axis_name'),
+    y_axis_name = graph_info.get('y_axis_name'),
+    colour = graph_info.get('colour'),
+    graph_name = graph_info.get('graph_name'),
+    layer_colour = graph_info.get('layer_colour'),
+    layer_type = graph_info.get('layer_type'),
+    layer_name = graph_info.get('layer_name'),
+    ind_1 = graph_info.get('ind_1', 'date'),
+    ind_2 = graph_info.get('ind_2', 'value')
     )
     return info
 
@@ -75,7 +78,7 @@ def generate_graph(graph_info:dict[str,Any], data_json:dict[str,Any]) -> str:
     #except KeyError:
     #    first_value = "value"
 
-    df = data_extract(data_json, g1.graph_name, g1.pie_ind)
+    df = data_extract(data_json, g1.graph_name, g1.ind_1, g1.ind_2)
 
 
     # We have to use color_discrete_sequence=[colour] to enforce the colour in the Json
@@ -139,7 +142,7 @@ def generate_graph(graph_info:dict[str,Any], data_json:dict[str,Any]) -> str:
     fig.add_trace(trace)
 
     if g1.layer_type != "":
-        df2 = data_extract(data_json, g1.layer_name, g1.pie_ind)
+        df2 = data_extract(data_json, g1.layer_name, g1.ind_1, g1.ind_2)
         fig.update_layout(yaxis_title = "")
         match g1.layer_type:
             case 'bar':
@@ -163,13 +166,13 @@ def generate_graph(graph_info:dict[str,Any], data_json:dict[str,Any]) -> str:
         return pio.to_html(fig, full_html=False)
     raise ValueError("Was not able to plot a graph")
 
-def data_extract(data_json:dict[str,Any],name:str,first_value:str) -> pd.DataFrame:
+def data_extract(data_json:dict[str,Any],name:str,ind_1:str, ind_2:str) -> pd.DataFrame:
     """
     Extracts the data from json format to a numpy DataFrame.
     :param data_json: The Json file that data is to be extracted from.
     :param name: Name of the data field to be put in a DF.
-    :param first_value: If a value in the data json is specified this \
-    will be the y axis of the graph.
+    :param pie_ind: This is used to indicate which value to use in
+    pie charts alternatively can be used to indicate the y axis of another graph
     :returns: a Pandas Data Frame
     """
 
@@ -183,26 +186,14 @@ def data_extract(data_json:dict[str,Any],name:str,first_value:str) -> pd.DataFra
         level2 = graph_name_split[2]
         named_data = named_data[level2]
 
-    for key in named_data:
-        #print("----------------------------------------------------------------------------------")
-        #print((key))
-        pass
+    for entry in named_data:
+        try:
+            data_dict["x"].append(entry[ind_1])
+            data_dict["y"].append(entry[ind_2])
+        except KeyError:
+            print("Faulty Key")
+    df = pd.DataFrame(data_dict)
 
-    #print(data_json.items()[0])
-    #print(company_name)
-
-    if "aa" == "pie":
-        pass
-    else:
-        for entry in named_data:
-            first_key = list(entry.keys())[0]
-            data_dict["x"].append(entry[first_key])
-            try:
-                data_dict["y"].append(entry[first_value])
-            except KeyError:
-                data_dict["y"].append(None)
-        df = pd.DataFrame(data_dict)
-    #print(df["x"])
     return df
 
 def pascal_split_name(value:str) -> str:
