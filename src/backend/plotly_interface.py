@@ -17,7 +17,7 @@ class GraphInfo:
     #Disabling Too many args, Too many instance attrs, too few public methods
     #pylint: disable=R0902,R0913,R0903
     def __init__(self, graph_type, title, x_axis_name, y_axis_name, colour,
-                 graph_name, layer_colour, layer_type, layer_name, first_value=None):
+                 graph_name, layer_colour, layer_type, layer_name, pie_ind=None):
 
         self.graph_type = graph_type
         self.title = title
@@ -28,7 +28,7 @@ class GraphInfo:
         self.layer_colour = layer_colour
         self.layer_type = layer_type
         self.layer_name = layer_name
-        self.first_value = first_value
+        self.pie_ind = pie_ind
 
 def unpack_json(json_file_path: str) -> dict[str,Any]:
     """
@@ -55,6 +55,7 @@ def populate_graph_info(graph_info:dict[str,Any]) -> GraphInfo:
     layer_colour = graph_info['layer_colour'],
     layer_type = graph_info['layer_type'],
     layer_name = graph_info['layer_name'],
+    pie_ind = graph_info.get('pie_ind', 'value')
     )
     return info
 
@@ -68,13 +69,13 @@ def generate_graph(graph_info:dict[str,Any], data_json:dict[str,Any]) -> str:
 
     g1 = populate_graph_info(graph_info)
 
-    # You can set a value or the value will be automatically set. This is done via the mock.json
-    try:
-        first_value = graph_info["y_axis"]
-    except KeyError:
-        first_value = "value"
+    # You can set a value for pie chart indicator or the value will be automatically set. This is done via the mock.json
+    #try:
+    #    first_value = graph_info["pie_ind"]
+    #except KeyError:
+    #    first_value = "value"
 
-    df = data_extract(data_json, g1.graph_name, first_value)
+    df = data_extract(data_json, g1.graph_name, g1.pie_ind)
 
 
     # We have to use color_discrete_sequence=[colour] to enforce the colour in the Json
@@ -138,7 +139,7 @@ def generate_graph(graph_info:dict[str,Any], data_json:dict[str,Any]) -> str:
     fig.add_trace(trace)
 
     if g1.layer_type != "":
-        df2 = data_extract(data_json, g1.layer_name, first_value)
+        df2 = data_extract(data_json, g1.layer_name, g1.pie_ind)
         fig.update_layout(yaxis_title = "")
         match g1.layer_type:
             case 'bar':
@@ -197,13 +198,11 @@ def data_extract(data_json:dict[str,Any],name:str,first_value:str) -> pd.DataFra
             first_key = list(entry.keys())[0]
             data_dict["x"].append(entry[first_key])
             try:
-                #print(first_value)
                 data_dict["y"].append(entry[first_value])
-
             except KeyError:
                 data_dict["y"].append(None)
         df = pd.DataFrame(data_dict)
-    print(df["x"])
+    #print(df["x"])
     return df
 
 def pascal_split_name(value:str) -> str:

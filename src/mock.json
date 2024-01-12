@@ -3,7 +3,7 @@
     "title": "Wind over time",
     "x_axis_name": "Days",
     "y_axis_name": "Site Availability",
-    "y_axis": "OperationalAvailability",
+    "pie_ind": "OperationalAvailability",
     "colour": "#E87511",
     "graph_name": "/generator_breakdown",
     "layer_type": "",
