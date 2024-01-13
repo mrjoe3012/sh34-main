@@ -10,6 +10,11 @@ export const Annotation = () => {
 
     const [showArrowOptions, setShowArrowOptions] = useState(<div></div>);
 
+    const changeAnnotationFontColour = (inputValue: string) => {
+        // Enter logic for changing the annotation's font colour 
+        console.log("Changing Annotation Font Colour to " + inputValue);
+    }
+
     return (
         <div className="bg-[#e6e7eb] py-3 rounded-md"> 
             <OptionComponentTitle optionName="Annotation 1" />
@@ -18,7 +23,7 @@ export const Annotation = () => {
                 < GenericSizeIncrementerOption labelName="X-Pos" displayLabel={true} />
                 < GenericSizeIncrementerOption labelName="Y-Pos" displayLabel={true} />
                 < GenericSizeIncrementerOption labelName="Font Size" displayLabel={true} />
-                < GenericColourOption labelName="Colour" displayLabel={true} />
+                < GenericColourOption plotFunction={changeAnnotationFontColour} labelName="Colour" displayLabel={true} />
                 <div className="mx-3"><OptionComponentTitle optionName="Arrow Settings" /></div>
                 <TwoTabSwitcher switchTabFunction={setShowArrowOptions} firstTabContent={<div></div>} secondTabContent={<AnnotationLineOptions />} switcherLabel1="Hide" switcherLabel2="Show" />
                 {showArrowOptions}

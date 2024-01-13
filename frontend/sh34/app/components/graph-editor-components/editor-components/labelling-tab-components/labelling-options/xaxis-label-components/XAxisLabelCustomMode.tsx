@@ -4,11 +4,16 @@ import { GenericColourOption } from "../../../generic-labelling-components/Gener
 import { GenericTypefaceOption } from "../../../generic-labelling-components/GenericTypefaceOption"
 
 export const XAxisLabelCustomMode = () => {
+
+    const changeXAxisLabelFontColour = (inputValue: string) => {
+        // Enter logic here for changing of X Axis Label Font Colour
+        console.log("X-Axis Label Font Colour Changed to " + inputValue);
+    }
+
     return(
         <div className="flex flex-col gap-y-1">
-            
             <GenericSizeIncrementerOption labelName={"Font Size"} displayLabel={true}/>
-            <GenericColourOption labelName="Colour" displayLabel={true}/>
+            <GenericColourOption plotFunction={changeXAxisLabelFontColour} labelName="Colour" displayLabel={true}/>
             <GenericTypefaceOption displayLabel={true}/>
         </div>
     )

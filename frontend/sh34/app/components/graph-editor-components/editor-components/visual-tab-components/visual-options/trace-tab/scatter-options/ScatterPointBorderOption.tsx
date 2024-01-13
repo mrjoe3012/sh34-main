@@ -5,12 +5,18 @@ import uptriangle from '@app/images/uptriangle.png'
 import downtriangle from '@app/images/downtriangle.png'
 
 export const ScatterPointBorderOption = () => {
+
+    const changeScatterPointBorderColour = (inputValue: string) => {
+        // Enter logic here for changing of Scatter Point Border Colour Option
+        console.log("Scatter Point Border Colour Changed to " + inputValue);
+    }
+
     return (
         <div className="bg-[#e6e7eb] py-3 rounded-md">
             
             <OptionComponentTitle optionName="Point Border Settings" />
             <div className="flex flex-col gap-y-1">
-                < GenericColourOption labelName="Colour" displayLabel={true} />
+                < GenericColourOption plotFunction={changeScatterPointBorderColour} labelName="Colour" displayLabel={true} />
                 <div className="ml-3 flex items-center gap-x-1">
                     <div className="mr-2"> Width </div>
                     <input 
