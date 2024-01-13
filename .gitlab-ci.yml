@@ -8,8 +8,7 @@ build-frontend:
   script:
     - cd frontend/sh34
     - npm install
-    - export SH34_DB='mongodb://localhost:27017'
-    - systemctl start mongod
+    - export SH34_DB='mongodb:27017'
     - node database_creation/initialise_database.js
     - npm run build
 
