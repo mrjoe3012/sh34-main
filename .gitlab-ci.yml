@@ -6,11 +6,11 @@ stages:          # List of stages for jobs, and their order of execution
 build-frontend:
   stage: build-test
   script:
-    - bash -c "cd frontend/sh34; \
-    npm install; \
-    SH34_DB='mongodb://localhost:27017'; \
-    node database_creation/initialise_database.js; \
-    npm run build"
+    - cd frontend/sh34
+    - npm install
+    - export SH34_DB='mongodb://localhost:27017'
+    - node database_creation/initialise_database.js
+    - npm run build
 
 test-backend:
   stage: build-test
