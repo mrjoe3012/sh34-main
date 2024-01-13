@@ -11,7 +11,7 @@ export DEBIAN_FRONTEND=noninteractive
 apt update
 apt install -y \
     python3.10 python3.10-venv python3-pip git \
-    shellcheck nano tmux || exit 1
+    shellcheck nano tmux systemctl || exit 1
 
 # install nodejs 20.9.0
 apt-get install -y ca-certificates curl gnupg || exit 1
@@ -30,6 +30,7 @@ curl -fsSL https://pgp.mongodb.com/server-7.0.asc | \
 echo "deb [ arch=amd64,arm64 signed-by=/usr/share/keyrings/mongodb-server-7.0.gpg ] https://repo.mongodb.org/apt/ubuntu jammy/mongodb-org/7.0 multiverse" | tee /etc/apt/sources.list.d/mongodb-org-7.0.list
 apt-get update
 apt-get install -y mongodb-org
+systemctl start mongod
 
 # create virtual environment
 mkdir /root/.venv

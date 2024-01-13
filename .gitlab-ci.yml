@@ -8,10 +8,7 @@ build-frontend:
   script:
     - cd frontend/sh34
     - npm install
-    - export DEBIAN_FRONTEND='noninteractive'
     - export SH34_DB='mongodb://127.0.0.1:27017'
-    - apt-get update
-    - apt-get install -y systemctl
     - systemctl start mongod
     - node database_creation/initialise_database.js
     - npm run build
