@@ -12,6 +12,10 @@ fi
 
 cd /sh34 || exit 1
 
+# setup mongodb
+systemctl start mongod
+export SH34_DB='mongodb://localhost:27017'
+
 # source virtual environment
 source /root/.venv/sh34/bin/activate
 

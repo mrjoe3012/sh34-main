@@ -5,12 +5,13 @@
 #########################################################################################
 
 REPO="/setup-files/sh34"
+export DEBIAN_FRONTEND=noninteractive
 
 # pre-requisite packages
 apt update
 apt install -y \
     python3.10 python3.10-venv python3-pip git \
-    shellcheck nano || exit 1
+    shellcheck nano tmux || exit 1
 
 # install nodejs 20.9.0
 apt-get install -y ca-certificates curl gnupg || exit 1
@@ -20,6 +21,15 @@ echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.co
 apt-get update && apt-get install -y nodejs
 # update npm
 npm install -g npm@10.2.3
+
+# install mongodb
+apt-get install gnupg curl
+curl -fsSL https://pgp.mongodb.com/server-7.0.asc | \
+   gpg -o /usr/share/keyrings/mongodb-server-7.0.gpg \
+   --dearmor
+echo "deb [ arch=amd64,arm64 signed-by=/usr/share/keyrings/mongodb-server-7.0.gpg ] https://repo.mongodb.org/apt/ubuntu jammy/mongodb-org/7.0 multiverse" | tee /etc/apt/sources.list.d/mongodb-org-7.0.list
+apt-get update
+apt-get install -y mongodb-org
 
 # create virtual environment
 mkdir /root/.venv
