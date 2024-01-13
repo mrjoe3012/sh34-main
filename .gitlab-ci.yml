@@ -8,7 +8,7 @@ build-frontend:
   script:
     - cd frontend/sh34
     - npm install
-    - export SH34_DB='mongodb:27017'
+    - export SH34_DB='mongodb://127.0.0.1:27017'
     - node database_creation/initialise_database.js
     - npm run build
 
