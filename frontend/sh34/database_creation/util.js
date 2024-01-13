@@ -3,7 +3,7 @@ function getConnectionString() {
         return process.env.SH34_DB;
     } else {
         console.log("Warning, SH34_DB is unset. Using a default connection string.");
-        return "mongodb+srv://2663826o:Ghostface321@sh34.zgnuc0z.mongodb.net/?retryWrites=true&w=majority";
+        return "mongodb+srv://joe:joe@sh34.xewtebw.mongodb.net/";
     }
 }
 
