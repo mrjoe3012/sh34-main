@@ -2,6 +2,7 @@ import { WithId } from 'mongodb';
 import { TemplateData, loadTemplates } from '@app/modules/db';
 import { Body } from '@app/components/template-page-components/general-components/Body';
 import { Navbar } from '@app/components/navbar';
+import { ErrorComponent } from '@app/components/ErrorComponent';
 
 interface TemplateEditorProps {
   params: {
@@ -33,11 +34,10 @@ export default async function TemplateEditor(props: TemplateEditorProps) {
   try{
     template = await tryRetrieveTemplate(props.params.id);
   } catch (error) {
-    return {
-      notFound: true,
-    };
+    console.error("Encountered error retrieving templates: " + error);
+    const code = 404;
+    return <ErrorComponent statusCode={code}/>;
   }
-  console.log(template.Name);
   return (
     <div className="text-black min-w-[1200px] h-screen bg-white">
       <div className='bg-white h-fit'>

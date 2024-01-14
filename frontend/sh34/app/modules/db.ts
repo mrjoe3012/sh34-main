@@ -40,7 +40,7 @@ export async function loadTemplates(filter: Filter<TemplateData>) : Promise<With
     await client.connect();
     const db = client.db("SH34_DB");
     const templateCollection = db.collection<TemplateData>("Templates_Data");
-    const templates = await templateCollection.find({}).toArray();
+    const templates = await templateCollection.find(filter).toArray();
     await client.close();
     return templates;
 }
