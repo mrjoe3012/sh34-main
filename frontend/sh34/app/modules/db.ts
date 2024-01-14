@@ -59,11 +59,22 @@ export async function loadTemplates(filter: Filter<TemplateData>) : Promise<With
     return templates;
 }
 
-export async function loadPlots(filter: Filter<PlotData>): Promise<WithId<PlorData>[]> {
+export async function loadPlots(filter: Filter<PlotData>): Promise<WithId<PlotData>[]> {
     const plots = await loadCollection<PlotData>(
         DB_NAME,
         PLOTS_COLLECTION,
         filter
     );
+    return plots;
+}
+
+// load all the plots associated with a specific template
+export async function loadPlotsFromTemplate(template: WithId<TemplateData>): Promise<WithId<PlotData>[]> {
+    const plotIds = template.PlotArray;
+    // get only plots whose id is in the template's PlotArray
+    const filter = {
+        _id: { $in : plotIds }
+    };
+    const plots = await loadPlots(filter);
     return plots;
 }
