@@ -14,7 +14,8 @@ async function populateTemplates(client) {
       Name : "Very Windy Template",
       Description : "Template to show Financial gains of an asset",
       Tags : ["Finance", "Wind"],
-      LastModified : "24/04/2022"
+      LastModified : "24/04/2022",
+      DateCreated : "18,12,2017"
     },
     {
       _id: 2,
@@ -22,7 +23,8 @@ async function populateTemplates(client) {
       Name : "Slightly Rainy Template",
       Description: "Template to show efficiency of an asset",
       Tags: ["Efficiency","Hydro"],
-      LastModified : "18/09/2022"
+      LastModified : "18/09/2022",
+      DateCreated : "04,07,2019"
     },
     {
       _id: 3,
@@ -30,7 +32,8 @@ async function populateTemplates(client) {
       Name : "Nice and Sunny Template",
       Description: "Template to show general information of an asset",
       Tags: ["Info","Sunny","Solar","Finance","Efficiency"],
-      LastModified : "20/01/2023"
+      LastModified : "20/01/2023",
+      DateCreated : "08,09,2020"
     },
     {
       _id: 4,
@@ -38,7 +41,8 @@ async function populateTemplates(client) {
       Name : "Heavy Snow Template",
       Description: "Template to show variation in productivity of an asset",
       Tags: ["Nuclear","Variation","Efficiency"],
-      LastModified : "08/07/2022"
+      LastModified : "08/07/2022",
+      DateCreated : "10,11,2018"
     }
   ]
   // Insert the defined document into the "Template_Data" collection
