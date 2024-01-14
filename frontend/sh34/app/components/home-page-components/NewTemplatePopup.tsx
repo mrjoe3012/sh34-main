@@ -24,7 +24,7 @@ export const NewTemplatePopup = (props: NewTemplatePopupProps) => {
 
         // Input Validation for the Template Creation Form.
         setNameErrors([])
-        if (templateName=="") {
+        if (templateName.trim() == "") {
             setDisplayNameErrors(true);
             setNameErrors(prevNameErrors => [...prevNameErrors, "Template Must Have a Name."])
             return;
@@ -92,7 +92,7 @@ export const NewTemplatePopup = (props: NewTemplatePopupProps) => {
 
                         <div className="mb-4">
                             <label htmlFor="templateDescription" className="block text-gray-700 text-sm font-bold mb-2">Template Description:</label>
-                            <textarea placeholder="Enter Description" id="templateDescription" value={templateDescription} onChange={(e) => setTemplateDescription(e.target.value)} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" rows={3}></textarea>
+                            <textarea placeholder="Enter Description" id="templateDescription" value={templateDescription} onChange={(e) => setTemplateDescription(e.target.value)} className="min-h-[90px] shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" rows={3}></textarea>
                         </div>
 
                         <div className="mb-3">

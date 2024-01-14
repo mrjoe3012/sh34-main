@@ -1,4 +1,4 @@
-import { use, useState } from "react";
+import { useState } from "react";
 import { NewTemplatePopup } from "./NewTemplatePopup";
 
 export const NewTemplateButton = () => {
