@@ -80,3 +80,12 @@ export async function loadPlotsFromTemplate(template: WithId<TemplateData>): Pro
     const plots = await loadPlots(filter);
     return plots;
 }
+
+// load the template to which a plot belongs to
+export async function loadTemplateFromPlot(plot: WithId<PlotData>): Promise<WithId<TemplateData>> {
+    const filter = {
+        PlotArray: { $elemMatch: { $eq: plot._id } },
+    };
+    const templates = await loadTemplates(filter);
+    return templates[0];
+}
