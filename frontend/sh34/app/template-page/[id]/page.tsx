@@ -1,5 +1,5 @@
 import { WithId } from 'mongodb';
-import { TemplateData, loadTemplates } from '@app/modules/db';
+import { TemplateData, loadTemplates, loadPlotsFromTemplate } from '@app/modules/db';
 import { Body } from '@app/components/template-page-components/general-components/Body';
 import { Navbar } from '@app/components/navbar';
 import { ErrorComponent } from '@app/components/ErrorComponent';
@@ -38,11 +38,12 @@ export default async function TemplateEditor(props: TemplateEditorProps) {
     const code = 404;
     return <ErrorComponent statusCode={code}/>;
   }
+  const plots = await loadPlotsFromTemplate(template);
   return (
     <div className="text-black min-w-[1200px] h-screen bg-white">
       <div className='bg-white h-fit'>
         <Navbar />
-        <Body />
+        <Body template={template} plots={plots} />
       </div>
     </div>
   );

@@ -1,12 +1,28 @@
 import { PlotElement } from "./PlotElement"
 import { PlotSearchInput } from "./PlotSearchInput";
 import { NewPlotButton } from "./NewPlotButton";
+import { TemplateData, PlotData } from "@app/modules/db";
+import { WithId } from "mongodb";
 
+interface StructurePageProps {
+    plots: WithId<PlotData>[];
+};
 
-export const StructurePage = () => {
-    // Arbitrary number for now. When integrated wtih backend. Find number of plots for this template.
-    const numPlots = 10;   
-
+export const StructurePage = (props: StructurePageProps) => {
+    const plots = props.plots;
+    const green = "#7FC6A4";
+    const orange = "#7FC6A4";
+    const blue = "#7FC6A4";
+    const type2Colour: {[key: string]: string} = {
+        'bar' : blue,
+        'pie' : green,
+        'line' : orange,
+        'scatter' : orange
+    };
+    const makeStyle = (colour: string): string => {
+        const style = `border-[${colour}] border-[7px]`;
+        return style;
+    };
     return (
 
         <div className="">
@@ -17,22 +33,13 @@ export const StructurePage = () => {
             </div>
 
             <div className='flex flex-col gap-y-8 items-center'>
-                
-                {/* <PlotElement backgroundColour="bg-[#7FC6A4]"  />
-                <PlotElement backgroundColour="bg-[#56BBF5]"  />
-                <PlotElement backgroundColour="bg-[#E76F51]"  />
-                <PlotElement backgroundColour="bg-[#7FC6A4]"  />
-                <PlotElement backgroundColour="bg-[#7FC6A4]"  />
-                <PlotElement backgroundColour="bg-[#56BBF5]"  />
-                <PlotElement backgroundColour="bg-[#E76F51]"  /> */}
-                <PlotElement backgroundColour="border-[#7FC6A4] border-[7px]"  />
-                <PlotElement backgroundColour="border-[#56BBF5] border-[7px]"  />
-                <PlotElement backgroundColour="border-[#E76F51] border-[7px]"  />
-                <PlotElement backgroundColour="border-[#7FC6A4] border-[7px]"  />
-                <PlotElement backgroundColour="border-[#7FC6A4] border-[7px]"  />
-                <PlotElement backgroundColour="border-[#E76F51] border-[7px]"  />
-                <PlotElement backgroundColour="border-[#56BBF5] border-[7px]"  />
-
+                {plots.map((plot, idx) =>{
+                    return (<PlotElement
+                        key={idx}
+                        backgroundColour={makeStyle(type2Colour[plot.JSONFile["graph-type"]])}
+                        plot={plot}
+                    />)
+                })}
             </div>
         </div>
       )

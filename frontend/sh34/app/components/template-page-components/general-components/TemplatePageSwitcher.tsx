@@ -2,9 +2,12 @@
 import { useState } from 'react';
 import { InfoPage } from "../info-page-components/InfoPage";
 import { StructurePage } from "../structure-page-components/StructurePage";
+import { PlotData } from '@app/modules/db';
+import { WithId } from 'mongodb';
 
 interface TemplatePageSwitcherProps {
   switchTabFunction: (someComponent: JSX.Element) => void;
+  plots: WithId<PlotData>[];
 }
 
 
@@ -16,7 +19,7 @@ export const TemplatePageSwitcher = (props: TemplatePageSwitcherProps) => {
   const handleStructureClick = () => {
     setStructureClicked(true);
     setInfoClicked(false);
-      props.switchTabFunction(<StructurePage/>);
+      props.switchTabFunction(<StructurePage plots={props.plots}/>);
   }
 
   const handleInfoClick = () => {
