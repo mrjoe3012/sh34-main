@@ -1,5 +1,5 @@
-import { AssetsHeader } from "@app/home/page";
-import { AssetElement } from "@app/home/page";
+import { TemplateListHeader } from "./TemplateListHeader";
+import { AssetElement } from "./AssetElement";
 
 export const TemplateList = () => {
     return(
@@ -8,7 +8,7 @@ export const TemplateList = () => {
               <h1 className='w-fit mr-5 text-2xl text-RES_ORANGE font-bold'>Templates</h1>
               <hr className='flex-grow h-1 m-auto'></hr>
           </div>
-              <AssetsHeader />
+              <TemplateListHeader />
               <AssetElement />
               <AssetElement />
               <AssetElement />
