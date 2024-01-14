@@ -1,18 +1,22 @@
 import { OptionComponentTitle } from "../../OptionComponentTitle"
+import { GenericCheckboxOption } from "../../generic-labelling-components/GenericCheckboxOption"
 
 export const AxisLineOption = () => {
+
+    const changeXAxisLines = () => {
+        
+    }
+
+    const changeYAxisLines = () => {
+
+    }
+
     return(
         <div className="bg-[#e6e7eb] py-3 rounded-md"> 
                 <OptionComponentTitle optionName="Axis Lines" />
                 <div className="ml-3">
-                    <div>
-                        <input className="mr-2" type="radio" name="AxisLineSelect" value="X-Axis" id="X-Axis"></input>
-                        <label htmlFor="X-Axis">X-Axis</label>
-                    </div>
-                    <div>
-                        <input className="mr-2" type="radio" name="AxisLineSelect" value="Y-Axis" id="Axis"></input>
-                        <label htmlFor="Y-Axis">Y-Axis</label>
-                    </div>
+                    < GenericCheckboxOption plotFunction={changeXAxisLines} labelName="X-Axis" displayLabel={true} />
+                    < GenericCheckboxOption plotFunction={changeYAxisLines} labelName="Y-Axis" displayLabel={true} />
                 </div>
         </div>
     )
