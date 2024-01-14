@@ -1,15 +1,13 @@
-import Image from 'next/image';
+"use client";
+
 import { Navbar } from '@app/components/navbar';
-import Link from 'next/link';
 import { TemplateList } from '@app/components/home-page-components/TemplateList';
 import { SearchBar } from '@app/components/home-page-components/SearchBar';
-import { EditButton } from '@app/components/home-page-components/EditButton';
-import { ExportButton } from '@app/components/home-page-components/ExportButton';
 import { NewTemplateButton } from '@app/components/home-page-components/NewTemplateButton';
 
 export default function Home() {
     return (
-      <div className="text-black min-w-[1200px] h-screen bg-white">
+      <div className="text-black min-w-[1200px] h-screen bg-white font-league">
         <div className='bg-white'>
             <Navbar />
             <Body />
