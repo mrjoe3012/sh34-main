@@ -24,7 +24,8 @@ export interface PlotData extends Document {
         title: string,
         x_axis_name : string,
         y_axis_name : string,
-        colour: string
+        colour: string,
+        indicator: string
     },
     plot_title: string,
     order: number,

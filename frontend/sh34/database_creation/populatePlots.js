@@ -12,7 +12,8 @@ async function populatePlots(client) {
                 "title": "USA GDP",
                 "x_axis_name": "Years",
                 "y_axis_name": "GPD (USD) Millions",
-                "colour": "purple"
+                "colour": "purple",
+				"indicator" : "Production"
             },
             plot_title : "Q1 electricity output",
             order : 1                   
@@ -25,7 +26,8 @@ async function populatePlots(client) {
                 "title": "USA GDP",
                 "x_axis_name": "Years",
                 "y_axis_name": "GPD (USD) Millions",
-                "colour": "purple"
+                "colour": "purple",
+				"indicator" : "ProductionMetered"
             },
             plot_title : "Q2 electricity output",
             order : 2            
@@ -38,7 +40,8 @@ async function populatePlots(client) {
                 "title": "USA GDP",
                 "x_axis_name": "Years",
                 "y_axis_name": "GPD (USD) Millions",
-                "colour": "purple"
+                "colour": "purple",
+				"indicator" : "SCADAProduction"
             },
             plot_title : "Q3 electricity output",
             order : 3            
@@ -51,7 +54,8 @@ async function populatePlots(client) {
                 "title": "USA GDP",
                 "x_axis_name": "Years",
                 "y_axis_name": "GPD (USD) Millions",
-                "colour": "purple"
+                "colour": "purple",
+				"indicator" : "Production"
             },
             plot_title : "Q4 electricity output",
             order : 1            
@@ -64,7 +68,8 @@ async function populatePlots(client) {
                 "title": "USA GDP",
                 "x_axis_name": "Years",
                 "y_axis_name": "GPD (USD) Millions",
-                "colour": "purple"
+                "colour": "purple",
+				"indicator" : "OperationalAvailability"
             },
             plot_title : "Q1 uptime",
             order : 2            
@@ -77,7 +82,8 @@ async function populatePlots(client) {
                 "title": "USA GDP",
                 "x_axis_name": "Years",
                 "y_axis_name": "GPD (USD) Millions",
-                "colour": "purple"
+                "colour": "purple",
+				"indicator" : "OperationalLostProduction"
             },
             plot_title : "Q2 uptime",
             order : 3            
@@ -90,7 +96,8 @@ async function populatePlots(client) {
                 "title": "USA GDP",
                 "x_axis_name": "Years",
                 "y_axis_name": "GPD (USD) Millions",
-                "colour": "purple"
+                "colour": "purple",
+				"indicator" : "OperationalLostHours"
             },
             plot_title : "Q3 uptime",
             order : 1            
@@ -103,7 +110,8 @@ async function populatePlots(client) {
                 "title": "USA GDP",
                 "x_axis_name": "Years",
                 "y_axis_name": "GPD (USD) Millions",
-                "colour": "purple"
+                "colour": "purple",
+				"indicator" : "OperationalLostRevenue"
             },
             plot_title : "Q4 uptime",
             order : 2            
@@ -116,7 +124,8 @@ async function populatePlots(client) {
                 "title": "USA GDP",
                 "x_axis_name": "Years",
                 "y_axis_name": "GPD (USD) Millions",
-                "colour": "purple"
+                "colour": "purple",
+				"indicator" : "OperationalLostRevenue"
             },
             plot_title : "Q1 lost revenue",
             order : 3            
@@ -129,7 +138,8 @@ async function populatePlots(client) {
                 "title": "USA GDP",
                 "x_axis_name": "Years",
                 "y_axis_name": "GPD (USD) Millions",
-                "colour": "purple"
+                "colour": "purple",
+				"indicator" : "OperationalLostHours"
             },
             plot_title : "Q2 lost revenue",
             order : 1            
@@ -142,7 +152,8 @@ async function populatePlots(client) {
                 "title": "USA GDP",
                 "x_axis_name": "Years",
                 "y_axis_name": "GPD (USD) Millions",
-                "colour": "purple"
+                "colour": "purple",
+				"indicator" : "RunningLostProduction"
             },
             plot_title : "Q3 lost revenue",
             order : 2            
@@ -155,7 +166,8 @@ async function populatePlots(client) {
                 "title": "USA GDP",
                 "x_axis_name": "Years",
                 "y_axis_name": "GPD (USD) Millions",
-                "colour": "purple"
+                "colour": "purple",
+				"indicator" : "RunningLostProduction"
             },
             plot_title : "Q4 lost revenue",
             order : 3            
