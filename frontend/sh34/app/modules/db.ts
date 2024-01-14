@@ -13,6 +13,7 @@ export interface TemplateData extends Document {
     Description: string;
     Tags: Array<string>;
     LastModified: string;
+    DateCreated: string;
 };
 
 // should be same as objects in Plots_Data collection
