@@ -14,11 +14,16 @@ export const XAxisLabelCustomMode = () => {
         console.log("X-Axis Label Font Size Changed to " + inputValue);
     }
 
+    const changeXAxisLabelTypeface = (inputValue: string) => {
+        // Enter logic for changing the x axis label typeface
+        console.log("X Axis Label Typeface changed to " + inputValue);  
+    }
+
     return(
         <div className="flex flex-col gap-y-1">
             <GenericSizeIncrementerOption plotFunction={changeXAxisLabelFontSize} labelName={"Font Size"} displayLabel={true}/>
             <GenericColourOption plotFunction={changeXAxisLabelFontColour} labelName="Colour" displayLabel={true}/>
-            <GenericTypefaceOption displayLabel={true}/>
+            <GenericTypefaceOption plotFunction={changeXAxisLabelTypeface} displayLabel={true}/>
         </div>
     )
 }

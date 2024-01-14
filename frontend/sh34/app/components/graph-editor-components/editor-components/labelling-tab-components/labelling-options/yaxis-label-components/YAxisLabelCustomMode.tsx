@@ -14,12 +14,16 @@ export const YAxisLabelCustomMode = () => {
         console.log("Y-Axis Label Font Size Changed to " + inputValue);
     }
 
+    const changeYAxisLabelTypeface = (inputValue: string) => {
+        // Enter logic for changing the YAxis label typeface
+        console.log("YAxis Label Typeface changed to " + inputValue);  
+    }
+
     return(
         <div className="flex flex-col gap-y-1">
-            
             <GenericSizeIncrementerOption plotFunction={changeYAxisLabelFontSize} labelName={"Font Size"} displayLabel={true} />
             <GenericColourOption plotFunction={changeYAxisLabelFontColour} labelName="Colour" displayLabel={true} />
-            <GenericTypefaceOption displayLabel={true}/>
+            <GenericTypefaceOption plotFunction={changeYAxisLabelTypeface} displayLabel={true}/>
         </div>
     )
 }
