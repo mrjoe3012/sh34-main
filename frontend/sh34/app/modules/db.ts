@@ -1,8 +1,8 @@
-import { MongoClient } from 'mongodb';
+import { Filter, MongoClient, WithId } from 'mongodb';
 
 // should be same as objects in Templates_Data collection
 export interface TemplateData {
-    _id: string;
+    _id: number;
     PlotArray: Array<number>;
     Name: string;
     Description: string;
@@ -22,7 +22,6 @@ export interface PlotData {
     },
     plot_title: string,
     order: number,
-    type: string
 };
 
 export function getMongoClient(): MongoClient {
@@ -34,4 +33,14 @@ export function getMongoClient(): MongoClient {
     return new MongoClient(
         uri
     );
+}
+
+export async function loadTemplates(filter: Filter<TemplateData>) : Promise<WithId<TemplateData>[]> {
+    const client = getMongoClient();
+    await client.connect();
+    const db = client.db("SH34_DB");
+    const templateCollection = db.collection<TemplateData>("Templates_Data");
+    const templates = await templateCollection.find({}).toArray();
+    await client.close();
+    return templates;
 }
