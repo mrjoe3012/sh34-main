@@ -6,7 +6,7 @@ async function populatePlots(client) {
 
     const docs = [
         {
-            _id : "1",
+            _id: 1,
             JSONFile : {
                 "graph-type": "scatter",
                 "title": "USA GDP",
@@ -20,7 +20,7 @@ async function populatePlots(client) {
         },
 
         {
-            _id : "2",
+            _id: 2,
             JSONFile : {
                 "graph-type": "scatter",
                 "title": "USA GDP",
@@ -34,7 +34,7 @@ async function populatePlots(client) {
         },
 
         {
-            _id : "3",
+            _id: 3,
             JSONFile : {
                 "graph-type": "scatter",
                 "title": "USA GDP",
@@ -48,7 +48,7 @@ async function populatePlots(client) {
         },
 
         {
-            _id : "4",
+            _id: 4,
             JSONFile : {
                 "graph-type": "scatter",
                 "title": "USA GDP",
@@ -62,7 +62,7 @@ async function populatePlots(client) {
         },
 
         {
-            _id : "5",
+            _id: 5,
             JSONFile : {
                 "graph-type": "bar",
                 "title": "USA GDP",
@@ -76,7 +76,7 @@ async function populatePlots(client) {
         },
 
         {
-            _id : "6",
+            _id: 6,
             JSONFile : {
                 "graph-type": "scatter",
                 "title": "USA GDP",
@@ -90,7 +90,7 @@ async function populatePlots(client) {
         },
 
         {
-            _id : "7",
+            _id: 7,
             JSONFile : {
                 "graph-type": "bar",
                 "title": "USA GDP",
@@ -104,7 +104,7 @@ async function populatePlots(client) {
         },
 
         {
-            _id : "8",
+            _id: 8,
             JSONFile : {
                 "graph-type": "bar",
                 "title": "USA GDP",
@@ -118,7 +118,7 @@ async function populatePlots(client) {
         },
 
         {
-            _id : "9",
+            _id: 9,
             JSONFile : {
                 "graph-type": "bar",
                 "title": "USA GDP",
@@ -132,7 +132,7 @@ async function populatePlots(client) {
         },
 
         {
-            _id : "10",
+            _id: 10,
             JSONFile : {
                 "graph-type": "pie",
                 "title": "USA GDP",
@@ -146,7 +146,7 @@ async function populatePlots(client) {
         },
 
         {
-            _id : "11",
+            _id: 11,
             JSONFile : {
                 "graph-type": "bar",
                 "title": "USA GDP",
@@ -160,7 +160,7 @@ async function populatePlots(client) {
         },
 
         {
-            _id : "12",
+            _id: 12,
             JSONFile : {
                 "graph-type": "pie",
                 "title": "USA GDP",

@@ -9,7 +9,7 @@ async function populateTemplates(client) {
 
   const docs = [
     {
-      _id : '1',
+      _id: 1,
       PlotArray : [1,2,3],
       Name : "Very Windy Template",
       Description : "Template to show Financial gains of an asset",
@@ -17,7 +17,7 @@ async function populateTemplates(client) {
       LastModified : "24/04/2022"
     },
     {
-      _id : '2',
+      _id: 2,
       PlotArray : [4,5,6],
       Name : "Slightly Rainy Template",
       Description: "Template to show efficiency of an asset",
@@ -25,7 +25,7 @@ async function populateTemplates(client) {
       LastModified : "18/09/2022"
     },
     {
-      _id : '3',
+      _id: 3,
       PlotArray : [7,8,9],
       Name : "Nice and Sunny Template",
       Description: "Template to show general information of an asset",
@@ -33,7 +33,7 @@ async function populateTemplates(client) {
       LastModified : "20/01/2023"
     },
     {
-      _id : '4',
+      _id: 4,
       PlotArray : [10,11,12],
       Name : "Heavy Snow Template",
       Description: "Template to show variation in productivity of an asset",
