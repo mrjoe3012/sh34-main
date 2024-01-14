@@ -10,9 +10,14 @@ export const TitleLabelCustomMode = () => {
         console.log("Title Font Colour Changed to " + inputValue);
     }
 
+    const changeTitleLabelFontSize = (inputValue: string) => {
+        // Enter logic here for changing of title font size
+        console.log("Title Font Size Changed to " + inputValue);
+    }
+
     return (
         <div className="flex flex-col gap-y-1">
-            <GenericSizeIncrementerOption labelName={"Font Size"} displayLabel={true} />
+            <GenericSizeIncrementerOption plotFunction={changeTitleLabelFontSize} labelName={"Font Size"} displayLabel={true} />
             <GenericColourOption plotFunction={changeTitleLabelFontColour} labelName="Colour" displayLabel={true}/>
             <GenericTypefaceOption displayLabel={true}/>
         </div>

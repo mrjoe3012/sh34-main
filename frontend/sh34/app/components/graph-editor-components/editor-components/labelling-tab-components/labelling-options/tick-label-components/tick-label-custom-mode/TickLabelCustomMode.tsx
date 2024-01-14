@@ -11,9 +11,14 @@ export const TickLabelCustomMode = () => {
         console.log("Tick Label Font Colour changed to " + inputValue); 
     }
 
+    const changeTickLabelFontSize = (inputValue: string) => {
+        // Enter logic for changing the tick label font size
+        console.log("Tick Label Font Size changed to " + inputValue); 
+    }
+
     return (
         <div className="flex flex-col gap-y-1">
-            <GenericSizeIncrementerOption labelName={"Font Size"} displayLabel={true}/>
+            <GenericSizeIncrementerOption plotFunction={changeTickLabelFontSize} labelName={"Font Size"} displayLabel={true}/>
             <GenericColourOption plotFunction={changeTickLabelFontColour} labelName="Colour" displayLabel={true}/>
             <GenericTypefaceOption displayLabel={true}/>
             <TickLabelAngleOption />

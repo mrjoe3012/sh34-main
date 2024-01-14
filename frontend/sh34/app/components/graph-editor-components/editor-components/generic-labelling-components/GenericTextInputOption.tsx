@@ -1,10 +1,14 @@
 interface GenericTextInputOptionProps {
     placeholder: string,
     labelName: string,
-    displayLabel: boolean
+    displayLabel: boolean,
+    plotFunction: (inputValue: string) => void,
 }
 
 export const GenericTextInputOption = (props : GenericTextInputOptionProps) => {
+
+    
+
     return (
         <div className="flex items-center gap-x-1 ml-3 mr-3 ">
             <div className="w-[70px] min-w-[70px] ">{props.labelName}</div>

@@ -12,7 +12,22 @@ export const Annotation = () => {
 
     const changeAnnotationFontColour = (inputValue: string) => {
         // Enter logic for changing the annotation's font colour 
-        console.log("Changing Annotation Font Colour to " + inputValue);
+        console.log("Changed Annotation Font Colour to " + inputValue);
+    }
+
+    const changeAnnotationXPos = (inputValue: string) => {
+        // Enter logic for changing the annotation's x pos
+        console.log("Changed Annotation X Pos to " + inputValue);
+    }
+
+    const changeAnnotaionYPos = (inputValue: string) => {
+        // Enter logic for changing annotations y pos
+        console.log("Changed Annotation Y Pos to " + inputValue);
+    }
+
+    const changeAnnotationFontSize = (inputValue: string) => {
+        // Enter logic for changing annotation font size
+        console.log("Changed annotation font size to " + inputValue);
     }
 
     return (
@@ -20,9 +35,9 @@ export const Annotation = () => {
             <OptionComponentTitle optionName="Annotation 1" />
             <div className="mt-3 flex flex-col gap-y-1">
                 < GenericTextInputOption placeholder="Annotation Text" labelName="Text" displayLabel={true} />
-                < GenericSizeIncrementerOption labelName="X-Pos" displayLabel={true} />
-                < GenericSizeIncrementerOption labelName="Y-Pos" displayLabel={true} />
-                < GenericSizeIncrementerOption labelName="Font Size" displayLabel={true} />
+                < GenericSizeIncrementerOption plotFunction={changeAnnotationXPos} labelName="X-Pos" displayLabel={true} />
+                < GenericSizeIncrementerOption plotFunction={changeAnnotaionYPos} labelName="Y-Pos" displayLabel={true} />
+                < GenericSizeIncrementerOption plotFunction={changeAnnotationFontSize} labelName="Font Size" displayLabel={true} />
                 < GenericColourOption plotFunction={changeAnnotationFontColour} labelName="Colour" displayLabel={true} />
                 <div className="mx-3"><OptionComponentTitle optionName="Arrow Settings" /></div>
                 <TwoTabSwitcher switchTabFunction={setShowArrowOptions} firstTabContent={<div></div>} secondTabContent={<AnnotationLineOptions />} switcherLabel1="Hide" switcherLabel2="Show" />
