@@ -29,7 +29,7 @@ export function Body(props: BodyProps) {
       <div className='mx-10'> 
 
         <div className='mt-10 mb-5 flex justify-between'>
-          <TemplatePageSwitcher switchTabFunction={setBodyContent} plots={props.plots}/>
+          <TemplatePageSwitcher switchTabFunction={setBodyContent} plots={props.plots} template={props.template}/>
           <div className='flex gap-3'> 
             <TemplateSaveButton />
             <TemplateExportButton />
