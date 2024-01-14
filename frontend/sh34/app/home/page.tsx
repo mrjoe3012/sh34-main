@@ -117,7 +117,7 @@ function AssetElement(props: AssetElementProps) {
         </div>
 
         <div className="col-span-1">
-            <h2 className='text-lg'></h2>
+            <h2 className='text-lg'>{template.DateCreated}</h2>
         </div>
 
         <div className="col-span-1">
