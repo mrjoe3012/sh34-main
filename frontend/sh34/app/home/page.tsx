@@ -55,8 +55,8 @@ async function Templates(){
           <hr className='flex-grow h-1 m-auto'></hr>
       </div>
           <AssetsHeader />
-          {templates.map((template) => {
-            return <AssetElement template={template} />
+          {templates.map((template, idx) => {
+            return <AssetElement key={idx} template={template} />
           })}
     </div>
   );
