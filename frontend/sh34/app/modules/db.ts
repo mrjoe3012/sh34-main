@@ -58,3 +58,12 @@ export async function loadTemplates(filter: Filter<TemplateData>) : Promise<With
     );
     return templates;
 }
+
+export async function loadPlots(filter: Filter<PlotData>): Promise<WithId<PlorData>[]> {
+    const plots = await loadCollection<PlotData>(
+        DB_NAME,
+        PLOTS_COLLECTION,
+        filter
+    );
+    return plots;
+}
