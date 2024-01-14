@@ -125,7 +125,7 @@ function AssetElement(props: AssetElementProps) {
         </div>
 
         <div className='col-span-1 col-start-6 px-0.5'> {/* breakpoints needed to stop it from going over 2 lines on smaller screen OR more elegant solution */}
-          <EditButton />
+          <EditButton templateId={template._id} />
         </div>
 
         <div className='col-span-1 col-start-7 px-0.5'> {/* breakpoints needed to stop it from going over 2 lines on smaller screen OR more elegant solution */}
@@ -140,10 +140,13 @@ function AssetElement(props: AssetElementProps) {
 
 }
 
+interface EditButtonProps {
+  templateId: number;
+};
 
-function EditButton(){
+function EditButton(props: EditButtonProps){
   return(
-    <Link href="/template-page">
+    <Link href={"/template-page/" + props.templateId.toString()}>
       <div className='text-center w-5/6'>
         <div className="justify-center flex rounded-xl p-2 border-black border-2 relative bg-[#616673]">
           <p className="text-slate-50 basis-10/11">Edit</p>
