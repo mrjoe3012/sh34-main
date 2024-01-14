@@ -119,7 +119,7 @@ export const NewTemplatePopup = (props: NewTemplatePopupProps) => {
                     </div>
 
                     <div className='flex flex-row gap-x-3'>
-                        <button type="submit" className="bg-RES_ORANGE hover:bg-[#f57607] text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                        <button type="submit" className="bg-RES_ORANGE hover:bg-[#f57607] text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-[35%]">
                             Submit
                         </button>
 
