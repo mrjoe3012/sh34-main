@@ -1,10 +1,8 @@
-import React, {useContext} from "react";
+import React from "react";
 
 interface PlotOptionsProps {
     pageSelected: JSX.Element;
 }
-
-const PlotTypeContext = React.createContext(null)
 
 export const PlotOptions = (props: PlotOptionsProps) => {
     return(
