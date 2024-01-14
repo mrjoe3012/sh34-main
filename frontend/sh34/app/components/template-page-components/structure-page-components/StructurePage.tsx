@@ -18,13 +18,6 @@ export const StructurePage = () => {
 
             <div className='flex flex-col gap-y-8 items-center'>
                 
-                {/* <PlotElement backgroundColour="bg-[#7FC6A4]"  />
-                <PlotElement backgroundColour="bg-[#56BBF5]"  />
-                <PlotElement backgroundColour="bg-[#E76F51]"  />
-                <PlotElement backgroundColour="bg-[#7FC6A4]"  />
-                <PlotElement backgroundColour="bg-[#7FC6A4]"  />
-                <PlotElement backgroundColour="bg-[#56BBF5]"  />
-                <PlotElement backgroundColour="bg-[#E76F51]"  /> */}
                 <PlotElement backgroundColour="border-[#7FC6A4] border-[7px]"  />
                 <PlotElement backgroundColour="border-[#56BBF5] border-[7px]"  />
                 <PlotElement backgroundColour="border-[#E76F51] border-[7px]"  />
