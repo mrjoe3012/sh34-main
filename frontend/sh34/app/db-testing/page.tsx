@@ -1,11 +1,10 @@
 import { MongoClient, Db } from 'mongodb';
-import { getMongoClient, TemplateData, PlotData } from '@app/modules/db';
+import { getMongoClient, PlotData, loadTemplates } from '@app/modules/db';
 
 const DBTesting = async () => {
     const client = getMongoClient();
     await client.connect();
-    const templatesCollection = client.db("SH34_DB").collection<TemplateData>("Templates_Data");
-    const templates = await templatesCollection.find({}).toArray();
+    const templates = await loadTemplates({});
     const plotsCollection = client.db("SH34_DB").collection<PlotData>("Plots_Data");
     const plots = await plotsCollection.find({}).toArray();
     return (

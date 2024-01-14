@@ -1,8 +1,7 @@
-import Image from 'next/image';
 import { Navbar } from '@app/components/navbar';
-import Alogo from "@app/images/Alogo.png"
-import UKflag from "@app/images/UKflag.png"
 import Link from 'next/link';
+import { TemplateData, loadTemplates } from '@app/modules/db';
+import { WithId } from 'mongodb';
 
 
 export default function Portfolio() {
@@ -47,22 +46,21 @@ function Header(){
     );
 }
 
-
-function Templates(){
-    return(
-      <div className='my-20'>
-        <div className='flex my-3'>
-            <h1 className='w-fit mr-5 text-2xl text-RES_ORANGE font-bold'>Templates</h1>
-            <hr className='flex-grow h-1 m-auto'></hr>
-        </div>
-            <AssetsHeader />
-            <AssetElement />
-            <AssetElement />
-            <AssetElement />
-            <AssetElement />
+async function Templates(){
+  const templates = await loadTemplates({});
+  return(
+    <div className='my-20'>
+      <div className='flex my-3'>
+          <h1 className='w-fit mr-5 text-2xl text-RES_ORANGE font-bold'>Templates</h1>
+          <hr className='flex-grow h-1 m-auto'></hr>
       </div>
-    );
-  }
+          <AssetsHeader />
+          {templates.map((template) => {
+            return <AssetElement template={template} />
+          })}
+    </div>
+  );
+}
 
 function AssetsHeader(){
   return(
@@ -70,26 +68,22 @@ function AssetsHeader(){
       <div className='grid grid-cols-7 p-4'>
 
         <div className='col-start-1'>
-          <h2 className="text-lg font-bold">Type/TemplateID</h2>
-        </div>
-
-        <div className='col-start-2'>
           <h2 className='text-lg font-bold'>Template Name</h2>
         </div>
 
-        <div className='col-start-3'>
+        <div className='col-start-2'>
           <h2 className='text-lg font-bold'>Creation Date</h2>
         </div>
 
-        <div className='col-start-4'>
+        <div className='col-start-3'>
           <h2 className='text-lg font-bold'>Last Modified</h2>  
         </div>
 
-        <div className='col-start-5'>
+        <div className='col-start-4'>
           <h2 className='text-lg inline float-right p-1'>Sort </h2>  
         </div>
 
-        <div className='col-start-6'>
+        <div className='col-start-5'>
            <select placeholder="Select an option" className="font-medium placeholder-[#ACACAC] h-[35px] w-[150px] bg-[#DCDCDC] rounded-lg flex items-center pl-4 border-2 border-[#B3B3B3] focus:ring-2 focus:ring-RES_ORANGE focus:outline-none focus:border-none">
             <option value="1">ID</option>
             <option value="1">Creation date</option>
@@ -98,7 +92,7 @@ function AssetsHeader(){
           </select>
         </div>
 
-        <div className='col-start-7'>
+        <div className='col-start-6'>
           <h2 className='text-lg inline float-left p-1'>Acending</h2>  
         </div>
 
@@ -108,27 +102,26 @@ function AssetsHeader(){
   );
 }
 
+interface AssetElementProps {
+  template: WithId<TemplateData>;
+};
 
-function AssetElement(){
-
+function AssetElement(props: AssetElementProps) {
+  const template = props.template;
   return(
     <div>
       <div className='grid grid-cols-7 p-4 items-center auto-rows-[40px]'>
 
-        <div className='relative align-baseline col-span-1'> 
-          <h1 className='text-lg '>ICON/No</h1>
-        </div>  
-
         <div className="col-span-1">
-          <h2 className='text-lg'>TemplateNo</h2>
+          <h2 className='text-lg'>{template.Name}</h2>
         </div>
 
         <div className="col-span-1">
-            <h2 className='text-lg'>15/10/23</h2>
+            <h2 className='text-lg'></h2>
         </div>
 
         <div className="col-span-1">
-            <h2 className='text-lg'>15/10/23</h2>
+            <h2 className='text-lg'>{template.LastModified}</h2>
         </div>
 
         <div className='col-span-1 col-start-6 px-0.5'> {/* breakpoints needed to stop it from going over 2 lines on smaller screen OR more elegant solution */}
