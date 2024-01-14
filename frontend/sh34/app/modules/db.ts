@@ -1,7 +1,12 @@
 import { Filter, MongoClient, WithId } from 'mongodb';
+import { Interface } from 'readline';
+
+const DB_NAME = "SH34_DB";
+const PLOTS_COLLECTION = "Plots_Data";
+const TEMPLATES_COLLECTION = "Templates_Data";
 
 // should be same as objects in Templates_Data collection
-export interface TemplateData {
+export interface TemplateData extends Document {
     _id: number;
     PlotArray: Array<number>;
     Name: string;
@@ -11,7 +16,7 @@ export interface TemplateData {
 };
 
 // should be same as objects in Plots_Data collection
-export interface PlotData {
+export interface PlotData extends Document {
     _id: number,
     JSONFile: {
         'graph-type' : string,
@@ -35,12 +40,21 @@ export function getMongoClient(): MongoClient {
     );
 }
 
-export async function loadTemplates(filter: Filter<TemplateData>) : Promise<WithId<TemplateData>[]> {
+export async function loadCollection<T extends Document>(dbName: string, collectionName: string, filter: Filter<T>) : Promise<WithId<T>[]> {
     const client = getMongoClient();
     await client.connect();
-    const db = client.db("SH34_DB");
-    const templateCollection = db.collection<TemplateData>("Templates_Data");
-    const templates = await templateCollection.find(filter).toArray();
+    const db = client.db(dbName);
+    const collection = db.collection<T>(collectionName);
+    const data = await collection.find(filter).toArray();
     await client.close();
+    return data;
+}
+
+export async function loadTemplates(filter: Filter<TemplateData>) : Promise<WithId<TemplateData>[]> {
+    const templates = await loadCollection<TemplateData>(
+        DB_NAME,
+        TEMPLATES_COLLECTION,
+        filter
+    );
     return templates;
 }
