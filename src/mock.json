@@ -3,11 +3,9 @@
     "title": "Wind over time",
     "x_axis_name": "Days",
     "y_axis_name": "Site Availability",
-    "ind_1": "Subcategory",
-    "ind_2": "LostHours",
     "colour": "#E87511",
-    "graph_name": "/generator_downtimes",
-    "layer_type": "",
-    "layer_name": "/breakdown_by_indicator/TemperatureMean",
-    "layer_colour": "green"
+    "graph_name": "/generator_breakdown",
+    "ind_1": "GeneratorName",
+    "ind_2": "OperationalAvailability"
+
 }

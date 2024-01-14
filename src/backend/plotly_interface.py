@@ -54,7 +54,7 @@ def populate_graph_info(graph_info:dict[str,Any]) -> GraphInfo:
     colour = graph_info.get('colour'),
     graph_name = graph_info.get('graph_name'),
     layer_colour = graph_info.get('layer_colour'),
-    layer_type = graph_info.get('layer_type'),
+    layer_type = graph_info.get('layer_type',""),
     layer_name = graph_info.get('layer_name'),
     ind_1 = graph_info.get('ind_1', 'date'),
     ind_2 = graph_info.get('ind_2', 'value')
