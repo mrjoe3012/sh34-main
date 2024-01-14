@@ -1,9 +1,9 @@
 import { useState } from "react"
 import { OptionComponentTitle } from "../../OptionComponentTitle"
-import { TwoTabSwitcher } from "../../GenericTwoTabSwitcher"
-import { GenericTextInputOption } from "../../generic-labelling-components/GenericTextInputOption"
-import { GenericSizeIncrementerOption } from "../../generic-labelling-components/GenericSizeIncrementerOption"
-import { GenericColourOption } from "../../generic-labelling-components/GenericColourOption"
+import { TwoTabSwitcher } from "../../generic-components/GenericTwoTabSwitcher"
+import { GenericTextInputOption } from "../../generic-components/GenericTextInputOption"
+import { GenericSizeIncrementerOption } from "../../generic-components/GenericSizeIncrementerOption"
+import { GenericColourOption } from "../../generic-components/GenericColourOption"
 import { AnnotationLineOptions } from "./AnnotationLineOptions"
 
 export const Annotation = () => {

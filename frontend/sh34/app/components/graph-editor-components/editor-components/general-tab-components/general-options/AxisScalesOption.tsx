@@ -1,46 +1,36 @@
 import { OptionComponentTitle } from "../../OptionComponentTitle"
+import { GenericTwoButtonOption } from "../../generic-components/GenericTwoButtonOption";
 import { useState } from "react";
 
 
 export const AxisScaleOption = () => {
 
-    const [xlinearSelected, setXLinearSelected] = useState(true);
-    const [ylinearSelected, setYLinearSelected] = useState(true);
-
-    const handleXLinearClicked = () => {
-        setXLinearSelected(true);
-    } 
-
-    const handleXLogClicked = () => {
-        setXLinearSelected(false);
+    const changeXAxisScaleLinear = (inputValue: string) => {
+        // Enter logic here for toggling x axis to linear
+        console.log("Toggled x-axis scale to " + inputValue);
     }
 
-    const handleYLinearClicked = () => {
-        setYLinearSelected(true);
-    } 
+    const changeXAxisScaleLogarithmic = (inputValue: string) => {
+        // Enter logic here for toggling x axis to logarithmic
+        console.log("Toggled x-axis scale to " + inputValue);
+    }
 
-    const handleYLogClicked = () => {
-        setYLinearSelected(false);
+    const changeYAxisScaleLinear = (inputValue: string) => {
+        // Enter logic here for toggling y axis to linear
+        console.log("Toggled y-axis scale to " + inputValue);
+    }
+
+    const changeYAxisScaleLogarithmic = (inputValue: string) => {
+        // Enter logic here for toggling y axis to logarithmic
+        console.log("Toggledy-axis scale to " + inputValue);
     }
 
     return(
         <div className="bg-[#e6e7eb] py-3 rounded-md"> 
-                <OptionComponentTitle optionName="X-Axis Scale" />
-                <div className="mx-3 mb-4">
-                    <div className="flex-grow h-[35px] bg-[#EAEAEA] border-2 border-[#B3B3B3] rounded-md flex items-center mb-2 ">
-                    <button className={`w-[50%] flex-grow text-center h-full rounded ${xlinearSelected ? 'text-RES_ORANGE font-semibold' : ''}`} onClick={handleXLinearClicked}>Linear</button>
-                    <div className={` bg-gray-300 w-[2px] h-[70%]`}></div>
-                    <button className={`w-[50%] flex-grow text-center h-full rounded ${!xlinearSelected ? 'text-RES_ORANGE font-semibold' : ''}`} onClick={handleXLogClicked}>Logarithmic</button>
-                    </div>
-                </div>
-                <OptionComponentTitle optionName="Y-Axis Scale" />
-                <div className="mx-3 mb-4">
-                    <div className="flex-grow h-[35px] bg-[#EAEAEA] border-2 border-[#B3B3B3] rounded-md flex items-center mb-2 ">
-                    <button className={`w-[50%] flex-grow text-center h-full rounded ${ylinearSelected ? 'text-RES_ORANGE font-semibold' : ''}`} onClick={handleYLinearClicked}>Linear</button>
-                    <div className={` bg-gray-300 w-[2px] h-[70%]`}></div>
-                    <button className={`w-[50%] flex-grow text-center h-full rounded ${!ylinearSelected ? 'text-RES_ORANGE font-semibold' : ''}`} onClick={handleYLogClicked}>Logarithmic</button>
-                    </div>
-                </div>
+            <OptionComponentTitle optionName="X-Axis Scale" />
+            <GenericTwoButtonOption firstOptionLabel="Linear" secondOptionLabel="Logarithmic" firstOptionFunction={changeXAxisScaleLinear} secondOptionFunction={changeXAxisScaleLogarithmic} />
+            <OptionComponentTitle optionName="Y-Axis Scale" />
+            <GenericTwoButtonOption firstOptionLabel="Linear" secondOptionLabel="Logarithmic" firstOptionFunction={changeYAxisScaleLinear} secondOptionFunction={changeYAxisScaleLogarithmic}  />
         </div>
     ) 
 }

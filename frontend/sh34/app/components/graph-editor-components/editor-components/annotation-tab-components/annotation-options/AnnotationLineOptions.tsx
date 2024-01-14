@@ -1,5 +1,5 @@
-import { GenericSizeIncrementerOption } from "../../generic-labelling-components/GenericSizeIncrementerOption"
-import { GenericColourOption } from "../../generic-labelling-components/GenericColourOption"
+import { GenericSizeIncrementerOption } from "../../generic-components/GenericSizeIncrementerOption"
+import { GenericColourOption } from "../../generic-components/GenericColourOption"
 
 export const AnnotationLineOptions = () => {
 

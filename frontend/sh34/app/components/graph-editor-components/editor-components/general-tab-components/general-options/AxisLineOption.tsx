@@ -1,14 +1,16 @@
 import { OptionComponentTitle } from "../../OptionComponentTitle"
-import { GenericCheckboxOption } from "../../generic-labelling-components/GenericCheckboxOption"
+import { GenericCheckboxOption } from "../../generic-components/GenericCheckboxOption"
 
 export const AxisLineOption = () => {
 
-    const changeXAxisLines = () => {
-        
+    const changeXAxisLines = (inputValue: string) => {
+        // Enter logic here for toggling x-axis lines
+        console.log("Toggled x-axis lines to " + inputValue);
     }
 
-    const changeYAxisLines = () => {
-
+    const changeYAxisLines = (inputValue: string) => {
+        // Enter logic here for toggling y-axis lines
+        console.log("Toggled y-axis lines to " + inputValue);
     }
 
     return(

@@ -1,5 +1,5 @@
 import { OptionComponentTitle } from "../../../OptionComponentTitle"
-import { GenericSizeIncrementerOption } from "../../../generic-labelling-components/GenericSizeIncrementerOption";
+import { GenericSizeIncrementerOption } from "../../../generic-components/GenericSizeIncrementerOption";
 
 export const FontSizeOption = () => {
 

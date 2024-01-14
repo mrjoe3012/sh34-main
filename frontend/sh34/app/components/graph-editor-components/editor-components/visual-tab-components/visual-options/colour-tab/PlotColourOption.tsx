@@ -1,5 +1,5 @@
 import { OptionComponentTitle } from "../../../OptionComponentTitle"
-import { GenericColourOption } from "../../../generic-labelling-components/GenericColourOption"
+import { GenericColourOption } from "../../../generic-components/GenericColourOption"
 
 export const PlotColourOption = () => {
 

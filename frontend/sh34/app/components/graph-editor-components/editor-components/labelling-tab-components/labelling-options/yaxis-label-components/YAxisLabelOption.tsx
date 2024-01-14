@@ -1,11 +1,11 @@
 import { useState } from "react"
 
 import { OptionComponentTitle } from "../../../OptionComponentTitle"
-import { GenericTextInputOption } from "../../../generic-labelling-components/GenericTextInputOption"
+import { GenericTextInputOption } from "../../../generic-components/GenericTextInputOption"
 import { YAxisLabelDefaultMode } from "./YAxisLabelDefaultMode"
 import { YAxisLabelCustomMode } from "./YAxisLabelCustomMode"
 
-import { TwoTabSwitcher } from "../../../GenericTwoTabSwitcher"
+import { TwoTabSwitcher } from "../../../generic-components/GenericTwoTabSwitcher"
 
 export const YAxisLabelOption = () => {
 

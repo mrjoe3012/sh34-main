@@ -1,6 +1,6 @@
-import { GenericSizeIncrementerOption } from "../../../generic-labelling-components/GenericSizeIncrementerOption"
-import { GenericColourOption } from "../../../generic-labelling-components/GenericColourOption"
-import { GenericTypefaceOption } from "../../../generic-labelling-components/GenericTypefaceOption"
+import { GenericSizeIncrementerOption } from "../../../generic-components/GenericSizeIncrementerOption"
+import { GenericColourOption } from "../../../generic-components/GenericColourOption"
+import { GenericTypefaceOption } from "../../../generic-components/GenericTypefaceOption"
 
 export const XAxisLabelCustomMode = () => {
 

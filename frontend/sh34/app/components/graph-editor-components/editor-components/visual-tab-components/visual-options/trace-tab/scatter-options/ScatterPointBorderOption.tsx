@@ -1,5 +1,5 @@
 import { OptionComponentTitle } from "../../../../OptionComponentTitle"
-import { GenericColourOption } from "@app/components/graph-editor-components/editor-components/generic-labelling-components/GenericColourOption";
+import { GenericColourOption } from "@app/components/graph-editor-components/editor-components/generic-components/GenericColourOption";
 import Image from 'next/image';
 import uptriangle from '@app/images/uptriangle.png'
 import downtriangle from '@app/images/downtriangle.png'

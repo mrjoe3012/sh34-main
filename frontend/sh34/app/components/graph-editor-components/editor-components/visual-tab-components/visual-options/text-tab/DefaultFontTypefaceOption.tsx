@@ -1,5 +1,5 @@
 import { OptionComponentTitle } from "../../../OptionComponentTitle"
-import { GenericTypefaceOption } from "../../../generic-labelling-components/GenericTypefaceOption"
+import { GenericTypefaceOption } from "../../../generic-components/GenericTypefaceOption"
 
 export const FontTypefaceOption = () => {
 

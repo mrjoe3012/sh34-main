@@ -1,5 +1,5 @@
 import { OptionComponentTitle } from "../../../../OptionComponentTitle"
-import { GenericSizeIncrementerOption } from "@app/components/graph-editor-components/editor-components/generic-labelling-components/GenericSizeIncrementerOption"
+import { GenericSizeIncrementerOption } from "@app/components/graph-editor-components/editor-components/generic-components/GenericSizeIncrementerOption"
 
 export const BarWidthOption = () => {
     
