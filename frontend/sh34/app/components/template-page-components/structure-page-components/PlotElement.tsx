@@ -35,7 +35,9 @@ export const PlotElement = (props: PlotElementProps) => {
             <h1 className='text-3xl h-fit flex-grow font-medium'> {plot.plot_title} </h1>
             <div className='flex gap-x-10'>
               <Image src={Eye} alt='Preview' className='w-8 h-8'/>
-              <Image src={EditIcon} alt="EditIcon" className='w-8 h-8'/>
+              <Link className='w-8 h-8' href={`/graph-editor/${plot._id}`}>
+                <Image src={EditIcon} alt="EditIcon" className='w-8 h-8'/>
+              </Link>
               <Image src={TrashIcon} alt='TrashIcon' className='w-8 h-8'/>
             </div>
 

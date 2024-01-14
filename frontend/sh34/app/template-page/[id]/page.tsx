@@ -3,19 +3,13 @@ import { TemplateData, loadTemplates, loadPlotsFromTemplate } from '@app/modules
 import { Body } from '@app/components/template-page-components/general-components/Body';
 import { Navbar } from '@app/components/navbar';
 import { ErrorComponent } from '@app/components/ErrorComponent';
+import { InvalidIdParam } from '@app/modules/InvalidIdParam';
 
 interface TemplateEditorProps {
   params: {
     id: string;
   };
 };
-
-class InvalidIdParam extends Error {
-  constructor(message: string) {
-    super(message);
-    this.name = 'InvalidIdParam';
-  }
-}
 
 async function tryRetrieveTemplate(id: string): Promise<WithId<TemplateData>> {
   const idInt = Number.parseInt(id);
