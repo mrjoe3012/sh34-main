@@ -1,29 +1,23 @@
 import { OptionComponentTitle } from "../../OptionComponentTitle"
+import { GenericTwoButtonOption } from "../../generic-components/GenericTwoButtonOption";
 import { useState } from "react";
 
 
 export const OrientationOption = () => {
+    const changeOrientationHorizontal = (inputValue: string) => {
+        // Enter logic here for toggling orientation to horizontal
+        console.log("Toggled orientation to " + inputValue);
+    }
 
-    const [horizontalSelected, setHorizontalSelected] = useState(true);
-
-    const handleHorizontalClicked = () => {
-        setHorizontalSelected(true);
-    } 
-
-    const handleVerticalClicked = () => {
-        setHorizontalSelected(false);
+    const changeOrientationVertical = (inputValue: string) => {
+        // Enter logic here for toggling orientation to vertical
+        console.log("Toggled orientation to " + inputValue);
     }
 
     return(
         <div className="bg-[#e6e7eb] py-3 rounded-md"> 
                 <OptionComponentTitle optionName="Orientation" />
-                <div className="mx-3">
-                    <div className="flex-grow h-[35px] bg-[#EAEAEA] border-2 border-[#B3B3B3] rounded-md flex items-center mb-2 ">
-                    <button className={`w-[50%] flex-grow text-center h-full rounded ${horizontalSelected ? 'text-RES_ORANGE font-semibold' : ''}`} onClick={handleHorizontalClicked}>Horizontal</button>
-                    <div className={` bg-gray-300 w-[2px] h-[70%]`}></div>
-                    <button className={`w-[50%] flex-grow text-center h-full rounded ${!horizontalSelected ? 'text-RES_ORANGE font-semibold' : ''}`} onClick={handleVerticalClicked}>Vertical</button>
-                    </div>
-                </div>
+                <GenericTwoButtonOption firstOptionLabel="Horizontal" secondOptionLabel="Vertical" firstOptionFunction={changeOrientationHorizontal} secondOptionFunction={changeOrientationVertical} />
         </div>
     ) 
 }

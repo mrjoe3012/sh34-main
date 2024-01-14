@@ -27,8 +27,10 @@ export const AxisScaleOption = () => {
 
     return(
         <div className="bg-[#e6e7eb] py-3 rounded-md"> 
-            <OptionComponentTitle optionName="X-Axis Scale" />
-            <GenericTwoButtonOption firstOptionLabel="Linear" secondOptionLabel="Logarithmic" firstOptionFunction={changeXAxisScaleLinear} secondOptionFunction={changeXAxisScaleLogarithmic} />
+            <div className="mb-3">
+                <OptionComponentTitle optionName="X-Axis Scale" />
+                <GenericTwoButtonOption firstOptionLabel="Linear" secondOptionLabel="Logarithmic" firstOptionFunction={changeXAxisScaleLinear} secondOptionFunction={changeXAxisScaleLogarithmic} />
+            </div>
             <OptionComponentTitle optionName="Y-Axis Scale" />
             <GenericTwoButtonOption firstOptionLabel="Linear" secondOptionLabel="Logarithmic" firstOptionFunction={changeYAxisScaleLinear} secondOptionFunction={changeYAxisScaleLogarithmic}  />
         </div>

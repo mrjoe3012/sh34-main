@@ -22,7 +22,7 @@ export const GenericTwoButtonOption = (props: GenericTwoButtonOptionProps) => {
     }
 
     return(
-        <div className="mx-3 mb-4">
+        <div className="mx-3">
             <div className="flex-grow h-[35px] bg-[#EAEAEA] border-2 border-[#B3B3B3] rounded-md flex items-center mb-2 ">
                 <button className={`w-[50%] flex-grow text-center h-full rounded ${option1Selected ? 'text-RES_ORANGE font-semibold' : ''}`} onClick={handleOption1Clicked}>Linear</button>
                 <div className={` bg-gray-300 w-[2px] h-[70%]`}></div>
