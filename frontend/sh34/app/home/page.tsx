@@ -1,8 +1,7 @@
 import Image from 'next/image';
 import { Navbar } from '@app/components/navbar';
-import Alogo from "@app/images/Alogo.png"
-import UKflag from "@app/images/UKflag.png"
 import Link from 'next/link';
+import { TemplateList } from '@app/components/home-page-components/TemplateList';
 
 
 export default function Portfolio() {
@@ -22,7 +21,7 @@ function Body() {
       <div className="bg-white mx-10">
         <Header />
         <div className='mx-5'>
-            <Templates />
+            <TemplateList />
         </div>
       </div>
     );
@@ -48,23 +47,7 @@ function Header(){
 }
 
 
-function Templates(){
-    return(
-      <div className='my-20'>
-        <div className='flex my-3'>
-            <h1 className='w-fit mr-5 text-2xl text-RES_ORANGE font-bold'>Templates</h1>
-            <hr className='flex-grow h-1 m-auto'></hr>
-        </div>
-            <AssetsHeader />
-            <AssetElement />
-            <AssetElement />
-            <AssetElement />
-            <AssetElement />
-      </div>
-    );
-  }
-
-function AssetsHeader(){
+export const AssetsHeader = () => {
   return(
     <div className=''>
       <div className='grid grid-cols-7 p-4'>
@@ -109,7 +92,7 @@ function AssetsHeader(){
 }
 
 
-function AssetElement(){
+export const AssetElement = () => {
 
   return(
     <div>
