@@ -1,4 +1,3 @@
-import { GenericTextInputOption } from "../../../generic-labelling-components/GenericTextInputOption"
 import { GenericSizeIncrementerOption } from "../../../generic-labelling-components/GenericSizeIncrementerOption"
 import { GenericColourOption } from "../../../generic-labelling-components/GenericColourOption"
 import { GenericTypefaceOption } from "../../../generic-labelling-components/GenericTypefaceOption"

@@ -30,11 +30,16 @@ export const Annotation = () => {
         console.log("Changed annotation font size to " + inputValue);
     }
 
+    const changeAnnotationText = (inputValue: string) => {
+        // Enter logic for changing annotation text
+        console.log("Changed annotation text to " + inputValue);
+    }
+
     return (
         <div className="bg-[#e6e7eb] py-3 rounded-md"> 
             <OptionComponentTitle optionName="Annotation 1" />
             <div className="mt-3 flex flex-col gap-y-1">
-                < GenericTextInputOption placeholder="Annotation Text" labelName="Text" displayLabel={true} />
+                < GenericTextInputOption plotFunction={changeAnnotationText} placeholder="Annotation Text" labelName="Text" displayLabel={true} />
                 < GenericSizeIncrementerOption plotFunction={changeAnnotationXPos} labelName="X-Pos" displayLabel={true} />
                 < GenericSizeIncrementerOption plotFunction={changeAnnotaionYPos} labelName="Y-Pos" displayLabel={true} />
                 < GenericSizeIncrementerOption plotFunction={changeAnnotationFontSize} labelName="Font Size" displayLabel={true} />

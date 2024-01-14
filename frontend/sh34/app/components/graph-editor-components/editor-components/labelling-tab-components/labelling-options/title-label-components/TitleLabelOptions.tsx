@@ -10,10 +10,15 @@ export const TitleLabelOptions = () => {
 
     const [titleOptionMode, setTitleOptionMode] = useState(<TitleLabelDefaultMode />)
 
+    const changeTitleText = (inputValue: string) => {
+        // Enter logic for changing title text
+        console.log("Changed title text to " + inputValue);
+    }
+
     return(
         <div className="bg-[#e6e7eb] py-3 rounded-md"> 
                 <OptionComponentTitle optionName="Title Label Options" />
-                <div className="mb-2"><GenericTextInputOption placeholder="" labelName={"Text"} displayLabel={true} /></div>
+                <div className="mb-2"><GenericTextInputOption plotFunction={changeTitleText} placeholder="" labelName={"Text"} displayLabel={true} /></div>
                 <div className="mx-3"><OptionComponentTitle optionName="Font Options" /></div>
                 <TwoTabSwitcher switchTabFunction={setTitleOptionMode}
                                 firstTabContent={<TitleLabelDefaultMode />} 
