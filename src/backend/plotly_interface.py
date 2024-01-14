@@ -17,7 +17,7 @@ class GraphInfo:
     #Disabling Too many args, Too many instance attrs, too few public methods
     #pylint: disable=R0902,R0913,R0903
     def __init__(self, graph_type, title, x_axis_name, y_axis_name, colour,
-                 graph_name, layer_colour, layer_type, layer_name, ind_1, ind_2):
+                 graph_name, layer_colour, layer_type, layer_name, ind_1, ind_2,layer_ind):
 
         self.graph_type = graph_type
         self.title = title
@@ -30,6 +30,7 @@ class GraphInfo:
         self.layer_name = layer_name
         self.ind_1 = ind_1
         self.ind_2 = ind_2
+        self.layer_ind = layer_ind
 
 def unpack_json(json_file_path: str) -> dict[str,Any]:
     """
@@ -47,17 +48,18 @@ def populate_graph_info(graph_info:dict[str,Any]) -> GraphInfo:
     GraphInfo that is then used to create the graphs"""
     info = GraphInfo(
 
-    graph_type = graph_info.get('graph_type'),
-    title = graph_info.get('title'),
-    x_axis_name = graph_info.get('x_axis_name'),
-    y_axis_name = graph_info.get('y_axis_name'),
-    colour = graph_info.get('colour'),
-    graph_name = graph_info.get('graph_name'),
+    graph_type = graph_info.get('graph_type',"bar"),
+    title = graph_info.get('title',"An Example Bar Chart"),
+    x_axis_name = graph_info.get('x_axis_name',"Days"),
+    y_axis_name = graph_info.get('y_axis_name',"Temperature"),
+    colour = graph_info.get('colour',"Purple"),
+    graph_name = graph_info.get('graph_name',"/breakdown_by_indicator/TemperatureMean"),
     layer_colour = graph_info.get('layer_colour'),
     layer_type = graph_info.get('layer_type',""),
     layer_name = graph_info.get('layer_name'),
     ind_1 = graph_info.get('ind_1', 'date'),
-    ind_2 = graph_info.get('ind_2', 'value')
+    ind_2 = graph_info.get('ind_2', 'value'),
+    layer_ind= graph_info.get("layer_ind","value")
     )
     return info
 
@@ -133,7 +135,7 @@ def generate_graph(graph_info:dict[str,Any], data_json:dict[str,Any]) -> str:
     fig.add_trace(trace)
 
     if g1.layer_type != "":
-        df2 = data_extract(data_json, g1.layer_name, g1.ind_1, g1.ind_2)
+        df2 = data_extract(data_json, g1.layer_name, g1.ind_1, g1.layer_ind)
         fig.update_layout(yaxis_title = "")
         match g1.layer_type:
             case 'bar':
@@ -143,11 +145,13 @@ def generate_graph(graph_info:dict[str,Any], data_json:dict[str,Any]) -> str:
             case 'line':
                 trace2 = go.Line(x = df2['x'], y = df2['y'],
                                  name = 'Wind', yaxis = 'y2',
-                                 opacity = 0.75, marker = {"color" : g1.layer_colour})
+                                 opacity = 0.75, marker = {"color" : g1.layer_colour},
+                                 mode = "lines+markers")
             case 'scatter':
                 trace2 = go.Scatter(x = df2['x'], y = df2['y'],
                                     name = 'Wind', yaxis = 'y2',
-                                    opacity = 0.75, marker = {"color" : g1.layer_colour} )
+                                    opacity = 0.75, marker = {"color" : g1.layer_colour},
+                                    mode= "markers")
         fig.add_trace(trace2,secondary_y=True)
 
     if fig is not None:
