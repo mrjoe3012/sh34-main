@@ -15,8 +15,7 @@ async function populatePlots(client) {
                 "colour": "purple"
             },
             plot_title : "Q1 electricity output",
-            order : 1,
-            type : "scatter"       
+            order : 1                   
         },
 
         {
@@ -29,8 +28,7 @@ async function populatePlots(client) {
                 "colour": "purple"
             },
             plot_title : "Q2 electricity output",
-            order : 2,
-            type : "scatter"
+            order : 2            
         },
 
         {
@@ -43,8 +41,7 @@ async function populatePlots(client) {
                 "colour": "purple"
             },
             plot_title : "Q3 electricity output",
-            order : 3,
-            type : "scatter"
+            order : 3            
         },
 
         {
@@ -57,8 +54,7 @@ async function populatePlots(client) {
                 "colour": "purple"
             },
             plot_title : "Q4 electricity output",
-            order : 1,
-            type : "scatter"
+            order : 1            
         },
 
         {
@@ -71,8 +67,7 @@ async function populatePlots(client) {
                 "colour": "purple"
             },
             plot_title : "Q1 uptime",
-            order : 2,
-            type : "bar"
+            order : 2            
         },
 
         {
@@ -85,8 +80,7 @@ async function populatePlots(client) {
                 "colour": "purple"
             },
             plot_title : "Q2 uptime",
-            order : 3,
-            type : "scatter"
+            order : 3            
         },
 
         {
@@ -99,8 +93,7 @@ async function populatePlots(client) {
                 "colour": "purple"
             },
             plot_title : "Q3 uptime",
-            order : 1,
-            type : "bar"
+            order : 1            
         },
 
         {
@@ -113,8 +106,7 @@ async function populatePlots(client) {
                 "colour": "purple"
             },
             plot_title : "Q4 uptime",
-            order : 2,
-            type : "bar"
+            order : 2            
         },
 
         {
@@ -127,8 +119,7 @@ async function populatePlots(client) {
                 "colour": "purple"
             },
             plot_title : "Q1 lost revenue",
-            order : 3,
-            type : "bar"
+            order : 3            
         },
 
         {
@@ -141,8 +132,7 @@ async function populatePlots(client) {
                 "colour": "purple"
             },
             plot_title : "Q2 lost revenue",
-            order : 1,
-            type : "pie"
+            order : 1            
         },
 
         {
@@ -155,8 +145,7 @@ async function populatePlots(client) {
                 "colour": "purple"
             },
             plot_title : "Q3 lost revenue",
-            order : 2,
-            type : "bar"
+            order : 2            
         },
 
         {
@@ -169,8 +158,7 @@ async function populatePlots(client) {
                 "colour": "purple"
             },
             plot_title : "Q4 lost revenue",
-            order : 3,
-            type : "pie"
+            order : 3            
         }
         
     ]
