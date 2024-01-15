@@ -1,8 +1,9 @@
 {
-    "graph-type": "scatter",
+    "graph_type": "scatter",
     "title": "Wind over time",
     "x_axis_name": "Days",
     "y_axis_name": "Site Availability",
     "colour": "#E87511",
-    "graph_name": "/breakdown_by_indicator/SiteAvailability"
+    "graph_name": "/breakdown_by_indicator/OperationalLostHours"
+
 }

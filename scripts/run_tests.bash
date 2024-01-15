@@ -9,7 +9,7 @@
 #############################################################################
 
 function usage () {
-    echo "${0} [-o <string>] [-h] 
+    echo "${0} [-o <string>] [-h]
 
     -h: Print help message.
     -o: Set output directory for test reports. Prints to standard output by default."
@@ -75,6 +75,7 @@ MYPY_OUTPUT_FLAG=""
 MYPY_IGNORE_FLAGS="\
     --disable-error-code import-untyped \
     --disable-error-code var-annotated"
+
 if [[ -n "${REPORT_DIR}" ]]; then
     PYLINT_OUTPUT_FLAG="--output ${REPORT_DIR}/flake8.out --output-format=pylint_junit.JUnitReporter"
     PYTEST_OUTPUT_FLAG="--junit-xml=${REPORT_DIR}/pytest.xml"
