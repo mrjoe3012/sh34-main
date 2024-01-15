@@ -2,7 +2,7 @@ import { useState } from "react"
 import { OptionComponentTitle } from "../../../OptionComponentTitle"
 import { TitleLabelDefaultMode } from "./TickLabelDefaultMode"
 import { TickLabelCustomMode } from "./tick-label-custom-mode/TickLabelCustomMode"
-import { TwoTabSwitcher } from "../../../GenericTwoTabSwitcher"
+import { TwoTabSwitcher } from "../../../generic-components/GenericTwoTabSwitcher"
 
 export const TickLabelOption = () => {
 

@@ -10,7 +10,7 @@ export const LabellingTab = () => {
 
             <OptionTabTitle titleName="Labelling Options" />
             
-            <div className="w-full flex flex-col gap-y-5">
+            <div className="w-full flex flex-col gap-y-5 pb-10">
                 <TitleLabelOptions />
                 <XAxisLabelOption />
                 <YAxisLabelOption />

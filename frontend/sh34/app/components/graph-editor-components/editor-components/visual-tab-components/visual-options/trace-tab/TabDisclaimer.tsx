@@ -1,12 +1,12 @@
 import Image from "next/image"
 import InfoIcon from '@app/images/info-icon.png'
 import { useContext } from "react";
-import { PlotTypeContext } from "@app/graph-editor/PlotTypeContext";
+import { PlotOptionsContext } from "@app/graph-editor/PlotOptionsContext";
 
 export const TabDisclaimer = () => {
 
     // Take the plotType value from the PlotTypeContext so it can be displayed in the disclaimer
-    const {plotType} = useContext(PlotTypeContext);
+    const {plotType} = useContext(PlotOptionsContext);
 
     return(
         <div className="ml-3 mt-[-20px] mb-4 flex gap-x-1">
