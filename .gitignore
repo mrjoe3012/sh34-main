@@ -4,4 +4,4 @@
 src/test_artifacts
 docker-build.log
 docker/setup-files/sh34
-
+**/.vscode

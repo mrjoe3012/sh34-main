@@ -3,6 +3,8 @@ import { PlotTypeOption } from "./general-options/PlotTypeOption"
 import { PlotSizeOption } from "./general-options/PlotSizeOption"
 import { AxisLineOption } from "./general-options/AxisLineOption"
 import { IndicatorOption } from "./general-options/IndicatorOption"
+import { OrientationOption } from "./general-options/OrientationOption"
+import { AxisScaleOption } from "./general-options/AxisScalesOption"
 import { PlotData } from "@app/modules/db"
 import { WithId } from "mongodb"
 
@@ -24,6 +26,8 @@ export const GeneralTab = (props: GeneralTabProps) => {
                 <IndicatorOption plot={props.plot} selectedIndicator={props.selectedIndicator} setSelectedIndicator={props.setSelectedIndicator} />
                 <PlotSizeOption />
                 <AxisLineOption />
+                <AxisScaleOption />
+                <OrientationOption />
             </div>
         </div>
     )

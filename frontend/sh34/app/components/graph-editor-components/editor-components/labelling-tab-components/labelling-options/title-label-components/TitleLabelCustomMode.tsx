@@ -1,15 +1,29 @@
-import { GenericNameOption } from "../../../generic-labelling-components/GenericNameOption"
-import { GenericFontSizeOption } from "../../../generic-labelling-components/GenericFontSizeOption"
-import { GenericFontColourOption } from "../../../generic-labelling-components/GenericFontColourOption"
-import { GenericTypefaceOption } from "../../../generic-labelling-components/GenericTypefaceOption"
+import { GenericSizeIncrementerOption } from "../../../generic-components/GenericSizeIncrementerOption"
+import { GenericColourOption } from "../../../generic-components/GenericColourOption"
+import { GenericTypefaceOption } from "../../../generic-components/GenericTypefaceOption"
 
 export const TitleLabelCustomMode = () => {
+
+    const changeTitleLabelFontColour = (inputValue: string) => {
+        // Enter logic here for changing of title font colour
+        console.log("Title Font Colour Changed to " + inputValue);
+    }
+
+    const changeTitleLabelFontSize = (inputValue: string) => {
+        // Enter logic here for changing of title font size
+        console.log("Title Font Size Changed to " + inputValue);
+    }
+
+    const changeTitleLabelTypeface = (inputValue: string) => {
+        // Enter logic for changing the title label typeface
+        console.log("Title Label Typeface changed to " + inputValue);  
+    }
+
     return (
-        <div className="ml-3 mr-3 flex flex-col gap-y-1">
-            <GenericNameOption />
-            <GenericFontSizeOption />
-            <GenericFontColourOption />
-            <GenericTypefaceOption />
+        <div className="flex flex-col gap-y-1">
+            <GenericSizeIncrementerOption plotFunction={changeTitleLabelFontSize} labelName={"Font Size"} displayLabel={true} />
+            <GenericColourOption plotFunction={changeTitleLabelFontColour} labelName="Colour" displayLabel={true}/>
+            <GenericTypefaceOption plotFunction={changeTitleLabelTypeface} displayLabel={true}/>
         </div>
     )
 }

@@ -1,15 +1,29 @@
-import { GenericNameOption } from "../../../generic-labelling-components/GenericNameOption"
-import { GenericFontSizeOption } from "../../../generic-labelling-components/GenericFontSizeOption"
-import { GenericFontColourOption } from "../../../generic-labelling-components/GenericFontColourOption"
-import { GenericTypefaceOption } from "../../../generic-labelling-components/GenericTypefaceOption"
+import { GenericSizeIncrementerOption } from "../../../generic-components/GenericSizeIncrementerOption"
+import { GenericColourOption } from "../../../generic-components/GenericColourOption"
+import { GenericTypefaceOption } from "../../../generic-components/GenericTypefaceOption"
 
 export const YAxisLabelCustomMode = () => {
+
+    const changeYAxisLabelFontColour = (inputValue: string) => {
+        // Enter logic here for changing of Y Axis Label Font Colour
+        console.log("Y-Axis Label Font Colour Changed to " + inputValue);
+    }
+
+    const changeYAxisLabelFontSize = (inputValue: string) => {
+        // Enter logic here for changing of Y Axis Label Font Size
+        console.log("Y-Axis Label Font Size Changed to " + inputValue);
+    }
+
+    const changeYAxisLabelTypeface = (inputValue: string) => {
+        // Enter logic for changing the YAxis label typeface
+        console.log("YAxis Label Typeface changed to " + inputValue);  
+    }
+
     return(
-        <div className="ml-3 mr-3 flex flex-col gap-y-1">
-            <GenericNameOption />
-            <GenericFontSizeOption />
-            <GenericFontColourOption />
-            <GenericTypefaceOption />
+        <div className="flex flex-col gap-y-1">
+            <GenericSizeIncrementerOption plotFunction={changeYAxisLabelFontSize} labelName={"Font Size"} displayLabel={true} />
+            <GenericColourOption plotFunction={changeYAxisLabelFontColour} labelName="Colour" displayLabel={true} />
+            <GenericTypefaceOption plotFunction={changeYAxisLabelTypeface} displayLabel={true}/>
         </div>
     )
 }
