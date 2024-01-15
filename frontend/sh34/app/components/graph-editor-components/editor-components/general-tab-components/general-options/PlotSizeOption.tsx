@@ -1,26 +1,27 @@
 import { OptionComponentTitle } from "../../OptionComponentTitle"
+import { GenericTextInputOption } from "../../generic-components/GenericTextInputOption"
 
 export const PlotSizeOption = () => {
+
+    const changePlotWidth = (inputValue: string) => {
+        // Enter logic here for changing of Plot Width
+        console.log("Plot Width Changed to " + inputValue);
+    }
+
+    const changePlotHeight = (inputValue: string) => {
+        // Enter logic here for changing of Plot Height
+        console.log("Plot Height Changed to " + inputValue);
+    }
+
     return(
         <div className="bg-[#e6e7eb] py-3 rounded-md">
                 <OptionComponentTitle optionName="Plot Size" />
 
-                <div className="flex flex-col gap-y-1 ml-3">
-
-                    <div className="flex items-center gap-x-1">
-                        <div className="w-[70px] min-w-[70px]">Width</div>
-                        <div>
-                            <input type="text" placeholder="px" className="text-right flex-grow w-[90px] font-medium placeholder-[#ACACAC] h-[35px] bg-[#DCDCDC] rounded-lg flex items-center px-2 border-2 border-[#B3B3B3] focus:ring-2 focus:ring-RES_ORANGE focus:outline-none focus:border-none" />
-                        </div>
-                    </div>
-
-                    <div className="flex items-center gap-x-1">
-                        <div className="w-[70px] min-w-[70px]">Height</div>
-                        <div>
-                            <input type="text" placeholder="px" className="text-right flex-grow w-[90px] font-medium placeholder-[#ACACAC] h-[35px] bg-[#DCDCDC] rounded-lg flex items-center px-2 border-2 border-[#B3B3B3] focus:ring-2 focus:ring-RES_ORANGE focus:outline-none focus:border-none" />
-                        </div>
-                    </div>
+                <div className="flex flex-col gap-y-1 ">
                     
+                    < GenericTextInputOption placeholder="px" labelName="Width" displayLabel={true} width="w-[30%]" textPos="text-right" plotFunction={changePlotWidth} />
+                    < GenericTextInputOption placeholder="px" labelName="Height" displayLabel={true} width="w-[30%]" textPos="text-right" plotFunction={changePlotHeight} />
+
                 </div>
         </div>
     )
