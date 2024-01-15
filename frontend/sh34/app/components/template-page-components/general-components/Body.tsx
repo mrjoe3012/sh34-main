@@ -1,33 +1,23 @@
-"use client";
-
-import Link from 'next/link';
-import { useState } from 'react';
-import { Navbar } from '@app/components/navbar';
-
-import { StructurePage } from '@app/components/template-page-components/structure-page-components/StructurePage';
-import { InfoPage } from '@app/components/template-page-components/info-page-components/InfoPage';
+'use client';
 
 import { PageTitle } from '@app/components/template-page-components/general-components/PageTitle';
 import { TemplateInfo } from '@app/components/template-page-components/general-components/TemplateInfo';
 import { TemplatePageSwitcher } from '@app/components/template-page-components/general-components/TemplatePageSwitcher';
 import { TemplateSaveButton } from '@app/components/template-page-components/general-components/TemplateSaveButton';
 import { TemplateExportButton } from '@app/components/template-page-components/general-components/TemplateExportButton';
+import { StructurePage } from '@app/components/template-page-components/structure-page-components/StructurePage';
+import { useState } from 'react';
+import { WithId } from 'mongodb';
+import { TemplateData, PlotData } from '@app/modules/db';
 
-export default function TemplateEditor() {
-    return (
-      <div className="text-black min-w-[1200px] h-screen bg-white">
-        <div className='bg-white h-fit'>
-          <Navbar />
-          <Body />
-        </div>
-      </div>
-    );
-  }
+interface BodyProps {
+  template: WithId<TemplateData>;
+  plots: WithId<PlotData>[];
+};
 
+export function Body(props: BodyProps) {
 
-function Body() {
-
-  const [bodyContent,setBodyContent] = useState(<StructurePage />);
+  const [bodyContent,setBodyContent] = useState(<StructurePage plots={props.plots} />);
 
   return (
     <div className="overflow-auto mx-10">
@@ -39,7 +29,7 @@ function Body() {
       <div className='mx-10'> 
 
         <div className='mt-10 mb-5 flex justify-between'>
-          <TemplatePageSwitcher switchTabFunction={setBodyContent}/>
+          <TemplatePageSwitcher switchTabFunction={setBodyContent} plots={props.plots} template={props.template}/>
           <div className='flex gap-3'> 
             <TemplateSaveButton />
             <TemplateExportButton />
