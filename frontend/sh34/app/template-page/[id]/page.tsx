@@ -34,7 +34,7 @@ export default async function TemplateEditor(props: TemplateEditorProps) {
   }
   const plots = await loadPlotsFromTemplate(template);
   return (
-    <div className="text-black min-w-[1200px] h-screen bg-white">
+    <div className="text-black min-w-[1200px] h-screen bg-white font-league">
       <div className='bg-white h-fit'>
         <Navbar />
         <Body template={template} plots={plots} />
