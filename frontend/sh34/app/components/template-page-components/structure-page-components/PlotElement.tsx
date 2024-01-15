@@ -13,14 +13,13 @@ import { PlotData } from '@app/modules/db';
 import { WithId } from 'mongodb';
 
 interface PlotElementProps {
-  backgroundColour: string;
   plot: WithId<PlotData>;
 }
 
 export const PlotElement = (props: PlotElementProps) => {
   const plot = props.plot;
   return(
-      <div className='flex text-black drop-shadow-lg	' >
+      <div className='flex text-black drop-shadow-lg' >
 
         {/* The movement control and delete div */}
         <div className='flex flex-col justify-center items-center '>
@@ -29,10 +28,12 @@ export const PlotElement = (props: PlotElementProps) => {
         </div> 
 
         {/* The plot box div */}
-        <div className={`flex gap-x-10 justify-between items-center w-[650px] h-[100px] ${props.backgroundColour} p-3 rounded-lg border-4`}>
-            <p className='text-3xl'> {plot.order.toString() + "."} </p>
-            <Image src={BarGraph} alt='BarGraph' className='w-10  '/>
-            <h1 className='text-3xl h-fit flex-grow font-medium'> {plot.plot_title} </h1>
+        <div className={`flex justify-between items-center w-[750px] h-[100px] border-gray-400 bg-[#edeef2] p-3 rounded-lg border-4 px-4`}>
+            <div className='flex gap-x-5 items-center'>
+              <p className='text-3xl basis-[10%]'> {plot.order.toString() + "."} </p>
+              <Image src={BarGraph} alt='BarGraph' className='w-10 h-10 basis-[15%]'/>
+            </div>
+            <h1 className='text-2xl h-fit font-medium basis-[50%] truncate'> {plot.plot_title} </h1>
             <div className='flex gap-x-10'>
               <Image src={Eye} alt='Preview' className='w-8 h-8'/>
               <Link className='w-8 h-8' href={`/graph-editor/${plot._id}`}>
@@ -42,9 +43,6 @@ export const PlotElement = (props: PlotElementProps) => {
             </div>
 
         </div>
-
-
-
       </div>
     )
 };
