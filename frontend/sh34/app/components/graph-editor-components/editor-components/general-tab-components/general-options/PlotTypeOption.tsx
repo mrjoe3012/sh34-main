@@ -1,5 +1,5 @@
 'use client';
-import { PlotTypeContext } from "@app/graph-editor/PlotTypeContext";
+import { PlotOptionsContext } from "@app/graph-editor/PlotOptionsContext";
 import { PlotOptions } from "../../../body-components/PlotOptions";
 import { OptionComponentTitle } from "../../OptionComponentTitle"
 import { useContext, useState, useEffect } from "react";
@@ -12,7 +12,7 @@ interface PlotTypeOptionProps {
 export const PlotTypeOption = (props: PlotTypeOptionProps) => {
 
     // Take the setPlotType function from the PlotTypeContext so it can alter the PlotType whenever a Radio Button is changed.
-    const { setPlotType } = useContext(PlotTypeContext)
+    const { plotType, setPlotType } = useContext(PlotOptionsContext);
 
     // define allowed plot types and 
     // load them dynamically
@@ -30,17 +30,18 @@ export const PlotTypeOption = (props: PlotTypeOptionProps) => {
             name: "Line",
         }
     ];
-    const [checked, setChecked] = useState([true, false, false]);
     // boolean array defining whether or not radios are checked
+    const [checked, setChecked] = useState(plotTypes.map((p) => {
+        return p.id == plotType;
+    }));
 
     // initialise selected plot type
     useEffect(() => {
-        props.setSelectedPlotType("bar")
+        props.setSelectedPlotType(plotType);
     }, []);
 
     const onRadioChanged = (plotOption: {id: string, name: string}) => {
-        setPlotType(plotOption.name)
-        console.log(plotOption.name)
+        setPlotType(plotOption.id)
         props.setSelectedPlotType(plotOption.id);
         let c = [...checked];
         for (let i = 0; i < plotTypes.length; i++) {
