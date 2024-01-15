@@ -1,9 +1,7 @@
-"use client";
-
 import { Navbar } from '@app/components/navbar';
 import { TemplateList } from '@app/components/home-page-components/TemplateList';
-import { SearchBar } from '@app/components/home-page-components/SearchBar';
 import { NewTemplateButton } from '@app/components/home-page-components/NewTemplateButton';
+import { SearchBar } from '@app/components/home-page-components/SearchBar';
 
 export default function Home() {
     return (
@@ -46,6 +44,3 @@ function Header(){
       </div>
     );
 }
-
-
-
