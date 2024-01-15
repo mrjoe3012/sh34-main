@@ -186,6 +186,7 @@ def data_extract(data_json:dict[str,Any],name:str,ind_1:str, ind_2:str) -> pd.Da
             data_dict["x"].append(entry[ind_1])
             data_dict["y"].append(entry[ind_2])
         except KeyError:
+            data_dict["y"].append(None)
             print("Faulty Key")
     df = pd.DataFrame(data_dict)
 

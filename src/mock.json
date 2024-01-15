@@ -4,12 +4,6 @@
     "x_axis_name": "Days",
     "y_axis_name": "Site Availability",
     "colour": "#E87511",
-    "graph_name": "/breakdown_by_indicator/TemperatureMean",
-
-    "layer_type": "bar",
-    "layer_colour": "blue",
-    "layer_name": "/breakdown_by_indicator/Production"
-
-
+    "graph_name": "/breakdown_by_indicator/OperationalLostHours"
 
 }
