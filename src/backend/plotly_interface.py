@@ -42,6 +42,8 @@ def generate_plot_html(config_json, data_json):
     fig = update_default_font_options(fig, properties)
     fig = update_xaxis(fig, properties)
     fig = update_yaxis(fig, properties)
+    fig = update_plot_colours(fig, properties)
+    fig = update_grid_lines(fig, properties)
 
     fig_html = fig.to_html()
     return fig_html
@@ -72,9 +74,7 @@ def update_default_font_options(fig, properties):
     return fig
 
 
-
 def update_xaxis(fig, properties):
-    # Handle Cases Where No Information is Provided - Override Properties Dictionary with Default Value
 
     # Defining appropriate replacements for xaxis options if they are left blank
     default_properties = {
@@ -103,7 +103,6 @@ def update_xaxis(fig, properties):
 
 
 def update_yaxis(fig, properties):
-    # Handle Cases Where No Information is Provided - Override Properties Dictionary with Default Value
 
     # Defining appropriate replacements for xaxis options if they are left blank
     default_properties = {
@@ -126,6 +125,47 @@ def update_yaxis(fig, properties):
             color=properties["yaxis_colour"], 
             family=properties["yaxis_typeface"] 
         )
+    )
+
+    return fig
+
+
+def update_plot_colours(fig, properties):
+
+    # Defining appropriate replacements for xaxis options if they are left blank
+    default_properties = {
+        "plot_background_colour": "#e5ecf6",
+        "plot_margin_colour": "#FFFFFF"
+    }
+
+    # If the Options in the properties dictionary are blank, replace them with the specified default options.
+    for key, default in default_properties.items():
+        if not properties.get(key):
+            properties[key] = default
+
+    fig.update_layout(
+        plot_bgcolor = properties["plot_background_colour"],
+        paper_bgcolor = properties["plot_margin_colour"]
+    )
+
+    return fig
+
+
+def update_grid_lines(fig, properties):
+    # Defining appropriate replacements for xaxis options if they are left blank
+    default_properties = {
+        "display_xaxis_gridlines": False,
+        "display_yaxis_gridlines": True
+    }
+
+    # If the Options in the properties dictionary are blank, replace them with the specified default options.
+    for key, default in default_properties.items():
+        if not properties.get(key):
+            properties[key] = default
+
+    fig.update_layout(
+        xaxis=dict(showgrid= properties["display_xaxis_gridlines"]), 
+        yaxis=dict(showgrid= properties["display_yaxis_gridlines"])
     )
 
     return fig
@@ -175,7 +215,6 @@ def build_property_dict(config_json):
     # Visual Options - Colour
     dict["plot_background_colour"] = config_json["visualOptions"]["colour"]["plotBackgroundColourHex"]
     dict["plot_margin_colour"] = config_json["visualOptions"]["colour"]["plotMarginColourHex"]
-    dict["plot_marker_colour"] = config_json["visualOptions"]["colour"]["markerColour"]
 
     # Visual Options - Text
     dict["default_font_colour"] = config_json["visualOptions"]["text"]["defaultFontColourHex"]

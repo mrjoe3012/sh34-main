@@ -3,9 +3,11 @@
 
     "traces": [
         {"plotType": "Bar",
-        "plotIndicator": "/breakdown_by_indicator/OperationalLostHours"},
+        "plotIndicator": "/breakdown_by_indicator/OperationalLostHours",
+        "markerColour": ""},
         {"plotType": "Scatter",
-        "plotIndicator": "/breakdown_by_indicator/Production"}
+        "plotIndicator": "/breakdown_by_indicator/Production",
+        "markerColour": ""}
     ],
 
     "annotations": [
@@ -59,8 +61,7 @@
     "visualOptions": {
         "colour":{
             "plotBackgroundColourHex": "",
-            "plotMarginColourHex": "",
-            "markerColour": ""
+            "plotMarginColourHex": ""
         },
         "text": {
             "defaultFontColourHex": "#000000",
