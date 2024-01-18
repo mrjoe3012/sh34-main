@@ -1,0 +1,66 @@
+{
+    "plotTitle": "Default Title",
+
+    "traces": [
+        {"plotType": "Bar",
+        "plotIndicator": "/breakdown_by_indicator/OperationalLostHours"},
+        {"plotType": "Scatter",
+        "plotIndicator": "/breakdown_by_indicator/Production"}
+    ],
+
+    "annotations": [
+        {}
+    ],
+
+    "generalOptions": {
+        "plotWidth": 0,
+        "plotHeight": 0,
+        "displayXAxisLines": false,
+        "displayYAxisLines": false,
+        "xAxisScale": "linear",
+        "yAxisScale": "linear",
+        "orientation": "h"
+    },
+
+    "labellingOptions": {
+        "title": {
+            "titleText": "",
+            "titleFontColourHex": "",
+            "titleFontSize": 0,
+            "titleTypeface": ""
+        },
+        "xAxis": {
+            "xAxisText": "",
+            "xAxisFontColourHex": "",
+            "xAxisFontSize": 0,
+            "xAxisTypeface": ""
+        },
+        "yAxis": {
+            "yAxisText": "",
+            "yAxisFontColourHex": "",
+            "yAxisFontSize": 0,
+            "yAxisTypeface": ""
+        },
+        "tick": {
+            "tickFontColourHex": "",
+            "tickFontSize": 0,
+            "tickTypeface": "",
+            "tickAngle": "",
+            "tickPosition": ""
+        }
+    },
+
+    "visualOptions": {
+        "colour":{
+            "plotBackgroundColourHex": "",
+            "plotMarginColourHex": "",
+            "markerColour": ""
+        },
+        "text": {
+            "defaultFontColourHex": "",
+            "defaultFontSize": 0,
+            "defaultTypeface": ""
+        }
+    }
+
+}

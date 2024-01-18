@@ -1,6 +1,7 @@
 'use client';
 import { MainButton } from "./MainButton";
 import $ from "jquery"
+import configjson from "../../../config.json"
 
 interface MainButtonListProps {
     selectedIndicator: string;
@@ -10,13 +11,21 @@ interface MainButtonListProps {
 export const MainButtonList = (props: MainButtonListProps) => {
     const onRefreshClicked = async () => {
         // fetch the plot and display it
-        try {
-            const response = await fetch('/api/generate-plot?' + 'indicator=' + props.selectedIndicator + '&graph_type=' + props.selectedPlotType);
-            const result = await response.text();
-            $('#plot-container').html(result);
-        } catch (error) {
-            console.error(error);
-        }
+        fetch('/api/plotfromconfig', {
+            method: 'POST', // or 'PUT'
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(configjson),
+          })
+          .then(response => response.text())
+          .then(data => {
+            console.log('Success:', data);
+            $('#plot-container').html(data);
+          })
+          .catch((error) => {
+            console.error('Error:', error);
+          });
     };
 
     return (
