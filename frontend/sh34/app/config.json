@@ -24,7 +24,6 @@
 
     "labellingOptions": {
         "title": {
-            "titleText": "",
             "titleFontColourHex": "",
             "titleFontSize": 0,
             "titleTypeface": ""
@@ -33,20 +32,27 @@
             "xAxisText": "",
             "xAxisFontColourHex": "",
             "xAxisFontSize": 0,
-            "xAxisTypeface": ""
+            "xAxisTypeface": "",
+            "tickLabels": {
+                "tickFontColourHex": "",
+                "tickFontSize": 0,
+                "tickTypeface": "",
+                "tickAngle": "",
+                "tickPosition": ""
+            }
         },
         "yAxis": {
             "yAxisText": "",
             "yAxisFontColourHex": "",
             "yAxisFontSize": 0,
-            "yAxisTypeface": ""
-        },
-        "tick": {
-            "tickFontColourHex": "",
-            "tickFontSize": 0,
-            "tickTypeface": "",
-            "tickAngle": "",
-            "tickPosition": ""
+            "yAxisTypeface": "",
+            "tickLabels": {
+                "tickFontColourHex": "",
+                "tickFontSize": 0,
+                "tickTypeface": "",
+                "tickAngle": "",
+                "tickPosition": ""
+            }
         }
     },
 
@@ -57,8 +63,8 @@
             "markerColour": ""
         },
         "text": {
-            "defaultFontColourHex": "",
-            "defaultFontSize": 0,
+            "defaultFontColourHex": "#000000",
+            "defaultFontSize": 12,
             "defaultTypeface": ""
         }
     }

@@ -31,8 +31,6 @@ def generate_plot():
         config_json = request.get_json()
 
     try:
-        with open(DEFAULT_GRAPH_INFO_PATH, 'r', encoding='utf-8') as graph_info_file:
-            graph_info = json.load(graph_info_file)
         with open(DEFAULT_DATA_PATH, 'r', encoding='utf-8') as data_file:
             data_json = json.load(data_file)
     except:
