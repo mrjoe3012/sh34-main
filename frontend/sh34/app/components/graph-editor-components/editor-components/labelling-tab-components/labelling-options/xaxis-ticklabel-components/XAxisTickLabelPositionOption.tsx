@@ -1,6 +1,6 @@
 import { GenericTwoButtonOption } from "@app/components/graph-editor-components/editor-components/generic-components/GenericTwoButtonOption";
 
-import configjson from "../../../../../../../config.json"
+import configjson from "../../../../../../config.json"
 
 export const XAxisTickLabelPositionOption = () => {
 

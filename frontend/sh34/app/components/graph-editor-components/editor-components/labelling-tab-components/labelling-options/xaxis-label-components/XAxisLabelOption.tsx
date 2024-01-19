@@ -1,5 +1,4 @@
-import { useState } from "react"
-
+import { useState, useEffect } from "react"
 import { OptionComponentTitle } from "../../../OptionComponentTitle"
 import { GenericTextInputOption } from "../../../generic-components/GenericTextInputOption"
 import { XAxisLabelDefaultMode } from "./XAxisLabelDefaultMode"
@@ -19,6 +18,23 @@ export const XAxisLabelOption = () => {
         console.log("Changed x axis label text to " + inputValue);
     }
 
+    const switchToDefault = () => {
+        configjson["labellingOptions"]["xAxis"]["styling"]["currentStylingMode"] = "default"
+    }
+
+    const switchToCustom = () => {
+        configjson["labellingOptions"]["xAxis"]["styling"]["currentStylingMode"] = "custom"
+    }
+
+    // On Component Load, if Custom Mode is Selected, Switch to Custom Tab
+    useEffect(()=> {
+        if (configjson["labellingOptions"]["xAxis"]["styling"]["currentStylingMode"]=="default") {
+            setXAxisOptionMode(<XAxisLabelDefaultMode />)
+        } else if (configjson["labellingOptions"]["xAxis"]["styling"]["currentStylingMode"]=="custom") {
+            setXAxisOptionMode(<XAxisLabelCustomMode />)
+        }
+    }, [])
+
     return(
         <div className="bg-[#e6e7eb] py-3 rounded-md"> 
                 <OptionComponentTitle optionName="X-Axis Label Options" />
@@ -28,7 +44,9 @@ export const XAxisLabelOption = () => {
                                 firstTabContent={<XAxisLabelDefaultMode />}
                                 secondTabContent={<XAxisLabelCustomMode />}
                                 switcherLabel1="Default"
-                                switcherLabel2="Custom" />
+                                switcherLabel2="Custom"
+                                firstOptionFunction={switchToDefault}
+                                secondOptionFunction={switchToCustom} />
                 {xaxisOptionMode}
         </div>
     )
