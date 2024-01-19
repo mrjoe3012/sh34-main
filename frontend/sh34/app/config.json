@@ -1,14 +1,27 @@
 {
 
     "traces": [
-        {"plotType": "Bar",
-        "plotIndicator": "/breakdown_by_indicator/OperationalLostHours",
-        "markerColour": "",
-        "orientation": "v"},
-        {"plotType": "Scatter",
-        "plotIndicator": "/breakdown_by_indicator/Production",
-        "markerColour": "",
-        "orientation": "v"}
+        {
+            "id": 0,
+            "plotType": "Bar",
+            "plotIndicator": "/breakdown_by_indicator/Production",
+            "markerColour": "",
+            "orientation": "v"
+        },
+        {
+            "id": 1,
+            "plotType": "Line",
+            "plotIndicator": "/breakdown_by_indicator/WindSpeedMean",
+            "markerColour": "",
+            "orientation": "v"
+        },
+        {
+            "id": 2,
+            "plotType": "Line",
+            "plotIndicator": "/breakdown_by_indicator/TemperatureMean",
+            "markerColour": "",
+            "orientation": "v"
+        }
     ],
 
     "annotations": [
@@ -16,8 +29,8 @@
     ],
 
     "generalOptions": {
-        "plotWidth": "500",
-        "plotHeight": "500",
+        "plotWidth": "800",
+        "plotHeight": "600",
         "displayXAxisLines": false,
         "displayYAxisLines": false,
         "xAxisScale": "linear",

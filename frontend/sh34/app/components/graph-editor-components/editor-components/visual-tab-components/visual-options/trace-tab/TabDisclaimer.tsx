@@ -11,7 +11,7 @@ export const TabDisclaimer = () => {
     return(
         <div className="ml-3 mt-[-20px] mb-4 flex gap-x-1">
             <Image className="w-4 h-4 mt-[2px] mr-1" src={InfoIcon} alt="infoicon"></Image>
-            <p className="">Showing {plotType} Plot Options</p>
+            <p className="">Showing {plotType} plot options</p>
         </div>
     )
 }

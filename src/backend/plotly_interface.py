@@ -16,8 +16,8 @@ def generate_plot_html(config_json, data_json):
 
     # Create the Figure, plotting the data for each trace.
     fig = go.Figure()
-    for counter,trace in enumerate(config_json["traces"]):
-        # Get Trace Specific Attributes
+    for trace in config_json["traces"]:
+        
         plot_type = trace["plotType"]
         plot_indicator = trace["plotIndicator"]
         orientation = trace["orientation"]
@@ -37,10 +37,12 @@ def generate_plot_html(config_json, data_json):
         if plot_type=="Bar":
             fig.add_trace(go.Bar(x=xData,y=yData,orientation=orientation))
         elif plot_type=="Scatter":
-            fig.add_trace(go.Scatter(x=xData,y=yData,orientation=orientation))
+            fig.add_trace(go.Scatter(x=xData,y=yData,orientation=orientation,mode='markers'))
         elif plot_type=="Line":
             fig.add_trace(go.Line(x=xData,y=yData,orientation=orientation))
-        
+
+
+
 
     # Update the figure with initial font settings - these act as default font settings that then get overridden if any other font options are specified
     fig = update_xaxis(fig, properties)

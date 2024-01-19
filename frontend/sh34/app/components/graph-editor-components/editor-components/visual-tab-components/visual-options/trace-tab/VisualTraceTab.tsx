@@ -12,8 +12,8 @@ export const VisualTraceTab = () => {
     return(
         <div>
             <TabDisclaimer />
-            {plotType === "Bar" && <TraceTabBarOptions />}
-            {plotType === "Scatter" && <TraceTabScatterOptions />}
+            {plotType === "bar" && <TraceTabBarOptions />}
+            {plotType === "scatter" && <TraceTabScatterOptions />}
         </div>
     )
 }
