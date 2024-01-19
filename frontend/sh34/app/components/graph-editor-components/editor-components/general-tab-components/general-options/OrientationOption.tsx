@@ -6,6 +6,7 @@ import { useState } from "react";
 export const OrientationOption = () => {
     const changeOrientationHorizontal = (inputValue: string) => {
         // Enter logic here for toggling orientation to horizontal
+        
         console.log("Toggled orientation to " + inputValue);
     }
 

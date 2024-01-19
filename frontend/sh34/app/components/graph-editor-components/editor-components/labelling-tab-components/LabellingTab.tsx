@@ -2,7 +2,8 @@ import { OptionTabTitle } from "../OptionTabTitle"
 import { TitleLabelOptions } from "./labelling-options/title-label-components/TitleLabelOptions"
 import { XAxisLabelOption } from "./labelling-options/xaxis-label-components/XAxisLabelOption"
 import { YAxisLabelOption } from "./labelling-options/yaxis-label-components/YAxisLabelOption"
-import { TickLabelOption } from "./labelling-options/tick-label-components/TickLabelOptions"
+import { XAxisTickLabelOption } from "./labelling-options/xaxis-ticklabel-components/XAxisTickLabelOptions"
+import { YAxisTickLabelOption } from "./labelling-options/yaxis-ticklabel-components/YAxisTickLabelOptions"
 
 export const LabellingTab = () => {
     return(
@@ -14,7 +15,8 @@ export const LabellingTab = () => {
                 <TitleLabelOptions />
                 <XAxisLabelOption />
                 <YAxisLabelOption />
-                <TickLabelOption />
+                <XAxisTickLabelOption />
+                <YAxisTickLabelOption />
             </div>
         </div>
     )

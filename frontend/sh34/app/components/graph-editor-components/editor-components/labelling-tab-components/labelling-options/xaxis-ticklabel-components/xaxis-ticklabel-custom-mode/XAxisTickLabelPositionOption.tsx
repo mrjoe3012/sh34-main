@@ -2,7 +2,7 @@ import { GenericTwoButtonOption } from "@app/components/graph-editor-components/
 
 import configjson from "../../../../../../../config.json"
 
-export const TickLabelPositionOption = () => {
+export const XAxisTickLabelPositionOption = () => {
 
     const changePositionBottom = (inputValue: string) => {
         // Enter logic here for toggling tick labels to the bottom
@@ -20,7 +20,7 @@ export const TickLabelPositionOption = () => {
 
     return(
         <div className="mx-3 flex gap-x-1 items-center">
-            <div className="w-[70px] min-w-[70px]"> Position </div>
+            <div className="w-[70px] min-w-[70px] pr-2 text-right"> Position </div>
             <GenericTwoButtonOption firstOptionLabel="Bottom" secondOptionLabel="Top" firstOptionFunction={changePositionBottom} secondOptionFunction={changePositionTop} />
         </div>
     )

@@ -37,11 +37,11 @@
             "xAxisFontSize": 16,
             "xAxisTypeface": "Arial",
             "tickLabels": {
-                "tickFontColourHex": null,
-                "tickFontSize": null,
-                "tickTypeface": null,
-                "tickAngle": null,
-                "tickPosition": null
+                "tickFontColourHex": "#000000",
+                "tickFontSize": 16,
+                "tickTypeface": "Arial",
+                "tickAngle": 0,
+                "tickPosition": "bottom"
             }
         },
         "yAxis": {
@@ -50,11 +50,11 @@
             "yAxisFontSize": 16,
             "yAxisTypeface": "Arial",
             "tickLabels": {
-                "tickFontColourHex": null,
-                "tickFontSize": null,
-                "tickTypeface": null,
-                "tickAngle": null,
-                "tickPosition": null
+                "tickFontColourHex": "#000000",
+                "tickFontSize": 16,
+                "tickTypeface": "Arial",
+                "tickAngle": 0,
+                "tickPosition": "left"
             }
         }
     },
