@@ -1,13 +1,15 @@
 {
-    "plotTitle": "Default Title",
+    "plotTitle": "",
 
     "traces": [
         {"plotType": "Bar",
         "plotIndicator": "/breakdown_by_indicator/OperationalLostHours",
-        "markerColour": ""},
+        "markerColour": "",
+        "orientation": "v"},
         {"plotType": "Scatter",
         "plotIndicator": "/breakdown_by_indicator/Production",
-        "markerColour": ""}
+        "markerColour": "",
+        "orientation": "v"}
     ],
 
     "annotations": [
@@ -15,58 +17,57 @@
     ],
 
     "generalOptions": {
-        "plotWidth": 0,
-        "plotHeight": 0,
+        "plotWidth": null,
+        "plotHeight": null,
         "displayXAxisLines": false,
         "displayYAxisLines": false,
         "xAxisScale": "linear",
-        "yAxisScale": "linear",
-        "orientation": "h"
+        "yAxisScale": "linear"
     },
 
     "labellingOptions": {
         "title": {
-            "titleFontColourHex": "",
-            "titleFontSize": 0,
-            "titleTypeface": ""
+            "titleFontColourHex": null,
+            "titleFontSize": null,
+            "titleTypeface": null
         },
         "xAxis": {
-            "xAxisText": "",
-            "xAxisFontColourHex": "",
-            "xAxisFontSize": 0,
-            "xAxisTypeface": "",
+            "xAxisText": null,
+            "xAxisFontColourHex": null,
+            "xAxisFontSize": null,
+            "xAxisTypeface": null,
             "tickLabels": {
-                "tickFontColourHex": "",
-                "tickFontSize": 0,
-                "tickTypeface": "",
-                "tickAngle": "",
-                "tickPosition": ""
+                "tickFontColourHex": null,
+                "tickFontSize": null,
+                "tickTypeface": null,
+                "tickAngle": null,
+                "tickPosition": null
             }
         },
         "yAxis": {
-            "yAxisText": "",
-            "yAxisFontColourHex": "",
-            "yAxisFontSize": 0,
-            "yAxisTypeface": "",
+            "yAxisText": null,
+            "yAxisFontColourHex": null,
+            "yAxisFontSize": null,
+            "yAxisTypeface": null,
             "tickLabels": {
-                "tickFontColourHex": "",
-                "tickFontSize": 0,
-                "tickTypeface": "",
-                "tickAngle": "",
-                "tickPosition": ""
+                "tickFontColourHex": null,
+                "tickFontSize": null,
+                "tickTypeface": null,
+                "tickAngle": null,
+                "tickPosition": null
             }
         }
     },
 
     "visualOptions": {
         "colour":{
-            "plotBackgroundColourHex": "",
-            "plotMarginColourHex": ""
+            "plotBackgroundColourHex": null,
+            "plotMarginColourHex": null
         },
         "text": {
-            "defaultFontColourHex": "#000000",
-            "defaultFontSize": 12,
-            "defaultTypeface": ""
+            "defaultFontColourHex": null,
+            "defaultFontSize": null,
+            "defaultTypeface": null
         }
     }
 
