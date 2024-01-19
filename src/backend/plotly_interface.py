@@ -50,6 +50,7 @@ def generate_plot_html(config_json, data_json):
     fig = update_title(fig, properties)
     fig = update_xaxis_ticklabels(fig, properties)
     fig = update_yaxis_ticklabels(fig, properties)
+    fig = update_plotsize(fig, properties)
 
     fig_html = fig.to_html()
     return fig_html
@@ -127,6 +128,12 @@ def update_yaxis(fig, properties):
                 family=properties["yaxis_typeface_custom"] 
             )
         )
+
+    return fig
+
+
+def update_plotsize(fig, properties):
+    fig.update_layout(width=int(properties["plot_width"]), height=int(properties["plot_height"]))
 
     return fig
 
@@ -226,7 +233,6 @@ def update_yaxis_ticklabels(fig, properties):
     return fig
     
     
-
 def build_property_dict(config_json):
     dict = {}
 

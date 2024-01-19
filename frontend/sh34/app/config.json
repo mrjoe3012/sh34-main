@@ -16,8 +16,8 @@
     ],
 
     "generalOptions": {
-        "plotWidth": null,
-        "plotHeight": null,
+        "plotWidth": "500",
+        "plotHeight": "500",
         "displayXAxisLines": false,
         "displayYAxisLines": false,
         "xAxisScale": "linear",

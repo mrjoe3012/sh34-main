@@ -42,7 +42,8 @@ export const YAxisTickLabelOption = () => {
                                 switcherLabel1="Default"
                                 switcherLabel2="Custom"
                                 firstOptionFunction={switchToDefault}
-                                secondOptionFunction={switchToCustom}/>
+                                secondOptionFunction={switchToCustom}
+                                />
             {yAxisTickLabelOptionMode}
         </div>
     )
