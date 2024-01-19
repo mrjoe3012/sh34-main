@@ -4,8 +4,9 @@ import { OptionComponentTitle } from "../../../OptionComponentTitle"
 import { GenericTextInputOption } from "../../../generic-components/GenericTextInputOption"
 import { XAxisLabelDefaultMode } from "./XAxisLabelDefaultMode"
 import { XAxisLabelCustomMode } from "./XAxisLabelCustomMode"
-
 import { TwoTabSwitcher } from "../../../generic-components/GenericTwoTabSwitcher"
+
+import configjson from "../../../../../../config.json"
 
 export const XAxisLabelOption = () => {
 
@@ -13,6 +14,8 @@ export const XAxisLabelOption = () => {
 
     const changeXAxisLabelText = (inputValue: string) => {
         // Enter logic for changing x axis label text
+
+        (configjson as any)["labellingOptions"]["xAxis"]["xAxisText"] = inputValue
         console.log("Changed x axis label text to " + inputValue);
     }
 

@@ -1,10 +1,14 @@
 import { OptionComponentTitle } from "../../../OptionComponentTitle"
 import { GenericColourOption } from "../../../generic-components/GenericColourOption"
 
+import configjson from "../../../../../../config.json"
+
 export const FontColourOption = () => {
 
     const changeDefaultFontColour = (inputValue: string) => {
         // Enter logic here for changing of Plot's Default Font Colour
+
+        (configjson as any)["visualOptions"]["text"]["defaultFontColourHex"] = "#" + inputValue
         console.log("Default Font Colour Changed to " + inputValue);
     }
     

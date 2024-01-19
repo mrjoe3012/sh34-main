@@ -1,10 +1,14 @@
 import { OptionComponentTitle } from "../../../OptionComponentTitle"
 import { GenericColourOption } from "../../../generic-components/GenericColourOption"
 
+import configjson from "../../../../../../config.json"
+
 export const PlotMarginOption = () => {
 
     const changePlotMarginColour = (inputValue: string) => {
         // Enter logic here for changing of Plot Margin Colour
+
+        (configjson as any)["visualOptions"]["colour"]["plotMarginColourHex"] = "#" + inputValue
         console.log("Plot Margin Colour Changed to " + inputValue);
     }
     

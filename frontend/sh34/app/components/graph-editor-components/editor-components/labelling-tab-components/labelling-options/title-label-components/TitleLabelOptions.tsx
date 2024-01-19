@@ -6,12 +6,16 @@ import { TitleLabelDefaultMode } from "./TitleLabelDefaultMode"
 import { TitleLabelCustomMode } from "./TitleLabelCustomMode"
 import { TwoTabSwitcher } from "../../../generic-components/GenericTwoTabSwitcher"
 
+import configjson from "../../../../../../config.json"
+
 export const TitleLabelOptions = () => {
 
     const [titleOptionMode, setTitleOptionMode] = useState(<TitleLabelDefaultMode />)
 
     const changeTitleText = (inputValue: string) => {
         // Enter logic for changing title text
+
+        configjson["plotTitle"] = inputValue
         console.log("Changed title text to " + inputValue);
     }
 

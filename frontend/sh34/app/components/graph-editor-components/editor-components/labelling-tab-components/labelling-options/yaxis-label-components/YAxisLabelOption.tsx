@@ -1,11 +1,11 @@
 import { useState } from "react"
-
 import { OptionComponentTitle } from "../../../OptionComponentTitle"
 import { GenericTextInputOption } from "../../../generic-components/GenericTextInputOption"
 import { YAxisLabelDefaultMode } from "./YAxisLabelDefaultMode"
 import { YAxisLabelCustomMode } from "./YAxisLabelCustomMode"
-
 import { TwoTabSwitcher } from "../../../generic-components/GenericTwoTabSwitcher"
+
+import configjson from "../../../../../../config.json"
 
 export const YAxisLabelOption = () => {
 
@@ -13,6 +13,8 @@ export const YAxisLabelOption = () => {
 
     const changeYAxisLabelText = (inputValue: string) => {
         // Enter logic here for changing of Y Axis Label Text
+
+        (configjson as any)["labellingOptions"]["yAxis"]["yAxisText"] = inputValue
         console.log("Y-Axis Label Text Changed to " + inputValue);
     }
 

@@ -20,7 +20,7 @@ export const MainButtonList = (props: MainButtonListProps) => {
           })
           .then(response => response.text())
           .then(data => {
-            console.log('Success:', data);
+            console.log('Success:');
             $('#plot-container').html(data);
           })
           .catch((error) => {
