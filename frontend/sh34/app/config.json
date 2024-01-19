@@ -1,5 +1,5 @@
 {
-    "plotTitle": "",
+    "plotTitle": "Plot Title",
 
     "traces": [
         {"plotType": "Bar",
@@ -32,7 +32,7 @@
             "titleTypeface": "Arial"
         },
         "xAxis": {
-            "xAxisText": null,
+            "xAxisText": "X Axis",
             "xAxisFontColourHex": "#000000",
             "xAxisFontSize": 16,
             "xAxisTypeface": "Arial",
@@ -45,7 +45,7 @@
             }
         },
         "yAxis": {
-            "yAxisText": null,
+            "yAxisText": "Y Axis",
             "yAxisFontColourHex": "#000000",
             "yAxisFontSize": 16,
             "yAxisTypeface": "Arial",

@@ -86,7 +86,6 @@ def update_xaxis(fig, properties):
 
     # Defining appropriate replacements for xaxis options if they are left blank
     default_properties = {
-        "xaxis_text": "X Axis",
         "xaxis_colour": properties["default_font_colour"],
         "xaxis_size": properties["default_font_size"],
         "xaxis_typeface": properties["default_font_typeface"]
@@ -114,7 +113,6 @@ def update_yaxis(fig, properties):
 
     # Defining appropriate replacements for xaxis options if they are left blank
     default_properties = {
-        "yaxis_text": "Y Axis",
         "yaxis_colour": properties["default_font_colour"],
         "yaxis_size": properties["default_font_size"],
         "yaxis_typeface": properties["default_font_typeface"]
@@ -171,7 +169,6 @@ def update_grid_lines(fig, properties):
 def update_title(fig, properties):
     # Defining appropriate replacements for xaxis options if they are left blank
     default_properties = {
-        "plot_title": "Plot Title",
         "title_colour": properties["default_font_colour"],
         "title_size": properties["default_font_size"],
         "title_typeface": properties["default_font_typeface"]
