@@ -4,6 +4,8 @@ import { TitleLabelDefaultMode } from "./TickLabelDefaultMode"
 import { TickLabelCustomMode } from "./tick-label-custom-mode/TickLabelCustomMode"
 import { TwoTabSwitcher } from "../../../generic-components/GenericTwoTabSwitcher"
 
+import configjson from "../../../../../../config.json"
+
 export const TickLabelOption = () => {
 
     const [tickLabelOptionMode, setTickLabelOptionMode] = useState(<TitleLabelDefaultMode />)
@@ -15,7 +17,8 @@ export const TickLabelOption = () => {
                                 firstTabContent={<TitleLabelDefaultMode />} 
                                 secondTabContent={<TickLabelCustomMode />}
                                 switcherLabel1="Default"
-                                switcherLabel2="Custom"/>
+                                switcherLabel2="Custom"
+                                option1function={()=>{config}}/>
             {tickLabelOptionMode}
         </div>
     )

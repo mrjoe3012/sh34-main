@@ -27,15 +27,15 @@
 
     "labellingOptions": {
         "title": {
-            "titleFontColourHex": null,
-            "titleFontSize": null,
-            "titleTypeface": null
+            "titleFontColourHex": "#000000",
+            "titleFontSize": 16,
+            "titleTypeface": "Arial"
         },
         "xAxis": {
             "xAxisText": null,
-            "xAxisFontColourHex": null,
-            "xAxisFontSize": null,
-            "xAxisTypeface": null,
+            "xAxisFontColourHex": "#000000",
+            "xAxisFontSize": 16,
+            "xAxisTypeface": "Arial",
             "tickLabels": {
                 "tickFontColourHex": null,
                 "tickFontSize": null,
@@ -46,9 +46,9 @@
         },
         "yAxis": {
             "yAxisText": null,
-            "yAxisFontColourHex": null,
-            "yAxisFontSize": null,
-            "yAxisTypeface": null,
+            "yAxisFontColourHex": "#000000",
+            "yAxisFontSize": 16,
+            "yAxisTypeface": "Arial",
             "tickLabels": {
                 "tickFontColourHex": null,
                 "tickFontSize": null,
@@ -61,13 +61,13 @@
 
     "visualOptions": {
         "colour":{
-            "plotBackgroundColourHex": null,
-            "plotMarginColourHex": null
+            "plotBackgroundColourHex": "#e5ecf6",
+            "plotMarginColourHex": "#FFFFFF"
         },
         "text": {
-            "defaultFontColourHex": null,
-            "defaultFontSize": null,
-            "defaultTypeface": null
+            "defaultFontColourHex": "#000000",
+            "defaultFontSize": 16,
+            "defaultTypeface": "Arial"
         }
     }
 

@@ -3,7 +3,6 @@ import { GenericColourOption } from "../../../generic-components/GenericColourOp
 import { GenericTypefaceOption } from "../../../generic-components/GenericTypefaceOption"
 
 import configjson from "../../../../../../config.json"
-import { config } from "process"
 
 export const XAxisLabelCustomMode = () => {
 
@@ -34,9 +33,9 @@ export const XAxisLabelCustomMode = () => {
 
     return(
         <div className="flex flex-col gap-y-1">
-            <GenericSizeIncrementerOption plotFunction={changeXAxisLabelFontSize} labelName={"Font Size"} displayLabel={true}/>
-            <GenericColourOption plotFunction={changeXAxisLabelFontColour} labelName="Colour" displayLabel={true}/>
-            <GenericTypefaceOption plotFunction={changeXAxisLabelTypeface} displayLabel={true}/>
+            <GenericSizeIncrementerOption contentOnRender={configjson["labellingOptions"]["xAxis"]["xAxisFontSize"]} plotFunction={changeXAxisLabelFontSize} labelName={"Font Size"} displayLabel={true}/>
+            <GenericColourOption contentOnRender={configjson["labellingOptions"]["xAxis"]["xAxisFontColourHex"].slice(1)} plotFunction={changeXAxisLabelFontColour} labelName="Colour" displayLabel={true}/>
+            <GenericTypefaceOption contentOnRender={configjson["labellingOptions"]["xAxis"]["xAxisTypeface"]} plotFunction={changeXAxisLabelTypeface} displayLabel={true}/>
         </div>
     )
 }

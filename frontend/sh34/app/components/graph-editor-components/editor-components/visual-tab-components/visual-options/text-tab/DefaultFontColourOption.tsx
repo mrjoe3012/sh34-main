@@ -15,7 +15,7 @@ export const FontColourOption = () => {
     return(
         <div className="bg-[#e6e7eb] py-3 rounded-md"> 
             <OptionComponentTitle optionName="Default Font Colour" />
-            <GenericColourOption plotFunction={changeDefaultFontColour} labelName="" displayLabel={false}/>
+            <GenericColourOption contentOnRender={configjson["visualOptions"]["text"]["defaultFontColourHex"].slice(1)} plotFunction={changeDefaultFontColour} labelName="" displayLabel={false}/>
         </div>
     )
 }

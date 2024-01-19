@@ -1,25 +1,27 @@
-import { useState } from "react"
+import { GenericTwoButtonOption } from "@app/components/graph-editor-components/editor-components/generic-components/GenericTwoButtonOption";
+
+import configjson from "../../../../../../../config.json"
 
 export const TickLabelPositionOption = () => {
 
-    const [bottomSelected, setBottomSelected] = useState(true);
+    const changePositionBottom = (inputValue: string) => {
+        // Enter logic here for toggling tick labels to the bottom
 
-    const handleBottomClicked = () => {
-        setBottomSelected(true);
-    } 
+        (configjson as any)["labellingOptions"]["xAxis"]["tickLabels"]["tickPosition"] = inputValue.toLowerCase()
+        console.log("Toggled tick label position to " + inputValue.toLowerCase());
+    }
 
-    const handleTopClicked = () => {
-        setBottomSelected(false);
+    const changePositionTop = (inputValue: string) => {
+        // Enter logic here for toggling tick labels to the top
+
+        (configjson as any)["labellingOptions"]["xAxis"]["tickLabels"]["tickPosition"] = inputValue.toLowerCase()
+        console.log("Toggled tick label position to " +  inputValue.toLowerCase());
     }
 
     return(
         <div className="mx-3 flex gap-x-1 items-center">
             <div className="w-[70px] min-w-[70px]"> Position </div>
-            <div className="flex-grow h-[35px] bg-[#EAEAEA] border-2 border-[#B3B3B3] rounded-md flex items-center mb-2 ">
-                <button className={`w-[50%] flex-grow text-center h-full rounded ${bottomSelected ? 'text-RES_ORANGE font-semibold' : ''}`} onClick={handleBottomClicked}>Bottom</button>
-                <div className={` bg-gray-300 w-[2px] h-[70%]`}></div>
-                <button className={`w-[50%] flex-grow text-center h-full rounded ${!bottomSelected ? 'text-RES_ORANGE font-semibold' : ''}`} onClick={handleTopClicked}>Top</button>
-            </div>
+            <GenericTwoButtonOption firstOptionLabel="Bottom" secondOptionLabel="Top" firstOptionFunction={changePositionBottom} secondOptionFunction={changePositionTop} />
         </div>
     )
 }

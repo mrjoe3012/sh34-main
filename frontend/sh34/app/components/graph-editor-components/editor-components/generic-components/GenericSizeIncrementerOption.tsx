@@ -6,6 +6,7 @@ interface GenericSizeIncrementerOptionProps {
     labelName: string,
     displayLabel: boolean
     plotFunction: (inputValue: string) => void;
+    contentOnRender: number
 }
 
 export const GenericSizeIncrementerOption = (props : GenericSizeIncrementerOptionProps) => {
@@ -26,7 +27,9 @@ export const GenericSizeIncrementerOption = (props : GenericSizeIncrementerOptio
             <div className="flex items-center gap-x-1">
                 <input  onBlur={handleBlur} 
                         onKeyDown={handleKeyDown} 
-                        maxLength={7} placeholder="" 
+                        maxLength={7} 
+                        placeholder="" 
+                        defaultValue={props.contentOnRender}
                         className="text-right font-medium placeholder-[#ACACAC] h-[35px] w-[100px] bg-[#DCDCDC] rounded-lg flex items-center px-2 border-2 border-[#B3B3B3] focus:ring-2 focus:ring-RES_ORANGE focus:outline-none focus:border-none" />
                 <div className='flex flex-col h-[35px]'>
                     <button className="bg-[#DCDCDC] border-[2px] border-[#B3B3B3] rounded mb-auto w-4 h-4 flex justify-center items-center"><Image src={uptriangle} alt="uparrow" className='w-2 h-1 opacity-[65%]'></Image></button>

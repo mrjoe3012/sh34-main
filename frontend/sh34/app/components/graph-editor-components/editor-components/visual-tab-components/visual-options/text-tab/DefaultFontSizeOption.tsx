@@ -15,7 +15,7 @@ export const FontSizeOption = () => {
     return(
         <div className="bg-[#e6e7eb] py-3 rounded-md">
             < OptionComponentTitle optionName="Default Font Size" />
-            < GenericSizeIncrementerOption plotFunction={changeDefaultFontSize} labelName={""} displayLabel={false} />
+            < GenericSizeIncrementerOption contentOnRender={configjson["visualOptions"]["text"]["defaultFontSize"]} plotFunction={changeDefaultFontSize} labelName={""} displayLabel={false} />
         </div>
     )
 }

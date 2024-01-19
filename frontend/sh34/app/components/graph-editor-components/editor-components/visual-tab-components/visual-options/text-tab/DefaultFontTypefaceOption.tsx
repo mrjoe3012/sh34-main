@@ -15,7 +15,7 @@ export const FontTypefaceOption = () => {
     return(
         <div className="bg-[#e6e7eb] py-3 rounded-md">
             < OptionComponentTitle optionName="Default Typeface" />
-            < GenericTypefaceOption plotFunction={changeDefaultFontTypeface} displayLabel={false}/>
+            < GenericTypefaceOption contentOnRender={configjson["visualOptions"]["text"]["defaultTypeface"]} plotFunction={changeDefaultFontTypeface} displayLabel={false}/>
         </div>
     )
 }

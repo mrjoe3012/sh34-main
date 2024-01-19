@@ -15,7 +15,7 @@ export const PlotMarginOption = () => {
     return(
         <div className="bg-[#e6e7eb] py-3 rounded-md">
             <OptionComponentTitle optionName="Plot Margin Colour" />
-            <GenericColourOption plotFunction={changePlotMarginColour} labelName="" displayLabel={false} />
+            <GenericColourOption contentOnRender={configjson["visualOptions"]["colour"]["plotMarginColourHex"].slice(1)} plotFunction={changePlotMarginColour} labelName="" displayLabel={false} />
         </div>
     )
 }

@@ -1,9 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+
+import configjson from "../../../../config.json"
 
 interface GenericColourOptionProps {
     labelName: string,
     displayLabel: boolean;
     plotFunction: (inputValue: string) => void;
+    contentOnRender: string
 }
 
 export const GenericColourOption = (props : GenericColourOptionProps) => {
@@ -24,6 +27,11 @@ export const GenericColourOption = (props : GenericColourOptionProps) => {
       const validValue = event.target.value.replace(/[^0-9A-Fa-f]/g, '').slice(0, 6);
       setHexValue(validValue);
     };
+
+    // This function runs when a GenericColourOption component renders, setting its value to the value in the config
+    useEffect(() => {
+      setHexValue(props.contentOnRender)
+    }, [])
   
     return (
       <div className="flex items-center gap-x-1 ml-3 mr-3 ">

@@ -22,7 +22,7 @@ export const XAxisLabelOption = () => {
     return(
         <div className="bg-[#e6e7eb] py-3 rounded-md"> 
                 <OptionComponentTitle optionName="X-Axis Label Options" />
-                <div className="mb-2"><GenericTextInputOption plotFunction={changeXAxisLabelText} placeholder="" labelName={"Text"} displayLabel={true} width="" textPos=""/></div>
+                <div className="mb-2"><GenericTextInputOption contentOnRender={(configjson as any)["labellingOptions"]["xAxis"]["xAxisText"]} plotFunction={changeXAxisLabelText} placeholder="" labelName={"Text"} displayLabel={true} width="" textPos=""/></div>
                 <div className="mx-3"><OptionComponentTitle optionName="Font Options" /></div>
                 <TwoTabSwitcher switchTabFunction={setXAxisOptionMode}
                                 firstTabContent={<XAxisLabelDefaultMode />}

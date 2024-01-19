@@ -140,17 +140,6 @@ def update_yaxis(fig, properties):
 
 def update_plot_colours(fig, properties):
 
-    # Defining appropriate replacements for xaxis options if they are left blank
-    default_properties = {
-        "plot_background_colour": "#e5ecf6",
-        "plot_margin_colour": "#FFFFFF"
-    }
-
-    # If the Options in the properties dictionary are blank, replace them with the specified default options.
-    for key, default in default_properties.items():
-        if not properties.get(key):
-            properties[key] = default
-
     fig.update_layout(
         plot_bgcolor = properties["plot_background_colour"],
         paper_bgcolor = properties["plot_margin_colour"]

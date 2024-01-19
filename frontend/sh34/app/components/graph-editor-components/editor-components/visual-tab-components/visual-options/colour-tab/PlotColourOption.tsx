@@ -15,7 +15,7 @@ export const PlotColourOption = () => {
     return(
         <div className="bg-[#e6e7eb] py-3 rounded-md">
             <OptionComponentTitle optionName="Plot Background Colour" />
-            <GenericColourOption plotFunction={changePlotBackgroundColour} labelName="" displayLabel={false} />
+            <GenericColourOption contentOnRender={configjson["visualOptions"]["colour"]["plotBackgroundColourHex"].slice(1)} plotFunction={changePlotBackgroundColour} labelName="" displayLabel={false} />
         </div>
     )
 }
