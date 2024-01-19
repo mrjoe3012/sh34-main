@@ -1,5 +1,4 @@
 {
-    "plotTitle": "Plot Title",
 
     "traces": [
         {"plotType": "Bar",
@@ -27,34 +26,85 @@
 
     "labellingOptions": {
         "title": {
-            "titleFontColourHex": "#000000",
-            "titleFontSize": 16,
-            "titleTypeface": "Arial"
+            "plotTitle": "Plot Title",
+            "styling": {
+                "currentStylingMode": "default",
+                "defaultFontStyle": {
+                    "fontColour": "#000000",
+                    "fontSize": 16,
+                    "typeface": "Arial"
+                },
+                "customFontStyle": {
+                    "fontColour": "#000000",
+                    "fontSize": 16,
+                    "typeface": "Arial"
+                }
+            }
         },
         "xAxis": {
             "xAxisText": "X Axis",
-            "xAxisFontColourHex": "#000000",
-            "xAxisFontSize": 16,
-            "xAxisTypeface": "Arial",
+            "styling": {
+                "currentStylingMode": "default",
+                "defaultFontStyle": {
+                    "fontColour": "#000000",
+                    "fontSize": 16,
+                    "typeface": "Arial"
+                },
+                "customFontStyle": {
+                    "fontColour": "#000000",
+                    "fontSize": 16,
+                    "typeface": "Arial"
+                }
+            },
             "tickLabels": {
-                "tickFontColourHex": "#000000",
-                "tickFontSize": 16,
-                "tickTypeface": "Arial",
                 "tickAngle": 0,
-                "tickPosition": "bottom"
+                "tickPosition": "bottom",
+                "styling": {
+                    "currentStylingMode": "default",
+                    "defaultFontStyle": {
+                        "fontColour": "#000000",
+                        "fontSize": 16,
+                        "typeface": "Arial"
+                    },
+                    "customFontStyle": {
+                        "fontColour": "#000000",
+                        "fontSize": 16,
+                        "typeface": "Arial"
+                    }
+                }
             }
         },
         "yAxis": {
             "yAxisText": "Y Axis",
-            "yAxisFontColourHex": "#000000",
-            "yAxisFontSize": 16,
-            "yAxisTypeface": "Arial",
+            "styling": {
+                "currentStylingMode": "default",
+                "defaultFontStyle": {
+                    "fontColour": "#000000",
+                    "fontSize": 16,
+                    "typeface": "Arial"
+                },
+                "customFontStyle": {
+                    "fontColour": "#000000",
+                    "fontSize": 16,
+                    "typeface": "Arial"
+                }
+            },
             "tickLabels": {
-                "tickFontColourHex": "#000000",
-                "tickFontSize": 16,
-                "tickTypeface": "Arial",
                 "tickAngle": 0,
-                "tickPosition": "left"
+                "tickPosition": "left",
+                "styling": {
+                    "currentStylingMode": "default",
+                    "defaultFontStyle": {
+                        "fontColour": "#000000",
+                        "fontSize": 16,
+                        "typeface": "Arial"
+                    },
+                    "customFontStyle":{
+                        "fontColour": "#000000",
+                        "fontSize": 16,
+                        "typeface": "Arial"
+                    }
+                }
             }
         }
     },
@@ -63,11 +113,6 @@
         "colour":{
             "plotBackgroundColourHex": "#e5ecf6",
             "plotMarginColourHex": "#FFFFFF"
-        },
-        "text": {
-            "defaultFontColourHex": "#000000",
-            "defaultFontSize": 16,
-            "defaultTypeface": "Arial"
         }
     }
 

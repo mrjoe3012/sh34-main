@@ -38,7 +38,7 @@ export const GenericColourOption = (props : GenericColourOptionProps) => {
         {props.displayLabel && <div className="w-[70px] min-w-[70px] text-right pr-2">{props.labelName}</div>}
         <div className="flex items-center gap-x-1">
           <div className="flex border-2 border-[#B3B3B3] bg-[#DCDCDC] rounded-lg focus-within:border-RES_ORANGE h-[35px] w-[100px]">
-            <span className="flex items-center pl-3 pr-1 text-gray-700 mt-1">#</span>
+            <span className="flex items-center pl-3 pr-1 text-gray-700">#</span>
             <input 
               type="text" 
               className="bg-[#DCDCDC] w-full flex-1 rounded-r-lg focus:outline-none" 

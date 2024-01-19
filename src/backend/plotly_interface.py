@@ -43,7 +43,6 @@ def generate_plot_html(config_json, data_json):
         
 
     # Update the figure with initial font settings - these act as default font settings that then get overridden if any other font options are specified
-    fig = update_default_font_options(fig, properties)
     fig = update_xaxis(fig, properties)
     fig = update_yaxis(fig, properties)
     fig = update_plot_colours(fig, properties)
@@ -56,82 +55,78 @@ def generate_plot_html(config_json, data_json):
     return fig_html
 
 
+def update_title(fig, properties):
 
-def update_default_font_options(fig, properties):
-    
-    # Defining appropriate values for options when those options are blank in the configJSON
-    default_properties = {
-        "default_font_colour": "#000000",
-        "default_font_size": 16,
-        "default_font_typeface": "Arial, sans-serif"
-    }
-
-    # If the options in the properties dictionary are blank, replace them with the specified default options above.
-    for key, default in default_properties.items():
-        # If the value in the properties dictionary is null (None), then replace it with the specified default.
-        if not properties.get(key):
-            properties[key] = default
-
-    fig.update_layout(
-        font=dict(
-            size=properties["default_font_size"],
-            family=properties["default_font_typeface"],
-            color=properties["default_font_colour"]
+    if properties["title_style_mode"] == "default":
+        fig.update_layout(
+            title={
+                'text': properties["plot_title"],
+                'font': {
+                    'family': properties["title_typeface_default"], 
+                    'size': properties["title_size_default"],                    
+                    'color': properties["title_colour_default"]     
+                }
+            }
         )
-    )
+    elif properties["title_style_mode"] == "custom":
+        fig.update_layout(
+            title={
+                'text': properties["plot_title"],
+                'font': {
+                    'family': properties["title_typeface_custom"], 
+                    'size': properties["title_size_custom"],                    
+                    'color': properties["title_colour_custom"]     
+                }
+            }
+        )
+
     return fig
 
 
 def update_xaxis(fig, properties):
 
-    # Defining appropriate replacements for xaxis options if they are left blank
-    default_properties = {
-        "xaxis_colour": properties["default_font_colour"],
-        "xaxis_size": properties["default_font_size"],
-        "xaxis_typeface": properties["default_font_typeface"]
-    }
-
-    # If the Options in the properties dictionary are blank, replace them with the specified default options.
-    for key, default in default_properties.items():
-        if not properties.get(key):
-            properties[key] = default
-
-
-    fig.update_xaxes(
-        title_text=properties["xaxis_text"],
-        title_font=dict(
-            size=properties["xaxis_size"],
-            color=properties["xaxis_colour"], 
-            family=properties["xaxis_typeface"] 
+    if properties["xaxis_style_mode"] == "default":
+        fig.update_xaxes(
+            title_text=properties["xaxis_text"],
+            title_font=dict(
+                size=properties["xaxis_size_default"],
+                color=properties["xaxis_colour_default"], 
+                family=properties["xaxis_typeface_default"] 
+            )
         )
-    )
+    elif properties["xaxis_style_mode"] == "custom":
+        fig.update_xaxes(
+            title_text=properties["xaxis_text"],
+            title_font=dict(
+                size=properties["xaxis_size_custom"],
+                color=properties["xaxis_colour_custom"], 
+                family=properties["xaxis_typeface_custom"] 
+            )
+        )
 
     return fig
 
 
 def update_yaxis(fig, properties):
 
-    # Defining appropriate replacements for xaxis options if they are left blank
-    default_properties = {
-        "yaxis_colour": properties["default_font_colour"],
-        "yaxis_size": properties["default_font_size"],
-        "yaxis_typeface": properties["default_font_typeface"]
-    }
-
-    # If the Options in the properties dictionary are blank, replace them with the specified default options.
-    for key, default in default_properties.items():
-        if not properties.get(key):
-            properties[key] = default
-
-
-    fig.update_yaxes(
-        title_text=properties["yaxis_text"],
-        title_font=dict(
-            size=properties["yaxis_size"],
-            color=properties["yaxis_colour"], 
-            family=properties["yaxis_typeface"] 
+    if properties["yaxis_style_mode"] == "default":
+        fig.update_yaxes(
+            title_text=properties["yaxis_text"],
+            title_font=dict(
+                size=properties["yaxis_size_default"],
+                color=properties["yaxis_colour_default"], 
+                family=properties["yaxis_typeface_default"] 
+            )
         )
-    )
+    elif properties["yaxis_style_mode"] == "custom":
+        fig.update_yaxes(
+            title_text=properties["yaxis_text"],
+            title_font=dict(
+                size=properties["yaxis_size_custom"],
+                color=properties["yaxis_colour_custom"], 
+                family=properties["yaxis_typeface_custom"] 
+            )
+        )
 
     return fig
 
@@ -166,97 +161,74 @@ def update_grid_lines(fig, properties):
     return fig
 
 
-def update_title(fig, properties):
-    # Defining appropriate replacements for xaxis options if they are left blank
-    default_properties = {
-        "title_colour": properties["default_font_colour"],
-        "title_size": properties["default_font_size"],
-        "title_typeface": properties["default_font_typeface"]
-    }
-
-    # If the Options in the properties dictionary are blank, replace them with the specified default options.
-    for key, default in default_properties.items():
-        if not properties.get(key):
-            properties[key] = default
-
-
-    fig.update_layout(
-        title={
-            'text': properties["plot_title"],
-            'font': {
-                'family': properties["title_typeface"], 
-                'size': properties["title_size"],                    
-                'color': properties["title_colour"]     
-            }
-        }
-    )
-
-    return fig
-
-
 def update_xaxis_ticklabels(fig, properties):
-    # Defining appropriate replacements for xaxis options if they are left blank
-    default_properties = {
-        "xaxis_ticks_colour": properties["default_font_colour"],
-        "xaxis_ticks_size": properties["default_font_size"],
-        "xaxis_ticks_typeface": properties["default_font_typeface"],
-        "xaxis_ticks_angle": 0,
-        "xaxis_ticks_position": "bottom"
-    }
-
-    # If the Options in the properties dictionary are blank, replace them with the specified default options.
-    for key, default in default_properties.items():
-        if not properties.get(key):
-            properties[key] = default
 
     fig.update_layout(
-        xaxis=dict(
-            tickfont=dict(
-                family=properties["xaxis_ticks_typeface"],
-                size=properties["xaxis_ticks_size"],                          
-                color=properties["xaxis_ticks_colour"]                   
-            ),
+            xaxis=dict(
             tickangle=properties["xaxis_ticks_angle"],
             side=properties["xaxis_ticks_position"]
         )
     )
 
+    if properties["xaxis_ticks_style_mode"] == "default":
+        fig.update_layout(
+            xaxis=dict(
+                tickfont=dict(
+                    family=properties["xaxis_ticks_typeface_default"],
+                    size=properties["xaxis_ticks_size_default"],                          
+                    color=properties["xaxis_ticks_colour_default"]                   
+                )
+            )
+        )
+    elif properties["xaxis_ticks_style_mode"] == "custom":
+        fig.update_layout(
+            xaxis=dict(
+                tickfont=dict(
+                    family=properties["xaxis_ticks_typeface_custom"],
+                    size=properties["xaxis_ticks_size_custom"],                          
+                    color=properties["xaxis_ticks_colour_custom"]                   
+                )
+            )
+        )
+
     return fig
 
 
 def update_yaxis_ticklabels(fig, properties):
-    # Defining appropriate replacements for xaxis options if they are left blank
-    default_properties = {
-        "yaxis_ticks_colour": properties["default_font_colour"],
-        "yaxis_ticks_size": properties["default_font_size"],
-        "yaxis_ticks_typeface": properties["default_font_typeface"],
-        "yaxis_ticks_angle": 0,
-        "yaxis_ticks_position": "left"
-    }
-
-    # If the Options in the properties dictionary are blank, replace them with the specified default options.
-    for key, default in default_properties.items():
-        if not properties.get(key):
-            properties[key] = default
-
     fig.update_layout(
-        yaxis=dict(
-            tickfont=dict(
-                family=properties["yaxis_ticks_typeface"],
-                size=properties["yaxis_ticks_size"],                          
-                color=properties["yaxis_ticks_colour"]                   
-            ),
+            yaxis=dict(
             tickangle=properties["yaxis_ticks_angle"],
             side=properties["yaxis_ticks_position"]
         )
     )
 
+    if properties["yaxis_ticks_style_mode"] == "default":
+        fig.update_layout(
+            yaxis=dict(
+                tickfont=dict(
+                    family=properties["yaxis_ticks_typeface_default"],
+                    size=properties["yaxis_ticks_size_default"],                          
+                    color=properties["yaxis_ticks_colour_default"]                   
+                )
+            )
+        )
+    elif properties["yaxis_ticks_style_mode"] == "custom":
+        fig.update_layout(
+            yaxis=dict(
+                tickfont=dict(
+                    family=properties["yaxis_ticks_typeface_custom"],
+                    size=properties["yaxis_ticks_size_custom"],                          
+                    color=properties["yaxis_ticks_colour_custom"]                   
+                )
+            )
+        )
+
     return fig
+    
     
 
 def build_property_dict(config_json):
     dict = {}
-    dict["plot_title"] = config_json["plotTitle"]
 
     # General Plot Options
     dict["plot_width"] = config_json["generalOptions"]["plotWidth"]
@@ -266,41 +238,82 @@ def build_property_dict(config_json):
     dict["xaxis_scale"] = config_json["generalOptions"]["xAxisScale"]
     dict["yaxis_scale"] = config_json["generalOptions"]["yAxisScale"]
 
+
+
     # Labelling Options - Title
-    dict["title_colour"] = config_json["labellingOptions"]["title"]["titleFontColourHex"]
-    dict["title_size"] = config_json["labellingOptions"]["title"]["titleFontSize"]
-    dict["title_typeface"] = config_json["labellingOptions"]["title"]["titleTypeface"]
+    dict["plot_title"] = config_json["labellingOptions"]["title"]["plotTitle"]
+    dict["title_style_mode"] = config_json["labellingOptions"]["title"]["styling"]["currentStylingMode"]
+        # Default Title Styling
+    dict["title_colour_default"] = config_json["labellingOptions"]["title"]["styling"]["defaultFontStyle"]["fontColour"]
+    dict["title_size_default"] = config_json["labellingOptions"]["title"]["styling"]["defaultFontStyle"]["fontSize"]
+    dict["title_typeface_default"] = config_json["labellingOptions"]["title"]["styling"]["defaultFontStyle"]["typeface"]
+            # Custom Title Styling
+    dict["title_colour_custom"] = config_json["labellingOptions"]["title"]["styling"]["customFontStyle"]["fontColour"]
+    dict["title_size_custom"] = config_json["labellingOptions"]["title"]["styling"]["customFontStyle"]["fontSize"]
+    dict["title_typeface_custom"] = config_json["labellingOptions"]["title"]["styling"]["customFontStyle"]["typeface"]
+
+
 
     # Labelling Options - XAxis
     dict["xaxis_text"] = config_json["labellingOptions"]["xAxis"]["xAxisText"]
-    dict["xaxis_colour"] = config_json["labellingOptions"]["xAxis"]["xAxisFontColourHex"]
-    dict["xaxis_size"] = config_json["labellingOptions"]["xAxis"]["xAxisFontSize"]
-    dict["xaxis_typeface"] = config_json["labellingOptions"]["xAxis"]["xAxisTypeface"]
-    dict["xaxis_ticks_colour"] = config_json["labellingOptions"]["xAxis"]["tickLabels"]["tickFontColourHex"]
-    dict["xaxis_ticks_size"] = config_json["labellingOptions"]["xAxis"]["tickLabels"]["tickFontSize"]
-    dict["xaxis_ticks_typeface"] = config_json["labellingOptions"]["xAxis"]["tickLabels"]["tickTypeface"]
+    dict["xaxis_style_mode"] = config_json["labellingOptions"]["xAxis"]["styling"]["currentStylingMode"]
+        # Default X-Axis Styling
+    dict["xaxis_colour_default"] = config_json["labellingOptions"]["xAxis"]["styling"]["defaultFontStyle"]["fontColour"]
+    dict["xaxis_size_default"] = config_json["labellingOptions"]["xAxis"]["styling"]["defaultFontStyle"]["fontSize"]
+    dict["xaxis_typeface_default"] = config_json["labellingOptions"]["xAxis"]["styling"]["defaultFontStyle"]["typeface"]
+        # Custom X-Axis Styling
+    dict["xaxis_colour_custom"] = config_json["labellingOptions"]["xAxis"]["styling"]["customFontStyle"]["fontColour"]
+    dict["xaxis_size_custom"] = config_json["labellingOptions"]["xAxis"]["styling"]["customFontStyle"]["fontSize"]
+    dict["xaxis_typeface_custom"] = config_json["labellingOptions"]["xAxis"]["styling"]["customFontStyle"]["typeface"]
+
+
+
+    # Labelling Optios - XAxis Ticks
     dict["xaxis_ticks_angle"] = config_json["labellingOptions"]["xAxis"]["tickLabels"]["tickAngle"]
     dict["xaxis_ticks_position"] = config_json["labellingOptions"]["xAxis"]["tickLabels"]["tickPosition"]
+    dict["xaxis_ticks_style_mode"] = config_json["labellingOptions"]["xAxis"]["tickLabels"]["styling"]["currentStylingMode"]
+        # Default X-Axis Tick Label Styling
+    dict["xaxis_ticks_colour_default"] = config_json["labellingOptions"]["xAxis"]["tickLabels"]["styling"]["customFontStyle"]["fontColour"]
+    dict["xaxis_ticks_size_default"] = config_json["labellingOptions"]["xAxis"]["tickLabels"]["styling"]["customFontStyle"]["fontSize"]
+    dict["xaxis_ticks_typeface_default"] = config_json["labellingOptions"]["xAxis"]["tickLabels"]["styling"]["customFontStyle"]["typeface"]
+        # Custom X-Axis Tick Label Styling
+    dict["xaxis_ticks_colour_custom"] = config_json["labellingOptions"]["xAxis"]["tickLabels"]["styling"]["customFontStyle"]["fontColour"]
+    dict["xaxis_ticks_size_custom"] = config_json["labellingOptions"]["xAxis"]["tickLabels"]["styling"]["customFontStyle"]["fontSize"]
+    dict["xaxis_ticks_typeface_custom"] = config_json["labellingOptions"]["xAxis"]["tickLabels"]["styling"]["customFontStyle"]["typeface"]
+
+
 
     # Labelling Options - YAxis
     dict["yaxis_text"] = config_json["labellingOptions"]["yAxis"]["yAxisText"]
-    dict["yaxis_colour"] = config_json["labellingOptions"]["yAxis"]["yAxisFontColourHex"]
-    dict["yaxis_size"] = config_json["labellingOptions"]["yAxis"]["yAxisFontSize"]
-    dict["yaxis_typeface"] = config_json["labellingOptions"]["yAxis"]["yAxisTypeface"]
-    dict["yaxis_ticks_colour"] = config_json["labellingOptions"]["yAxis"]["tickLabels"]["tickFontColourHex"]
-    dict["yaxis_ticks_size"] = config_json["labellingOptions"]["yAxis"]["tickLabels"]["tickFontSize"]
-    dict["yaxis_ticks_typeface"] = config_json["labellingOptions"]["yAxis"]["tickLabels"]["tickTypeface"]
+    dict["yaxis_style_mode"] = config_json["labellingOptions"]["yAxis"]["styling"]["currentStylingMode"]
+        # Default Y-Axis Styling
+    dict["yaxis_colour_default"] = config_json["labellingOptions"]["yAxis"]["styling"]["defaultFontStyle"]["fontColour"]
+    dict["yaxis_size_default"] = config_json["labellingOptions"]["yAxis"]["styling"]["defaultFontStyle"]["fontSize"]
+    dict["yaxis_typeface_default"] = config_json["labellingOptions"]["yAxis"]["styling"]["defaultFontStyle"]["typeface"]
+        # Custom Y-Axis Styling
+    dict["yaxis_colour_custom"] = config_json["labellingOptions"]["yAxis"]["styling"]["customFontStyle"]["fontColour"]
+    dict["yaxis_size_custom"] = config_json["labellingOptions"]["yAxis"]["styling"]["customFontStyle"]["fontSize"]
+    dict["yaxis_typeface_custom"] = config_json["labellingOptions"]["yAxis"]["styling"]["customFontStyle"]["typeface"]
+
+
+
+    # Labelling Optios - YAxis Ticks
     dict["yaxis_ticks_angle"] = config_json["labellingOptions"]["yAxis"]["tickLabels"]["tickAngle"]
     dict["yaxis_ticks_position"] = config_json["labellingOptions"]["yAxis"]["tickLabels"]["tickPosition"]
+    dict["yaxis_ticks_style_mode"] = config_json["labellingOptions"]["yAxis"]["tickLabels"]["styling"]["currentStylingMode"]
+        # Default Y-Axis Tick Label Styling
+    dict["yaxis_ticks_colour_default"] = config_json["labellingOptions"]["yAxis"]["tickLabels"]["styling"]["customFontStyle"]["fontColour"]
+    dict["yaxis_ticks_size_default"] = config_json["labellingOptions"]["yAxis"]["tickLabels"]["styling"]["customFontStyle"]["fontSize"]
+    dict["yaxis_ticks_typeface_default"] = config_json["labellingOptions"]["yAxis"]["tickLabels"]["styling"]["customFontStyle"]["typeface"]
+        # Custom Y-Axis Tick Label Styling
+    dict["yaxis_ticks_colour_custom"] = config_json["labellingOptions"]["yAxis"]["tickLabels"]["styling"]["customFontStyle"]["fontColour"]
+    dict["yaxis_ticks_size_custom"] = config_json["labellingOptions"]["yAxis"]["tickLabels"]["styling"]["customFontStyle"]["fontSize"]
+    dict["yaxis_ticks_typeface_custom"] = config_json["labellingOptions"]["yAxis"]["tickLabels"]["styling"]["customFontStyle"]["typeface"]
+
 
     # Visual Options - Colour
     dict["plot_background_colour"] = config_json["visualOptions"]["colour"]["plotBackgroundColourHex"]
     dict["plot_margin_colour"] = config_json["visualOptions"]["colour"]["plotMarginColourHex"]
-
-    # Visual Options - Text
-    dict["default_font_colour"] = config_json["visualOptions"]["text"]["defaultFontColourHex"]
-    dict["default_font_size"] = config_json["visualOptions"]["text"]["defaultFontSize"]
-    dict["default_font_typeface"] = config_json["visualOptions"]["text"]["defaultTypeface"]
 
     return dict
 
