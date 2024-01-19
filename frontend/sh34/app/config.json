@@ -3,22 +3,9 @@
     "traces": [
         {
             "id": 0,
+            "name": "",
             "plotType": "Bar",
             "plotIndicator": "/breakdown_by_indicator/Production",
-            "markerColour": "",
-            "orientation": "v"
-        },
-        {
-            "id": 1,
-            "plotType": "Line",
-            "plotIndicator": "/breakdown_by_indicator/WindSpeedMean",
-            "markerColour": "",
-            "orientation": "v"
-        },
-        {
-            "id": 2,
-            "plotType": "Line",
-            "plotIndicator": "/breakdown_by_indicator/TemperatureMean",
             "markerColour": "",
             "orientation": "v"
         }
