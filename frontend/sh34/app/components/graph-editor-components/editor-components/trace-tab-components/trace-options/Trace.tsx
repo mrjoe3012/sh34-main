@@ -1,7 +1,8 @@
-import { useState } from "react"
 import { OptionComponentTitle } from "../../OptionComponentTitle"
 import { GenericPlotTypeOption } from "../../generic-components/GenericPlotTypeOption";
 import { GenericIndicatorOption } from "../../generic-components/GenericIndicatorOption";
+import { GenericTextInputOption } from "../../generic-components/GenericTextInputOption";
+import { useConfig } from "@app/graph-editor/ConfigContext";
 
 interface TraceProps {
     trace: {
@@ -16,16 +17,72 @@ interface TraceProps {
 
 export const Trace = (props : TraceProps) => {
 
-    var trimmedIndicator = props.trace.plotIndicator.split('/').pop();
-    console.log("trimmed" + trimmedIndicator)
+    const {config,setConfig} = useConfig()
+
+    const changeTraceName = (inputValue: string) => {
+        // Ensure that traces is a proper array in your config
+        if (config && Array.isArray(config.traces)) {
+            // Map through the traces to find the one you want to update
+            const updatedTraces = config.traces.map(trace => {
+                // Check if the current trace is the one to update
+                if (trace.id === props.trace.id) {
+                    // If so, return a new object with the updated name
+                    return { ...trace, name: inputValue };
+                }
+                // Otherwise, return the trace as is
+                return trace;
+            });
+
+            // Update the config with the new traces array
+            setConfig({
+                ...config,
+                traces: updatedTraces
+            });
+        }
+    }
+
+    const changeTraceType = (newType: string) => {
+        if (config && Array.isArray(config.traces)) {
+            const updatedTraces = config.traces.map(trace => {
+                if (trace.id === props.trace.id) {
+                    return { ...trace, plotType: newType }; 
+                }
+                return trace;
+            });
+
+            setConfig({
+                ...config,
+                traces: updatedTraces
+            });
+        }
+    };
+
+    const changeTraceIndicator = (newIndicator: string) => {
+        // Need to add this prefix as the value from the select is just the indicator, but the configJSON takes in "/breakdown_by_indicator/indicator"
+        newIndicator = "/breakdown_by_indicator/" + newIndicator 
+        if (config && Array.isArray(config.traces)) {
+            const updatedTraces = config.traces.map(trace => {
+                if (trace.id === props.trace.id) {
+                    return { ...trace, plotIndicator: newIndicator }; 
+                }
+                return trace;
+            });
+    
+            setConfig({
+                ...config,
+                traces: updatedTraces
+            });
+        }
+    };
 
     return (
         <div className="bg-[#e6e7eb] py-3 rounded-md"> 
-            <OptionComponentTitle optionName={`Trace ${props.trace.id} - ${props.trace.name}`} />
+            <OptionComponentTitle optionName={`Trace ${props.trace.id}`} />
             <div className="flex flex-col gap-y-1">
-                < GenericPlotTypeOption contentOnRender={props.trace.plotType}/>
+                < GenericPlotTypeOption plotFunction={changeTraceType} contentOnRender={props.trace.plotType}/>
                 <div className="self-center bg-[#d6d6d6] h-[2px] w-[90%] rounded-xl my-2"></div>
-                < GenericIndicatorOption contentOnRender={trimmedIndicator} labelName="Indicator" displayLabel={true}/>
+                < GenericTextInputOption placeholder="" labelName="Name" displayLabel={true} width="w-full" textPos="" plotFunction={changeTraceName} contentOnRender={props.trace.name} />
+                < GenericIndicatorOption plotFunction={changeTraceIndicator} contentOnRender={props.trace.plotIndicator} labelName="Indicator" displayLabel={true}/>
             </div>
         </div>
     )

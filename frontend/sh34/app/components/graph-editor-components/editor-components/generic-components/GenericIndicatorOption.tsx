@@ -1,10 +1,10 @@
 import { useEffect, useState, ChangeEvent, useContext } from "react"
-import { PlotOptionsContext } from "@app/graph-editor/PlotOptionsContext";
 
 interface GenericIndicatorOptionProps {
     labelName: string,
     displayLabel: boolean,
-    contentOnRender: string | undefined,
+    contentOnRender: string,
+    plotFunction: (inputValue: string) => void;
 }
 
 
@@ -26,13 +26,23 @@ export const GenericIndicatorOption = (props : GenericIndicatorOptionProps) => {
             });
     }, []);
 
-    console.log(indicators)
+    
+    const handleIndicatorChange = (event: ChangeEvent<HTMLSelectElement>) => {
+        const newValue = event.target.value;
+        props.plotFunction(newValue); // Call the plotFunction with the new indicator value
+    };
 
     return (
         <div className="flex items-center gap-x-1 ml-3 mr-3">
             {props.displayLabel && <div className="w-[70px] min-w-[70px] text-right pr-2"> {props.labelName} </div>}
-            <select value={props.contentOnRender} className="w-[80%] ml-3 border-2 border-[#B3B3B3] rounded bg-[#DCDCDC]" name="plot-indicator" id="plot-indicator" > 
-                { indicators }
+            <select
+                value={props.contentOnRender.split('/').pop()}
+                className="w-full px-4 font-medium placeholder-[#ACACAC] h-[35px] bg-[#DCDCDC] rounded-lg flex items-center border-2 border-[#B3B3B3] focus:ring-2 focus:ring-RES_ORANGE focus:outline-none focus:border-none"
+                name="plot-indicator"
+                id="plot-indicator"
+                onChange={handleIndicatorChange} // Add onChange event here
+            >
+                {indicators}
             </select>
         </div>
     );

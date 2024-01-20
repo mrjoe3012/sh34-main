@@ -1,4 +1,4 @@
-import configjson from "../../../../../config.json"
+import { useConfig } from "@app/graph-editor/ConfigContext";
 
 interface Trace {
     id: number;
@@ -11,16 +11,29 @@ interface Trace {
 
 export const NewTraceButton = () => {
 
+    const {config,setConfig} = useConfig()
+
     const addTrace = () => {
         const newTrace: Trace = {
-        id: configjson["traces"].length, 
-        name: "New Trace",
-        plotType: 'Scatter', 
-        plotIndicator: '/breakdown_by_indicator/TemperatureMean',
-        markerColour: "",
-        orientation: "v"
+            id: config["traces"].length, 
+            name: "New Trace",
+            plotType: 'Scatter', 
+            plotIndicator: '/breakdown_by_indicator/TemperatureMean',
+            markerColour: "",
+            orientation: "v"
         };
-        configjson["traces"] = [...configjson["traces"], newTrace]
+
+        // Create a new array of traces with the newTrace added
+        const updatedTraces = [...config.traces, newTrace];
+
+        // Create a new config object with the updated traces array
+        const newConfig = {
+            ...config,
+            traces: updatedTraces
+        };
+
+        // Update the config context with the new configuration
+        setConfig(newConfig);
     }
 
     return(

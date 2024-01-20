@@ -1,18 +1,13 @@
 import { OptionComponentTitle } from "../../OptionComponentTitle"
 import { GenericTextInputOption } from "../../generic-components/GenericTextInputOption"
-import { useContext, useEffect, useState } from "react"
-import { ConfigContext } from "@app/graph-editor/ConfigContext"
+import { useConfig } from "@app/graph-editor/ConfigContext"
 
 export const PlotSizeOption = () => {
 
-    const {config,setConfig} = useContext(ConfigContext)
+    const {config,setConfig} = useConfig()
 
     const changePlotWidth = (inputValue: string) => {
         // Enter logic here for changing of Plot Width
-
-        if (config === null) {
-            return;
-        }
 
         const newConfig = {
             ...config,
@@ -29,10 +24,6 @@ export const PlotSizeOption = () => {
 
     const changePlotHeight = (inputValue: string) => {
         // Enter logic here for changing of Plot Width
-
-        if (config === null) {
-            return;
-        }
 
         const newConfig = {
             ...config,
@@ -54,8 +45,8 @@ export const PlotSizeOption = () => {
 
                 <div className="flex flex-col gap-y-1 ">
                     
-                    < GenericTextInputOption contentOnRender={config!["generalOptions"]["plotWidth"]} placeholder="px" labelName="Width" displayLabel={true} width="w-[30%]" textPos="text-right" plotFunction={changePlotWidth} />
-                    < GenericTextInputOption contentOnRender={config!["generalOptions"]["plotHeight"]} placeholder="px" labelName="Height" displayLabel={true} width="w-[30%]" textPos="text-right" plotFunction={changePlotHeight} />
+                    < GenericTextInputOption contentOnRender={config["generalOptions"]["plotWidth"]} placeholder="px" labelName="Width" displayLabel={true} width="w-[30%]" textPos="text-right" plotFunction={changePlotWidth} />
+                    < GenericTextInputOption contentOnRender={config["generalOptions"]["plotHeight"]} placeholder="px" labelName="Height" displayLabel={true} width="w-[30%]" textPos="text-right" plotFunction={changePlotHeight} />
 
                 </div>
         </div>

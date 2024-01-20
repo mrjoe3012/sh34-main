@@ -1,19 +1,14 @@
 import { OptionComponentTitle } from "../../../OptionComponentTitle"
 import { GenericColourOption } from "../../../generic-components/GenericColourOption"
-import { ConfigContext } from "@app/graph-editor/[id]/page"
-import { useContext } from "react"
+import { useConfig } from "@app/graph-editor/ConfigContext"
 
 export const PlotColourOption = () => {
 
-    const {config,setConfig} = useContext(ConfigContext)
+    const {config,setConfig} = useConfig()
 
     const changePlotBackgroundColour = (inputValue: string) => {
         // Enter logic here for changing of Plot Background Colour
 
-    
-
-        // Create a new config object by deeply copying the old config
-        // and updating the plotBackgroundColourHex property
         const newConfig = {
             ...config,
             visualOptions: {
