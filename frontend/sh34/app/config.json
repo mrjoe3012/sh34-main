@@ -6,7 +6,7 @@
             "name": "Name",
             "plotType": "Bar",
             "plotIndicator": "/breakdown_by_indicator/TemperatureMean",
-            "markerColour": "",
+            "markerColour": "#ffac05",
             "orientation": "v"
         }
     ],

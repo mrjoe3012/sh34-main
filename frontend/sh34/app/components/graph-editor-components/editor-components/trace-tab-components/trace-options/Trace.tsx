@@ -3,6 +3,7 @@ import { GenericPlotTypeOption } from "../../generic-components/GenericPlotTypeO
 import { GenericIndicatorOption } from "../../generic-components/GenericIndicatorOption";
 import { GenericTextInputOption } from "../../generic-components/GenericTextInputOption";
 import { useConfig } from "@app/graph-editor/ConfigContext";
+import { MarkerConstantOption } from "./marker-colour-components/MarkerConstantOption";
 
 interface TraceProps {
     trace: {
@@ -75,14 +76,35 @@ export const Trace = (props : TraceProps) => {
         }
     };
 
+    const changeMarkerColourConstant = (inputValue: string) => {
+        if (config && Array.isArray(config.traces)) {
+            const updatedTraces = config.traces.map(trace => {
+                if (trace.id === props.trace.id) {
+                    return { ...trace, markerColour: "#" + inputValue }; 
+                }
+                return trace;
+            });
+
+            setConfig({
+                ...config,
+                traces: updatedTraces
+            });
+        }
+    };
+
+    const changeMarkerColourScale = (inputValue: string) => {
+
+    }
+
     return (
         <div className="bg-[#e6e7eb] py-3 rounded-md"> 
             <OptionComponentTitle optionName={`Trace ${props.trace.id}`} />
-            <div className="flex flex-col gap-y-1">
-                < GenericPlotTypeOption plotFunction={changeTraceType} contentOnRender={props.trace.plotType}/>
-                <div className="self-center bg-[#d6d6d6] h-[2px] w-[90%] rounded-xl my-2"></div>
+            <div className="flex flex-col gap-y-2">
+                < GenericPlotTypeOption traceID={props.trace.id} plotFunction={changeTraceType} contentOnRender={props.trace.plotType}/>
+                < OptionComponentTitle optionName="General Trace Settings" />
                 < GenericTextInputOption placeholder="" labelName="Name" displayLabel={true} width="w-full" textPos="" plotFunction={changeTraceName} contentOnRender={props.trace.name} />
                 < GenericIndicatorOption plotFunction={changeTraceIndicator} contentOnRender={props.trace.plotIndicator} labelName="Indicator" displayLabel={true}/>
+                < MarkerConstantOption trace={props.trace} plotFunction={changeMarkerColourConstant} />
             </div>
         </div>
     )

@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 interface GenericPlotTypeOptionProps {
     contentOnRender: string;
     plotFunction: (inputValue: string) => void;
+    traceID: number;
 }
 
 export const GenericPlotTypeOption = (props: GenericPlotTypeOptionProps) => {
@@ -31,6 +32,9 @@ export const GenericPlotTypeOption = (props: GenericPlotTypeOptionProps) => {
         props.plotFunction(event.target.value); // Call the plotFunction with the new value
     };
 
+    const radioGroupName = `plot-type-option-${props.traceID}`;
+    const uniqueId = (plotOptionId: string) => `plot-type-option-${props.traceID}-${plotOptionId}`;
+
     return (
         <div className="ml-3">
             {plotTypes.map((plotOption, index) => (
@@ -40,12 +44,12 @@ export const GenericPlotTypeOption = (props: GenericPlotTypeOptionProps) => {
                             className="mr-2" 
                             type="radio" 
                             checked={selectedPlotType === plotOption.name} 
-                            name="plot-type-option" // Use the same name for all radio inputs to link them
-                            id={"plot-type-option-" + plotOption.id} 
-                            value={plotOption.name} // Use plotOption.name to match with selectedPlotType
-                            onChange={handleChange} // Handle changes
+                            name={radioGroupName} // Make the name unique
+                            id={uniqueId(plotOption.id)} // Make ID unique
+                            value={plotOption.name} 
+                            onChange={handleChange}
                         />
-                        <label className="select-none" htmlFor={"plot-type-option-" + plotOption.id}>
+                        <label className="select-none" htmlFor={uniqueId(plotOption.id)}>
                             {plotOption.name}
                         </label>
                     </form>    

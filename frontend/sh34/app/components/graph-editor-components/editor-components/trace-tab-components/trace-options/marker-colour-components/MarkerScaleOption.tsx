@@ -1,4 +1,4 @@
-export const DataPointScaleOption = () => {
+export const MarkerScaleOption = () => {
     
     return(
         <div>

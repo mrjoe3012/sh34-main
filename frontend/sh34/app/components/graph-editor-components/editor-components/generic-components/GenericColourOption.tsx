@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
 
-import configjson from "../../../../config.json"
-
 interface GenericColourOptionProps {
     labelName: string,
     displayLabel: boolean;

@@ -19,7 +19,7 @@ export const NewTraceButton = () => {
             name: "New Trace",
             plotType: 'Scatter', 
             plotIndicator: '/breakdown_by_indicator/TemperatureMean',
-            markerColour: "",
+            markerColour: "#ffac05",
             orientation: "v"
         };
 
