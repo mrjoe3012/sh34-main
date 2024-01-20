@@ -2,9 +2,6 @@ import { MainButtonList } from "./MainButtonList";
 import { TabList } from "./TabList";
 import { ReturnButton } from "./ReturnButton";
 import { PlotTitle } from "./PlotTitle";
-import { SetStateAction, useState } from "react";
-import { PlotData } from "@app/modules/db";
-import { WithId } from "mongodb";
 
 interface SidebarProps {
   switchPageFunc: (someComponent: JSX.Element) => void;
