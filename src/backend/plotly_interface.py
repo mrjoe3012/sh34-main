@@ -358,3 +358,27 @@ def data_extract(data_json:dict[str,Any],name:str,first_value:str) -> pd.DataFra
             data_dict["y"].append(None)
     df = pd.DataFrame(data_dict)
     return df
+
+
+def pascal_split_name(value:str) -> str:
+    """Function for turning PascalCase to normal english"""
+    if value is None:
+        return None
+    if len(value) <= 1:
+        return value
+
+    result = []
+    i = 0
+
+    while i < len(value):
+        if value[i].isupper():
+            if i > 0 and value[i - 1].islower():
+                result.append(' ')
+            elif i > 0 and i + 1 < len(value) and value[i + 1].islower():
+                result.append(' ')
+            result.append(value[i])
+        else:
+            result.append(value[i])
+        i += 1
+
+    return ''.join(result).strip()

@@ -1,12 +1,12 @@
 'use client';
 import { MainButton } from "./MainButton";
 import $ from "jquery"
-import { useContext, useEffect } from "react";
-import { ConfigContext } from "@app/graph-editor/ConfigContext";
+import { useEffect } from "react";
+import { useConfig } from "@app/graph-editor/ConfigContext";
 
 export const MainButtonList = () => {
 
-    const {config} = useContext(ConfigContext)
+    const {config} = useConfig()
 
     useEffect(()=>{
 
