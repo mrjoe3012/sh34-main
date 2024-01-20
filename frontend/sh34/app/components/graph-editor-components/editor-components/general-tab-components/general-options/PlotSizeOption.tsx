@@ -1,7 +1,7 @@
 import { OptionComponentTitle } from "../../OptionComponentTitle"
 import { GenericTextInputOption } from "../../generic-components/GenericTextInputOption"
 import { useContext, useEffect, useState } from "react"
-import { ConfigContext } from "@app/graph-editor/[id]/page"
+import { ConfigContext } from "@app/graph-editor/ConfigContext"
 
 export const PlotSizeOption = () => {
 

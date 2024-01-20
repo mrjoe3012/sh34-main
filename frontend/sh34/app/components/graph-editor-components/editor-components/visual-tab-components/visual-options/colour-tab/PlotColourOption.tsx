@@ -10,7 +10,7 @@ export const PlotColourOption = () => {
     const changePlotBackgroundColour = (inputValue: string) => {
         // Enter logic here for changing of Plot Background Colour
 
-        if (config==null){return}
+    
 
         // Create a new config object by deeply copying the old config
         // and updating the plotBackgroundColourHex property
@@ -34,7 +34,7 @@ export const PlotColourOption = () => {
     return(
         <div className="bg-[#e6e7eb] py-3 rounded-md">
             <OptionComponentTitle optionName="Plot Background Colour" />
-            <GenericColourOption contentOnRender={config!["visualOptions"]["colour"]["plotBackgroundColourHex"].slice(1)} plotFunction={changePlotBackgroundColour} labelName="" displayLabel={false} />
+            <GenericColourOption contentOnRender={config["visualOptions"]["colour"]["plotBackgroundColourHex"].slice(1)} plotFunction={changePlotBackgroundColour} labelName="" displayLabel={false} />
         </div>
     )
 }

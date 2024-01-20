@@ -3,7 +3,7 @@ import { MainButton } from "./MainButton";
 import $ from "jquery"
 import configjson from "../../../config.json"
 import { useContext, useEffect } from "react";
-import { ConfigContext } from "@app/graph-editor/[id]/page";
+import { ConfigContext } from "@app/graph-editor/ConfigContext";
 
 export const MainButtonList = () => {
 
