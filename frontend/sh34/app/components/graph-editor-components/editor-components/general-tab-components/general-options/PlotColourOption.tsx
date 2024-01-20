@@ -1,5 +1,5 @@
-import { OptionComponentTitle } from "../../../OptionComponentTitle"
-import { GenericColourOption } from "../../../generic-components/GenericColourOption"
+import { OptionComponentTitle } from "../../OptionComponentTitle"
+import { GenericColourOption } from "../../generic-components/GenericColourOption"
 import { useConfig } from "@app/graph-editor/ConfigContext"
 
 export const PlotColourOption = () => {

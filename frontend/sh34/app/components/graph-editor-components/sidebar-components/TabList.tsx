@@ -18,10 +18,9 @@ export const TabList = (props: TabListProps) => {
 
     return (
         <div className='flex flex-col gap-y-5 mt-5'> 
-            <ListOption optionName="General" pageToSwitchTo={<GeneralTab />} switchPageFunc={props.switchPageFunc}/>
-            <ListOption optionName="Visual" pageToSwitchTo={<VisualTab />} switchPageFunc={props.switchPageFunc}/>
-            <ListOption optionName="Labelling" pageToSwitchTo={<LabellingTab />} switchPageFunc={props.switchPageFunc}/>
             <ListOption optionName="Traces" pageToSwitchTo={<TraceTab />} switchPageFunc={props.switchPageFunc}/>
+            <ListOption optionName="General" pageToSwitchTo={<GeneralTab />} switchPageFunc={props.switchPageFunc}/>
+            <ListOption optionName="Labelling" pageToSwitchTo={<LabellingTab />} switchPageFunc={props.switchPageFunc}/>
             <ListOption optionName="Annotation" pageToSwitchTo={<AnnotationTab />} switchPageFunc={props.switchPageFunc} />
         </div>
     );

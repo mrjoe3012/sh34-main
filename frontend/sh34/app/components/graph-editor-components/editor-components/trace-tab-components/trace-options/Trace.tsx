@@ -101,7 +101,7 @@ export const Trace = (props : TraceProps) => {
             <OptionComponentTitle optionName={`Trace ${props.trace.id}`} />
             <div className="flex flex-col gap-y-2">
                 < GenericPlotTypeOption traceID={props.trace.id} plotFunction={changeTraceType} contentOnRender={props.trace.plotType}/>
-                < OptionComponentTitle optionName="General Trace Settings" />
+                < OptionComponentTitle optionName="Trace Settings" />
                 < GenericTextInputOption placeholder="" labelName="Name" displayLabel={true} width="w-full" textPos="" plotFunction={changeTraceName} contentOnRender={props.trace.name} />
                 < GenericIndicatorOption plotFunction={changeTraceIndicator} contentOnRender={props.trace.plotIndicator} labelName="Indicator" displayLabel={true}/>
                 < MarkerConstantOption trace={props.trace} plotFunction={changeMarkerColourConstant} />

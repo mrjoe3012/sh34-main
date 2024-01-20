@@ -1,5 +1,5 @@
-import { PlotColourOption } from "./PlotColourOption"
-import { PlotMarginOption } from "./PlotMarginColour"
+import { PlotColourOption } from "../../../general-tab-components/general-options/PlotColourOption"
+import { PlotMarginOption } from "../../../general-tab-components/general-options/PlotMarginColour"
 
 export const VisualColourTab = () => {
     
