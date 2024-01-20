@@ -23,7 +23,7 @@ export const MarkerColourOption = (props: MarkerColourOptionProps) => {
     return(
         <div className="bg-[#e6e7eb] py-3 rounded-md">
             <OptionComponentTitle optionName="Marker Colour" />
-            <MarkerColourTabSwitcher plotFunctionConstant={props.plotFunctionConstant} plotFunctionScale={props.plotFunctionScale} switchTabFunction={setDataPointTabContent}/>
+            <MarkerColourTabSwitcher trace={props.trace} plotFunctionConstant={props.plotFunctionConstant} plotFunctionScale={props.plotFunctionScale} switchTabFunction={setDataPointTabContent}/>
             <div className="ml-2"> {datapointTabContent} </div>
         </div>
     )

@@ -11,7 +11,7 @@ export const BarWidthOption = () => {
     return(
         <div className="bg-[#e6e7eb] py-3 rounded-md">
             <OptionComponentTitle optionName="Bar Width" />
-            <GenericSizeIncrementerOption plotFunction={changeBarBorderWidth} labelName="" displayLabel={false} />
+            <GenericSizeIncrementerOption contentOnRender={0} plotFunction={changeBarBorderWidth} labelName="" displayLabel={false} />
         </div>
     )
 }

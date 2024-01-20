@@ -6,6 +6,14 @@ interface dataPointColourTabProps {
     switchTabFunction: (someComponent: JSX.Element) => void;
     plotFunctionConstant: (inputValue: string) => void;
     plotFunctionScale: (inputValue: string) => void;
+    trace: {
+        id: number,
+        name: string,
+        plotType: string,
+        plotIndicator: string,
+        markerColour: string,
+        orientation: string
+    }
 }
 
 export const MarkerColourTabSwitcher = (props : dataPointColourTabProps) => {
@@ -16,7 +24,7 @@ export const MarkerColourTabSwitcher = (props : dataPointColourTabProps) => {
     const handleConstantClicked = () => {
         setConstantClicked(true);
         setScaleClicked(false);
-        props.switchTabFunction(<MarkerConstantOption plotFunction={props.plotFunctionConstant}/>)
+        props.switchTabFunction(<MarkerConstantOption trace={props.trace} plotFunction={props.plotFunctionConstant}/>)
     }
 
     const handleScaleClicked = () => {
