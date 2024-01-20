@@ -39,13 +39,13 @@ export const Annotation = () => {
         <div className="bg-[#e6e7eb] py-3 rounded-md"> 
             <OptionComponentTitle optionName="Annotation 1" />
             <div className="mt-3 flex flex-col gap-y-1">
-                < GenericTextInputOption plotFunction={changeAnnotationText} placeholder="Annotation Text" labelName="Text" displayLabel={true} width="" textPos="" />
-                < GenericSizeIncrementerOption plotFunction={changeAnnotationXPos} labelName="X-Pos" displayLabel={true} />
-                < GenericSizeIncrementerOption plotFunction={changeAnnotaionYPos} labelName="Y-Pos" displayLabel={true} />
-                < GenericSizeIncrementerOption plotFunction={changeAnnotationFontSize} labelName="Font Size" displayLabel={true} />
-                < GenericColourOption plotFunction={changeAnnotationFontColour} labelName="Colour" displayLabel={true} />
+                < GenericTextInputOption contentOnRender="" plotFunction={changeAnnotationText} placeholder="Annotation Text" labelName="Text" displayLabel={true} width="" textPos="" />
+                < GenericSizeIncrementerOption contentOnRender={0} plotFunction={changeAnnotationXPos} labelName="X-Pos" displayLabel={true} />
+                < GenericSizeIncrementerOption contentOnRender={0} plotFunction={changeAnnotaionYPos} labelName="Y-Pos" displayLabel={true} />
+                < GenericSizeIncrementerOption contentOnRender={0} plotFunction={changeAnnotationFontSize} labelName="Font Size" displayLabel={true} />
+                < GenericColourOption contentOnRender="" plotFunction={changeAnnotationFontColour} labelName="Colour" displayLabel={true} />
                 <div className="mx-3"><OptionComponentTitle optionName="Arrow Settings" /></div>
-                <TwoTabSwitcher switchTabFunction={setShowArrowOptions} firstTabContent={<div></div>} secondTabContent={<AnnotationLineOptions />} switcherLabel1="Hide" switcherLabel2="Show" />
+                <TwoTabSwitcher firstOptionFunction={()=>{}} secondOptionFunction={()=>{}} switchTabFunction={setShowArrowOptions} firstTabContent={<div></div>} secondTabContent={<AnnotationLineOptions />} switcherLabel1="Hide" switcherLabel2="Show" />
                 {showArrowOptions}
             </div>
         </div>
