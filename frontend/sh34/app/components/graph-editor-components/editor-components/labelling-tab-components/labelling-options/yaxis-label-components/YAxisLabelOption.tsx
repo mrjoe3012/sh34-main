@@ -5,32 +5,45 @@ import { YAxisLabelDefaultMode } from "./YAxisLabelDefaultMode"
 import { YAxisLabelCustomMode } from "./YAxisLabelCustomMode"
 import { TwoTabSwitcher } from "../../../generic-components/GenericTwoTabSwitcher"
 
-import configjson from "../../../../../../config.json"
+import { useConfig } from "@app/graph-editor/ConfigContext"
 
 export const YAxisLabelOption = () => {
 
+    const { config, setConfig } = useConfig();
     const [yAxisOptionMode, setYAxisOptionMode] = useState(<YAxisLabelDefaultMode />)
 
     const changeYAxisLabelText = (inputValue: string) => {
         // Enter logic here for changing of Y Axis Label Text
 
-        (configjson as any)["labellingOptions"]["yAxis"]["yAxisText"] = inputValue
+        if (inputValue === "") {
+            return
+        }
+
+        const newConfig = { ...config };
+
+        newConfig.labellingOptions.yAxis.yAxisText = inputValue;
+        
+        setConfig(newConfig);
         console.log("Y-Axis Label Text Changed to " + inputValue);
     }
 
     const switchToDefault = () => {
-        configjson["labellingOptions"]["yAxis"]["styling"]["currentStylingMode"] = "default"
+        const newConfig = { ...config };
+        newConfig.labellingOptions.yAxis.styling.currentStylingMode = "default";
+        setConfig(newConfig); // Update the config context
     }
 
     const switchToCustom = () => {
-        configjson["labellingOptions"]["yAxis"]["styling"]["currentStylingMode"] = "custom"
+        const newConfig = { ...config };
+        newConfig.labellingOptions.yAxis.styling.currentStylingMode = "custom";
+        setConfig(newConfig); // Update the config context
     }
 
     // On Component Load, if Custom Mode is Selected, Switch to Custom Tab
     useEffect(()=> {
-        if (configjson["labellingOptions"]["yAxis"]["styling"]["currentStylingMode"]=="default") {
+        if (config["labellingOptions"]["yAxis"]["styling"]["currentStylingMode"]=="default") {
             setYAxisOptionMode(<YAxisLabelDefaultMode />)
-        } else if (configjson["labellingOptions"]["yAxis"]["styling"]["currentStylingMode"]=="custom") {
+        } else if (config["labellingOptions"]["yAxis"]["styling"]["currentStylingMode"]=="custom") {
             setYAxisOptionMode(<YAxisLabelCustomMode />)
         }
     }, [])
@@ -38,7 +51,7 @@ export const YAxisLabelOption = () => {
     return(
         <div className="bg-[#e6e7eb] py-3 rounded-md"> 
                 <OptionComponentTitle optionName="Y-Axis Label Options" />
-                <div className="mb-2"><GenericTextInputOption contentOnRender={(configjson as any)["labellingOptions"]["yAxis"]["yAxisText"]} plotFunction={changeYAxisLabelText} placeholder="" labelName={"Text"} displayLabel={true} width="" textPos=""/></div>
+                <div className="mb-2"><GenericTextInputOption contentOnRender={config["labellingOptions"]["yAxis"]["yAxisText"]} plotFunction={changeYAxisLabelText} placeholder="" labelName={"Text"} displayLabel={true} width="" textPos=""/></div>
                 <div className="mx-3"><OptionComponentTitle optionName="Font Options" /></div>
                 <TwoTabSwitcher switchTabFunction={setYAxisOptionMode}
                                 firstTabContent={<YAxisLabelDefaultMode />}

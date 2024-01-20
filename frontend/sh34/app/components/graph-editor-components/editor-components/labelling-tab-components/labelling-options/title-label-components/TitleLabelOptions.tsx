@@ -5,30 +5,38 @@ import { TitleLabelDefaultMode } from "./TitleLabelDefaultMode"
 import { TitleLabelCustomMode } from "./TitleLabelCustomMode"
 import { TwoTabSwitcher } from "../../../generic-components/GenericTwoTabSwitcher"
 
-import configjson from "../../../../../../config.json"
+import { useConfig } from "@app/graph-editor/ConfigContext"
 
 export const TitleLabelOptions = () => {
 
+    const { config, setConfig } = useConfig();
     const [titleOptionMode, setTitleOptionMode] = useState(<TitleLabelDefaultMode />)
 
     const changeTitleText = (inputValue: string) => {
-        configjson["labellingOptions"]["title"]["plotTitle"] = inputValue
+        // Create a deep copy of config and update the specific value
+        const newConfig = { ...config };
+        newConfig.labellingOptions.title.plotTitle = inputValue;
+        setConfig(newConfig); // Update the config context
         console.log("Changed title text to " + inputValue);
     }
 
     const switchToDefault = () => {
-        configjson["labellingOptions"]["title"]["styling"]["currentStylingMode"] = "default"
+        const newConfig = { ...config };
+        newConfig.labellingOptions.title.styling.currentStylingMode = "default";
+        setConfig(newConfig); // Update the config context
     }
 
     const switchToCustom = () => {
-        configjson["labellingOptions"]["title"]["styling"]["currentStylingMode"] = "custom"
+        const newConfig = { ...config };
+        newConfig.labellingOptions.title.styling.currentStylingMode = "custom";
+        setConfig(newConfig); // Update the config context
     }
 
     // On Component Load, if Custom Mode is Selected, Switch to Custom Tab
     useEffect(()=> {
-        if (configjson["labellingOptions"]["title"]["styling"]["currentStylingMode"]=="default") {
+        if (config["labellingOptions"]["title"]["styling"]["currentStylingMode"]=="default") {
             setTitleOptionMode(<TitleLabelDefaultMode />)
-        } else if (configjson["labellingOptions"]["title"]["styling"]["currentStylingMode"]=="custom") {
+        } else if (config["labellingOptions"]["title"]["styling"]["currentStylingMode"]=="custom") {
             setTitleOptionMode(<TitleLabelCustomMode />)
         }
     }, [])
@@ -36,7 +44,7 @@ export const TitleLabelOptions = () => {
     return(
         <div className="bg-[#e6e7eb] py-3 rounded-md"> 
                 <OptionComponentTitle optionName="Title Label Options" />
-                <div className="mb-2"><GenericTextInputOption contentOnRender={configjson["labellingOptions"]["title"]["plotTitle"]} plotFunction={changeTitleText} placeholder="" labelName={"Text"} displayLabel={true} width="" textPos=""/></div>
+                <div className="mb-2"><GenericTextInputOption contentOnRender={config["labellingOptions"]["title"]["plotTitle"]} plotFunction={changeTitleText} placeholder="" labelName={"Text"} displayLabel={true} width="" textPos=""/></div>
                 <div className="mx-3"><OptionComponentTitle optionName="Font Options" /></div>
                 <TwoTabSwitcher
                                 switchTabFunction={setTitleOptionMode}

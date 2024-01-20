@@ -2,40 +2,61 @@ import { GenericSizeIncrementerOption } from "../../../generic-components/Generi
 import { GenericColourOption } from "../../../generic-components/GenericColourOption"
 import { GenericTypefaceOption } from "../../../generic-components/GenericTypefaceOption"
 
-import configjson from "../../../../../../config.json"
+import { useConfig } from "@app/graph-editor/ConfigContext"
 
 export const YAxisLabelCustomMode = () => {
 
+    const { config, setConfig } = useConfig();
     const changeYAxisLabelFontColour = (inputValue: string) => {
         // Enter logic here for changing of Y Axis Label Font Colour
 
-        if (inputValue == "") {
+        if (inputValue === "") {
             return
         }
 
-        (configjson as any)["labellingOptions"]["yAxis"]["styling"]["customFontStyle"]["fontColour"] = "#" + inputValue
+        const newConfig = { ...config };
+
+        newConfig.labellingOptions.yAxis.styling.customFontStyle.fontColour = "#" + inputValue;
+        
+        setConfig(newConfig);
         console.log("Y-Axis Label Font Colour Changed to " + inputValue);
     }
 
     const changeYAxisLabelFontSize = (inputValue: string) => {
         // Enter logic here for changing of Y Axis Label Font Size
 
-        (configjson as any)["labellingOptions"]["yAxis"]["styling"]["customFontStyle"]["fontSize"] = Number(inputValue)
+        if (inputValue === "") {
+            return
+        }
+
+        const newConfig = { ...config };
+
+        newConfig.labellingOptions.yAxis.styling.customFontStyle.fontSize = Number(inputValue);
+        
+        setConfig(newConfig);
         console.log("Y-Axis Label Font Size Changed to " + inputValue);
     }
 
     const changeYAxisLabelTypeface = (inputValue: string) => {
         // Enter logic for changing the YAxis label typeface
 
-        (configjson as any)["labellingOptions"]["yAxis"]["styling"]["customFontStyle"]["typeface"] = inputValue
+        if (inputValue === "") {
+            return
+        }
+
+        const newConfig = { ...config };
+
+        newConfig.labellingOptions.yAxis.styling.customFontStyle.typeface = inputValue;
+        
+        setConfig(newConfig);
         console.log("YAxis Label Typeface changed to " + inputValue);  
     }
 
     return(
         <div className="flex flex-col gap-y-1">
-            <GenericSizeIncrementerOption contentOnRender={configjson["labellingOptions"]["yAxis"]["styling"]["customFontStyle"]["fontSize"]} plotFunction={changeYAxisLabelFontSize} labelName={"Font Size"} displayLabel={true} />
-            <GenericColourOption contentOnRender={configjson["labellingOptions"]["yAxis"]["styling"]["customFontStyle"]["fontColour"].slice(1)} plotFunction={changeYAxisLabelFontColour} labelName="Colour" displayLabel={true} />
-            <GenericTypefaceOption contentOnRender={configjson["labellingOptions"]["yAxis"]["styling"]["customFontStyle"]["typeface"]} plotFunction={changeYAxisLabelTypeface} displayLabel={true}/>
+            <GenericSizeIncrementerOption contentOnRender={config["labellingOptions"]["yAxis"]["styling"]["customFontStyle"]["fontSize"]} plotFunction={changeYAxisLabelFontSize} labelName={"Font Size"} displayLabel={true} />
+            <GenericColourOption contentOnRender={config["labellingOptions"]["yAxis"]["styling"]["customFontStyle"]["fontColour"].slice(1)} plotFunction={changeYAxisLabelFontColour} labelName="Colour" displayLabel={true} />
+            <GenericTypefaceOption contentOnRender={config["labellingOptions"]["yAxis"]["styling"]["customFontStyle"]["typeface"]} plotFunction={changeYAxisLabelTypeface} displayLabel={true}/>
         </div>
     )
 }

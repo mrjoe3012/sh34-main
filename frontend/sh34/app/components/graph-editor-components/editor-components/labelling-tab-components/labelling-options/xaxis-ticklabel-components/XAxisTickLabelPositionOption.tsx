@@ -1,20 +1,27 @@
 import { GenericTwoButtonOption } from "@app/components/graph-editor-components/editor-components/generic-components/GenericTwoButtonOption";
-
-import configjson from "../../../../../../config.json"
+import { useConfig } from "@app/graph-editor/ConfigContext";
 
 export const XAxisTickLabelPositionOption = () => {
+
+    const { config, setConfig } = useConfig();
 
     const changePositionBottom = (inputValue: string) => {
         // Enter logic here for toggling tick labels to the bottom
 
-        (configjson as any)["labellingOptions"]["xAxis"]["tickLabels"]["tickPosition"] = inputValue.toLowerCase()
+        const newConfig = { ...config };
+        newConfig.labellingOptions.xAxis.tickLabels.tickPosition = inputValue.toLowerCase()
+        setConfig(newConfig); // Update the config context
+
         console.log("Toggled tick label position to " + inputValue.toLowerCase());
     }
 
     const changePositionTop = (inputValue: string) => {
         // Enter logic here for toggling tick labels to the top
 
-        (configjson as any)["labellingOptions"]["xAxis"]["tickLabels"]["tickPosition"] = inputValue.toLowerCase()
+        const newConfig = { ...config };
+        newConfig.labellingOptions.xAxis.tickLabels.tickPosition = inputValue.toLowerCase()
+        setConfig(newConfig); // Update the config context
+
         console.log("Toggled tick label position to " +  inputValue.toLowerCase());
     }
 

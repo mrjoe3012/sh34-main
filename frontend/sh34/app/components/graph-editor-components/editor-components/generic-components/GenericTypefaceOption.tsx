@@ -40,7 +40,7 @@ export const GenericTypefaceOption = (props : GenericTypefaceOptionProps) => {
                 defaultValue={props.contentOnRender}
                 className="flex-grow font-medium placeholder-[#ACACAC] h-[35px] bg-[#DCDCDC] rounded-lg flex items-center pl-4 border-2 border-[#B3B3B3] focus-within:border-RES_ORANGE"
             >
-                <option value="">Select a typeface</option>
+                <option value="" disabled>Select a typeface</option>
                 {typefaces.map((typeface, index) => (
                     <option key={index} value={typeface}>{typeface}</option>
                 ))}

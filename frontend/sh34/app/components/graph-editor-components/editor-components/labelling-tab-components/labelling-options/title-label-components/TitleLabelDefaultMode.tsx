@@ -1,8 +1,5 @@
 import Image from "next/image"
 import InfoIcon from '@app/images/info-icon.png' 
-import { useEffect } from "react"
-
-import configjson from "../../../../../../config.json"
 
 export const TitleLabelDefaultMode = () => {
 

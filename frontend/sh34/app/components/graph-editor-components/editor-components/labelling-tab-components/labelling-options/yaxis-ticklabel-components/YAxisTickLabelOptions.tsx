@@ -3,28 +3,44 @@ import { OptionComponentTitle } from "../../../OptionComponentTitle"
 import { YAxisTickLabelDefaultMode } from "./YAxisTickLabelDefaultMode"
 import { YAxisTickLabelCustomMode } from "./YAxisTickLabelCustomMode"
 import { TwoTabSwitcher } from "../../../generic-components/GenericTwoTabSwitcher"
-import { YAxisTickLabelAngleOption } from "./YAxisTickLabelAngleOption"
 import { YAxisTickLabelPositionOption } from "./YAxisTickLabelPositionOption"
+import { GenericAngleOption } from "../../../generic-components/GenericAngleOption"
 
-import configjson from "../../../../../../config.json"
+import { useConfig } from "@app/graph-editor/ConfigContext"
 
 export const YAxisTickLabelOption = () => {
 
+    const { config, setConfig } = useConfig();
     const [yAxisTickLabelOptionMode, setYAxisTickLabelOptionMode] = useState(<YAxisTickLabelDefaultMode />)
 
     const switchToDefault = () => {
-        configjson["labellingOptions"]["yAxis"]["tickLabels"]["styling"]["currentStylingMode"] = "default"
+        const newConfig = { ...config };
+        newConfig.labellingOptions.yAxis.tickLabels.styling.currentStylingMode = "default";
+        setConfig(newConfig); // Update the config context
     }
 
     const switchToCustom = () => {
-        configjson["labellingOptions"]["yAxis"]["tickLabels"]["styling"]["currentStylingMode"] = "custom"
+        const newConfig = { ...config };
+        newConfig.labellingOptions.yAxis.tickLabels.styling.currentStylingMode = "custom";
+        setConfig(newConfig); // Update the config context
     }
 
+    const changeYAxisTickAngle = (inputValue: string) => {
+        if (inputValue === "") {
+            return
+        }
+
+        const newConfig = { ...config };
+
+        newConfig.labellingOptions.yAxis.tickLabels.tickAngle = Number(inputValue);
+        
+        setConfig(newConfig);
+    }
     // On Component Load, if Custom Mode is Selected, Switch to Custom Tab
     useEffect(()=> {
-        if (configjson["labellingOptions"]["yAxis"]["tickLabels"]["styling"]["currentStylingMode"]=="default") {
+        if (config["labellingOptions"]["yAxis"]["tickLabels"]["styling"]["currentStylingMode"]=="default") {
             setYAxisTickLabelOptionMode(<YAxisTickLabelDefaultMode />)
-        } else if (configjson["labellingOptions"]["yAxis"]["tickLabels"]["styling"]["currentStylingMode"]=="custom") {
+        } else if (config["labellingOptions"]["yAxis"]["tickLabels"]["styling"]["currentStylingMode"]=="custom") {
             setYAxisTickLabelOptionMode(<YAxisTickLabelCustomMode />)
         }
     }, [])
@@ -33,7 +49,7 @@ export const YAxisTickLabelOption = () => {
         <div className="bg-[#e6e7eb] py-3 rounded-md">
             <OptionComponentTitle optionName="Y-Axis Tick Label Options" />
             <div className="flex flex-col gap-y-1">
-                <YAxisTickLabelAngleOption />
+                < GenericAngleOption plotFunction={changeYAxisTickAngle} />
                 <YAxisTickLabelPositionOption />
             </div>
             <TwoTabSwitcher switchTabFunction={setYAxisTickLabelOptionMode}

@@ -16,7 +16,7 @@ export const ScatterPointBorderOption = () => {
             
             <OptionComponentTitle optionName="Point Border Settings" />
             <div className="flex flex-col gap-y-1">
-                < GenericColourOption plotFunction={changeScatterPointBorderColour} labelName="Colour" displayLabel={true} />
+                < GenericColourOption contentOnRender="" plotFunction={changeScatterPointBorderColour} labelName="Colour" displayLabel={true} />
                 <div className="ml-3 flex items-center gap-x-1">
                     <div className="mr-2"> Width </div>
                     <input 

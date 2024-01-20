@@ -18,8 +18,8 @@ export const BarBorderOption = () => {
         <div className="bg-[#e6e7eb] py-3 rounded-md">
             <OptionComponentTitle optionName="Bar Border Settings" />
             <div className="flex flex-col gap-y-1">
-                < GenericColourOption plotFunction={changeBarBorderColour} labelName="Colour" displayLabel={true} />
-                < GenericSizeIncrementerOption plotFunction={changeBarBorderWidth} labelName="Width" displayLabel={true} />
+                < GenericColourOption contentOnRender="" plotFunction={changeBarBorderColour} labelName="Colour" displayLabel={true} />
+                < GenericSizeIncrementerOption contentOnRender={0} plotFunction={changeBarBorderWidth} labelName="Width" displayLabel={true} />
             </div>
         </div>
     )
