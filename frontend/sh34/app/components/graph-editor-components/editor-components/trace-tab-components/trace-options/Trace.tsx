@@ -16,13 +16,16 @@ interface TraceProps {
 
 export const Trace = (props : TraceProps) => {
 
+    var trimmedIndicator = props.trace.plotIndicator.split('/').pop();
+    console.log("trimmed" + trimmedIndicator)
+
     return (
         <div className="bg-[#e6e7eb] py-3 rounded-md"> 
-            <OptionComponentTitle optionName={`Trace ${props.trace.id}`} />
+            <OptionComponentTitle optionName={`Trace ${props.trace.id} - ${props.trace.name}`} />
             <div className="flex flex-col gap-y-1">
-                < GenericPlotTypeOption />
+                < GenericPlotTypeOption contentOnRender={props.trace.plotType}/>
                 <div className="self-center bg-[#d6d6d6] h-[2px] w-[90%] rounded-xl my-2"></div>
-                < GenericIndicatorOption labelName="Indicator" displayLabel={true}/>
+                < GenericIndicatorOption contentOnRender={trimmedIndicator} labelName="Indicator" displayLabel={true}/>
             </div>
         </div>
     )

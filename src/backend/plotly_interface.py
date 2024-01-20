@@ -21,6 +21,7 @@ def generate_plot_html(config_json, data_json):
         plot_type = trace["plotType"]
         plot_indicator = trace["plotIndicator"]
         orientation = trace["orientation"]
+        trace_name = trace["name"]
 
         # Generating the dataframe based on the plot_indicator field. NB - still no idea what the 3rd parameter is for.
         df = data_extract(data_json,plot_indicator,"value")
@@ -35,11 +36,11 @@ def generate_plot_html(config_json, data_json):
 
         # Adding the appropriate trace
         if plot_type=="Bar":
-            fig.add_trace(go.Bar(x=xData,y=yData,orientation=orientation))
+            fig.add_trace(go.Bar(x=xData,y=yData,orientation=orientation,name=trace_name))
         elif plot_type=="Scatter":
-            fig.add_trace(go.Scatter(x=xData,y=yData,orientation=orientation,mode='markers'))
+            fig.add_trace(go.Scatter(x=xData,y=yData,orientation=orientation,mode='markers',name=trace_name))
         elif plot_type=="Line":
-            fig.add_trace(go.Line(x=xData,y=yData,orientation=orientation))
+            fig.add_trace(go.Line(x=xData,y=yData,orientation=orientation,name=trace_name))
 
 
 

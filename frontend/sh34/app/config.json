@@ -3,9 +3,9 @@
     "traces": [
         {
             "id": 0,
-            "name": "",
+            "name": "Name",
             "plotType": "Bar",
-            "plotIndicator": "/breakdown_by_indicator/Production",
+            "plotIndicator": "/breakdown_by_indicator/TemperatureMean",
             "markerColour": "",
             "orientation": "v"
         }

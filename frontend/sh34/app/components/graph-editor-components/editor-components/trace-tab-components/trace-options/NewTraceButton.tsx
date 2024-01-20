@@ -15,8 +15,8 @@ export const NewTraceButton = () => {
         const newTrace: Trace = {
         id: configjson["traces"].length, 
         name: "New Trace",
-        plotType: 'Bar', 
-        plotIndicator: '/breakdown_by_indicator/Production',
+        plotType: 'Scatter', 
+        plotIndicator: '/breakdown_by_indicator/TemperatureMean',
         markerColour: "",
         orientation: "v"
         };
