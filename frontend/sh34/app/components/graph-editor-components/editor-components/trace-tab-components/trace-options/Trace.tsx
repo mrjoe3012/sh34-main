@@ -4,6 +4,8 @@ import { GenericIndicatorOption } from "../../generic-components/GenericIndicato
 import { GenericTextInputOption } from "../../generic-components/GenericTextInputOption";
 import { useConfig } from "@app/graph-editor/ConfigContext";
 import { MarkerConstantOption } from "./marker-colour-components/MarkerConstantOption";
+import Image from "next/image";
+import TrashIcon from "../../../../../images/trash-icon.svg"
 
 interface TraceProps {
     trace: {
@@ -112,8 +114,8 @@ export const Trace = (props : TraceProps) => {
     return (
         <div className="bg-[#e6e7eb] py-3 rounded-md">
             <div className="flex flex-row">
-                <div className="basis-[80%]"><OptionComponentTitle optionName={`Trace ${props.trace.id}`} /></div>
-                <button onClick={deleteTrace} className="basis-[20%]"> Delete </button>
+                <div className="flex-grow"><OptionComponentTitle optionName={`Trace ${props.trace.id}`} /></div>
+                <button onClick={deleteTrace} className="basis-[10%] ml-2"> <Image className="self-center" src={TrashIcon} alt="delete"></Image></button>
             </div>
             <div className="flex flex-col gap-y-2">
                 < GenericPlotTypeOption traceID={props.trace.id} plotFunction={changeTraceType} contentOnRender={props.trace.plotType}/>

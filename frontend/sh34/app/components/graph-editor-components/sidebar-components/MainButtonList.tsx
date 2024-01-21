@@ -10,7 +10,6 @@ export const MainButtonList = () => {
 
     useEffect(()=>{
 
-        console.log("here")
         // fetch the plot and display it
         fetch('/api/plotfromconfig', {
           method: 'POST', // or 'PUT'
@@ -21,7 +20,6 @@ export const MainButtonList = () => {
         })
         .then(response => response.text())
         .then(data => {
-          console.log('Success:');
           $('#plot-container').html(data);
         })
         .catch((error) => {
@@ -29,9 +27,14 @@ export const MainButtonList = () => {
         });
     },[config])
 
+    // Currently just output the config to the console
+    const viewConfigJSON = () => {
+      console.log(config);
+    } 
+
     return (
         <div className='flex flex-col mt-auto mb-5'>
-            <MainButton buttonName="Preview JSON" buttonColour="bg-[#91a2a8]" imgSrc="" onClick={() => {}}/>
+            <MainButton buttonName="View Config" buttonColour="bg-[#91a2a8]" imgSrc="" onClick={viewConfigJSON}/>
             <MainButton buttonName="Finish" buttonColour="bg-[#346DFF]" imgSrc="" onClick={() => {}}/>
         </div>
     );
