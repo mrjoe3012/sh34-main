@@ -42,6 +42,8 @@ def generate_plot_html(config_json, data_json):
             fig.add_trace(go.Scatter(x=xData,y=yData,orientation=orientation,mode='markers',name=trace_name,marker=dict(color=trace_marker_colour)))
         elif plot_type=="Line":
             fig.add_trace(go.Line(x=xData,y=yData,orientation=orientation,name=trace_name,marker=dict(color=trace_marker_colour)))
+        elif plot_type=="Pie":
+            fig.add_trace(go.Pie(labels=xData,values=yData,name=trace_name,domain=dict(x=[0.5, 0.5], y=[0.5, 0.5]),textinfo='label',hoverinfo='label+value'))
 
 
 

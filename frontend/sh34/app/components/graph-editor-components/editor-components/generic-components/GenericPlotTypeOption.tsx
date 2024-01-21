@@ -20,7 +20,11 @@ export const GenericPlotTypeOption = (props: GenericPlotTypeOptionProps) => {
         {
             id: "line",
             name: "Line",
-        }
+        },
+        {
+            id: "pie",
+            name: "Pie",
+        },
     ];
 
     // State to keep track of the selected plot type
