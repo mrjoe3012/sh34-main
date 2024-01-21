@@ -50,7 +50,7 @@ export const Annotation = (props: AnnotationProps) => {
                 < GenericSizeIncrementerOption contentOnRender={props.annotation.xPos} plotFunction={changeAnnotationXPos} labelName="X-Pos" displayLabel={true} />
                 < GenericSizeIncrementerOption contentOnRender={props.annotation.yPos} plotFunction={changeAnnotaionYPos} labelName="Y-Pos" displayLabel={true} />
                 < GenericSizeIncrementerOption contentOnRender={props.annotation.styling.fontSize} plotFunction={changeAnnotationFontSize} labelName="Font Size" displayLabel={true} />
-                < GenericColourOption contentOnRender={props.annotation.styling.fontColour} plotFunction={changeAnnotationFontColour} labelName="Colour" displayLabel={true} />
+                < GenericColourOption contentOnRender={props.annotation.styling.fontColour.slice(1)} plotFunction={changeAnnotationFontColour} labelName="Colour" displayLabel={true} />
                 <div className="mx-3"><OptionComponentTitle optionName="Arrow Settings" /></div>
                 <TwoTabSwitcher firstOptionFunction={()=>{}} secondOptionFunction={()=>{}} switchTabFunction={setShowArrowOptions} firstTabContent={<div></div>} secondTabContent={<AnnotationLineOptions annotation={props.annotation}/>} switcherLabel1="Hide" switcherLabel2="Show" />
                 {showArrowOptions}

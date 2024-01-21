@@ -1,30 +1,12 @@
 import { useConfig } from "@app/graph-editor/ConfigContext"
-
-interface Annotation {
-    id: number;
-    name: string;
-    xPos: number;
-    yPos: number;
-    xref: string;
-    yref: string;
-    text: string;
-    showArrow: boolean;
-    arrowColour: string,
-    arrowOffsetX: number,
-    arrowOffsetY: number,
-    styling: {
-        fontColour: string,
-        fontSize: number,
-        typeface: string
-    }
-}
+import { AnnotationType } from "@app/graph-editor/configjsoninterface"
 
 export const NewAnnotationButton = () => {
 
     const {config,setConfig} = useConfig()
 
     const newAnnotation = () => {
-        const newAnnotation: Annotation = {
+        const newAnnotation: AnnotationType = {
             id: config["annotations"].length, 
             name: "New Annotation",
             xPos: 0.5,
@@ -36,6 +18,7 @@ export const NewAnnotationButton = () => {
             arrowColour: "#000000",
             arrowOffsetX: 20,
             arrowOffsetY: -20,
+            arrowWidth: 2,
             styling: {
                 fontColour: "#000000",
                 fontSize: 12,

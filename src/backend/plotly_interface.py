@@ -15,10 +15,9 @@ def generate_plot_html(config_json, data_json):
 
     # Create the Figure, plotting the data for each trace in the trace array.
     fig = go.Figure()
-    for trace in config_json["traces"]:
+    for trace in properties["traces"]:
         plot_type = trace["plotType"]
         plot_indicator = trace["plotIndicator"]
-        orientation = trace["orientation"]
         trace_name = trace["name"]
         trace_marker_colour = trace["markerColour"]
 
@@ -26,32 +25,25 @@ def generate_plot_html(config_json, data_json):
         # NB - still no idea what the 3rd parameter is for.
         df = data_extract(data_json,plot_indicator,"value")
 
-        # In order to swap plot orientations, you must swap x and y datasets
-        if orientation == "h":
-            x_data = df["y"]
-            y_data = df["x"]
-        elif orientation == "v":
-            x_data = df["x"]
-            y_data = df["y"]
+        x_data = df["x"]
+        y_data = df["y"]
+
 
         # Adding the appropriate trace
         if plot_type=="Bar":
             fig.add_trace(go.Bar(x=x_data,
                                  y=y_data,
-                                 orientation=orientation,
                                  name=trace_name,
                                  marker={"color": trace_marker_colour}))
         elif plot_type=="Scatter":
             fig.add_trace(go.Scatter(x=x_data,
                                      y=y_data,
-                                     orientation=orientation,
                                      mode='markers',
                                      name=trace_name,
                                      marker={"color": trace_marker_colour}))
         elif plot_type=="Line":
             fig.add_trace(go.Line(x=x_data,
                                   y=y_data,
-                                  orientation=orientation,
                                   name=trace_name,
                                   marker={"color": trace_marker_colour}))
         elif plot_type=="Pie":
@@ -62,8 +54,6 @@ def generate_plot_html(config_json, data_json):
                                  hoverinfo='label+value'))
             fig.update_traces(domain={"x": [0.5,0.5], "y":[0.5,0.5]}, selector={"type": "pie"})
 
-    # Update the figure with initial font settings - these act as default
-    # font settings that then get overridden if any other font options are specified
     fig = update_xaxis(fig, properties)
     fig = update_yaxis(fig, properties)
     fig = update_plot_colours(fig, properties)
@@ -72,6 +62,7 @@ def generate_plot_html(config_json, data_json):
     fig = update_xaxis_ticklabels(fig, properties)
     fig = update_yaxis_ticklabels(fig, properties)
     fig = update_plotsize(fig, properties)
+    fig = update_annotations(fig, properties)
 
     fig_html = fig.to_html()
     return fig_html
@@ -277,6 +268,35 @@ def update_yaxis_ticklabels(fig, properties):
     return fig
 
 
+def update_annotations(fig, properties):
+    """
+        Creates each annotation from the annotation array in the properties dictionary
+    """
+
+    for annotation in properties["annotations"]:
+        fig.add_annotation(
+            x=annotation["xPos"],
+            y=annotation["yPos"],
+            xref=annotation["xref"],
+            yref=annotation["yref"],
+            text=annotation["text"],
+            showarrow=annotation["showArrow"],
+            arrowhead=2, 
+            arrowsize=1, 
+            arrowcolor=annotation["arrowColour"],
+            ax=annotation["arrowOffsetX"],
+            ay=annotation["arrowOffsetY"],
+            arrowwidth=annotation["arrowWidth"],
+            font={
+                "color": annotation["styling"]["fontColour"],
+                "size": annotation["styling"]["fontSize"],
+                "family": annotation["styling"]["typeface"]
+            }
+        )
+    
+    return fig
+
+
 def build_property_dict(config_json):
     """
         Takes in the config_json JSON, and creates a dictionary of properties from
@@ -285,6 +305,11 @@ def build_property_dict(config_json):
 
     properties = {}
 
+    # Traces Array
+    properties.update({"traces": config_json["traces"]})
+
+    # Annotation Array
+    properties.update({"annotations": config_json["annotations"]})
 
     # General Plot Options
     general_options = config_json["generalOptions"]

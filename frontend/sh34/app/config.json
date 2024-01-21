@@ -12,25 +12,6 @@
     ],
 
     "annotations": [
-        {
-            "id": 0,
-            "name": "New Annotation",
-            "xPos": 0.5,
-            "yPos": 0.5,
-            "xref": "paper", 
-            "yref": "paper",
-            "text": "Annotation Text",
-            "showArrow": true,
-            "arrowColour": "#000000",
-            "arrowOffsetX": 20,
-            "arrowOffsetY": -20,
-            "arrowWidth": 2,
-            "styling": {
-                "fontColour": "#000000",
-                "fontSize": 12,
-                "typeface": "Arial"
-            }
-        }
     ],
 
     "generalOptions": {

@@ -34,7 +34,7 @@ export const AnnotationLineOptions = (props: AnnotationProps) => {
     return(
         <div className="flex flex-col gap-y-1">
             <GenericSizeIncrementerOption contentOnRender={props.annotation.arrowWidth} plotFunction={changeAnnotationLineWidth} labelName="Width" displayLabel={true} />
-            <GenericColourOption contentOnRender={props.annotation.arrowColour} plotFunction={changeAnnotationLineColour} labelName="Colour" displayLabel={true} />
+            <GenericColourOption contentOnRender={props.annotation.arrowColour.slice(1)} plotFunction={changeAnnotationLineColour} labelName="Colour" displayLabel={true} />
             <GenericSizeIncrementerOption contentOnRender={props.annotation.arrowOffsetX} plotFunction={changeAnnotationLineXOffset} labelName="X-Offset" displayLabel={true} />
             <GenericSizeIncrementerOption contentOnRender={props.annotation.arrowOffsetY} plotFunction={changeAnnotationLineYOffset} labelName="Y-Offset" displayLabel={true} />
         </div>
