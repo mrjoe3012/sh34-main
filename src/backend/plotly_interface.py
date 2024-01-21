@@ -6,6 +6,9 @@ import plotly.graph_objs as go
 import pandas as pd
 
 def generate_plot_html(config_json, data_json):
+    """ Takes in the config_json received from the frontend,
+        creates the plotly figure and returns its HTML form
+    """
 
     # Generate a Dictionary of Properties from config_json
     properties = build_property_dict(config_json)
@@ -13,14 +16,13 @@ def generate_plot_html(config_json, data_json):
     # Create the Figure, plotting the data for each trace in the trace array.
     fig = go.Figure()
     for trace in config_json["traces"]:
-        
         plot_type = trace["plotType"]
         plot_indicator = trace["plotIndicator"]
         orientation = trace["orientation"]
         trace_name = trace["name"]
         trace_marker_colour = trace["markerColour"]
 
-        # Generating the dataframe based on the plot_indicator field. 
+        # Generating the dataframe based on the plot_indicator field.
         # NB - still no idea what the 3rd parameter is for.
         df = data_extract(data_json,plot_indicator,"value")
 
@@ -57,8 +59,8 @@ def generate_plot_html(config_json, data_json):
                                  values=y_data,
                                  name=trace_name,
                                  textinfo='label',
-                                 hoverinfo='label+value'),
-                                 domain={"x": [0.5,0.5], "y":[0.5,0.5]})
+                                 hoverinfo='label+value'))
+            fig.update_traces(domain={"x": [0.5,0.5], "y":[0.5,0.5]})
 
     # Update the figure with initial font settings - these act as default
     # font settings that then get overridden if any other font options are specified
@@ -165,7 +167,7 @@ def update_plotsize(fig, properties):
         Returns the updated plotly figure.
     """
 
-    fig.update_layout(width=int(properties["plot_width"]), 
+    fig.update_layout(width=int(properties["plot_width"]),
                       height=int(properties["plot_height"]))
 
     return fig

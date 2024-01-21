@@ -1,6 +1,6 @@
 """This file is the backend's entrypoint."""
 import json
-from flask import Flask, Response, render_template, request
+from flask import Flask, Response, request
 from backend import generate_plot_html
 
 app = Flask(__name__)
@@ -26,6 +26,11 @@ def load_indicators(filename: str = "mock.json") -> list[str]:
 
 @app.route("/api/plotfromconfig", methods=["GET", "POST"])
 def generate_plot():
+    """
+        Receives a config_json JSON from the frontend. Calls generate_plot_html
+        to create a plotly figure from the config_json. Then sends this html
+        back to sender, so it can be displayed on screen.
+    """
 
     if request.method == "POST":
         config_json = request.get_json()
@@ -33,7 +38,7 @@ def generate_plot():
     try:
         with open(DEFAULT_DATA_PATH, 'r', encoding='utf-8') as data_file:
             data_json = json.load(data_file)
-    except:
+    except FileNotFoundError:
         print("File not Found")
 
 
