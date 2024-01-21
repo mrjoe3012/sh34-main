@@ -1,7 +1,6 @@
 import React, { ReactNode} from "react";
 import { useEffect, useContext, useState } from "react";
 import { Config } from "./configjsoninterface";
-
 // This ConfigContext is created so that any children will have access to the ConfigJSON that is loaded into this Config's state.
 // It has been created this way so that when any children modify the config state from this context, React will know this,
 // meaning that elsewhere we can use a useEffect that runs when config changes. This is very useful in our case, ie when
@@ -11,7 +10,6 @@ import { Config } from "./configjsoninterface";
 // but this will soon be from the database), and if ConfigJSON has not been loaded in then it blocks the rendering of children.
 // This means you do not need to check if config isnt null in every single child component that uses the config from this context, 
 // because it is guaranteed to have been loaded already.
-
 
 
 // Define the Generic Type that the Config Context will be

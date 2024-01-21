@@ -1,7 +1,15 @@
 import { GenericSizeIncrementerOption } from "../../generic-components/GenericSizeIncrementerOption"
 import { GenericColourOption } from "../../generic-components/GenericColourOption"
+import { AnnotationType } from "@app/graph-editor/configjsoninterface"
+import { useConfig } from "@app/graph-editor/ConfigContext"
 
-export const AnnotationLineOptions = () => {
+interface AnnotationProps {
+    annotation: AnnotationType;
+}
+
+export const AnnotationLineOptions = (props: AnnotationProps) => {
+
+    const {config, setConfig} = useConfig()
 
     const changeAnnotationLineColour = (inputValue: string) => {
         // Enter logic for changing the annotation line colour
@@ -25,11 +33,10 @@ export const AnnotationLineOptions = () => {
 
     return(
         <div className="flex flex-col gap-y-1">
-            <GenericSizeIncrementerOption contentOnRender={0} plotFunction={changeAnnotationLineWidth} labelName="Width" displayLabel={true} />
-            <GenericColourOption contentOnRender="" plotFunction={changeAnnotationLineColour} labelName="Colour" displayLabel={true} />
-            <GenericSizeIncrementerOption contentOnRender={0} plotFunction={changeAnnotationLineXOffset} labelName="X-Offset" displayLabel={true} />
-            <GenericSizeIncrementerOption contentOnRender={0} plotFunction={changeAnnotationLineYOffset} labelName="Y-Offset" displayLabel={true} />
-
+            <GenericSizeIncrementerOption contentOnRender={props.annotation.arrowWidth} plotFunction={changeAnnotationLineWidth} labelName="Width" displayLabel={true} />
+            <GenericColourOption contentOnRender={props.annotation.arrowColour} plotFunction={changeAnnotationLineColour} labelName="Colour" displayLabel={true} />
+            <GenericSizeIncrementerOption contentOnRender={props.annotation.arrowOffsetX} plotFunction={changeAnnotationLineXOffset} labelName="X-Offset" displayLabel={true} />
+            <GenericSizeIncrementerOption contentOnRender={props.annotation.arrowOffsetY} plotFunction={changeAnnotationLineYOffset} labelName="Y-Offset" displayLabel={true} />
         </div>
     )
 }

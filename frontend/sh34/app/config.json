@@ -20,10 +20,11 @@
             "xref": "paper", 
             "yref": "paper",
             "text": "Annotation Text",
-            "showarrow": true,
+            "showArrow": true,
             "arrowColour": "#000000",
             "arrowOffsetX": 20,
-            "arrowOffsetY": -30,
+            "arrowOffsetY": -20,
+            "arrowWidth": 2,
             "styling": {
                 "fontColour": "#000000",
                 "fontSize": 12,

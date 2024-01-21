@@ -5,27 +5,11 @@ import { GenericTextInputOption } from "../../generic-components/GenericTextInpu
 import { GenericSizeIncrementerOption } from "../../generic-components/GenericSizeIncrementerOption"
 import { GenericColourOption } from "../../generic-components/GenericColourOption"
 import { AnnotationLineOptions } from "./AnnotationLineOptions"
+import { AnnotationType } from "@app/graph-editor/configjsoninterface"
 import { useConfig } from "@app/graph-editor/ConfigContext"
 
 interface AnnotationProps {
-    annotation: {
-        id: number;
-        name: string;
-        xPos: number;
-        yPos: number;
-        xref: string;
-        yref: string;
-        text: string;
-        showArrow: boolean;
-        arrowColour: string,
-        arrowOffsetX: number,
-        arrowOffsetY: number,
-        styling: {
-            fontColour: string,
-            fontSize: number,
-            typeface: string
-        }
-    }
+    annotation: AnnotationType
 }
 
 export const Annotation = (props: AnnotationProps) => {
@@ -62,13 +46,13 @@ export const Annotation = (props: AnnotationProps) => {
         <div className="bg-[#e6e7eb] py-3 rounded-md"> 
             <OptionComponentTitle optionName="Annotation 1" />
             <div className="mt-3 flex flex-col gap-y-1">
-                < GenericTextInputOption contentOnRender="" plotFunction={changeAnnotationText} placeholder="Annotation Text" labelName="Text" displayLabel={true} width="" textPos="" />
-                < GenericSizeIncrementerOption contentOnRender={0} plotFunction={changeAnnotationXPos} labelName="X-Pos" displayLabel={true} />
-                < GenericSizeIncrementerOption contentOnRender={0} plotFunction={changeAnnotaionYPos} labelName="Y-Pos" displayLabel={true} />
-                < GenericSizeIncrementerOption contentOnRender={0} plotFunction={changeAnnotationFontSize} labelName="Font Size" displayLabel={true} />
-                < GenericColourOption contentOnRender="" plotFunction={changeAnnotationFontColour} labelName="Colour" displayLabel={true} />
+                < GenericTextInputOption contentOnRender={props.annotation.name} plotFunction={changeAnnotationText} placeholder="Annotation Text" labelName="Text" displayLabel={true} width="" textPos="" />
+                < GenericSizeIncrementerOption contentOnRender={props.annotation.xPos} plotFunction={changeAnnotationXPos} labelName="X-Pos" displayLabel={true} />
+                < GenericSizeIncrementerOption contentOnRender={props.annotation.yPos} plotFunction={changeAnnotaionYPos} labelName="Y-Pos" displayLabel={true} />
+                < GenericSizeIncrementerOption contentOnRender={props.annotation.styling.fontSize} plotFunction={changeAnnotationFontSize} labelName="Font Size" displayLabel={true} />
+                < GenericColourOption contentOnRender={props.annotation.styling.fontColour} plotFunction={changeAnnotationFontColour} labelName="Colour" displayLabel={true} />
                 <div className="mx-3"><OptionComponentTitle optionName="Arrow Settings" /></div>
-                <TwoTabSwitcher firstOptionFunction={()=>{}} secondOptionFunction={()=>{}} switchTabFunction={setShowArrowOptions} firstTabContent={<div></div>} secondTabContent={<AnnotationLineOptions />} switcherLabel1="Hide" switcherLabel2="Show" />
+                <TwoTabSwitcher firstOptionFunction={()=>{}} secondOptionFunction={()=>{}} switchTabFunction={setShowArrowOptions} firstTabContent={<div></div>} secondTabContent={<AnnotationLineOptions annotation={props.annotation}/>} switcherLabel1="Hide" switcherLabel2="Show" />
                 {showArrowOptions}
             </div>
         </div>
