@@ -6,17 +6,37 @@ export interface Config {
         plotIndicator: string;
         markerColour: string;
         orientation: string;
-      }>;
-      annotations: Array<any>; 
-      generalOptions: {
+    }>;
+
+    annotations: Array<{
+        id: number;
+        name: string;
+        xPos: number;
+        yPos: number;
+        xref: string;
+        yref: string;
+        text: string;
+        showArrow: boolean;
+        arrowColour: string,
+        arrowOffsetX: number,
+        arrowOffsetY: number,
+        styling: {
+            fontColour: string,
+            fontSize: number,
+            typeface: string
+        }
+    }>; 
+
+    generalOptions: {
         plotWidth: string;
         plotHeight: string;
         displayXAxisLines: boolean;
         displayYAxisLines: boolean;
         xAxisScale: string;
         yAxisScale: string;
-      };
-      labellingOptions: {
+    };
+
+    labellingOptions: {
         title: {
             plotTitle: string;
             styling: {
@@ -99,11 +119,12 @@ export interface Config {
                 }
             }
         }
-      },
-      visualOptions: {
+    },
+      
+    visualOptions: {
         colour: {
             plotBackgroundColourHex: string,
             plotMarginColourHex: string
         }
-      }
+    }
 }

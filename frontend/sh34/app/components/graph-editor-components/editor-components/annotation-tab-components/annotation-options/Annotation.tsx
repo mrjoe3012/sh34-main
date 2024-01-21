@@ -5,9 +5,32 @@ import { GenericTextInputOption } from "../../generic-components/GenericTextInpu
 import { GenericSizeIncrementerOption } from "../../generic-components/GenericSizeIncrementerOption"
 import { GenericColourOption } from "../../generic-components/GenericColourOption"
 import { AnnotationLineOptions } from "./AnnotationLineOptions"
+import { useConfig } from "@app/graph-editor/ConfigContext"
 
-export const Annotation = () => {
+interface AnnotationProps {
+    annotation: {
+        id: number;
+        name: string;
+        xPos: number;
+        yPos: number;
+        xref: string;
+        yref: string;
+        text: string;
+        showArrow: boolean;
+        arrowColour: string,
+        arrowOffsetX: number,
+        arrowOffsetY: number,
+        styling: {
+            fontColour: string,
+            fontSize: number,
+            typeface: string
+        }
+    }
+}
 
+export const Annotation = (props: AnnotationProps) => {
+
+    const {config,setConfig} = useConfig()
     const [showArrowOptions, setShowArrowOptions] = useState(<div></div>);
 
     const changeAnnotationFontColour = (inputValue: string) => {

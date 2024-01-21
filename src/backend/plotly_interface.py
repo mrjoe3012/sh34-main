@@ -60,7 +60,7 @@ def generate_plot_html(config_json, data_json):
                                  name=trace_name,
                                  textinfo='label',
                                  hoverinfo='label+value'))
-            fig.update_traces(domain={"x": [0.5,0.5], "y":[0.5,0.5]})
+            fig.update_traces(domain={"x": [0.5,0.5], "y":[0.5,0.5]}, selector={"type": "pie"})
 
     # Update the figure with initial font settings - these act as default
     # font settings that then get overridden if any other font options are specified

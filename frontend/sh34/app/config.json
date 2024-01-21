@@ -3,7 +3,7 @@
     "traces": [
         {
             "id": 0,
-            "name": "Name",
+            "name": "New Trace",
             "plotType": "Bar",
             "plotIndicator": "/breakdown_by_indicator/TemperatureMean",
             "markerColour": "#ffac05",
@@ -12,7 +12,24 @@
     ],
 
     "annotations": [
-        {}
+        {
+            "id": 0,
+            "name": "New Annotation",
+            "xPos": 0.5,
+            "yPos": 0.5,
+            "xref": "paper", 
+            "yref": "paper",
+            "text": "Annotation Text",
+            "showarrow": true,
+            "arrowColour": "#000000",
+            "arrowOffsetX": 20,
+            "arrowOffsetY": -30,
+            "styling": {
+                "fontColour": "#000000",
+                "fontSize": 12,
+                "typeface": "Arial"
+            }
+        }
     ],
 
     "generalOptions": {

@@ -25,7 +25,7 @@ export const AnnotationLineOptions = () => {
 
     return(
         <div className="flex flex-col gap-y-1">
-            <GenericSizeIncrementerOption contentOnRender={0} plotFunction={changeAnnotationLineWidth} labelName="Line Width" displayLabel={true} />
+            <GenericSizeIncrementerOption contentOnRender={0} plotFunction={changeAnnotationLineWidth} labelName="Width" displayLabel={true} />
             <GenericColourOption contentOnRender="" plotFunction={changeAnnotationLineColour} labelName="Colour" displayLabel={true} />
             <GenericSizeIncrementerOption contentOnRender={0} plotFunction={changeAnnotationLineXOffset} labelName="X-Offset" displayLabel={true} />
             <GenericSizeIncrementerOption contentOnRender={0} plotFunction={changeAnnotationLineYOffset} labelName="Y-Offset" displayLabel={true} />
