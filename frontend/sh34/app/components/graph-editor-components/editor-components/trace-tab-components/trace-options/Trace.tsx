@@ -96,9 +96,25 @@ export const Trace = (props : TraceProps) => {
 
     }
 
+    const deleteTrace = () => {
+        if (config && Array.isArray(config.traces)) {
+            // Filter out the trace with the id you want to delete
+            const updatedTraces = config.traces.filter(trace => trace.id !== props.trace.id);
+
+            // Update the config with the new traces array
+            setConfig({
+                ...config,
+                traces: updatedTraces
+            });
+        }
+    };
+
     return (
-        <div className="bg-[#e6e7eb] py-3 rounded-md"> 
-            <OptionComponentTitle optionName={`Trace ${props.trace.id}`} />
+        <div className="bg-[#e6e7eb] py-3 rounded-md">
+            <div className="flex flex-row">
+                <div className="basis-[80%]"><OptionComponentTitle optionName={`Trace ${props.trace.id}`} /></div>
+                <button onClick={deleteTrace} className="basis-[20%]"> Delete </button>
+            </div>
             <div className="flex flex-col gap-y-2">
                 < GenericPlotTypeOption traceID={props.trace.id} plotFunction={changeTraceType} contentOnRender={props.trace.plotType}/>
                 < OptionComponentTitle optionName="Trace Settings" />
