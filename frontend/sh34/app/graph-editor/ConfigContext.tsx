@@ -57,7 +57,7 @@ export const ConfigProvider: React.FC<ConfigProviderProps> = ({ children }) => {
     // This checks to see if the config state is still empty. If it is, instead of returning any components,
     // return a simple loading div.
     if (Object.keys(config).length === 0) {
-        return <div className="">Loading...</div>;
+        return <div className="bg-red-500"></div>;
     }
 
     return (

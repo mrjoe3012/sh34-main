@@ -140,6 +140,48 @@ export const Annotation = (props: AnnotationProps) => {
         console.log("Changed annotation text to " + inputValue);
     }
 
+    const showAnnotationArrow = () => {
+
+        if (config && Array.isArray(config.annotations)) {
+            const updatedAnnotations = config.annotations.map(annotation => {
+                if (annotation.id === props.annotation.id) {
+                    return {
+                        ...annotation,
+                        showArrow: true
+                    };
+                }
+                return annotation;
+            });
+
+            setConfig({
+                ...config,
+                annotations: updatedAnnotations
+            });
+        }
+
+    }
+
+    const hideAnnotationArrow = () => {
+
+        if (config && Array.isArray(config.annotations)) {
+            const updatedAnnotations = config.annotations.map(annotation => {
+                if (annotation.id === props.annotation.id) {
+                    return {
+                        ...annotation,
+                        showArrow: false
+                    };
+                }
+                return annotation;
+            });
+
+            setConfig({
+                ...config,
+                annotations: updatedAnnotations
+            });
+        }
+
+    }
+
     const deleteAnnotation = () => {
         if (config && Array.isArray(config.annotations)) {
             const updatedAnnotations = config.annotations.filter(annotation => annotation.id !== props.annotation.id);
@@ -164,7 +206,7 @@ export const Annotation = (props: AnnotationProps) => {
                 < GenericSizeIncrementerOption contentOnRender={props.annotation.styling.fontSize} plotFunction={changeAnnotationFontSize} labelName="Font Size" displayLabel={true} />
                 < GenericColourOption contentOnRender={props.annotation.styling.fontColour.slice(1)} plotFunction={changeAnnotationFontColour} labelName="Colour" displayLabel={true} />
                 <div className="mx-3"><OptionComponentTitle optionName="Arrow Settings" /></div>
-                <TwoTabSwitcher firstOptionFunction={()=>{}} secondOptionFunction={()=>{}} switchTabFunction={setShowArrowOptions} firstTabContent={<div></div>} secondTabContent={<AnnotationLineOptions annotation={props.annotation}/>} switcherLabel1="Hide" switcherLabel2="Show" />
+                <TwoTabSwitcher firstOptionFunction={hideAnnotationArrow} secondOptionFunction={showAnnotationArrow} switchTabFunction={setShowArrowOptions} firstTabContent={<div></div>} secondTabContent={<AnnotationLineOptions annotation={props.annotation}/>} switcherLabel1="Hide" switcherLabel2="Show" />
                 {showArrowOptions}
             </div>
         </div>
