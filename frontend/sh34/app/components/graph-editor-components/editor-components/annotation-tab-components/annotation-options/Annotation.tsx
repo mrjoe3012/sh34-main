@@ -7,6 +7,8 @@ import { GenericColourOption } from "../../generic-components/GenericColourOptio
 import { AnnotationLineOptions } from "./AnnotationLineOptions"
 import { AnnotationType } from "@app/graph-editor/configjsoninterface"
 import { useConfig } from "@app/graph-editor/ConfigContext"
+import Image from "next/image"
+import TrashIcon from "../../../../../images/trash-icon.svg"
 
 interface AnnotationProps {
     annotation: AnnotationType
@@ -138,9 +140,23 @@ export const Annotation = (props: AnnotationProps) => {
         console.log("Changed annotation text to " + inputValue);
     }
 
+    const deleteAnnotation = () => {
+        if (config && Array.isArray(config.annotations)) {
+            const updatedAnnotations = config.annotations.filter(annotation => annotation.id !== props.annotation.id);
+
+            setConfig({
+                ...config,
+                annotations: updatedAnnotations
+            });
+        }
+    }
+
     return (
         <div className="bg-[#e6e7eb] py-3 rounded-md"> 
-            <OptionComponentTitle optionName="Annotation 1" />
+            <div className="flex flex-row">
+                <div className="flex-grow"><OptionComponentTitle optionName={`Trace ${props.annotation.id}`} /></div>
+                <button onClick={deleteAnnotation} className="basis-[10%] ml-2"> <Image className="self-center" src={TrashIcon} alt="delete"></Image></button>
+            </div>
             <div className="mt-3 flex flex-col gap-y-1">
                 < GenericTextInputOption contentOnRender={props.annotation.name} plotFunction={changeAnnotationText} placeholder="Annotation Text" labelName="Text" displayLabel={true} width="" textPos="" />
                 < GenericSizeIncrementerOption contentOnRender={props.annotation.xPos} plotFunction={changeAnnotationXPos} labelName="X-Pos" displayLabel={true} />
