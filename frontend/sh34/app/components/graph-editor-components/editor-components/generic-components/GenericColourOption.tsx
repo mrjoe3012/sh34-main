@@ -52,6 +52,7 @@ export const GenericColourOption = (props : GenericColourOptionProps) => {
     }, [])
   
     return (
+      <>
       <div className="flex items-center gap-x-1 ml-3 mr-3 ">
         {props.displayLabel && <div className="w-[70px] min-w-[70px] text-right pr-2">{props.labelName}</div>}
         <div className="flex items-center gap-x-1">
@@ -71,7 +72,9 @@ export const GenericColourOption = (props : GenericColourOptionProps) => {
             />
           </div>
         </div>
-        {showColourPicker && < ColourPickerPopup hexValue={hexValue} validateInput={validateInputFromPicker}/>}
+        
       </div>
+      {showColourPicker && < ColourPickerPopup hexValue={hexValue} validateInput={validateInputFromPicker}/>}
+      </>
     );
   }

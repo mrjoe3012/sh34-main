@@ -50,8 +50,8 @@ export const YAxisTickLabelCustomMode = () => {
     return (
         <div className="flex flex-col gap-y-1">
             <GenericSizeIncrementerOption contentOnRender={config["labellingOptions"]["xAxis"]["tickLabels"]["styling"]["customFontStyle"]["fontSize"]} plotFunction={changeTickLabelFontSize} labelName={"Font Size"} displayLabel={true}/>
-            <GenericColourOption contentOnRender={config["labellingOptions"]["xAxis"]["tickLabels"]["styling"]["customFontStyle"]["fontColour"].slice(1)} plotFunction={changeTickLabelFontColour} labelName="Colour" displayLabel={true}/>
             <GenericTypefaceOption contentOnRender={config["labellingOptions"]["xAxis"]["tickLabels"]["styling"]["customFontStyle"]["typeface"]} plotFunction={changeTickLabelTypeface} displayLabel={true}/>
+            <GenericColourOption contentOnRender={config["labellingOptions"]["xAxis"]["tickLabels"]["styling"]["customFontStyle"]["fontColour"].slice(1)} plotFunction={changeTickLabelFontColour} labelName="Colour" displayLabel={true}/>
         </div>
     )
 }

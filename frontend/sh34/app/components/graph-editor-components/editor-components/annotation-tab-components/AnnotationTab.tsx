@@ -28,7 +28,7 @@ export const AnnotationTab = () => {
             <OptionTabTitle titleName="Annotation Options" />
             <NewAnnotationButton />
 
-            <div className="w-full flex flex-col gap-y-5 mt-5">
+            <div className="w-full flex flex-col gap-y-5 mt-5 pb-5">
                 {annotationList}
             </div>
 

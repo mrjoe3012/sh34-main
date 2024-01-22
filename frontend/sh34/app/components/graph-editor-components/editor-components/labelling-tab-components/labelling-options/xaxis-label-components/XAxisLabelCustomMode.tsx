@@ -56,8 +56,8 @@ export const XAxisLabelCustomMode = () => {
     return(
         <div className="flex flex-col gap-y-1">
             <GenericSizeIncrementerOption contentOnRender={config["labellingOptions"]["xAxis"]["styling"]["customFontStyle"]["fontSize"]} plotFunction={changeXAxisLabelFontSize} labelName={"Font Size"} displayLabel={true}/>
-            <GenericColourOption contentOnRender={config["labellingOptions"]["xAxis"]["styling"]["customFontStyle"]["fontColour"].slice(1)} plotFunction={changeXAxisLabelFontColour} labelName="Colour" displayLabel={true}/>
             <GenericTypefaceOption contentOnRender={config["labellingOptions"]["xAxis"]["styling"]["customFontStyle"]["typeface"]} plotFunction={changeXAxisLabelTypeface} displayLabel={true}/>
+            <GenericColourOption contentOnRender={config["labellingOptions"]["xAxis"]["styling"]["customFontStyle"]["fontColour"].slice(1)} plotFunction={changeXAxisLabelFontColour} labelName="Colour" displayLabel={true}/>
         </div>
     )
 }

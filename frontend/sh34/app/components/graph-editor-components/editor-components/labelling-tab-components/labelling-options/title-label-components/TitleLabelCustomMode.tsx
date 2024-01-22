@@ -56,8 +56,8 @@ export const TitleLabelCustomMode = () => {
     return (
         <div className="flex flex-col gap-y-1">
             <GenericSizeIncrementerOption contentOnRender={config["labellingOptions"]["title"]["styling"]["customFontStyle"]["fontSize"]} plotFunction={changeTitleLabelFontSize} labelName={"Font Size"} displayLabel={true} />
-            <GenericColourOption contentOnRender={config["labellingOptions"]["title"]["styling"]["customFontStyle"]["fontColour"].slice(1)} plotFunction={changeTitleLabelFontColour} labelName="Colour" displayLabel={true}/>
             <GenericTypefaceOption contentOnRender={config["labellingOptions"]["title"]["styling"]["customFontStyle"]["typeface"]} plotFunction={changeTitleLabelTypeface} displayLabel={true}/>
+            <GenericColourOption contentOnRender={config["labellingOptions"]["title"]["styling"]["customFontStyle"]["fontColour"].slice(1)} plotFunction={changeTitleLabelFontColour} labelName="Colour" displayLabel={true}/>
         </div>
     )
 }

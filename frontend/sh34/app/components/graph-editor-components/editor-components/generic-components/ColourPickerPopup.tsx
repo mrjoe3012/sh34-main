@@ -15,7 +15,7 @@ export const ColourPickerPopup = (props: ColourPickerPopupProps) => {
     };
 
     return (
-        <div className="fixed -translate-x-[-140px] -translate-y-3 z-50">
+        <div className="ml-3 mr-3 mb-1 mt-2">
             <ChromePicker disableAlpha={true} color={colourValue} onChangeComplete={handleColorChangeComplete}/>
         </div>
     );
