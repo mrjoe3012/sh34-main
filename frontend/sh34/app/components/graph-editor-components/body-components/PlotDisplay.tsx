@@ -1,5 +1,6 @@
 import { useEffect } from "react"
 import { useConfig } from "@app/graph-editor/ConfigContext"
+import ReactLoading from "react-loading"
 import $ from "jquery"
 
 export const PlotDisplay = () => {
@@ -8,7 +9,7 @@ export const PlotDisplay = () => {
 
     useEffect(()=>{
 
-        $('#plot-container').html("<div> Loading ... </div>");
+        $('#loading-icon').css("display", "block");
 
         // fetch the plot and display it
         fetch('/api/plotfromconfig', {
@@ -23,9 +24,11 @@ export const PlotDisplay = () => {
           console.log("Received Plot as HTML")
         // Im sure its dangerous to just be setting unverified HTML into the site but... 
           $('#plot-container').html(data);
+          $('#loading-icon').css("display", "none");
         })
         .catch((error) => {
           console.error('Error:', error);
+          $('#loading-icon').css("display", "none");
         });
     },[config])
 
@@ -35,7 +38,11 @@ export const PlotDisplay = () => {
     } 
 
     return(
-        <div id="plot-container" className='basis-[85%] p-16 flex justify-center overflow-auto'>
+      <div className="basis-[85%] p-2 flex flex-col justify-center overflow-auto">
+        <div id="loading-icon" className="fixed ml-4"><ReactLoading type="spin" color="black" height={30} width={30}/></div>
+        <div id="plot-container" className="self-center">
         </div>
+      </div>
+
     )
 }
