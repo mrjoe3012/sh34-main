@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react"
 
 interface GenericTextInputOptionProps {
     placeholder: string,
@@ -11,20 +12,38 @@ interface GenericTextInputOptionProps {
 
 export const GenericTextInputOption = (props : GenericTextInputOptionProps) => {
 
+    const [ inputValue, setInputValue ] = useState("")
+    const [ prevInputValue, setPrevInputValue ] = useState("")
+
     const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
-        props.plotFunction(e.currentTarget.value)
+        if (inputValue != prevInputValue) {
+            props.plotFunction(e.currentTarget.value)
+            setPrevInputValue(e.currentTarget.value)
+        }
     }
 
     const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>): void => {
         if (e.key === "Enter") {
-            props.plotFunction(e.currentTarget.value)
+            if (inputValue != prevInputValue) {
+                props.plotFunction(e.currentTarget.value)
+                setPrevInputValue(e.currentTarget.value)
+            }
         }
     };
+
+    const validateInput = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setInputValue(event.target.value)
+    }
+
+    useEffect(()=>{
+        setInputValue(props.contentOnRender)
+        setPrevInputValue(props.contentOnRender)
+    },[])
 
     return (
         <div className="flex items-center gap-x-1 ml-3 mr-3">
             <div className="w-[70px] min-w-[70px] text-right pr-2">{props.labelName}</div>
-            <input defaultValue={props.contentOnRender} onBlur={handleBlur} onKeyDown={handleKeyDown} type="text" placeholder={props.placeholder} className={`${props.width} ${props.textPos} px-4 font-medium placeholder-[#ACACAC] h-[35px] bg-[#DCDCDC] rounded-lg flex items-center  border-2 border-[#B3B3B3] focus:ring-2 focus:ring-RES_ORANGE focus:outline-none focus:border-none`} />
+            <input value={inputValue} onChange={validateInput} onBlur={handleBlur} onKeyDown={handleKeyDown} type="text" placeholder={props.placeholder} className={`${props.width} ${props.textPos} px-4 font-medium placeholder-[#ACACAC] h-[35px] bg-[#DCDCDC] rounded-lg flex items-center  border-2 border-[#B3B3B3] focus:ring-2 focus:ring-RES_ORANGE focus:outline-none focus:border-none`} />
         </div>
     )
 }

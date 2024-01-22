@@ -8,6 +8,8 @@ export const PlotDisplay = () => {
 
     useEffect(()=>{
 
+        $('#plot-container').html("<div> Loading ... </div>");
+
         // fetch the plot and display it
         fetch('/api/plotfromconfig', {
           method: 'POST', // or 'PUT'
@@ -18,7 +20,8 @@ export const PlotDisplay = () => {
         })
         .then(response => response.text())
         .then(data => {
-          console.log("worked")
+          console.log("Received Plot as HTML")
+        // Im sure its dangerous to just be setting unverified HTML into the site but... 
           $('#plot-container').html(data);
         })
         .catch((error) => {

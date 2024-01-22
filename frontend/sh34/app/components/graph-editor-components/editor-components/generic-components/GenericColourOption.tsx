@@ -9,15 +9,22 @@ interface GenericColourOptionProps {
 
 export const GenericColourOption = (props : GenericColourOptionProps) => {
 
-    const [hexValue, setHexValue] = useState('');
+    const [hexValue, setHexValue] = useState("");
+    const [prevHexValue, setPrevHexValue] = useState("")
 
     const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
-        props.plotFunction(e.currentTarget.value)
+        if (hexValue != prevHexValue) {
+          props.plotFunction(e.currentTarget.value)
+          setPrevHexValue(e.currentTarget.value)
+        }
     }
 
     const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>): void => {
     if (e.key === "Enter") {
+      if (hexValue != prevHexValue) {
         props.plotFunction(e.currentTarget.value)
+        setPrevHexValue(e.currentTarget.value)
+      }
     }
     };
 
@@ -29,6 +36,7 @@ export const GenericColourOption = (props : GenericColourOptionProps) => {
     // This function runs when a GenericColourOption component renders, setting its value to the value in the config
     useEffect(() => {
       setHexValue(props.contentOnRender)
+      setPrevHexValue(props.contentOnRender)
     }, [])
   
     return (
