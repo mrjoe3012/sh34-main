@@ -57,7 +57,7 @@ export const GenericColourOption = (props : GenericColourOptionProps) => {
               onKeyDown={handleKeyDown}
             />
           </div>
-          <div className="w-8 h-8 bg-red-500 rounded-md flex border-black border-2"> </div>
+          <div className={`w-8 h-8 rounded-md flex border-black border-2`} style={{ backgroundColor: `#${hexValue}` }}> </div>
         </div>
       </div>
     );

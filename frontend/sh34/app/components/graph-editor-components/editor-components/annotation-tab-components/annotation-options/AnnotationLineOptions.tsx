@@ -19,7 +19,7 @@ export const AnnotationLineOptions = (props: AnnotationProps) => {
                 if (annotation.id === props.annotation.id) {
                     return {
                         ...annotation,
-                        arrowColour: inputValue
+                        arrowColour: "#" + inputValue
                     };
                 }
                 return annotation;
