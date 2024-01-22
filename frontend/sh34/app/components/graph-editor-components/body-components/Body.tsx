@@ -5,8 +5,6 @@ import { GeneralTab } from "../editor-components/general-tab-components/GeneralT
 import { Sidebar } from "../sidebar-components/Sidebar";
 import { PlotDisplay } from "./PlotDisplay";
 import { PlotOptions } from "./PlotOptions";
-import { WithId } from "mongodb";
-import { PlotData } from "@app/modules/db";
 
 export function Body() {
 

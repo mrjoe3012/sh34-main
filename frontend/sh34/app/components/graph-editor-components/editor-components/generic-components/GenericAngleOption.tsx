@@ -1,4 +1,3 @@
-import { useConfig } from "@app/graph-editor/ConfigContext"
 import  { ChangeEvent } from "react"
 
 interface GenericAngleOptionProps {

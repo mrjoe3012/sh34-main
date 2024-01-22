@@ -3,8 +3,6 @@ import { Navbar } from '@app/components/navbar';
 import React from "react";
 import { Body } from '@app/components/graph-editor-components/body-components/Body';
 import { ConfigProvider } from '../ConfigContext';
-  
-
 
 
 export default function Home() {
