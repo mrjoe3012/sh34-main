@@ -6,16 +6,10 @@ import { useConfig } from "@app/graph-editor/ConfigContext";
 import { MarkerConstantOption } from "./marker-colour-components/MarkerConstantOption";
 import Image from "next/image";
 import TrashIcon from "../../../../../images/trash-icon.svg"
+import { TraceType } from "@app/graph-editor/configjsoninterface";
 
 interface TraceProps {
-    trace: {
-        id: number,
-        name: string,
-        plotType: string,
-        plotIndicator: string,
-        markerColour: string,
-        orientation: string
-    }
+    trace: TraceType
 }
 
 export const Trace = (props : TraceProps) => {
@@ -23,20 +17,17 @@ export const Trace = (props : TraceProps) => {
     const {config,setConfig} = useConfig()
 
     const changeTraceName = (inputValue: string) => {
-        // Ensure that traces is a proper array in your config
+
+        if (inputValue=="") { return }
+
         if (config && Array.isArray(config.traces)) {
-            // Map through the traces to find the one you want to update
             const updatedTraces = config.traces.map(trace => {
-                // Check if the current trace is the one to update
                 if (trace.id === props.trace.id) {
-                    // If so, return a new object with the updated name
                     return { ...trace, name: inputValue };
                 }
-                // Otherwise, return the trace as is
                 return trace;
             });
 
-            // Update the config with the new traces array
             setConfig({
                 ...config,
                 traces: updatedTraces

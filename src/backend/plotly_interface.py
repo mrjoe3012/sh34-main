@@ -281,8 +281,8 @@ def update_annotations(fig, properties):
             yref=annotation["yref"],
             text=annotation["text"],
             showarrow=annotation["showArrow"],
-            arrowhead=2, 
-            arrowsize=1, 
+            arrowhead=2,
+            arrowsize=1,
             arrowcolor=annotation["arrowColour"],
             ax=annotation["arrowOffsetX"],
             ay=annotation["arrowOffsetY"],
@@ -293,7 +293,7 @@ def update_annotations(fig, properties):
                 "family": annotation["styling"]["typeface"]
             }
         )
-    
+
     return fig
 
 

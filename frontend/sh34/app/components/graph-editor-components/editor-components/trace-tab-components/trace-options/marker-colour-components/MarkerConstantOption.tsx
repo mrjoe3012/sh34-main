@@ -1,14 +1,8 @@
 import { GenericColourOption } from "../../../generic-components/GenericColourOption"
+import { TraceType } from "@app/graph-editor/configjsoninterface"
 
 interface MarkerConstantOptionProps {
-    trace: {
-        id: number,
-        name: string,
-        plotType: string,
-        plotIndicator: string,
-        markerColour: string,
-        orientation: string
-    }
+    trace: TraceType
     plotFunction: (inputValue: string) => void;
 }
 

@@ -1,20 +1,12 @@
 import { useConfig } from "@app/graph-editor/ConfigContext";
-
-interface Trace {
-    id: number;
-    name: string;
-    plotType: string;
-    plotIndicator: string;
-    markerColour: string;
-    orientation: string;
-}
+import { TraceType } from "@app/graph-editor/configjsoninterface";
 
 export const NewTraceButton = () => {
 
     const {config,setConfig} = useConfig()
 
     const addTrace = () => {
-        const newTrace: Trace = {
+        const newTrace: TraceType = {
             id: config["traces"].length, 
             name: "New Trace",
             plotType: 'Scatter', 
