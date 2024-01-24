@@ -4,8 +4,25 @@
 from typing import Any
 import plotly.graph_objs as go
 import pandas as pd
+import os
+import uuid
 
 def generate_plot_html(config_json, data_json):
+    fig = generate_plot(config_json, data_json)
+    return fig.to_html()
+
+def generate_plot_png(config_json, data_json):
+    fig = generate_plot(config_json, data_json)
+    unique_id = uuid.uuid4()
+    file_name = f'plot_{unique_id}.png'
+    folder_name = 'temp'
+    file_path = os.path.join(folder_name, file_name)
+    if not os.path.exists(folder_name):
+        os.makedirs(folder_name)
+
+    return fig.write_image(file_path)
+
+def generate_plot(config_json, data_json):
     """ Takes in the config_json received from the frontend,
         creates the plotly figure and returns its HTML form
     """
@@ -26,8 +43,7 @@ def generate_plot_html(config_json, data_json):
     fig = update_plotsize(fig, properties)
     fig = update_annotations(fig, properties)
 
-    fig_html = fig.to_html()
-    return fig_html
+    return fig
 
 
 def update_traces(fig, properties,data_json):
