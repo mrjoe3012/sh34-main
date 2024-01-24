@@ -50,10 +50,10 @@ def api_load_indicators():
     return Response(indicators_json, mimetype="application/json")
 
 
-@app.route("/api/generate-doc", methods=['GET'])
-def receive_configs():
-    """This endpoint is used to receive the list of config files to be processed."""
-    template = request.args.getlist('template')
+@app.route("/api/generate-doc", methods=['POST'])
+def receive_template():
+    """This endpoint is used to receive the template to be processed."""
+    template = request.get_json()
     template_name = template['template']['Name']
     config_files = []
     for config in template:
