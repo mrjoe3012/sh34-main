@@ -37,6 +37,9 @@ def generate_plot():
     with open(DEFAULT_DATA_PATH, 'r', encoding='utf-8') as data_file:
         data_json = json.load(data_file)
 
+    with open("last_config.json", "w") as f:
+        json.dump(config_json, f, indent=2)
+
     plot_html = generate_plot_html(config_json,data_json)
     return Response(plot_html, mimetype="text/html")
 
