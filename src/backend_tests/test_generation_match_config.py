@@ -28,7 +28,7 @@ class TestUpdateTraces(unittest.TestCase):
         os.chdir(test_script_directory)
 
         #read in the mock data from dataset.json
-        with open('../dataset.json', 'r') as f:
+        with open('../fixed.json', 'r') as f:
             data_json = json.load(f)
 
         #assign the traces to the graph
@@ -41,7 +41,6 @@ class TestUpdateTraces(unittest.TestCase):
 
     def tearDown(self):
         os.chdir(os.path.dirname(os.path.abspath(__file__)))
-
 
 if __name__ == '__main__':
     unittest.main()
