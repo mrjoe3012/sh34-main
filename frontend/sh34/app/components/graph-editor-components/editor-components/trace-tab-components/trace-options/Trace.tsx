@@ -20,69 +20,62 @@ export const Trace = (props : TraceProps) => {
 
         if (inputValue=="") { return }
 
-        if (config && Array.isArray(config.traces)) {
-            const updatedTraces = config.traces.map(trace => {
-                if (trace.id === props.trace.id) {
-                    return { ...trace, name: inputValue };
-                }
-                return trace;
-            });
+        const updatedTraces = config.traces.map(trace => {
+            if (trace.id === props.trace.id) {
+                return { ...trace, name: inputValue };
+            }
+            return trace;
+        });
 
-            setConfig({
-                ...config,
-                traces: updatedTraces
-            });
-        }
+        setConfig({
+            ...config,
+            traces: updatedTraces
+        });
+        
     }
 
     const changeTraceType = (newType: string) => {
-        if (config && Array.isArray(config.traces)) {
-            const updatedTraces = config.traces.map(trace => {
-                if (trace.id === props.trace.id) {
-                    return { ...trace, plotType: newType }; 
-                }
-                return trace;
-            });
+        const updatedTraces = config.traces.map(trace => {
+            if (trace.id === props.trace.id) {
+                return { ...trace, plotType: newType }; 
+            }
+            return trace;
+        });
 
-            setConfig({
-                ...config,
-                traces: updatedTraces
-            });
-        }
+        setConfig({
+            ...config,
+            traces: updatedTraces
+        });
     };
 
     const changeTraceIndicator = (newIndicator: string) => {
         // Need to add this prefix as the value from the select is just the indicator, but the configJSON takes in "/breakdown_by_indicator/indicator"
         newIndicator = "/breakdown_by_indicator/" + newIndicator 
-        if (config && Array.isArray(config.traces)) {
-            const updatedTraces = config.traces.map(trace => {
-                if (trace.id === props.trace.id) {
-                    return { ...trace, plotIndicator: newIndicator }; 
-                }
-                return trace;
-            });
-    
-            setConfig({
-                ...config,
-                traces: updatedTraces
-            });
-        }
+        const updatedTraces = config.traces.map(trace => {
+            if (trace.id === props.trace.id) {
+                return { ...trace, plotIndicator: newIndicator }; 
+            }
+            return trace;
+        });
+
+        setConfig({
+            ...config,
+            traces: updatedTraces
+        });
     };
 
     const changeMarkerColourConstant = (inputValue: string) => {
-        if (config && Array.isArray(config.traces)) {
-            const updatedTraces = config.traces.map(trace => {
-                if (trace.id === props.trace.id) {
-                    return { ...trace, markerColour: "#" + inputValue }; 
-                }
-                return trace;
-            });
+        const updatedTraces = config.traces.map(trace => {
+            if (trace.id === props.trace.id) {
+                return { ...trace, markerColour: "#" + inputValue }; 
+            }
+            return trace;
+        });
 
-            setConfig({
-                ...config,
-                traces: updatedTraces
-            });
-        }
+        setConfig({
+            ...config,
+            traces: updatedTraces
+        });
     };
 
     const changeMarkerColourScale = (inputValue: string) => {
@@ -90,16 +83,14 @@ export const Trace = (props : TraceProps) => {
     }
 
     const deleteTrace = () => {
-        if (config && Array.isArray(config.traces)) {
-            // Filter out the trace with the id you want to delete
-            const updatedTraces = config.traces.filter(trace => trace.id !== props.trace.id);
+        // Filter out the trace with the id you want to delete
+        const updatedTraces = config.traces.filter(trace => trace.id !== props.trace.id);
 
-            // Update the config with the new traces array
-            setConfig({
-                ...config,
-                traces: updatedTraces
-            });
-        }
+        // Update the config with the new traces array
+        setConfig({
+            ...config,
+            traces: updatedTraces
+        });
     };
 
     return (

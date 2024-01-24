@@ -8,18 +8,16 @@ export const YAxisTickLabelPositionOption = () => {
     
     const changePosition = (inputValue: string) => {
         // Ensure the necessary nested properties exist in the config object
-        if (config && config.labellingOptions && config.labellingOptions.yAxis && config.labellingOptions.yAxis.tickLabels) {
-            // Create a deep copy of config
-            const newConfig = { ...config };
+        // Create a deep copy of config
+        const newConfig = { ...config };
 
-            // Update the specific value
-            newConfig.labellingOptions.yAxis.tickLabels.tickPosition = inputValue.toLowerCase();
+        // Update the specific value
+        newConfig.labellingOptions.yAxis.tickLabels.tickPosition = inputValue.toLowerCase();
 
-            // Use setConfig to update the context
-            setConfig(newConfig);
+        // Use setConfig to update the context
+        setConfig(newConfig);
 
-            console.log("Toggled tick label position to " + inputValue.toLowerCase());
-        }
+        console.log("Toggled tick label position to " + inputValue.toLowerCase());
     };
 
     return(

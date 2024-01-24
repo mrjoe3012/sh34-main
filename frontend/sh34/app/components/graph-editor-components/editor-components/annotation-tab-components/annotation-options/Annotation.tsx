@@ -23,50 +23,44 @@ export const Annotation = (props: AnnotationProps) => {
 
         if (inputValue=="") { return }
 
-        if (config && Array.isArray(config.annotations)) {
-            const updatedAnnotations = config.annotations.map(annotation => {
-                if (annotation.id === props.annotation.id) {
-                    return {
-                        ...annotation,
-                        styling: {
-                            ...annotation.styling,
-                            fontColour: "#" + inputValue
-                        }
-                    };
-                }
-                return annotation;
-            });
+        const updatedAnnotations = config.annotations.map(annotation => {
+            if (annotation.id === props.annotation.id) {
+                return {
+                    ...annotation,
+                    styling: {
+                        ...annotation.styling,
+                        fontColour: "#" + inputValue
+                    }
+                };
+            }
+            return annotation;
+        });
 
-            setConfig({
-                ...config,
-                annotations: updatedAnnotations
-            });
-        }
-
-
+        setConfig({
+            ...config,
+            annotations: updatedAnnotations
+        });
+        
         console.log("Changed Annotation Font Colour to " + inputValue);
     }
 
     const changeAnnotationXPos = (inputValue: string) => {
         // Enter logic for changing the annotation's x pos
 
-        if (config && Array.isArray(config.annotations)) {
-            const updatedAnnotations = config.annotations.map(annotation => {
-                if (annotation.id === props.annotation.id) {
-                    return {
-                        ...annotation,
-                        xPos: Number(inputValue)
-                    };
-                }
-                return annotation;
-            });
+        const updatedAnnotations = config.annotations.map(annotation => {
+            if (annotation.id === props.annotation.id) {
+                return {
+                    ...annotation,
+                    xPos: Number(inputValue)
+                };
+            }
+            return annotation;
+        });
 
-            setConfig({
-                ...config,
-                annotations: updatedAnnotations
-            });
-        }
-
+        setConfig({
+            ...config,
+            annotations: updatedAnnotations
+        });
 
         console.log("Changed Annotation X Pos to " + inputValue);
     }
@@ -74,123 +68,115 @@ export const Annotation = (props: AnnotationProps) => {
     const changeAnnotationYPos = (inputValue: string) => {
         // Enter logic for changing annotations y pos
 
-        if (config && Array.isArray(config.annotations)) {
-            const updatedAnnotations = config.annotations.map(annotation => {
-                if (annotation.id === props.annotation.id) {
-                    return {
-                        ...annotation,
-                        yPos: Number(inputValue)
-                    };
-                }
-                return annotation;
-            });
+        const updatedAnnotations = config.annotations.map(annotation => {
+            if (annotation.id === props.annotation.id) {
+                return {
+                    ...annotation,
+                    yPos: Number(inputValue)
+                };
+            }
+            return annotation;
+        });
 
-            setConfig({
-                ...config,
-                annotations: updatedAnnotations
-            });
-        }
+        setConfig({
+            ...config,
+            annotations: updatedAnnotations
+        });
+        
         console.log("Changed Annotation Y Pos to " + inputValue);
     }
 
     const changeAnnotationFontSize = (inputValue: string) => {
         // Enter logic for changing annotation font size
 
-        if (config && Array.isArray(config.annotations)) {
-            const updatedAnnotations = config.annotations.map(annotation => {
-                if (annotation.id === props.annotation.id) {
-                    return {
-                        ...annotation,
-                        styling: {
-                            ...annotation.styling,
-                            fontSize: Number(inputValue)
-                        }
-                    };
-                }
-                return annotation;
-            });
+        const updatedAnnotations = config.annotations.map(annotation => {
+            if (annotation.id === props.annotation.id) {
+                return {
+                    ...annotation,
+                    styling: {
+                        ...annotation.styling,
+                        fontSize: Number(inputValue)
+                    }
+                };
+            }
+            return annotation;
+        });
 
-            setConfig({
-                ...config,
-                annotations: updatedAnnotations
-            });
-        }
+        setConfig({
+            ...config,
+            annotations: updatedAnnotations
+        });
+        
         console.log("Changed annotation font size to " + inputValue);
     }
 
     const changeAnnotationText = (inputValue: string) => {
         // Enter logic for changing annotation text
 
-        if (config && Array.isArray(config.annotations)) {
-            const updatedAnnotations = config.annotations.map(annotation => {
-                if (annotation.id === props.annotation.id) {
-                    return {
-                        ...annotation,
-                        text: inputValue
-                    };
-                }
-                return annotation;
-            });
+        const updatedAnnotations = config.annotations.map(annotation => {
+            if (annotation.id === props.annotation.id) {
+                return {
+                    ...annotation,
+                    text: inputValue
+                };
+            }
+            return annotation;
+        });
 
-            setConfig({
-                ...config,
-                annotations: updatedAnnotations
-            });
-        }
+        setConfig({
+            ...config,
+            annotations: updatedAnnotations
+        });
+    
         console.log("Changed annotation text to " + inputValue);
     }
 
     const showAnnotationArrow = () => {
 
-        if (config && Array.isArray(config.annotations)) {
-            const updatedAnnotations = config.annotations.map(annotation => {
-                if (annotation.id === props.annotation.id) {
-                    return {
-                        ...annotation,
-                        showArrow: true
-                    };
-                }
-                return annotation;
-            });
+        const updatedAnnotations = config.annotations.map(annotation => {
+            if (annotation.id === props.annotation.id) {
+                return {
+                    ...annotation,
+                    showArrow: true
+                };
+            }
+            return annotation;
+        });
 
-            setConfig({
-                ...config,
-                annotations: updatedAnnotations
-            });
-        }
+        setConfig({
+            ...config,
+            annotations: updatedAnnotations
+        });
 
     }
 
     const hideAnnotationArrow = () => {
 
-        if (config && Array.isArray(config.annotations)) {
-            const updatedAnnotations = config.annotations.map(annotation => {
-                if (annotation.id === props.annotation.id) {
-                    return {
-                        ...annotation,
-                        showArrow: false
-                    };
-                }
-                return annotation;
-            });
+        const updatedAnnotations = config.annotations.map(annotation => {
+            if (annotation.id === props.annotation.id) {
+                return {
+                    ...annotation,
+                    showArrow: false
+                };
+            }
+            return annotation;
+        });
 
-            setConfig({
-                ...config,
-                annotations: updatedAnnotations
-            });
-        }
+        setConfig({
+            ...config,
+            annotations: updatedAnnotations
+        });
 
     }
 
     const deleteAnnotation = () => {
-        if (config && Array.isArray(config.annotations)) {
-            const updatedAnnotations = config.annotations.filter(annotation => annotation.id !== props.annotation.id);
+        const updatedAnnotations = config.annotations.filter(annotation => annotation.id !== props.annotation.id);
 
-            setConfig({
-                ...config,
-                annotations: updatedAnnotations
-            });
-        }
+        setConfig({
+            ...config,
+            annotations: updatedAnnotations
+        });
+    
     }
 
     return (
