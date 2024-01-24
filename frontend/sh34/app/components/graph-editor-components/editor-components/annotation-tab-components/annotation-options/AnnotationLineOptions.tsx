@@ -1,6 +1,6 @@
 import { GenericSizeIncrementerOption } from "../../generic-components/GenericSizeIncrementerOption"
 import { GenericColourOption } from "../../generic-components/GenericColourOption"
-import { AnnotationType } from "@app/graph-editor/configjsoninterface"
+import { AnnotationType } from "@app/modules/Config"
 import { useConfig } from "@app/graph-editor/ConfigContext"
 
 interface AnnotationProps {

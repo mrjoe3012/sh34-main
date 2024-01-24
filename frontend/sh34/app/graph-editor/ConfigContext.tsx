@@ -1,6 +1,6 @@
 import React, { ReactNode} from "react";
 import { useEffect, useContext, useState } from "react";
-import { Config } from "./configjsoninterface";
+import { Config } from "@app/modules/Config";
 // This ConfigContext is created so that any children will have access to the ConfigJSON that is loaded into this Config's state.
 // It has been created this way so that when any children modify the config state from this context, React will know this,
 // meaning that elsewhere we can use a useEffect that runs when config changes. This is very useful in our case, ie when
