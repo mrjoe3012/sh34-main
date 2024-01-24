@@ -16,10 +16,24 @@ class TestUpdateTraces(unittest.TestCase):
 
     #create a mock config json to be passed to the traces
     def test_update_traces(self):
-        config_json =  {"traces" : [
-                {"plotType": "Bar", "plotIndicator": "bar_data", "name": "Trace1", "markerColour": "blue"},
-                {"plotType": "Scatter", "plotIndicator": "scatter_data", "name": "Trace2", "markerColour": "red"},
-            ]
+        config_json = { "traces" : [
+            {
+                "id" : 0,
+                "name" : "trace1",
+                "plotType" : "Bar",
+                "plotIndicator" : "/breakdown_by_indicator/TemperatureMean",
+                "markerColour" : "#aabbcc",
+                "orientation" : "v"
+            },
+            {
+                "id" : 1,
+                "name" : "trace2",
+                "plotType" : "Scatter",
+                "plotIndicator" : "/breakdown_by_indicator/TemperatureMean",
+                "markerColour" : "#00cc11",
+                "orientation" : "v"
+            }
+        ]
         }
 
         #change working directory so that dataset file can be easily found
