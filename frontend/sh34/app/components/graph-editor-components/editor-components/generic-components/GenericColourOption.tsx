@@ -53,8 +53,8 @@ export const GenericColourOption = (props : GenericColourOptionProps) => {
   
     return (
       <>
-      <div className="flex items-center gap-x-1 ml-3 mr-3 ">
-        {props.displayLabel && <div className="w-[70px] min-w-[70px] text-right pr-2">{props.labelName}</div>}
+      <div className="flex items-center ml-3 mr-3 ">
+        {props.displayLabel && <div className="w-[60px] min-w-[60px] text-left pr-2">{props.labelName}</div>}
         <div className="flex items-center gap-x-1">
         <button onClick={toggleColourPicker} className={`w-8 h-8 rounded-md flex border-gray-300 border-2`} style={{ backgroundColor: `#${hexValue}` }}> </button>
           <div className="flex border-2 border-[#B3B3B3] bg-[#DCDCDC] rounded-lg focus-within:border-RES_ORANGE h-[35px] w-[100px]">
