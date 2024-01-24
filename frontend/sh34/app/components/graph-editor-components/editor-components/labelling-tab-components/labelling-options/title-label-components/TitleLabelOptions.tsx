@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react"
-import { OptionComponentTitle } from "../../../OptionComponentTitle"
-import { GenericTextInputOption } from "../../../generic-components/GenericTextInputOption"
-import { TitleLabelDefaultMode } from "./TitleLabelDefaultMode"
-import { TitleLabelCustomMode } from "./TitleLabelCustomMode"
-import { TwoTabSwitcher } from "../../../generic-components/GenericTwoTabSwitcher"
+import { OptionComponentTitle } from "@app/components/graph-editor-components/editor-components/OptionComponentTitle"
+import { GenericTextInputOption } from "@app/components/graph-editor-components/editor-components/generic-components/GenericTextInputOption"
+import { TitleLabelDefaultMode } from "@app/components/graph-editor-components/editor-components/labelling-tab-components/labelling-options/title-label-components/TitleLabelDefaultMode"
+import { TitleLabelCustomMode } from "@app/components/graph-editor-components/editor-components/labelling-tab-components/labelling-options/title-label-components/TitleLabelCustomMode"
+import { TwoTabSwitcher } from "@app/components/graph-editor-components/editor-components/generic-components/GenericTwoTabSwitcher"
 
 import { useConfig } from "@app/graph-editor/ConfigContext"
 

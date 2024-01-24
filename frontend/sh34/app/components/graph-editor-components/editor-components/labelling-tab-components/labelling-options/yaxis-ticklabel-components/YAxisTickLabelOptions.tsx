@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react"
-import { OptionComponentTitle } from "../../../OptionComponentTitle"
-import { YAxisTickLabelDefaultMode } from "./YAxisTickLabelDefaultMode"
-import { YAxisTickLabelCustomMode } from "./YAxisTickLabelCustomMode"
-import { TwoTabSwitcher } from "../../../generic-components/GenericTwoTabSwitcher"
-import { YAxisTickLabelPositionOption } from "./YAxisTickLabelPositionOption"
-import { GenericAngleOption } from "../../../generic-components/GenericAngleOption"
+import { OptionComponentTitle } from "@app/components/graph-editor-components/editor-components/OptionComponentTitle"
+import { YAxisTickLabelDefaultMode } from "@app/components/graph-editor-components/editor-components/labelling-tab-components/labelling-options/yaxis-ticklabel-components/YAxisTickLabelDefaultMode"
+import { YAxisTickLabelCustomMode } from "@app/components/graph-editor-components/editor-components/labelling-tab-components/labelling-options/yaxis-ticklabel-components/YAxisTickLabelCustomMode"
+import { TwoTabSwitcher } from "@app/components/graph-editor-components/editor-components/generic-components/GenericTwoTabSwitcher"
+import { YAxisTickLabelPositionOption } from "@app/components/graph-editor-components/editor-components/labelling-tab-components/labelling-options/yaxis-ticklabel-components/YAxisTickLabelPositionOption"
+import { GenericAngleOption } from "@app/components/graph-editor-components/editor-components/generic-components/GenericAngleOption"
 
 import { useConfig } from "@app/graph-editor/ConfigContext"
 

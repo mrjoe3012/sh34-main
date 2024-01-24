@@ -1,4 +1,4 @@
-import { GenericColourOption } from "../../../generic-components/GenericColourOption"
+import { GenericColourOption } from "@app/components/graph-editor-components/editor-components/generic-components/GenericColourOption"
 import { TraceType } from "@app/graph-editor/configjsoninterface"
 
 interface MarkerConstantOptionProps {

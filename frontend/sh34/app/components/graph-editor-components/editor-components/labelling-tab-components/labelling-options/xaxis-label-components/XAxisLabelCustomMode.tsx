@@ -1,6 +1,6 @@
-import { GenericSizeIncrementerOption } from "../../../generic-components/GenericSizeIncrementerOption"
-import { GenericColourOption } from "../../../generic-components/GenericColourOption"
-import { GenericTypefaceOption } from "../../../generic-components/GenericTypefaceOption"
+import { GenericSizeIncrementerOption } from "@app/components/graph-editor-components/editor-components/generic-components/GenericSizeIncrementerOption"
+import { GenericColourOption } from "@app/components/graph-editor-components/editor-components/generic-components/GenericColourOption"
+import { GenericTypefaceOption } from "@app/components/graph-editor-components/editor-components/generic-components/GenericTypefaceOption"
 
 import { useConfig } from "@app/graph-editor/ConfigContext"
 

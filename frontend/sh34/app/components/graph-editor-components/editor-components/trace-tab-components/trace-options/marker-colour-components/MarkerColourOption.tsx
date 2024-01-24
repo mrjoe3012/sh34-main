@@ -1,7 +1,7 @@
-import { OptionComponentTitle } from "../../../OptionComponentTitle"
-import { MarkerColourTabSwitcher } from "./MarkerColourTabSwitcher";
+import { OptionComponentTitle } from "@app/components/graph-editor-components/editor-components/OptionComponentTitle"
+import { MarkerColourTabSwitcher } from "@app/components/graph-editor-components/editor-components/trace-tab-components/trace-options/marker-colour-components/MarkerColourTabSwitcher";
 import { useState } from 'react';
-import { MarkerConstantOption } from "./MarkerConstantOption";
+import { MarkerConstantOption } from "@app/components/graph-editor-components/editor-components/trace-tab-components/trace-options/marker-colour-components/MarkerConstantOption";
 
 interface MarkerColourOptionProps {
     trace: {

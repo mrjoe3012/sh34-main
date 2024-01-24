@@ -1,11 +1,11 @@
-import { OptionComponentTitle } from "../../OptionComponentTitle"
-import { GenericPlotTypeOption } from "../../generic-components/GenericPlotTypeOption";
-import { GenericIndicatorOption } from "../../generic-components/GenericIndicatorOption";
-import { GenericTextInputOption } from "../../generic-components/GenericTextInputOption";
+import { OptionComponentTitle } from "@app/components/graph-editor-components/editor-components/OptionComponentTitle"
+import { GenericPlotTypeOption } from "@app/components/graph-editor-components/editor-components/generic-components/GenericPlotTypeOption";
+import { GenericIndicatorOption } from "@app/components/graph-editor-components/editor-components/generic-components/GenericIndicatorOption";
+import { GenericTextInputOption } from "@app/components/graph-editor-components/editor-components/generic-components/GenericTextInputOption";
 import { useConfig } from "@app/graph-editor/ConfigContext";
-import { MarkerConstantOption } from "./marker-colour-components/MarkerConstantOption";
+import { MarkerConstantOption } from "@app/components/graph-editor-components/editor-components/trace-tab-components/trace-options/marker-colour-components/MarkerConstantOption";
 import Image from "next/image";
-import TrashIcon from "../../../../../images/trash-icon.svg"
+import TrashIcon from "@app/images/trash-icon.svg"
 import { TraceType } from "@app/graph-editor/configjsoninterface";
 
 interface TraceProps {

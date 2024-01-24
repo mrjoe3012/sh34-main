@@ -13,8 +13,31 @@ def generate_plot_html(config_json, data_json):
     # Generate a Dictionary of Properties from config_json
     properties = build_property_dict(config_json)
 
-    # Create the Figure, plotting the data for each trace in the trace array.
     fig = go.Figure()
+    
+    fig = update_traces(fig, properties, data_json)
+    fig = update_xaxis(fig, properties)
+    fig = update_yaxis(fig, properties)
+    fig = update_plot_colours(fig, properties)
+    fig = update_grid_lines(fig, properties)
+    fig = update_title(fig, properties)
+    fig = update_xaxis_ticklabels(fig, properties)
+    fig = update_yaxis_ticklabels(fig, properties)
+    fig = update_plotsize(fig, properties)
+    fig = update_annotations(fig, properties)
+
+    fig_html = fig.to_html()
+    return fig_html
+
+
+def update_traces(fig, properties,data_json):
+    """
+        Updates the figure with the specified traces from the trace array.
+        Returns the updated figure after traces have been added.
+    """
+
+    # Create the Figure, plotting the data for each trace in the trace array.
+    
     for trace in properties["traces"]:
         plot_type = trace["plotType"]
         plot_indicator = trace["plotIndicator"]
@@ -54,18 +77,7 @@ def generate_plot_html(config_json, data_json):
                                  hoverinfo='label+value'))
             fig.update_traces(domain={"x": [0.5,0.5], "y":[0.5,0.5]}, selector={"type": "pie"})
 
-    fig = update_xaxis(fig, properties)
-    fig = update_yaxis(fig, properties)
-    fig = update_plot_colours(fig, properties)
-    fig = update_grid_lines(fig, properties)
-    fig = update_title(fig, properties)
-    fig = update_xaxis_ticklabels(fig, properties)
-    fig = update_yaxis_ticklabels(fig, properties)
-    fig = update_plotsize(fig, properties)
-    fig = update_annotations(fig, properties)
-
-    fig_html = fig.to_html()
-    return fig_html
+    return fig
 
 
 def update_title(fig, properties):
@@ -300,7 +312,8 @@ def update_annotations(fig, properties):
 def build_property_dict(config_json):
     """
         Takes in the config_json JSON, and creates a dictionary of properties from
-        the config_json.
+        the config_json. This property dictionary is referenced throught methods
+        in this script to access the attributes from the configJSON
     """
 
     properties = {}

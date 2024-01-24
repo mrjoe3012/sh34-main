@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react"
-import { OptionComponentTitle } from "../../../OptionComponentTitle"
-import { XAxisTickLabelDefaultMode } from "./XAxisTickLabelDefaultMode"
-import { XAxisTickLabelCustomMode } from "./XAxisTickLabelCustomMode"
-import { TwoTabSwitcher } from "../../../generic-components/GenericTwoTabSwitcher"
-import { XAxisTickLabelPositionOption } from "./XAxisTickLabelPositionOption"
-import { GenericAngleOption } from "../../../generic-components/GenericAngleOption"
+import { OptionComponentTitle } from "@app/components/graph-editor-components/editor-components/OptionComponentTitle"
+import { XAxisTickLabelDefaultMode } from "@app/components/graph-editor-components/editor-components/labelling-tab-components/labelling-options/xaxis-ticklabel-components/XAxisTickLabelDefaultMode"
+import { XAxisTickLabelCustomMode } from "@app/components/graph-editor-components/editor-components/labelling-tab-components/labelling-options/xaxis-ticklabel-components/XAxisTickLabelCustomMode"
+import { TwoTabSwitcher } from "@app/components/graph-editor-components/editor-components/generic-components/GenericTwoTabSwitcher"
+import { XAxisTickLabelPositionOption } from "@app/components/graph-editor-components/editor-components/labelling-tab-components/labelling-options/xaxis-ticklabel-components/XAxisTickLabelPositionOption"
+import { GenericAngleOption } from "@app/components/graph-editor-components/editor-components/generic-components/GenericAngleOption"
 
 import { useConfig } from "@app/graph-editor/ConfigContext"
 

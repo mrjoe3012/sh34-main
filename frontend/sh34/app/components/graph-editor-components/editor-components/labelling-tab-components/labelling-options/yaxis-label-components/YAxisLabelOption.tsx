@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react"
-import { OptionComponentTitle } from "../../../OptionComponentTitle"
-import { GenericTextInputOption } from "../../../generic-components/GenericTextInputOption"
-import { YAxisLabelDefaultMode } from "./YAxisLabelDefaultMode"
-import { YAxisLabelCustomMode } from "./YAxisLabelCustomMode"
-import { TwoTabSwitcher } from "../../../generic-components/GenericTwoTabSwitcher"
+import { OptionComponentTitle } from "@app/components/graph-editor-components/editor-components/OptionComponentTitle"
+import { GenericTextInputOption } from "@app/components/graph-editor-components/editor-components/generic-components/GenericTextInputOption"
+import { YAxisLabelDefaultMode } from "@app/components/graph-editor-components/editor-components/labelling-tab-components/labelling-options/yaxis-label-components/YAxisLabelDefaultMode"
+import { YAxisLabelCustomMode } from "@app/components/graph-editor-components/editor-components/labelling-tab-components/labelling-options/yaxis-label-components/YAxisLabelCustomMode"
+import { TwoTabSwitcher } from "@app/components/graph-editor-components/editor-components/generic-components/GenericTwoTabSwitcher"
 
 import { useConfig } from "@app/graph-editor/ConfigContext"
 
