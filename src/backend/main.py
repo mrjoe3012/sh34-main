@@ -24,7 +24,7 @@ def load_indicators(filename: str = "mock.json") -> list[str]:
     indicators = list(data['month']['breakdown_by_indicator'].keys())
     return indicators
 
-@app.route("/api/plotfromconfig", methods=["GET", "POST"])
+@app.route("/api/plot-from-config", methods=["POST"])
 def generate_plot():
     """
         Receives a config_json JSON from the frontend. Calls generate_plot_html
@@ -32,8 +32,7 @@ def generate_plot():
         back to sender, so it can be displayed on screen.
     """
 
-    if request.method == "POST":
-        config_json = request.get_json()
+    config_json = request.get_json()
 
     data_json = unpack_data()
 
