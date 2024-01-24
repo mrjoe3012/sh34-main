@@ -1,6 +1,7 @@
 import unittest
 import plotly.graph_objs as go
 from backend.plotly_interface import update_traces
+import json
 
 
 """ 
@@ -21,13 +22,14 @@ class TestUpdateTraces(unittest.TestCase):
             ]
         }
 
-        data_json = {
-            "bar_data" : {"x" : [1,2,3], "y" : [4,5,6]},
-            "scatter_data" : {"x": [2,4,6], "y" : [8,10,12]},
-        }
+        #read in the mock data from dataset.json
+        with open('../dataset.json', 'r') as f:
+            data_json = json.load(f)
 
+        #assign the traces to the graph
         new_fig = update_traces(self.fig, config_json, data_json)
 
+        #check whether traces have been assigned correctly
         self.assertEqual(len(new_fig.data), len(config_json["traces"]))
 
 
