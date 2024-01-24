@@ -14,7 +14,7 @@ def generate_plot_html(config_json, data_json):
     properties = build_property_dict(config_json)
 
     fig = go.Figure()
-    
+
     fig = update_traces(fig, properties, data_json)
     fig = update_xaxis(fig, properties)
     fig = update_yaxis(fig, properties)
@@ -37,7 +37,7 @@ def update_traces(fig, properties,data_json):
     """
 
     # Create the Figure, plotting the data for each trace in the trace array.
-    
+
     for trace in properties["traces"]:
         plot_type = trace["plotType"]
         plot_indicator = trace["plotIndicator"]
@@ -82,7 +82,7 @@ def update_traces(fig, properties,data_json):
 
 def update_title(fig, properties):
     """
-        Takes in the current figure, the properties dictionary and: 
+        Takes in the current figure, the properties dictionary and:
             - Alters the figure's title using the properties dictionary.
         Returns the updated plotly figure.
     """
@@ -92,9 +92,9 @@ def update_title(fig, properties):
             title={
                 'text': properties["plot_title"],
                 'font': {
-                    'family': properties["title_typeface_default"], 
-                    'size': properties["title_size_default"],                    
-                    'color': properties["title_colour_default"]     
+                    'family': properties["title_typeface_default"],
+                    'size': properties["title_size_default"],
+                    'color': properties["title_colour_default"]
                 }
             }
         )
@@ -103,9 +103,9 @@ def update_title(fig, properties):
             title={
                 'text': properties["plot_title"],
                 'font': {
-                    'family': properties["title_typeface_custom"], 
-                    'size': properties["title_size_custom"],                    
-                    'color': properties["title_colour_custom"]     
+                    'family': properties["title_typeface_custom"],
+                    'size': properties["title_size_custom"],
+                    'color': properties["title_colour_custom"]
                 }
             }
         )
@@ -115,7 +115,7 @@ def update_title(fig, properties):
 
 def update_xaxis(fig, properties):
     """
-        Takes in the current figure, the properties dictionary and: 
+        Takes in the current figure, the properties dictionary and:
             - Alters the figure's xaxis label using the properties dictionary.
         Returns the updated plotly figure.
     """
@@ -140,7 +140,7 @@ def update_xaxis(fig, properties):
 
 def update_yaxis(fig, properties):
     """
-        Takes in the current figure, the properties dictionary and: 
+        Takes in the current figure, the properties dictionary and:
             - Alters the figure's yaxis label using the properties dictionary.
         Returns the updated plotly figure.
     """
@@ -165,7 +165,7 @@ def update_yaxis(fig, properties):
 
 def update_plotsize(fig, properties):
     """
-        Takes in the current figure, the properties dictionary and: 
+        Takes in the current figure, the properties dictionary and:
             - Alters the figure's size using the properties dictionary.
         Returns the updated plotly figure.
     """
@@ -178,7 +178,7 @@ def update_plotsize(fig, properties):
 
 def update_plot_colours(fig, properties):
     """
-        Takes in the current figure, the properties dictionary and: 
+        Takes in the current figure, the properties dictionary and:
             - Alters the figure's colour scheme using the properties dictionary.
         Returns the updated plotly figure.
     """
@@ -193,7 +193,7 @@ def update_plot_colours(fig, properties):
 
 def update_grid_lines(fig, properties):
     """
-        Takes in the current figure, the properties dictionary and: 
+        Takes in the current figure, the properties dictionary and:
             - Alters the figure's grid lines using the properties dictionary.
         Returns the updated plotly figure.
     """
@@ -208,7 +208,7 @@ def update_grid_lines(fig, properties):
 
 def update_xaxis_ticklabels(fig, properties):
     """
-        Takes in the current figure, the properties dictionary and: 
+        Takes in the current figure, the properties dictionary and:
             - Alters the figure's xaxis tick labels using the properties dictionary.
         Returns the updated plotly figure.
     """
@@ -244,7 +244,7 @@ def update_xaxis_ticklabels(fig, properties):
 
 def update_yaxis_ticklabels(fig, properties):
     """
-        Takes in the current figure, the properties dictionary and: 
+        Takes in the current figure, the properties dictionary and:
             - Alters the figure's yaxis tick labels using the properties dictionary.
         Returns the updated plotly figure.
     """
