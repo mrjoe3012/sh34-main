@@ -7,27 +7,27 @@ async function populatePlots(client) {
     const docs = [
         {
             _id: 1,
-            JSONFile : require("./plot_configs/metered_consum.json"),
+            config_file : require("./plot_configs/metered_consum.json"),
             order : 1
         },
         {
             _id: 2,
-            JSONFile : require("./plot_configs/prod_goal_consum.json"),
+            config_file : require("./plot_configs/prod_goal_consum.json"),
             order : 2
         }, 
         {
             _id: 3,
-            JSONFile : require("./plot_configs/prod_vs_goal.json"),
+            config_file : require("./plot_configs/prod_vs_goal.json"),
             order : 3
         },
         {
             _id: 4,
-            JSONFile : require("./plot_configs/revenue_breakdown.json"),
+            config_file : require("./plot_configs/revenue_breakdown.json"),
             order : 1
         },
         {
             _id: 5,
-            JSONFile : require("./plot_configs/wind_and_temp.json"),
+            config_file : require("./plot_configs/wind_and_temp.json"),
             order : 2
         },
     ]

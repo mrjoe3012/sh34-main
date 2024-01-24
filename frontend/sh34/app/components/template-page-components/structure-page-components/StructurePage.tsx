@@ -1,15 +1,10 @@
 import { PlotElement } from "./PlotElement"
 import { PlotSearchInput } from "./PlotSearchInput";
 import { NewPlotButton } from "./NewPlotButton";
-import { TemplateData, PlotData } from "@app/modules/db";
-import { WithId } from "mongodb";
+import { useTemplatePageContext } from "@app/template-page/TemplatePageContext";
 
-interface StructurePageProps {
-    plots: WithId<PlotData>[];
-};
-
-export const StructurePage = (props: StructurePageProps) => {
-    const plots = props.plots;
+export const StructurePage = () => {
+    const {plots} = useTemplatePageContext();
     return (
 
         <div className="">
