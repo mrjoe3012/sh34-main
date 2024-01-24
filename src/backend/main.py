@@ -13,7 +13,7 @@ def main():
     app.run(host="0.0.0.0", port=7575, debug=True)
 
 
-def load_indicators(filename: str = "mock.json") -> list[str]:
+def load_indicators(filename: str) -> list[str]:
     """
     Load indicators from a dataset.
     :param filename: JSON file to load from.
@@ -34,7 +34,11 @@ def generate_plot():
 
     config_json = request.get_json()
 
-    data_json = unpack_data()
+
+    with open(DEFAULT_DATA_PATH, 'r', encoding='utf-8') as data_file:
+        data_json = json.load(data_file)
+
+
 
     plot_html = generate_plot_html(config_json,data_json)
     return Response(plot_html, mimetype="text/html")
@@ -61,17 +65,28 @@ def receive_template():
 
 
 
-    document_path = return_docx(config_files, unpack_data(), template_name)
+    #document_path = return_docx(config_files, unpack_data(), template_name)
 
     return send_file(document_path, as_attachment=True)
 
-def unpack_data():
-    """This is to reduce code repetition across functions"""
-    try:
-        with open(DEFAULT_DATA_PATH, 'r', encoding='utf-8') as data_file:
-            data_json = json.load(data_file)
-    except FileNotFoundError:
-        print("File not Found")
+# def unpack_data():
+#     """This is to reduce code repetition across functions"""
+#     try:
+#         with open(DEFAULT_DATA_PATH, 'r', encoding='utf-8') as data_file:
+#             data = json.load(data_file)
+
+#         if data is not None:
+#             return data
+#         else:
+#             raise ValueError("Data loaded is None")
+#     except FileNotFoundError:
+#         print("File not Found")
+#         raise
+
+#     except json.JSONDecodeError:
+#         print("Invalid Json file")
+#         raise
+
 
 if __name__ == "__main__":
     main()
