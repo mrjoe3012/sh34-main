@@ -1,5 +1,6 @@
 {
 
+    "numTraces": 0,
     "traces": [
         {
             "id": 0,
@@ -11,6 +12,7 @@
         }
     ],
 
+    "numAnnotations": 0,
     "annotations": [
 
     ],

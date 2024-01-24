@@ -7,7 +7,7 @@ export const NewTraceButton = () => {
 
     const addTrace = () => {
         const newTrace: TraceType = {
-            id: config["traces"].length, 
+            id: config["numTraces"]+1, 
             name: "New Trace",
             plotType: 'Scatter', 
             plotIndicator: '/breakdown_by_indicator/TemperatureMean',
@@ -21,6 +21,7 @@ export const NewTraceButton = () => {
         // Create a new config object with the updated traces array
         const newConfig = {
             ...config,
+            numTraces: config.numTraces+1,
             traces: updatedTraces
         };
 

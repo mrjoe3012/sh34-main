@@ -7,7 +7,7 @@ export const NewAnnotationButton = () => {
 
     const newAnnotation = () => {
         const newAnnotation: AnnotationType = {
-            id: config["annotations"].length, 
+            id: config["numAnnotations"]+1, 
             name: "New Annotation",
             xPos: 0.5,
             yPos: 0.5,
@@ -32,6 +32,7 @@ export const NewAnnotationButton = () => {
         // Create a new config object with the updated traces array
         const newConfig = {
             ...config,
+            numAnnotations: config.numAnnotations+1,
             annotations: updatedAnnotations
         };
 

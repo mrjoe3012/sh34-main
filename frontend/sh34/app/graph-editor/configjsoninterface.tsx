@@ -1,7 +1,10 @@
 
 export interface Config {
+
+    numTraces: number;
     traces: Array<TraceType>;
 
+    numAnnotations: number;
     annotations: Array<AnnotationType>; 
 
     generalOptions: GeneralOptionsType;
