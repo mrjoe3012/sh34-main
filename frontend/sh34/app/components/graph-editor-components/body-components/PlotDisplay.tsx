@@ -38,7 +38,7 @@ export const PlotDisplay = () => {
     } 
 
     return(
-      <div className="basis-[85%] p-2 flex flex-col justify-center overflow-auto">
+      <div className="basis-[110%] p-2 flex flex-col justify-center overflow-auto">
         <div id="loading-icon" className="fixed ml-4"><ReactLoading type="spin" color="black" height={30} width={30}/></div>
         <div id="plot-container" className="self-center">
         </div>
