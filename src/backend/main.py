@@ -1,8 +1,8 @@
 """This file is the backend's entrypoint."""
 import json
-from flask import Flask, Response, request
+from flask import Flask, Response, request, send_file
 from backend import generate_plot_html
-
+from backend import return_docx
 app = Flask(__name__)
 
 DEFAULT_GRAPH_INFO_PATH = 'src/mock.json'
@@ -35,12 +35,7 @@ def generate_plot():
     if request.method == "POST":
         config_json = request.get_json()
 
-    try:
-        with open(DEFAULT_DATA_PATH, 'r', encoding='utf-8') as data_file:
-            data_json = json.load(data_file)
-    except FileNotFoundError:
-        print("File not Found")
-
+    data_json = unpack_data()
 
     plot_html = generate_plot_html(config_json,data_json)
     return Response(plot_html, mimetype="text/html")
@@ -54,6 +49,30 @@ def api_load_indicators():
     indicators = load_indicators(DEFAULT_DATA_PATH)
     indicators_json = json.dumps(indicators)
     return Response(indicators_json, mimetype="application/json")
+
+
+@app.route("/api/generate-doc", methods=['GET'])
+def receive_configs():
+    """This endpoint is used to receive the list of config files to be processed."""
+    template = request.args.getlist('template')
+    template_name = template['template']['Name']
+    config_files = []
+    for config in template:
+        config_files.append(config)
+
+
+
+    document_path = return_docx(config_files, unpack_data(), template_name)
+
+    return send_file(document_path, as_attachment=True)
+
+def unpack_data():
+    """This is to reduce code repetition across functions"""
+    try:
+        with open(DEFAULT_DATA_PATH, 'r', encoding='utf-8') as data_file:
+            data_json = json.load(data_file)
+    except FileNotFoundError:
+        print("File not Found")
 
 if __name__ == "__main__":
     main()

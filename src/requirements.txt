@@ -4,6 +4,7 @@ certifi==2023.7.22
 charset-normalizer==3.3.1
 click==8.1.7
 dill==0.3.7
+docx==0.2.4
 exceptiongroup==1.1.3
 flake8-junit-report==2.1.0
 Flask==3.0.0
@@ -14,6 +15,7 @@ itsdangerous==2.1.2
 Jinja2==3.1.2
 junit-xml-2==1.9
 kaleido==0.2.1
+lxml==5.1.0
 MarkupSafe==2.1.3
 mccabe==0.7.0
 mypy==1.7.0
@@ -22,7 +24,7 @@ numpy==1.26.1
 packaging==23.2
 pandas==2.1.1
 patsy==0.5.3
-pip==22.0.2
+pillow==10.2.0
 platformdirs==3.11.0
 plotly==5.17.0
 plotly-express==0.4.1
@@ -36,8 +38,7 @@ python-dateutil==2.8.2
 pytz==2023.3.post1
 requests==2.31.0
 scipy==1.11.3
-setuptools==59.6.0
-sh34==1.0.0
+-e git+ssh://git@stgit.dcs.gla.ac.uk/team-project-h/2023/sh34/sh34-main.git@30127112b80b238e80de5d0c46eebcb1dc354c32#egg=sh34&subdirectory=src
 six==1.16.0
 statsmodels==0.14.0
 tenacity==8.2.3

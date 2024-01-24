@@ -2,19 +2,26 @@
 
 #Mustafa Onur Cay - 19/10/2023
 from typing import Any
-import plotly.graph_objs as go
-import pandas as pd
 import os
 import uuid
+import plotly.graph_objs as go
+from docx import Document
+from docx.shared import Inches, Pt
+from docx.enum.text import WD_ALIGN_PARAGRAPH
+import pandas as pd
 
 def generate_plot_html(config_json, data_json):
+    """This function returns HTML form of a plotly figure"""
     fig = generate_plot(config_json, data_json)
     return fig.to_html()
 
+
 def generate_plot_png(config_json, data_json):
+    """This is returns png of the plotly figure"""
     fig = generate_plot(config_json, data_json)
+    plot_title = build_property_dict(config_json)['labellingOptions']['title']
     unique_id = uuid.uuid4()
-    file_name = f'plot_{unique_id}.png'
+    file_name = f'{plot_title}_{unique_id}.png'
     folder_name = 'temp'
     file_path = os.path.join(folder_name, file_name)
     if not os.path.exists(folder_name):
@@ -22,9 +29,10 @@ def generate_plot_png(config_json, data_json):
 
     return fig.write_image(file_path)
 
+
 def generate_plot(config_json, data_json):
     """ Takes in the config_json received from the frontend,
-        creates the plotly figure and returns its HTML form
+        creates the plotly figure and returns it
     """
 
     # Generate a Dictionary of Properties from config_json
@@ -507,3 +515,33 @@ def pascal_split_name(value:str) -> str:
         i += 1
 
     return ''.join(result).strip()
+
+
+def return_docx(plots,data_json,template_name):
+    """Takes in a list of plots and returns a docx file with the png's of those plots"""
+    folder_path = '/temp'
+    doc = Document()
+    main_title = doc.add_paragraph('Plots')
+    main_title.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    main_title.style.font_size = Pt(18)
+
+    #Used to add space
+    doc.add_paragraph()
+
+
+    for plot in plots:
+        generate_plot_png(plot, data_json)
+    for file in sorted(os.listdir(folder_path)):
+        if file.endswith(".png"):
+            image_path = os.path.join(folder_path, file)
+
+            plot_title = doc.add_paragraph(file.replace('.png',''))
+            plot_title.style.font_size = Pt(12)
+
+            doc.add_picture(image_path, width = Inches(6))
+
+            doc.add_paragraph()
+    doc.save(f'{template_name}')
+
+
+
