@@ -1,6 +1,6 @@
 import unittest
 import plotly.graph_objs as go
-from backend.plotly_interface import update_traces
+from backend.plotly_interface import update_traces, update_xaxis, update_yaxis
 import json
 import os
 
@@ -56,8 +56,117 @@ class TestUpdateTraces(unittest.TestCase):
     def tearDown(self):
         os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
+
+"""
+The following class tests the update_x_axis function, it checks whether the correct 
+assignments are made to the values associated with the x axis label in the plot,
+checking both default and custom configurations
+
+"""
+
+class TestUpdateXAxis(unittest.TestCase):
+
+    #create a dummy figure to add data to
+    def setUp(self):
+        self.fig = go.Figure() 
+    
+    #Create some dummy data to feed to the update_xaxis function, the following tests whether default
+    #values are correctly assigned
+    def test_update_x_axis_default(self):
+        properties = {
+            "xaxis_style_mode": "default",
+            "xaxis_text" : "test_axis_name_default",
+            "xaxis_size_default" : 12,
+            "xaxis_colour_default" : "black",
+            "xaxis_typeface_default" : "Arial"
+        }  
+
+        #pass the function the dictionary from above containing the values
+        new_fig = update_xaxis(self.fig, properties)
+
+        #Check that those values have been correctly assigned to the attributes of the figures x_axis
+
+        self.assertEqual(new_fig.layout.xaxis.title.text, "test_axis_name_default")
+        self.assertEqual(new_fig.layout.xaxis.title.font.size, 12)
+        self.assertEqual(new_fig.layout.xaxis.title.font.color, "black")
+        self.assertEqual(new_fig.layout.xaxis.title.font.family, "Arial")
+
+    
+    #now test with custom values
+    def test_update_x_axis_custom(self):
+
+        #set up some dummy custom values to send to the function
+        properties = {
+            "xaxis_style_mode": "custom",
+            "xaxis_text" : "test_axis_name_custom",
+            "xaxis_size_custom" : 14,
+            "xaxis_colour_default" : "red",
+            "xaxis_typeface_default" : "Times New Roman"
+        }
+
+
+        #pass the custom values to the function, along with the figure
+        new_fig = update_xaxis(self.fig, properties)
+
+
+        #check that the values were correctly assigned to the attributes of the x_axis
+        self.assertEqual(new_fig.layout.xaxis.title.text, "test_axis_name_custom")
+        self.assertEqual(new_fig.layout.xaxis.title.font.size, 14)
+        self.assertEqual(new_fig.layout.xaxis.title.font.color, "red")
+        self.assertEqual(new_fig.layout.xaxis.title.font.family, "Times New Roman")
+
+
+"""
+The following function tests the update_yaxis function, checking that the correct values
+are assigned to the properties of the y axis in the plot passed to the function
+
+"""
+class TestUpdateYAxis(unittest.TestCase):
+
+    
+    #set up a dummy figure to assign values to
+    def setUp(self):
+        self.fig = go.Figure()
+
+
+    #create some dummy values to pass to the function, these mirror the default values that would be assigned
+    def test_update_y_axis_default(self):
+        properties = {
+            "yaxis_style_mode": "default",
+            "yaxis_text" : "test_axis_name_default",
+            "yaxis_size_default" : 12,
+            "yaxis_colour_default" : "black",
+            "yaxis_typeface_default" : "Arial"
+        }
+
+        #pass the dummy values to the function
+
+        new_fig = update_yaxis(self.fig, properties)
+
+        #check whether each of the attributes have been assigned correctly to the plots yaxis
+        self.assertEqual(new_fig.layout.yaxis.title.text, "test_axis_name_default")
+        self.assertEqual(new_fig.layout.yaxis.title.font.size, 12)
+        self.assertEqual(new_fig.layout.yaxis.title.font.color, "black")
+        self.assertEqual(new_fig.layout.yaxis.title.font.family, "Arial")
+
+    #the process is then repeated for custom values
+
+    def test_update_y_axis_custom(self):
+
+        properties = {
+            "yaxis_style_mode": "custom",
+            "yaxis_text" : "test_axis_name_custom",
+            "yaxis_size_custom" : 14,
+            "yaxis_colour_default" : "red",
+            "yaxis_typeface_default" : "Times New Roman"
+        }
+
+        new_fig = update_yaxis(self.fig, properties)
+
+        self.assertEqual(new_fig.layout.yaxis.title.text, "test_axis_name_custom")
+        self.assertEqual(new_fig.layout.yaxis.title.font.size, 14)
+        self.assertEqual(new_fig.layout.yaxis.title.font.color, "red")
+        self.assertEqual(new_fig.layout.yaxis.title.font.family, "Times New Roman")
+
 if __name__ == '__main__':
     unittest.main()
-
-
-
