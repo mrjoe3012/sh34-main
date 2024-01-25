@@ -37,6 +37,7 @@ def generate_plot():
     config_json = request.get_json()
 
     data_json = unpack_data()
+    print(config_json)
 
     plot_html = generate_plot_html(config_json,data_json)
     return Response(plot_html, mimetype="text/html")
@@ -61,7 +62,8 @@ def receive_template():
     templateID = templateID['templateID']
     template = templates[templateID]
     plots = load_plots_from_template(template)
-    generate_plot_png(plots[0],unpack_data)
+    print(plots[0])
+    #generate_plot_png(plots[0],unpack_data)
 
 
     #config_files = []
