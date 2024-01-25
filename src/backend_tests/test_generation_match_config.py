@@ -1,6 +1,6 @@
 import unittest
 import plotly.graph_objs as go
-from backend.plotly_interface import update_traces, update_xaxis, update_yaxis, update_plotsize
+from backend.plotly_interface import update_traces, update_xaxis, update_yaxis, update_plotsize, update_plot_colours
 import json
 import os
 
@@ -181,10 +181,28 @@ class TestUpdatePlotSize(unittest.TestCase):
             "plot_height" : 600
         }
         
-        updated_fig = update_plotsize(self.fig, properties)
+        new_fig = update_plotsize(self.fig, properties)
 
-        self.assertEqual(updated_fig.layout.width, 800)
-        self.assertEqual(updated_fig.layout.height, 600)
+        self.assertEqual(new_fig.layout.width, 800)
+        self.assertEqual(new_fig.layout.height, 600)
+
+
+class TestUpdatePlotColour(unittest.TestCase):
+    def setUp(self):
+        self.fig = go.Figure()
+
+    def test_update_plot_colour(self):
+
+        properties = {
+            "plot_background_colour" : "red",
+            "plot_margin_colour" : "blue"
+        }
+
+        new_fig = update_plot_colours(self.fig, properties)
+
+        self.assertEqual(new_fig.layout.plot_background_colour, "red")
+        self.assertEqual(new_fig.layout.plot.plot_margin_colour, "blue")
+        
 
 if __name__ == '__main__':
     unittest.main()
