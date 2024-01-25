@@ -35,7 +35,9 @@ def generate_plot():
     """
 
     config_json = request.get_json()
-
+    global test_json
+    test_json = []
+    test_json.append(config_json)
     data_json = unpack_data()
     print(config_json)
 
@@ -58,12 +60,20 @@ def receive_template():
     """This endpoint is used to receive the template to be processed."""
     templates = load_templates()
     data = unpack_data()
-    templateID = request.get_json()
-    templateID = templateID['templateID']
-    template = templates[templateID]
+    template_dict = request.get_json()
+    templateID = template_dict['templateID']
+    template = templates[templateID-1]
+    print(template['Name'])
+
+    #ATM it seems like these plots dont work with our plotting system.
     plots = load_plots_from_template(template)
-    print(plots[0])
-    #generate_plot_png(plots[0],unpack_data)
+
+
+    #print(plots[0])
+    #print(test_json)
+
+    #for plot in test_json:
+        #generate_plot_png(plot,unpack_data())
 
 
     #config_files = []
