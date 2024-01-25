@@ -200,8 +200,8 @@ class TestUpdatePlotColour(unittest.TestCase):
 
         new_fig = update_plot_colours(self.fig, properties)
 
-        self.assertEqual(new_fig.layout.plot_background_colour, "red")
-        self.assertEqual(new_fig.layout.plot.plot_margin_colour, "blue")
+        self.assertEqual(new_fig.layout.plot_bgcolor, "red")
+        self.assertEqual(new_fig.layout.paper_bgcolor, "blue")
         
 
 if __name__ == '__main__':
