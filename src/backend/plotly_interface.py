@@ -520,12 +520,18 @@ def pascal_split_name(value:str) -> str:
 
 def return_docx(plots,data_json,template_name):
     """Takes in a list of plots and returns a docx file with the png's of those plots"""
-    folder_path = '/temp'
+
+    docs_folder_path = os.path.join('src', 'backend', 'docs')
+    if not os.path.exists(docs_folder_path):
+        os.makedirs(docs_folder_path)
+
+    folder_path = 'src/backend/temp'
     doc = Document()
     main_title = doc.add_paragraph('Plots')
     main_title.alignment = WD_ALIGN_PARAGRAPH.CENTER
     main_title.style.font_size = Pt(18)
 
+    save_path = os.path.join(docs_folder_path, f'{template_name}.docx')
     #Used to add space
     doc.add_paragraph()
 
@@ -542,7 +548,7 @@ def return_docx(plots,data_json,template_name):
             doc.add_picture(image_path, width = Inches(6))
 
             doc.add_paragraph()
-    doc.save(f'{template_name}')
+    doc.save(save_path)
 
 
 

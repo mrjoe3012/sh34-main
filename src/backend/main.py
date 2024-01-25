@@ -10,6 +10,8 @@ app = Flask(__name__)
 DEFAULT_GRAPH_INFO_PATH = 'src/mock.json'
 DEFAULT_DATA_PATH = 'src/fixed.json'
 
+
+
 def main():
     """Function to run the webserver"""
     app.run(host="0.0.0.0", port=7575, debug=True)
@@ -35,11 +37,8 @@ def generate_plot():
     """
 
     config_json = request.get_json()
-    global test_json
-    test_json = []
-    test_json.append(config_json)
+
     data_json = unpack_data()
-    print(config_json)
 
     plot_html = generate_plot_html(config_json,data_json)
     return Response(plot_html, mimetype="text/html")
@@ -55,6 +54,21 @@ def api_load_indicators():
     return Response(indicators_json, mimetype="application/json")
 
 
+
+def compare_strings(str1, str2):
+    lines1 = str1.splitlines()
+    lines2 = str2.splitlines()
+    max_len = max(len(lines1), len(lines2))
+
+    for i in range(max_len):
+        line1 = lines1[i] if i < len(lines1) else ""
+        line2 = lines2[i] if i < len(lines2) else ""
+
+        if line1 != line2:
+            print(f"Line {i+1}:")
+            print(f"\tString 1: {line1}")
+            print(f"\tString 2: {line2}")
+
 @app.route("/api/generate-doc", methods=['POST'])
 def receive_template():
     """This endpoint is used to receive the template to be processed."""
@@ -63,17 +77,15 @@ def receive_template():
     template_dict = request.get_json()
     templateID = template_dict['templateID']
     template = templates[templateID-1]
-    print(template['Name'])
-
-    #ATM it seems like these plots dont work with our plotting system.
+    template_name = template['Name']
     plots = load_plots_from_template(template)
 
+    config_files = [plot['config_file'] for plot in plots]
 
-    #print(plots[0])
-    #print(test_json)
 
-    #for plot in test_json:
-        #generate_plot_png(plot,unpack_data())
+
+
+    document_path = return_docx(config_files, unpack_data(), template_name)
 
 
     #config_files = []
