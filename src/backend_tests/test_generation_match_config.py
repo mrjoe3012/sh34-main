@@ -1,6 +1,6 @@
 import unittest
 import plotly.graph_objs as go
-from backend.plotly_interface import update_traces, update_xaxis, update_yaxis
+from backend.plotly_interface import update_traces, update_xaxis, update_yaxis, update_plotsize
 import json
 import os
 
@@ -167,6 +167,24 @@ class TestUpdateYAxis(unittest.TestCase):
         self.assertEqual(new_fig.layout.yaxis.title.font.size, 14)
         self.assertEqual(new_fig.layout.yaxis.title.font.color, "red")
         self.assertEqual(new_fig.layout.yaxis.title.font.family, "Times New Roman")
+
+
+class TestUpdatePlotSize(unittest.TestCase):
+
+    def setUp(self):
+        self.fig = go.Figure()
+
+    def test_update_plotsize(self):
+
+        properties = {
+            "plot_width" : 800,
+            "plot_height" : 600
+        }
+        
+        updated_fig = update_plotsize(self.fig, properties)
+
+        self.assertEqual(updated_fig.layout.width, 800)
+        self.assertEqual(updated_fig.layout.height, 600)
 
 if __name__ == '__main__':
     unittest.main()
