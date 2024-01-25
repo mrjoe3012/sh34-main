@@ -1,8 +1,8 @@
 """This file is the backend's entrypoint."""
 import json
 from flask import Flask, Response, request, send_file
-from backend import generate_plot_html
-from backend import return_docx
+from backend import load_templates, load_plots_from_template, return_docx, generate_plot_html
+from backend import generate_plot_png
 import os
 
 app = Flask(__name__)
@@ -55,17 +55,24 @@ def api_load_indicators():
 @app.route("/api/generate-doc", methods=['POST'])
 def receive_template():
     """This endpoint is used to receive the template to be processed."""
-    template = request.get_json()
-    template_name = template['template']['Name']
-    config_files = []
-    for config in template:
-        config_files.append(config)
+    templates = load_templates()
+    data = unpack_data()
+    templateID = request.get_json()
+    templateID = templateID['templateID']
+    template = templates[templateID]
+    plots = load_plots_from_template(template)
+    generate_plot_png(plots[0],unpack_data)
+
+
+    #config_files = []
+    #for config in template:
+    #    config_files.append(config)
 
 
 
-    document_path = return_docx(config_files, unpack_data(), template_name)
-
-    return send_file(document_path, as_attachment=True)
+    #document_path = return_docx(config_files, unpack_data(), template_name)
+    return ""
+    #return send_file(document_path, as_attachment=True)
 
 def unpack_data():
     """This is to reduce code repetition across functions"""
