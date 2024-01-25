@@ -100,8 +100,8 @@ class TestUpdateXAxis(unittest.TestCase):
             "xaxis_style_mode": "custom",
             "xaxis_text" : "test_axis_name_custom",
             "xaxis_size_custom" : 14,
-            "xaxis_colour_default" : "red",
-            "xaxis_typeface_default" : "Times New Roman"
+            "xaxis_colour_custom" : "red",
+            "xaxis_typeface_custom" : "Times New Roman"
         }
 
 
@@ -157,8 +157,8 @@ class TestUpdateYAxis(unittest.TestCase):
             "yaxis_style_mode": "custom",
             "yaxis_text" : "test_axis_name_custom",
             "yaxis_size_custom" : 14,
-            "yaxis_colour_default" : "red",
-            "yaxis_typeface_default" : "Times New Roman"
+            "yaxis_colour_custom" : "red",
+            "yaxis_typeface_custom" : "Times New Roman"
         }
 
         new_fig = update_yaxis(self.fig, properties)
