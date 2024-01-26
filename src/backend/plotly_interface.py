@@ -3,6 +3,7 @@
 #Mustafa Onur Cay - 19/10/2023
 from typing import Any
 import os
+import shutil
 import uuid
 import plotly.graph_objs as go
 from docx import Document
@@ -21,7 +22,7 @@ def generate_plot_png(config_json, data_json):
     fig = generate_plot(config_json, data_json)
     plot_title = build_property_dict(config_json)['plot_title']
     unique_id = uuid.uuid4()
-    file_name = f'{plot_title}_{unique_id}.png'
+    file_name = f'{plot_title}.png'
     folder_name = 'src/backend/temp'
 
     file_path = os.path.join(folder_name, file_name)
@@ -520,6 +521,7 @@ def pascal_split_name(value:str) -> str:
 
 def return_docx(plots,data_json,template_name):
     """Takes in a list of plots and returns a docx file with the png's of those plots"""
+    print(os.getcwd())
 
     docs_folder_path = os.path.join('src', 'backend', 'docs')
     if not os.path.exists(docs_folder_path):
@@ -549,6 +551,27 @@ def return_docx(plots,data_json,template_name):
 
             doc.add_paragraph()
     doc.save(save_path)
+
+    delete_folder(folder_path)
+
+    return save_path
+
+
+def delete_folder(folder_path):
+    """Delete a folder and all its contents."""
+    try:
+        # Check if the folder exists
+        if os.path.exists(folder_path):
+            # Remove the folder and all its contents
+            shutil.rmtree(folder_path)
+            print(f"Folder '{folder_path}' has been deleted.")
+        else:
+            print(f"Folder '{folder_path}' does not exist.")
+    except Exception as e:
+        print(f"An error occurred: {e}")
+
+
+
 
 
 

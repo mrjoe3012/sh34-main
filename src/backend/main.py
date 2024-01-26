@@ -3,7 +3,7 @@ import json
 from flask import Flask, Response, request, send_file
 from backend import load_templates, load_plots_from_template, return_docx, generate_plot_html
 from backend import generate_plot_png
-import os
+import os, re
 
 app = Flask(__name__)
 
@@ -54,49 +54,33 @@ def api_load_indicators():
     return Response(indicators_json, mimetype="application/json")
 
 
-
-def compare_strings(str1, str2):
-    lines1 = str1.splitlines()
-    lines2 = str2.splitlines()
-    max_len = max(len(lines1), len(lines2))
-
-    for i in range(max_len):
-        line1 = lines1[i] if i < len(lines1) else ""
-        line2 = lines2[i] if i < len(lines2) else ""
-
-        if line1 != line2:
-            print(f"Line {i+1}:")
-            print(f"\tString 1: {line1}")
-            print(f"\tString 2: {line2}")
-
 @app.route("/api/generate-doc", methods=['POST'])
 def receive_template():
     """This endpoint is used to receive the template to be processed."""
-    templates = load_templates()
-    data = unpack_data()
-    template_dict = request.get_json()
-    templateID = template_dict['templateID']
-    template = templates[templateID-1]
-    template_name = template['Name']
-    plots = load_plots_from_template(template)
+    try:
+        templates = load_templates()
+        data = unpack_data()
+        template_dict = request.get_json()
+        templateID = template_dict['templateID']
+        template = templates[templateID-1]
+        template_name = template['Name']
+        plots = load_plots_from_template(template)
 
-    config_files = [plot['config_file'] for plot in plots]
-
-
-
-
-    document_path = return_docx(config_files, unpack_data(), template_name)
-
-
-    #config_files = []
-    #for config in template:
-    #    config_files.append(config)
+        config_files = [plot['config_file'] for plot in plots]
 
 
 
-    #document_path = return_docx(config_files, unpack_data(), template_name)
-    return ""
-    #return send_file(document_path, as_attachment=True)
+
+        document_path = return_docx(config_files, unpack_data(), template_name)
+
+        if not os.path.exists(document_path):
+            return "File Not Found", 404
+
+
+        return send_file(os.path.abspath(document_path), as_attachment=True)
+    except Exception as e:
+        print(f"Error:{e}")
+        return "Error", 500
 
 def unpack_data():
     """This is to reduce code repetition across functions"""
