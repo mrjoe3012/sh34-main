@@ -1,6 +1,6 @@
 import unittest
 import plotly.graph_objs as go
-from backend.plotly_interface import update_traces, update_xaxis, update_yaxis, update_plotsize, update_plot_colours
+from backend.plotly_interface import update_traces, update_xaxis, update_yaxis, update_plotsize, update_plot_colours, update_grid_lines
 import json
 import os
 
@@ -188,6 +188,8 @@ class TestUpdatePlotSize(unittest.TestCase):
 
 
 class TestUpdatePlotColour(unittest.TestCase):
+
+
     def setUp(self):
         self.fig = go.Figure()
 
@@ -202,7 +204,23 @@ class TestUpdatePlotColour(unittest.TestCase):
 
         self.assertEqual(new_fig.layout.plot_bgcolor, "red")
         self.assertEqual(new_fig.layout.paper_bgcolor, "blue")
+
+class TestUpdateGridLines(unittest.TestCase):
+    def setUp(self):
+        self.fig = go.Figure()
+
+    def test_update_grid_lines(self):
+        properties = {
+            "display_xaxis_gridlines" : True,
+            "display_yaxis_gridlines" : False
+        }
+
+        new_fig = update_grid_lines(self.fig, properties)
+
+        self.assertEqual(new_fig.layout.xaxis.showgrid, True)
+        self.assertEqual(new_fig.layout.yaxis.showgrid, False)
         
+
 
 if __name__ == '__main__':
     unittest.main()
