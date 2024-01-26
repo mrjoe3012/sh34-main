@@ -228,8 +228,8 @@ class TestXAxisTickLabels(unittest.TestCase):
     def test_update_xaxis_tick_labels_default(self):
 
         properties = {
-            "xaxis_tick_angle" : 0,
-            "xaxis_ticks_position" : "outside",
+            "xaxis_ticks_angle" : 0,
+            "xaxis_ticks_position" : "top",
             "xaxis_ticks_style_mode" : "default",
             "xaxis_ticks_typeface_default" : "Arial",
             "xaxis_ticks_size_default": 12,
@@ -239,7 +239,7 @@ class TestXAxisTickLabels(unittest.TestCase):
         new_fig = update_xaxis_ticklabels(self.fig, properties)
 
         self.assertEqual(new_fig.layout.xaxis.tickangle, 0)
-        self.assertEqual(new_fig.layout.xaxis.tickmode, "outside")
+        self.assertEqual(new_fig.layout.xaxis.tickmode, "top")
         self.assertEqual(new_fig.layout.xaxis.tickfont.family, "Arial")
         self.assertEqual(new_fig.layout.xaxis.tickfont.size, 12)
         self.assertEqual(new_fig.layout.xaxis.tickfont.color, "black")
@@ -248,7 +248,7 @@ class TestXAxisTickLabels(unittest.TestCase):
 
         properties = {
             "xaxis_ticks_angle": 45,
-            "xaxis_ticks_position": "inside",
+            "xaxis_ticks_position": "bottom",
             "xaxis_ticks_style_mode": "custom",
             "xaxis_ticks_typeface_custom": "Times New Roman",
             "xaxis_ticks_size_custom": 14,
@@ -258,7 +258,7 @@ class TestXAxisTickLabels(unittest.TestCase):
         new_fig = update_xaxis_ticklabels(self.fig, properties)
 
         self.assertEqual(new_fig.layout.xaxis.tickangle, 45)
-        self.assertEqual(new_fig.layout.xaxis.tickmode, "inside")
+        self.assertEqual(new_fig.layout.xaxis.tickmode, "bottom")
         self.assertEqual(new_fig.layout.xaxis.tickfont.family, "Times New Roman")
         self.assertEqual(new_fig.layout.xaxis.tickfont.size, 14)
         self.assertEqual(new_fig.layout.xaxis.tickfont.color, "blue")
