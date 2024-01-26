@@ -222,6 +222,7 @@ class TestUpdateGridLines(unittest.TestCase):
         
 
 class TestXAxisTickLabels(unittest.TestCase):
+    
     def setUp(self):
         self.fig = go.Figure()
 
@@ -239,7 +240,7 @@ class TestXAxisTickLabels(unittest.TestCase):
         new_fig = update_xaxis_ticklabels(self.fig, properties)
 
         self.assertEqual(new_fig.layout.xaxis.tickangle, 0)
-        self.assertEqual(new_fig.layout.xaxis.tickposition, "top")
+        self.assertEqual(new_fig.layout.xaxis.ticklabelposition, "top")
         self.assertEqual(new_fig.layout.xaxis.tickfont.family, "Arial")
         self.assertEqual(new_fig.layout.xaxis.tickfont.size, 12)
         self.assertEqual(new_fig.layout.xaxis.tickfont.color, "black")
@@ -258,7 +259,7 @@ class TestXAxisTickLabels(unittest.TestCase):
         new_fig = update_xaxis_ticklabels(self.fig, properties)
 
         self.assertEqual(new_fig.layout.xaxis.tickangle, 45)
-        self.assertEqual(new_fig.layout.xaxis.tickposition, "bottom")
+        self.assertEqual(new_fig.layout.xaxis.ticklabelposition, "bottom")
         self.assertEqual(new_fig.layout.xaxis.tickfont.family, "Times New Roman")
         self.assertEqual(new_fig.layout.xaxis.tickfont.size, 14)
         self.assertEqual(new_fig.layout.xaxis.tickfont.color, "blue")
