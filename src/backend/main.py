@@ -59,7 +59,6 @@ def receive_template():
     """This endpoint is used to receive the template to be processed."""
     try:
         templates = load_templates()
-        data = unpack_data()
         template_dict = request.get_json()
         templateID = template_dict['templateID']
         template = templates[templateID-1]

@@ -21,10 +21,8 @@ def generate_plot_png(config_json, data_json):
     """This is returns png of the plotly figure"""
     fig = generate_plot(config_json, data_json)
     plot_title = build_property_dict(config_json)['plot_title']
-    unique_id = uuid.uuid4()
     file_name = f'{plot_title}.png'
     folder_name = 'src/backend/temp'
-
     file_path = os.path.join(folder_name, file_name)
     if not os.path.exists(folder_name):
         os.makedirs(folder_name)
