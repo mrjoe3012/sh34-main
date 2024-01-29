@@ -4,7 +4,6 @@
 from typing import Any
 import os
 import shutil
-import uuid
 import plotly.graph_objs as go
 from docx import Document
 from docx.shared import Inches, Pt
@@ -565,11 +564,11 @@ def delete_folder(folder_path):
             print(f"Folder '{folder_path}' has been deleted.")
         else:
             print(f"Folder '{folder_path}' does not exist.")
+    except PermissionError as e:
+        print(f"Permission Denied: {e}")
+    except FileNotFoundError as e:
+        print(f"Permission Denied: {e}")
+    except OSError as e:
+        print(f"Permission Denied: {e}")
     except Exception as e:
         print(f"An error occurred: {e}")
-
-
-
-
-
-
