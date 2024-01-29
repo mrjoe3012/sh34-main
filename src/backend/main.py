@@ -1,9 +1,8 @@
 """This file is the backend's entrypoint."""
 import json
+import os
 from flask import Flask, Response, request, send_file
 from backend import load_templates, load_plots_from_template, return_docx, generate_plot_html
-from backend import generate_plot_png
-import os, re
 
 app = Flask(__name__)
 
@@ -60,8 +59,8 @@ def receive_template():
     try:
         templates = load_templates()
         template_dict = request.get_json()
-        templateID = template_dict['templateID']
-        template = templates[templateID-1]
+        template_ID = template_dict['templateID']
+        template = templates[template_ID-1]
         template_name = template['Name']
         plots = load_plots_from_template(template)
 
@@ -77,9 +76,15 @@ def receive_template():
 
 
         return send_file(os.path.abspath(document_path), as_attachment=True)
+    except FileNotFoundError as e:
+        print(f"File Not Found:{e}")
+    except PermissionError as e:
+        print(f"Permission Denied: {e}")
+    except OSError as e:
+        print(f"OS Error: {e}")
     except Exception as e:
-        print(f"Error:{e}")
-        return "Error", 500
+        print(f"Unexpected Error:{e}")
+        return "Internal Server Error", 500
 
 def unpack_data():
     """This is to reduce code repetition across functions"""
@@ -87,10 +92,10 @@ def unpack_data():
         with open(DEFAULT_DATA_PATH, 'r', encoding='utf-8') as data_file:
             data = json.load(data_file)
 
-        if data is not None:
-            return data
-        else:
+        if data is None:
             raise ValueError("Data loaded is None")
+        else:
+            return data
     except FileNotFoundError:
         print("File not Found")
         raise

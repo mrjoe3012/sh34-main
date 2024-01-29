@@ -567,8 +567,8 @@ def delete_folder(folder_path):
     except PermissionError as e:
         print(f"Permission Denied: {e}")
     except FileNotFoundError as e:
-        print(f"Permission Denied: {e}")
+        print(f"File Not Found: {e}")
     except OSError as e:
-        print(f"Permission Denied: {e}")
+        print(f"OS Error: {e}")
     except Exception as e:
         print(f"An error occurred: {e}")
