@@ -12,7 +12,7 @@ export const PlotDisplay = () => {
         $('#loading-icon').css("display", "block");
 
         // fetch the plot and display it
-        fetch('/api/plotfromconfig', {
+        fetch('/api/plot-from-config', {
           method: 'POST', // or 'PUT'
           headers: {
             'Content-Type': 'application/json',

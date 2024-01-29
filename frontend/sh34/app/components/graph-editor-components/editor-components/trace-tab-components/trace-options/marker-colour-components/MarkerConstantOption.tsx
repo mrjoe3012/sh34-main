@@ -1,5 +1,5 @@
 import { GenericColourOption } from "@app/components/graph-editor-components/editor-components/generic-components/GenericColourOption"
-import { TraceType } from "@app/graph-editor/configjsoninterface"
+import { TraceType } from "@app/modules/Config"
 
 interface MarkerConstantOptionProps {
     trace: TraceType

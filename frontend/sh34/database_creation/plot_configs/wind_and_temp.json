@@ -1,0 +1,141 @@
+{
+  "numTraces": 1,
+  "traces": [
+    {
+      "id": 0,
+      "name": "Mean Wind Speed",
+      "plotType": "Bar",
+      "plotIndicator": "/breakdown_by_indicator/WindSpeedMean",
+      "markerColour": "#2cff05",
+      "orientation": "v"
+    },
+    {
+      "id": 1,
+      "name": "Mean Temp",
+      "plotType": "Bar",
+      "plotIndicator": "/breakdown_by_indicator/TemperatureMean",
+      "markerColour": "#ffac05",
+      "orientation": "v"
+    }
+  ],
+  "numAnnotations": 1,
+  "annotations": [
+    {
+      "id": 1,
+      "name": "New Annotation",
+      "xPos": 0.54,
+      "yPos": 0.07,
+      "xref": "paper",
+      "yref": "paper",
+      "text": "Storm Temperatures",
+      "showArrow": true,
+      "arrowColour": "#000000",
+      "arrowOffsetX": 0,
+      "arrowOffsetY": -30,
+      "arrowWidth": 2,
+      "styling": {
+        "fontColour": "#000000",
+        "fontSize": 20,
+        "typeface": "Arial"
+      }
+    }
+  ],
+  "generalOptions": {
+    "plotWidth": "800",
+    "plotHeight": "600",
+    "displayXAxisLines": false,
+    "displayYAxisLines": false,
+    "xAxisScale": "linear",
+    "yAxisScale": "linear"
+  },
+  "labellingOptions": {
+    "title": {
+      "plotTitle": "Wind and Temperature",
+      "styling": {
+        "currentStylingMode": "default",
+        "defaultFontStyle": {
+          "fontColour": "#000000",
+          "fontSize": 16,
+          "typeface": "Arial"
+        },
+        "customFontStyle": {
+          "fontColour": "#000000",
+          "fontSize": 16,
+          "typeface": "Arial"
+        }
+      }
+    },
+    "xAxis": {
+      "xAxisText": "Time",
+      "styling": {
+        "currentStylingMode": "default",
+        "defaultFontStyle": {
+          "fontColour": "#000000",
+          "fontSize": 16,
+          "typeface": "Arial"
+        },
+        "customFontStyle": {
+          "fontColour": "#000000",
+          "fontSize": 16,
+          "typeface": "Arial"
+        }
+      },
+      "tickLabels": {
+        "tickAngle": 0,
+        "tickPosition": "bottom",
+        "styling": {
+          "currentStylingMode": "default",
+          "defaultFontStyle": {
+            "fontColour": "#000000",
+            "fontSize": 16,
+            "typeface": "Arial"
+          },
+          "customFontStyle": {
+            "fontColour": "#000000",
+            "fontSize": 16,
+            "typeface": "Arial"
+          }
+        }
+      }
+    },
+    "yAxis": {
+      "yAxisText": "Mean Temp / Wind Speed",
+      "styling": {
+        "currentStylingMode": "default",
+        "defaultFontStyle": {
+          "fontColour": "#000000",
+          "fontSize": 16,
+          "typeface": "Arial"
+        },
+        "customFontStyle": {
+          "fontColour": "#000000",
+          "fontSize": 16,
+          "typeface": "Arial"
+        }
+      },
+      "tickLabels": {
+        "tickAngle": 0,
+        "tickPosition": "left",
+        "styling": {
+          "currentStylingMode": "default",
+          "defaultFontStyle": {
+            "fontColour": "#000000",
+            "fontSize": 16,
+            "typeface": "Arial"
+          },
+          "customFontStyle": {
+            "fontColour": "#000000",
+            "fontSize": 16,
+            "typeface": "Arial"
+          }
+        }
+      }
+    }
+  },
+  "visualOptions": {
+    "colour": {
+      "plotBackgroundColourHex": "#e5ecf6",
+      "plotMarginColourHex": "#FFFFFF"
+    }
+  }
+}
