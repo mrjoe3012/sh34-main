@@ -1,6 +1,6 @@
 import unittest
 import plotly.graph_objs as go
-from backend.plotly_interface import update_traces, update_xaxis, update_yaxis, update_plotsize, update_plot_colours, update_grid_lines, update_xaxis_ticklabels
+from backend.plotly_interface import update_traces, update_xaxis, update_yaxis, update_plotsize, update_plot_colours, update_grid_lines, update_xaxis_ticklabels, update_yaxis_ticklabels
 import json
 import os
 
@@ -240,7 +240,7 @@ class TestXAxisTickLabels(unittest.TestCase):
         new_fig = update_xaxis_ticklabels(self.fig, properties)
 
         self.assertEqual(new_fig.layout.xaxis.tickangle, 0)
-        self.assertEqual(new_fig.layout.xaxis.ticklabelposition, "top")
+        self.assertEqual(new_fig.layout.xaxis.side, "top")
         self.assertEqual(new_fig.layout.xaxis.tickfont.family, "Arial")
         self.assertEqual(new_fig.layout.xaxis.tickfont.size, 12)
         self.assertEqual(new_fig.layout.xaxis.tickfont.color, "black")
@@ -259,10 +259,55 @@ class TestXAxisTickLabels(unittest.TestCase):
         new_fig = update_xaxis_ticklabels(self.fig, properties)
 
         self.assertEqual(new_fig.layout.xaxis.tickangle, 45)
-        self.assertEqual(new_fig.layout.xaxis.ticklabelposition, "bottom")
+        self.assertEqual(new_fig.layout.xaxis.side, "bottom")
         self.assertEqual(new_fig.layout.xaxis.tickfont.family, "Times New Roman")
         self.assertEqual(new_fig.layout.xaxis.tickfont.size, 14)
         self.assertEqual(new_fig.layout.xaxis.tickfont.color, "blue")
+
+class TestUpdateYAxisTickLabels(unittest.TestCase):
+
+    def setUp(self):
+        self.fig = go.Figure()
+
+    def update_yaxis_ticklabels_default(self):
+
+        properties = {
+            "yaxis_ticks_angle" : 0,
+            "yaxis_ticks_position" : "left",
+            "yaxis_ticks_style_mode" : "default",
+            "yaxis_ticks_typeface_default" : "Arial",
+            "yaxis_ticks_size_default": 12,
+            "yaxis_ticks_colour_default": "black"
+        }
+
+        new_fig = update_yaxis_ticklabels(self.fig, properties)
+
+        self.assertEqual(new_fig.layout.yaxis.tickangle, 0)
+        self.assertEqual(new_fig.layout.yaxis.side, "left")
+        self.assertEqual(new_fig.layout.yaxis.tickfont.family, "Arial")
+        self.assertEqual(new_fig.layout.yaxis.tickfont.size, 12)
+        self.assertEqual(new_fig.layout.yaxis.tickfont.color, "black")
+
+    def test_update_xaxis_ticklabels_custom(self):
+        
+        properties = {
+            "yaxis_ticks_angle": 90,
+            "yaxis_ticks_position": "right",
+            "yaxis_ticks_style_mode": "custom",
+            "yaxis_ticks_typeface_custom": "Times New Roman",
+            "yaxis_ticks_size_custom": 16,
+            "yaxis_ticks_colour_custom": "red"
+        }
+
+        new_fig = update_yaxis_ticklabels(self.fig, properties)
+
+        self.assertEqual(new_fig.layout.yaxis.tickangle, 90)
+        self.assertEqual(new_fig.layout.yaxis.side, "right")
+        self.assertEqual(new_fig.layout.yaxis.tickfont.family, "Times New Roman")
+        self.assertEqual(new_fig.layout.yaxis.tickfont.size, 16)
+        self.assertEqual(new_fig.layout.yaxis.tickfont.color, "red") 
+           
+
 
 
 
