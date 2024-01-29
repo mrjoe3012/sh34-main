@@ -526,13 +526,16 @@ def return_docx(plots,data_json,template_name):
 
     folder_path = 'src/backend/temp'
     doc = Document()
-    main_title = doc.add_paragraph('Plots')
+    main_title = doc.add_paragraph()
+    main_title_run = main_title.add_run('Plots')
+    main_title_run.font.size = Pt(32)
     main_title.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    main_title.style.font_size = Pt(18)
 
     save_path = os.path.join(docs_folder_path, f'{template_name}.docx')
+
+
     #Used to add space
-    doc.add_paragraph()
+    #doc.add_paragraph()
 
 
     for plot in plots:
@@ -541,8 +544,9 @@ def return_docx(plots,data_json,template_name):
         if file.endswith(".png"):
             image_path = os.path.join(folder_path, file)
 
-            plot_title = doc.add_paragraph(file.replace('.png',''))
-            plot_title.style.font_size = Pt(12)
+            plot_title = doc.add_paragraph()
+            plot_title_run = plot_title.add_run(file.replace('.png', ''))
+            plot_title_run.font.size = Pt(21)
 
             doc.add_picture(image_path, width = Inches(6))
 
