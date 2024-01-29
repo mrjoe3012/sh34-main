@@ -59,8 +59,8 @@ def receive_template():
     try:
         templates = load_templates()
         template_dict = request.get_json()
-        template_ID = template_dict['templateID']
-        template = templates[template_ID-1]
+        template_id = template_dict['templateID']
+        template = templates[template_id-1]
         template_name = template['Name']
         plots = load_plots_from_template(template)
 
@@ -78,13 +78,13 @@ def receive_template():
         return send_file(os.path.abspath(document_path), as_attachment=True)
     except FileNotFoundError as e:
         print(f"File Not Found:{e}")
+        return "File Not Found Error", 500
     except PermissionError as e:
         print(f"Permission Denied: {e}")
+        return "Permission Denied", 500
     except OSError as e:
         print(f"OS Error: {e}")
-    except Exception as e:
-        print(f"Unexpected Error:{e}")
-        return "Internal Server Error", 500
+        return "OS Error", 500
 
 def unpack_data():
     """This is to reduce code repetition across functions"""
@@ -94,8 +94,7 @@ def unpack_data():
 
         if data is None:
             raise ValueError("Data loaded is None")
-        else:
-            return data
+        return data
     except FileNotFoundError:
         print("File not Found")
         raise

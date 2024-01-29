@@ -570,5 +570,3 @@ def delete_folder(folder_path):
         print(f"File Not Found: {e}")
     except OSError as e:
         print(f"OS Error: {e}")
-    except Exception as e:
-        print(f"An error occurred: {e}")

@@ -1,5 +1,8 @@
-import pymongo, os
-from typing import Any
+"""This is the Database-Backend connection estabilishment"""
+import os
+from typing import Any, Optional
+import pymongo
+
 
 DB_NAME = "SH34_DB"
 TEMPLATE_COLLECTION_NAME = "Templates_Data"
@@ -15,7 +18,7 @@ def get_connection_string() -> str:
     if env_name not in os.environ:
         raise RuntimeError("Error. Please set the 'SH34_DB' environment" \
             + " variable to the database connection string.")
-    return os.environ['SH34_DB'] 
+    return os.environ['SH34_DB']
 
 def get_client() -> pymongo.MongoClient:
     """
@@ -25,41 +28,46 @@ def get_client() -> pymongo.MongoClient:
     client = pymongo.MongoClient(get_connection_string())
     return client
 
-def load_collection(name: str, filter: dict[str, Any]) -> list[dict[str, Any]]:
+def load_collection(name: str, filters: dict[str, Any]) -> list[dict[str, Any]]:
     """
     Load an entire collection from the database.
     :param name: The name of the collection.
-    :param filter: The filter to apply.
+    :param filters: The filters to apply.
     :returns: The elements within the collection.
     """
     client = get_client()
     database = client[DB_NAME]
     collection = database[name]
-    result = list(collection.find(filter))
+    result = list(collection.find(filters))
     client.close()
     return result
 
-def load_templates(filter: dict[str, Any] = {}) -> list[dict[str, Any]]:
+def load_templates(filters: Optional[dict[str, Any]] = None) -> list[dict[str, Any]]:
     """
-    Load templates and apply a filter.
-    :param filter: The filter to apply.
-    :returns: The templates matching the filter.
+    Load templates and apply a filters.
+    :param filters: The filters to apply.
+    :returns: The templates matching the filters.
     """
+    if filters is None:
+        filters = {}
+
     templates = load_collection(
         TEMPLATE_COLLECTION_NAME,
-        filter
+        filters
     )
     return templates
 
-def load_plots(filter: dict[str, Any] = {}) -> list[dict[str, Any]]:
+def load_plots(filters: Optional[dict[str, Any]] = None) -> list[dict[str, Any]]:
     """
-    Load plots and apply a filter.
-    :param filter: The filter to apply.
-    :returns: The plots matching the filter.
+    Load plots and apply a filters.
+    :param filters: The filters to apply.
+    :returns: The plots matching the filters.
     """
+    if filters is None:
+        filters = {}
     plots = load_collection(
         PLOT_COLLECTION_NAME,
-        filter
+        filters
     )
     return plots
 
@@ -73,7 +81,7 @@ def load_plots_from_template(template: dict[str, Any]) -> list[dict[str, Any]]:
     plot_ids = template['PlotArray']
     plots = load_plots({'_id' : {'$in': plot_ids}})
     return plots
-    
+
 def load_template_from_plot(plot: dict[str, Any]) -> dict[str, Any]:
     """
     Load the template associated with a plot.
@@ -83,10 +91,10 @@ def load_template_from_plot(plot: dict[str, Any]) -> dict[str, Any]:
     plot object.
     """
     plot_id = plot['_id']
-    filter = {
+    filters = {
         'PlotArray' : {
             '$elemMatch' : { '$eq' : plot_id }
         }
     }
-    template = load_templates(filter)[0]
+    template = load_templates(filters)[0]
     return template
