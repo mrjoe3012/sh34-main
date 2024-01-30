@@ -336,7 +336,7 @@ class TestUpdateTitle(unittest.TestCase):
         properties = {
             "title_style_mode" : "custom",
             "plot_title" : "test_title_custom",
-            "title_typeface_default" : "Times New Roman",
+            "title_typeface_custom" : "Times New Roman",
             "title_size_default" : 14,
             "title_colour_default" : "red"
         }
