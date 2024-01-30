@@ -337,8 +337,8 @@ class TestUpdateTitle(unittest.TestCase):
             "title_style_mode" : "custom",
             "plot_title" : "test_title_custom",
             "title_typeface_custom" : "Times New Roman",
-            "title_size_default" : 14,
-            "title_colour_default" : "red"
+            "title_size_custom" : 14,
+            "title_colour_custom" : "red"
         }
 
         new_fig = update_title(self.fig, properties)
