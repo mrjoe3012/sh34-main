@@ -1,6 +1,7 @@
 import unittest
 import plotly.graph_objs as go
-from backend.plotly_interface import update_traces, update_xaxis, update_yaxis, update_plotsize, update_plot_colours, update_grid_lines, update_xaxis_ticklabels, update_yaxis_ticklabels
+from backend.plotly_interface import update_traces, update_xaxis, update_yaxis, update_plotsize, update_plot_colours
+from backend.plotly_interface import update_grid_lines, update_xaxis_ticklabels, update_yaxis_ticklabels, update_title
 import json
 import os
 
@@ -306,6 +307,46 @@ class TestUpdateYAxisTickLabels(unittest.TestCase):
         self.assertEqual(new_fig.layout.yaxis.tickfont.family, "Times New Roman")
         self.assertEqual(new_fig.layout.yaxis.tickfont.size, 16)
         self.assertEqual(new_fig.layout.yaxis.tickfont.color, "red") 
+
+
+class TestUpdateTitle(unittest.TestCase):
+
+    def setUp(self):
+        self.fig = go.Figure()
+
+    def test_update_title_default(self):
+
+        properties = {
+            "title_style_mode" : "default",
+            "plot_title" : "test_title_default",
+            "title_typeface_default" : "Arial",
+            "title_size_default" : 12,
+            "title_colour_default" : "black"
+        }
+
+        new_fig = update_title(self.fig, properties)
+
+        self.assertEqual(new_fig.layout.title.text, "test_title_default")
+        self.assertEqual(new_fig.layout.title.font.family, "Arial")
+        self.assertEqual(new_fig.layout.title.font.size, 12)
+        self.assertEqual(new_fig.layout.title.font.color, "black")
+
+    def test_update_title_custom(self):
+
+        properties = {
+            "title_style_mode" : "custom",
+            "plot_title" : "test_title_custom",
+            "title_typeface_default" : "Times New Roman",
+            "title_size_default" : 14,
+            "title_colour_default" : "red"
+        }
+
+        new_fig = update_title(self.fig, properties)
+
+        self.assertEqual(new_fig.layout.title.text, "test_title_custom")
+        self.assertEqual(new_fig.layout.title.font.family, "Times New Roman")
+        self.assertEqual(new_fig.layout.title.font.size, 14)
+        self.assertEqual(new_fig.layout.title.font.color, "red")
            
 
 
