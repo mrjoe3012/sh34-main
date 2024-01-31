@@ -1,7 +1,7 @@
 """This file is the backend's entrypoint."""
 import json
 from flask import Flask, Response, request
-from backend import generate_plot_html, generate_plot_htmls
+from backend import generate_plot_html, generate_plot_htmls, generate_plot_jsons
 
 app = Flask(__name__)
 
@@ -45,9 +45,12 @@ def generate_plot():
 @app.route("/api/load-plot-previews", methods=["GET","POST"])
 def generate_plot_previews():
     """
-        This function expects a list of configJSONS coming from the frontend, representing all the plot configs
-        for the template. It will then generate the HTML for each of these plots, and return them to the frontend
-        to be displayed on the Preview Page.
+        On the frontend, a list of configJSONS for each plot gets sent to this endpoint. This function then
+        generates JSON object representations for each configJSON it received. It then sends this list of
+        JSON representations back to the frontend, where using a Plotly library it generates the plot
+        back on the frontend.
+        The reason I have chose to do it this way, if I instead sent a list of HTML representations of the plots,
+        I would have to call dangerouslySetInnerHTML to get the plot to appear, a vulnerable way to set the content.
     """
 
     config_json_list = request.get_json()
@@ -58,9 +61,9 @@ def generate_plot_previews():
     except FileNotFoundError:
         print("File not Found")
 
-    html_list = generate_plot_htmls(config_json_list,data_json)
+    json_list = generate_plot_jsons(config_json_list,data_json)
 
-    return Response(html_list, mimetype="text/html")
+    return Response(json_list, mimetype="text/json")
 
 
 

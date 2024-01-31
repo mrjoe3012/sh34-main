@@ -6,6 +6,44 @@ import plotly.graph_objs as go
 import pandas as pd
 import json
 
+def generate_plot_jsons(config_json_list,data_json):
+    """
+        Takes in the list of configJSONs and converts each of them to its respective JSON object form.
+        Returns a list of JSON object representations of plots
+    """
+
+    plot_jsons = []
+    for config_json in config_json_list:
+        plot_jsons.append(generate_plot_json(config_json,data_json))
+
+    return json.dumps(plot_jsons)
+
+def generate_plot_json(config_json, data_json):
+    """
+        Takes in the config_json received from the frontend,
+        creates the plotly figure and returns its JSON form
+    """
+
+    # Generate a Dictionary of Properties from config_json
+    properties = build_property_dict(config_json)
+
+    fig = go.Figure()
+
+    fig = update_traces(fig, properties, data_json)
+    fig = update_xaxis(fig, properties)
+    fig = update_yaxis(fig, properties)
+    fig = update_plot_colours(fig, properties)
+    fig = update_grid_lines(fig, properties)
+    fig = update_title(fig, properties)
+    fig = update_xaxis_ticklabels(fig, properties)
+    fig = update_yaxis_ticklabels(fig, properties)
+    fig = update_plotsize(fig, properties)
+    fig = update_annotations(fig, properties)
+
+    fig_html = fig.to_json()
+    return fig_html
+
+
 def generate_plot_htmls(config_json_list, data_json):
     """
         Takes in the list of configJSONs and converts each of them to its respective HTML figure form.
@@ -17,6 +55,7 @@ def generate_plot_htmls(config_json_list, data_json):
         plot_htmls.append(generate_plot_html(config_json,data_json))
 
     return json.dumps(plot_htmls)
+
 
 def generate_plot_html(config_json, data_json):
     """ Takes in the config_json received from the frontend,
