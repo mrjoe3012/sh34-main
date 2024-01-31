@@ -1,5 +1,5 @@
 import { Filter, MongoClient, WithId } from 'mongodb';
-import { Interface } from 'readline';
+import { Config } from "./Config";
 
 const DB_NAME = "SH34_DB";
 const PLOTS_COLLECTION = "Plots_Data";
@@ -19,15 +19,7 @@ export interface TemplateData extends Document {
 // should be same as objects in Plots_Data collection
 export interface PlotData extends Document {
     _id: number,
-    JSONFile: {
-        'graph-type' : string,
-        title: string,
-        x_axis_name : string,
-        y_axis_name : string,
-        colour: string,
-        indicator: string
-    },
-    plot_title: string,
+    config_file: Config,
     order: number,
 };
 
