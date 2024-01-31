@@ -421,7 +421,7 @@ class TestUpdateAnnotations(unittest.TestCase):
                     "text" : "annotation",
                     "showArrow" : "false",
                     "arrowColour" : "black",
-                    "arrowOffestX" : 20,
+                    "arrowOffsetX" : 20,
                     "arrowOffsetY" : -20,
                     "arrowWidth" : 2,
                     "styling" : {
