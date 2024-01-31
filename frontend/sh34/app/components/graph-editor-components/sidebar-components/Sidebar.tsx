@@ -11,7 +11,7 @@ interface SidebarProps {
 export const Sidebar = (props: SidebarProps) => {
   // contains the currently selected graph indicator
   return (
-      <div className='basis-[15%] flex flex-col bg-white border-r-2 min-w-[250px]'>
+      <div className='basis-[12%] lg:basis-[15%] flex flex-col bg-white border-r-2 min-w-[200px]'>
         <ReturnButton /> 
         <hr></hr>
         <PlotTitle />
