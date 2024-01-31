@@ -445,7 +445,7 @@ class TestUpdateAnnotations(unittest.TestCase):
             self.assertEqual(current_fig_annotation.xref, annotation["xref"])
             self.assertEqual(current_fig_annotation.yref, annotation["yref"])
             self.assertEqual(current_fig_annotation.text, annotation["text"])
-            self.assertEqual(current_fig_annotation.showArrow, annotation["showArrow"])
+            self.assertEqual(current_fig_annotation.showarrow, annotation["showArrow"])
             self.assertEqual(current_fig_annotation.arrowcolor, annotation["arrowColour"])
             self.assertEqual(current_fig_annotation.ax, annotation["arrowOffsetX"])
             self.assertEqual(current_fig_annotation.ay, annotation["arrowOffsetY"])
