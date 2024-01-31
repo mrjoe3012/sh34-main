@@ -32,4 +32,10 @@ popd || exit 1
 
 echo "Finished installing dependencies."
 
-bash
+# start up a tmux session with the software running
+tmux new-session -d -s "SH34 Session"
+tmux rename-window -t 0 "Backend"
+tmux send-keys "sh34-backend" Enter
+tmux split-window -h
+tmux send-keys -t 1 "cd frontend/sh34; node database_creation/initialise_database.js; npm run dev" Enter
+tmux attach-session -t "SH34 Session"
