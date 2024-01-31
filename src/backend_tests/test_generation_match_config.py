@@ -454,5 +454,6 @@ class TestUpdateAnnotations(unittest.TestCase):
             self.assertEqual(current_fig_annotation.font.size, annotation["styling"]["fontSize"])
             self.assertEqual(current_fig_annotation.font.family, annotation["styling"]["typeface"])
 
+
 if __name__ == '__main__':
     unittest.main()
