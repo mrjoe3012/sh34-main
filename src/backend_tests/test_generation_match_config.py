@@ -364,11 +364,19 @@ class TestUpdateYAxisTickLabels(unittest.TestCase):
         self.assertEqual(new_fig.layout.yaxis.tickfont.color, "red") 
 
 
+"""
+The following function tests the update_title function, it creates dummy attributes for the title and a
+dummy plot figure, passing them to the function and then finally checking their correct assignment
+"""
+
+
 class TestUpdateTitle(unittest.TestCase):
 
+    #Create a dummy plot figure which will be passed to the function
     def setUp(self):
         self.fig = go.Figure()
 
+    #Create dummy values which will be passed to the function along with the dummy figure
     def test_update_title_default(self):
 
         properties = {
@@ -379,13 +387,20 @@ class TestUpdateTitle(unittest.TestCase):
             "title_colour_default" : "black"
         }
 
+
+        #pass the test values to the function
         new_fig = update_title(self.fig, properties)
 
+
+
+        #check for correct assignment of the values to the attributes of the title
         self.assertEqual(new_fig.layout.title.text, "test_title_default")
         self.assertEqual(new_fig.layout.title.font.family, "Arial")
         self.assertEqual(new_fig.layout.title.font.size, 12)
         self.assertEqual(new_fig.layout.title.font.color, "black")
 
+
+    #perform the same process with the custom values
     def test_update_title_custom(self):
 
         properties = {
@@ -404,11 +419,19 @@ class TestUpdateTitle(unittest.TestCase):
         self.assertEqual(new_fig.layout.title.font.color, "red")
            
 
+"""
+This function tests the update_annotations function, it creates a dummy set of annotations which
+it will pass to the function, it then checks for correct assignment of these values, this is 
+performed in a loop as multiple annotations can be defined, however i have only defined one
+"""
 class TestUpdateAnnotations(unittest.TestCase):
 
+    #Create a dummy figure to pass to the function
     def setUp(self):
         self.fig = go.Figure()
 
+
+    #Create test values to pass to the function along with the dummy figure
     def test_update_annotations(self):
 
         properties = {
@@ -434,8 +457,12 @@ class TestUpdateAnnotations(unittest.TestCase):
             ]
         }
 
+    
+        #Run the function
         new_fig = update_annotations(self.fig, properties)
 
+        
+        #loop through each of the annotations of the figure, checking each attribute has been assigned correctly
         for i,annotation in enumerate(properties["annotations"]):
 
             current_fig_annotation = new_fig.layout.annotations[i]

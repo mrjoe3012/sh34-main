@@ -1,0 +1,121 @@
+{
+
+    "numTraces": 0,
+    "traces": [
+        {
+            "id": 0,
+            "name": "trace1",
+            "plotType": "Bar",
+            "plotIndicator": "/breakdown_by_indicator/TemperatureMean",
+            "markerColour": "#aabbcc",
+            "orientation": "v"
+        }
+    ],
+
+    "numAnnotations": 0,
+    "annotations": [
+
+    ],
+
+    "generalOptions": {
+        "plotWidth": "800",
+        "plotHeight": "800",
+        "displayXAxisLines": true,
+        "displayYAxisLines": false,
+        "xAxisScale": "linear",
+        "yAxisScale": "linear"
+    },
+
+    "labellingOptions": {
+        "title": {
+            "plotTitle": "test_title_default",
+            "styling": {
+                "currentStylingMode": "default",
+                "defaultFontStyle": {
+                    "fontColour": "black",
+                    "fontSize": 12,
+                    "typeface": "Arial"
+                },
+                "customFontStyle": {
+                    "fontColour": "#000000",
+                    "fontSize": 16,
+                    "typeface": "Arial"
+                }
+            }
+        },
+        "xAxis": {
+            "xAxisText": "test_xaxis_name_default",
+            "styling": {
+                "currentStylingMode": "default",
+                "defaultFontStyle": {
+                    "fontColour": "black",
+                    "fontSize": 12,
+                    "typeface": "Arial"
+                },
+                "customFontStyle": {
+                    "fontColour": "#000000",
+                    "fontSize": 16,
+                    "typeface": "Arial"
+                }
+            },
+            "tickLabels": {
+                "tickAngle": 0,
+                "tickPosition": "top",
+                "styling": {
+                    "currentStylingMode": "default",
+                    "defaultFontStyle": {
+                        "fontColour": "black",
+                        "fontSize": 12,
+                        "typeface": "Arial"
+                    },
+                    "customFontStyle": {
+                        "fontColour": "#000000",
+                        "fontSize": 16,
+                        "typeface": "Arial"
+                    }
+                }
+            }
+        },
+        "yAxis": {
+            "yAxisText": "test_yaxis_name_default",
+            "styling": {
+                "currentStylingMode": "default",
+                "defaultFontStyle": {
+                    "fontColour": "black",
+                    "fontSize": 12,
+                    "typeface": "Arial"
+                },
+                "customFontStyle": {
+                    "fontColour": "#000000",
+                    "fontSize": 16,
+                    "typeface": "Arial"
+                }
+            },
+            "tickLabels": {
+                "tickAngle": 0,
+                "tickPosition": "left",
+                "styling": {
+                    "currentStylingMode": "default",
+                    "defaultFontStyle": {
+                        "fontColour": "black",
+                        "fontSize": 12,
+                        "typeface": "Arial"
+                    },
+                    "customFontStyle":{
+                        "fontColour": "#000000",
+                        "fontSize": 16,
+                        "typeface": "Arial"
+                    }
+                }
+            }
+        }
+    },
+
+    "visualOptions": {
+        "colour":{
+            "plotBackgroundColourHex": "#e5ecf6",
+            "plotMarginColourHex": "#FFFFFF"
+        }
+    }
+
+}
