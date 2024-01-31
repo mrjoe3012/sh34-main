@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import { InfoPage } from "../info-page-components/InfoPage";
 import { StructurePage } from "../structure-page-components/StructurePage";
+import { PreviewPage } from '../preview-page-components/PreviewPage';
 import { PlotData, TemplateData } from '@app/modules/db';
 import { WithId } from 'mongodb';
 
@@ -16,17 +17,27 @@ export const TemplatePageSwitcher = (props: TemplatePageSwitcherProps) => {
 
   const [structureClicked, setStructureClicked] = useState(true);
   const [infoClicked, setInfoClicked] = useState(false);
-    
+  const [previewClicked, setPreviewClicked] = useState(false);
+
   const handleStructureClick = () => {
     setStructureClicked(true);
     setInfoClicked(false);
-      props.switchTabFunction(<StructurePage plots={props.plots}/>);
+    setPreviewClicked(false);
+    props.switchTabFunction(<StructurePage plots={props.plots}/>);
   }
 
   const handleInfoClick = () => {
     setStructureClicked(false);
     setInfoClicked(true);
-      props.switchTabFunction(<InfoPage template={props.template}/>);
+    setPreviewClicked(false);
+    props.switchTabFunction(<InfoPage template={props.template}/>);
+  }
+
+  const handlePreviewClicked = () => {
+    setStructureClicked(false);
+    setInfoClicked(false);
+    setPreviewClicked(true);
+    props.switchTabFunction(<PreviewPage />)
   }
 
     return(
@@ -34,6 +45,8 @@ export const TemplatePageSwitcher = (props: TemplatePageSwitcherProps) => {
           <button className={`h-full mr-1 w-[50%] flex justify-center items-center text-2xl ${structureClicked ? 'underline underline-offset-4 decoration-[#346DFF] decoration-4' : ''}`} onClick={handleStructureClick}> Structure </button>
           <div className='bg-[#D5D5D5] w-1 h-[80%] self-center'></div>
           <button className={`h-full mr-1 w-[50%] flex justify-center items-center text-2xl ${infoClicked ? 'underline underline-offset-4 decoration-[#346DFF] decoration-4' : ''}`} onClick={handleInfoClick}>Info</button>
+          <div className='bg-[#D5D5D5] w-1 h-[80%] self-center'></div>
+          <button className={`h-full mr-1 w-[50%] flex justify-center items-center text-2xl ${previewClicked ? 'underline underline-offset-4 decoration-[#346DFF] decoration-4' : ''}`} onClick={handlePreviewClicked}>Preview</button>
         </div>
     );
 }

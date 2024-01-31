@@ -5,6 +5,18 @@ from typing import Any
 import plotly.graph_objs as go
 import pandas as pd
 
+def generate_plot_htmls(config_json_list, data_json):
+    """
+        Takes in the list of configJSONs and converts each of them to its respective HTML figure form.
+        Returns a list of HTML representations of plots
+    """
+
+    plot_htmls = []
+    for config_json in config_json_list:
+        plot_htmls.append(generate_plot_html(config_json,data_json))
+
+    return plot_htmls
+
 def generate_plot_html(config_json, data_json):
     """ Takes in the config_json received from the frontend,
         creates the plotly figure and returns its HTML form

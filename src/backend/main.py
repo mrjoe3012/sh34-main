@@ -1,7 +1,7 @@
 """This file is the backend's entrypoint."""
 import json
 from flask import Flask, Response, request
-from backend import generate_plot_html
+from backend import generate_plot_html, generate_plot_htmls
 
 app = Flask(__name__)
 
@@ -44,6 +44,27 @@ def generate_plot():
 
     plot_html = generate_plot_html(config_json,data_json)
     return Response(plot_html, mimetype="text/html")
+
+@app.route("/api/load-plot-previews", methods=["GET","POST"])
+def generate_plot_previews():
+    """
+        This function expects a list of configJSONS coming from the frontend, representing all the plot configs
+        for the template. It will then generate the HTML for each of these plots, and return them to the frontend
+        to be displayed on the Preview Page.
+    """
+
+    config_json_list = request.get_json()
+
+    try:
+        with open(DEFAULT_DATA_PATH, 'r', encoding='utf-8') as data_file:
+            data_json = json.load(data_file)
+    except FileNotFoundError:
+        print("File not Found")
+
+    html_list = generate_plot_htmls(config_json_list,data_json)
+
+    return Response(html_list, mimetype="text/html")
+
 
 @app.route("/api/load-indicators", methods=['GET'])
 def api_load_indicators():

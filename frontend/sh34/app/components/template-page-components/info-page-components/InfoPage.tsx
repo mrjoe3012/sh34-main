@@ -12,7 +12,7 @@ export const InfoPage = (props: InfoPageProps) => {
     const template = props.template;
     return (
         <div className="">
-            
+
             <div className="flex flex-row mb-8 justify-between">
                 <TemplateNameInput name={template.Name} />
                 <TemplateLastModified lastModified={template.LastModified} />
