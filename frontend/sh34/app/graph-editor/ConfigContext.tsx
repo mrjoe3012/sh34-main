@@ -1,6 +1,9 @@
+"use client";
 import React, { ReactNode} from "react";
-import { useEffect, useContext, useState } from "react";
-import { Config } from "./configjsoninterface";
+import { useContext, useState } from "react";
+import { Config } from "@app/modules/Config";
+import { PlotData, TemplateData } from "@app/modules/db";
+import { WithId } from "mongodb";
 // This ConfigContext is created so that any children will have access to the ConfigJSON that is loaded into this Config's state.
 // It has been created this way so that when any children modify the config state from this context, React will know this,
 // meaning that elsewhere we can use a useEffect that runs when config changes. This is very useful in our case, ie when
@@ -15,6 +18,7 @@ import { Config } from "./configjsoninterface";
 // Define the Generic Type that the Config Context will be
 export interface ConfigContextType {
     config: Config;
+    template: WithId<TemplateData>;  // the parent template for the plot
     setConfig: React.Dispatch<React.SetStateAction<Config>>;
 }
 
@@ -36,22 +40,15 @@ export const useConfig = () => {
 
 
 interface ConfigProviderProps {
+    plot: WithId<PlotData>;
+    template: WithId<TemplateData>;
     children: ReactNode; // This tells TypeScript that children can be any valid React node
 }
 
   
-export const ConfigProvider: React.FC<ConfigProviderProps> = ({ children }) => {
-    const [config, setConfig] = useState<Config>({} as Config);
-
-    // This useEffect runs whenever the ConfigProvider Context is called. Currenty, it tries to locally import the ConfigJSON.
-    // When we integrate the database, this should change to importing the ConfigJSON from the correct plot record in the DB.
-    useEffect(() => {
-        import("../config.json")
-        .then((importedConfig: { default: Config }) => {
-            setConfig(importedConfig.default);
-        })
-        .catch((error) => console.error("Failed to locally import config: " + error))
-    }, []);
+export const ConfigProvider: React.FC<ConfigProviderProps> = (props: ConfigProviderProps) => {
+    const [config, setConfig] = useState<Config>(props.plot.config_file);
+    const template = props.template;
 
     // At the top of this function, we created a config state with an initial state of {}.
     // This checks to see if the config state is still empty. If it is, instead of returning any components,
@@ -61,8 +58,8 @@ export const ConfigProvider: React.FC<ConfigProviderProps> = ({ children }) => {
     }
 
     return (
-        <ConfigContext.Provider value={{ config, setConfig }}>
-        {children}
+        <ConfigContext.Provider value={{ config, setConfig, template }}>
+            { props.children }
         </ConfigContext.Provider>
     );
 };

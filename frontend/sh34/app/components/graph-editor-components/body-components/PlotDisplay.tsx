@@ -12,7 +12,7 @@ export const PlotDisplay = () => {
         $('#loading-icon').css("display", "block");
 
         // fetch the plot and display it
-        fetch('/api/plotfromconfig', {
+        fetch('/api/plot-from-config', {
           method: 'POST', // or 'PUT'
           headers: {
             'Content-Type': 'application/json',
@@ -38,7 +38,7 @@ export const PlotDisplay = () => {
     } 
 
     return(
-      <div className="basis-[85%] p-2 flex flex-col justify-center overflow-auto">
+      <div className="basis-[100%] py-44 flex flex-col justify-center overflow-clip">
         <div id="loading-icon" className="fixed ml-4"><ReactLoading type="spin" color="black" height={30} width={30}/></div>
         <div id="plot-container" className="self-center">
         </div>

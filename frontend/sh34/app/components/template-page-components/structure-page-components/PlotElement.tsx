@@ -4,8 +4,6 @@ import TrashIcon from "@app/images/trash-icon.svg"
 import UpArrow from "@app/images/up-arrow.svg"
 import DownArrow from "@app/images/down-arrow.svg"
 import BarGraph from "@app/images/bar-graph.svg"
-import PieChart from "@app/images/pie-chart.svg"
-import ScatterGraph from "@app/images/scatter-graph.svg"
 import EditIcon from "@app/images/edit-icon.svg"
 import Link from 'next/link';
 import Eye from "@app/images/eye.png"
@@ -33,7 +31,7 @@ export const PlotElement = (props: PlotElementProps) => {
               <p className='text-3xl basis-[10%]'> {plot.order.toString() + "."} </p>
               <Image src={BarGraph} alt='BarGraph' className='w-10 h-10 basis-[15%]'/>
             </div>
-            <h1 className='text-2xl h-fit font-medium basis-[50%] truncate'> {plot.plot_title} </h1>
+            <h1 className='text-2xl h-fit font-medium basis-[50%] truncate'> {plot.config_file.labellingOptions.title.plotTitle} </h1>
             <div className='flex gap-x-10'>
               <Image src={Eye} alt='Preview' className='w-8 h-8'/>
               <Link className='w-8 h-8' href={`/graph-editor/${plot._id}`}>

@@ -1,0 +1,121 @@
+{
+  "numTraces": 1,
+  "traces": [
+    {
+      "id": 0,
+      "name": "Production",
+      "plotType": "Line",
+      "plotIndicator": "/breakdown_by_indicator/Production",
+      "markerColour": "#ff4400",
+      "orientation": "v"
+    },
+    {
+      "id": 1,
+      "name": "Ideal Production",
+      "plotType": "Line",
+      "plotIndicator": "/breakdown_by_indicator/IdealProduction",
+      "markerColour": "#07f83e",
+      "orientation": "v"
+    }
+  ],
+  "numAnnotations": 0,
+  "annotations": [],
+  "generalOptions": {
+    "plotWidth": "800",
+    "plotHeight": "600",
+    "displayXAxisLines": false,
+    "displayYAxisLines": false,
+    "xAxisScale": "linear",
+    "yAxisScale": "linear"
+  },
+  "labellingOptions": {
+    "title": {
+      "plotTitle": "Production Vs Goal Production",
+      "styling": {
+        "currentStylingMode": "default",
+        "defaultFontStyle": {
+          "fontColour": "#000000",
+          "fontSize": 16,
+          "typeface": "Arial"
+        },
+        "customFontStyle": {
+          "fontColour": "#000000",
+          "fontSize": 16,
+          "typeface": "Arial"
+        }
+      }
+    },
+    "xAxis": {
+      "xAxisText": "X Axis",
+      "styling": {
+        "currentStylingMode": "default",
+        "defaultFontStyle": {
+          "fontColour": "#000000",
+          "fontSize": 16,
+          "typeface": "Arial"
+        },
+        "customFontStyle": {
+          "fontColour": "#000000",
+          "fontSize": 16,
+          "typeface": "Arial"
+        }
+      },
+      "tickLabels": {
+        "tickAngle": 0,
+        "tickPosition": "bottom",
+        "styling": {
+          "currentStylingMode": "default",
+          "defaultFontStyle": {
+            "fontColour": "#000000",
+            "fontSize": 16,
+            "typeface": "Arial"
+          },
+          "customFontStyle": {
+            "fontColour": "#000000",
+            "fontSize": 16,
+            "typeface": "Arial"
+          }
+        }
+      }
+    },
+    "yAxis": {
+      "yAxisText": "Y Axis",
+      "styling": {
+        "currentStylingMode": "default",
+        "defaultFontStyle": {
+          "fontColour": "#000000",
+          "fontSize": 16,
+          "typeface": "Arial"
+        },
+        "customFontStyle": {
+          "fontColour": "#000000",
+          "fontSize": 16,
+          "typeface": "Arial"
+        }
+      },
+      "tickLabels": {
+        "tickAngle": 0,
+        "tickPosition": "left",
+        "styling": {
+          "currentStylingMode": "default",
+          "defaultFontStyle": {
+            "fontColour": "#000000",
+            "fontSize": 16,
+            "typeface": "Arial"
+          },
+          "customFontStyle": {
+            "fontColour": "#000000",
+            "fontSize": 16,
+            "typeface": "Arial"
+          }
+        }
+      }
+    }
+  },
+  "visualOptions": {
+    "colour": {
+      "plotBackgroundColourHex": "#e5ecf6",
+      "plotMarginColourHex": "#FFFFFF"
+    }
+  }
+}

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import $ from "jquery"
+import { useTemplatePageContext } from "@app/template-page/TemplatePageContext"
 
 
 export const PreviewPage = () => {
@@ -248,37 +249,30 @@ export const PreviewPage = () => {
         }
     ]
 
-    const [plotHTMLList, setPlotHTMLList] = useState<string[]>([]); // Initialize as an empty array
+    const {plots} = useTemplatePageContext();
+
+
 
     useEffect(() => {
+
+        const configFilesArray = plots.map(item => item.config_file);
         fetch('/api/load-plot-previews', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(testConfigList),
+            body: JSON.stringify(configFilesArray),
         })
         .then(response => response.json())
         .then(htmlList => {
-            setPlotHTMLList(htmlList);
             $("#plot-preview").html(htmlList)
+            console.log(plots)
         })
         .catch((error) => {
           console.error('Error:', error);
         });
 
     }, []); // Empty dependency array for the effect to run once after the initial render
-
-    // New useEffect to log the state after it's been updated
-    useEffect(() => {
-        console.log("plotHTMLList updated to:");
-        console.log(plotHTMLList);
-
-        console.log("Type of plotHTMLList")
-        console.log(typeof plotHTMLList)
-    }, [plotHTMLList]); // This effect runs whenever plotHTMLList changes
-
-
 
     return (
         <div className="flex flex-col justify-content items-center" id="plot-preview">

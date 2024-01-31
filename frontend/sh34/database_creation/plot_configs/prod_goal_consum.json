@@ -1,0 +1,129 @@
+{
+  "numTraces": 3,
+  "traces": [
+    {
+      "id": 1,
+      "name": "Production",
+      "plotType": "Line",
+      "plotIndicator": "/breakdown_by_indicator/Production",
+      "markerColour": "#00fe0d",
+      "orientation": "v"
+    },
+    {
+      "id": 2,
+      "name": "Goal",
+      "plotType": "Line",
+      "plotIndicator": "/breakdown_by_indicator/IdealProduction",
+      "markerColour": "#ffac05",
+      "orientation": "v"
+    },
+    {
+      "id": 3,
+      "name": "Consumption",
+      "plotType": "Bar",
+      "plotIndicator": "/breakdown_by_indicator/TemperatureMean",
+      "markerColour": "#ff0509",
+      "orientation": "v"
+    }
+  ],
+  "numAnnotations": 0,
+  "annotations": [],
+  "generalOptions": {
+    "plotWidth": "800",
+    "plotHeight": "600",
+    "displayXAxisLines": false,
+    "displayYAxisLines": false,
+    "xAxisScale": "linear",
+    "yAxisScale": "linear"
+  },
+  "labellingOptions": {
+    "title": {
+      "plotTitle": "Production, Consumption & Goals",
+      "styling": {
+        "currentStylingMode": "default",
+        "defaultFontStyle": {
+          "fontColour": "#000000",
+          "fontSize": 16,
+          "typeface": "Arial"
+        },
+        "customFontStyle": {
+          "fontColour": "#000000",
+          "fontSize": 16,
+          "typeface": "Arial"
+        }
+      }
+    },
+    "xAxis": {
+      "xAxisText": "Time",
+      "styling": {
+        "currentStylingMode": "default",
+        "defaultFontStyle": {
+          "fontColour": "#000000",
+          "fontSize": 16,
+          "typeface": "Arial"
+        },
+        "customFontStyle": {
+          "fontColour": "#000000",
+          "fontSize": 16,
+          "typeface": "Arial"
+        }
+      },
+      "tickLabels": {
+        "tickAngle": 0,
+        "tickPosition": "bottom",
+        "styling": {
+          "currentStylingMode": "default",
+          "defaultFontStyle": {
+            "fontColour": "#000000",
+            "fontSize": 16,
+            "typeface": "Arial"
+          },
+          "customFontStyle": {
+            "fontColour": "#000000",
+            "fontSize": 16,
+            "typeface": "Arial"
+          }
+        }
+      }
+    },
+    "yAxis": {
+      "yAxisText": "Value",
+      "styling": {
+        "currentStylingMode": "default",
+        "defaultFontStyle": {
+          "fontColour": "#000000",
+          "fontSize": 16,
+          "typeface": "Arial"
+        },
+        "customFontStyle": {
+          "fontColour": "#000000",
+          "fontSize": 16,
+          "typeface": "Arial"
+        }
+      },
+      "tickLabels": {
+        "tickAngle": 0,
+        "tickPosition": "left",
+        "styling": {
+          "currentStylingMode": "default",
+          "defaultFontStyle": {
+            "fontColour": "#000000",
+            "fontSize": 16,
+            "typeface": "Arial"
+          },
+          "customFontStyle": {
+            "fontColour": "#000000",
+            "fontSize": 16,
+            "typeface": "Arial"
+          }
+        }
+      }
+    }
+  },
+  "visualOptions": {
+    "colour": {
+      "plotBackgroundColourHex": "#e5ecf6",
+      "plotMarginColourHex": "#FFFFFF"
+    }
+  }
+}
