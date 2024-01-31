@@ -18,6 +18,7 @@ def generate_plot_jsons(config_json_list,data_json):
 
     return json.dumps(plot_jsons)
 
+
 def generate_plot_json(config_json, data_json):
     """
         Takes in the config_json received from the frontend,
@@ -40,8 +41,8 @@ def generate_plot_json(config_json, data_json):
     fig = update_plotsize(fig, properties)
     fig = update_annotations(fig, properties)
 
-    fig_html = fig.to_json()
-    return fig_html
+    fig_json = fig.to_json()
+    return fig_json
 
 
 def generate_plot_htmls(config_json_list, data_json):
