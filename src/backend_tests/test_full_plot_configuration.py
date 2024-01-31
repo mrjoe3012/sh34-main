@@ -71,19 +71,19 @@ class TestEntireConfiguration(unittest.TestCase):
             title_font_color = "black"
         )
 
-        test_fig = update_traces(test_fig, properties, data_json)
-        test_fig = update_xaxis(test_fig, properties)
-        test_fig = update_yaxis(test_fig, properties)
-        test_fig = update_plot_colours(test_fig, properties)
-        test_fig = update_grid_lines(test_fig, properties)
-        test_fig = update_title(test_fig, properties)
-        test_fig = update_xaxis_ticklabels(test_fig, properties)
-        test_fig = update_yaxis_ticklabels(test_fig, properties)
-        test_fig = update_plotsize(test_fig, properties)
-        test_fig = update_annotations(test_fig, properties)
+        self.test_fig = update_traces(self.test_fig, properties, data_json)
+        self.test_fig = update_xaxis(self.test_fig, properties)
+        self.test_fig = update_yaxis(self.test_fig, properties)
+        self.test_fig = update_plot_colours(self.test_fig, properties)
+        self.test_fig = update_grid_lines(self.test_fig, properties)
+        self.test_fig = update_title(self.test_fig, properties)
+        self.test_fig = update_xaxis_ticklabels(self.test_fig, properties)
+        self.test_fig = update_yaxis_ticklabels(self.test_fig, properties)
+        self.test_fig = update_plotsize(self.test_fig, properties)
+        self.test_fig = update_annotations(self.test_fig, properties)
 
 
-        json_test = test_fig.to_json()
+        json_test = self.test_fig.to_json()
         json_manual = self.manual_fig.to_json()
 
         self.assertEqual(json_test, json_manual)
