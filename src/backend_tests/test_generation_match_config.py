@@ -419,7 +419,7 @@ class TestUpdateAnnotations(unittest.TestCase):
                     "xref" : "paper",
                     "yref" : "paper",
                     "text" : "annotation",
-                    "showArrow" : "false",
+                    "showArrow" : "False",
                     "arrowColour" : "black",
                     "arrowOffsetX" : 20,
                     "arrowOffsetY" : -20,
