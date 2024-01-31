@@ -65,22 +65,12 @@ def receive_template():
         plots = load_plots_from_template(template)
 
         config_files = [plot['config_file'] for plot in plots]
-
-
-
-
         document_bytes = return_docx(config_files, unpack_data(), template_name)
         response = make_response(document_bytes)
         response.headers.set('Content-Type', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document')
-        response.headers.set('Content-Disposition', 'attachment', filename = f"{template_name}")
-
+        response.headers.set('Content-Disposition', 'attachment', filename = f"{template_name}.docx")
         return response
 
-        #if not os.path.exists(document_path):
-        #    return "File Not Found", 404
-
-
-        #return send_file(document_bytes, as_attachment=True, mimetype='application/vnd.openxmlformats-officedocument.wordprocessingml.document', download_name=f'{template_name}.docx')
     except FileNotFoundError as e:
         print(f"File Not Found:{e}")
         return "File Not Found Error", 500
