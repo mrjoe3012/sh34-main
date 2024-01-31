@@ -1,5 +1,4 @@
 import InfoIcon from "../../../images/info-icon.png"
-import CloseIcon from "../../../images/close-icon.png"
 import Image from "next/image";
 
 interface NewPlotPopupProps {

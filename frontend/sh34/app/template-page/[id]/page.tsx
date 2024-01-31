@@ -4,6 +4,7 @@ import { Body } from '@app/components/template-page-components/general-component
 import { Navbar } from '@app/components/navbar';
 import { ErrorComponent } from '@app/components/ErrorComponent';
 import { InvalidIdParam } from '@app/modules/InvalidIdParam';
+import { TemplatePageContextProvider } from '@app/template-page/TemplatePageContext';
 
 interface TemplateEditorProps {
   params: {
@@ -36,8 +37,10 @@ export default async function TemplateEditor(props: TemplateEditorProps) {
   return (
     <div className="text-black min-w-[1200px] h-screen bg-white font-league">
       <div className='bg-white h-fit'>
-        <Navbar />
-        <Body template={template} plots={plots} />
+        <TemplatePageContextProvider plots={plots} template={template}>
+          <Navbar />
+          <Body/>
+        </TemplatePageContextProvider>
       </div>
     </div>
   );

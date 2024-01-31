@@ -1,5 +1,5 @@
 import { useConfig } from "@app/graph-editor/ConfigContext";
-import { TraceType } from "@app/graph-editor/configjsoninterface";
+import { TraceType } from "@app/modules/Config";
 
 export const NewTraceButton = () => {
 

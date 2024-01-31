@@ -6,7 +6,7 @@ import { useConfig } from "@app/graph-editor/ConfigContext";
 import { MarkerConstantOption } from "@app/components/graph-editor-components/editor-components/trace-tab-components/trace-options/marker-colour-components/MarkerConstantOption";
 import Image from "next/image";
 import TrashIcon from "@app/images/trash-icon.svg"
-import { TraceType } from "@app/graph-editor/configjsoninterface";
+import { TraceType } from "@app/modules/Config";
 
 interface TraceProps {
     trace: TraceType
