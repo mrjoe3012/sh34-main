@@ -5,7 +5,7 @@ import { GenericTextInputOption } from "../../generic-components/GenericTextInpu
 import { GenericSizeIncrementerOption } from "../../generic-components/GenericSizeIncrementerOption"
 import { GenericColourOption } from "../../generic-components/GenericColourOption"
 import { AnnotationLineOptions } from "./AnnotationLineOptions"
-import { AnnotationType } from "@app/graph-editor/configjsoninterface"
+import { AnnotationType } from "@app/modules/Config"
 import { useConfig } from "@app/graph-editor/ConfigContext"
 import Image from "next/image"
 import TrashIcon from "../../../../../images/trash-icon.svg"

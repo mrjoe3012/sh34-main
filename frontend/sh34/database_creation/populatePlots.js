@@ -7,172 +7,29 @@ async function populatePlots(client) {
     const docs = [
         {
             _id: 1,
-            JSONFile : {
-                "graph-type": "scatter",
-                "title": "USA GDP",
-                "x_axis_name": "Years",
-                "y_axis_name": "GPD (USD) Millions",
-                "colour": "purple",
-				"indicator" : "Production"
-            },
-            plot_title : "Q1 electricity output",
-            order : 1                   
+            config_file : require("./plot_configs/metered_consum.json"),
+            order : 1
         },
-
         {
             _id: 2,
-            JSONFile : {
-                "graph-type": "scatter",
-                "title": "USA GDP",
-                "x_axis_name": "Years",
-                "y_axis_name": "GPD (USD) Millions",
-                "colour": "purple",
-				"indicator" : "ProductionMetered"
-            },
-            plot_title : "Q2 electricity output",
-            order : 2            
-        },
-
+            config_file : require("./plot_configs/prod_goal_consum.json"),
+            order : 2
+        }, 
         {
             _id: 3,
-            JSONFile : {
-                "graph-type": "scatter",
-                "title": "USA GDP",
-                "x_axis_name": "Years",
-                "y_axis_name": "GPD (USD) Millions",
-                "colour": "purple",
-				"indicator" : "SCADAProduction"
-            },
-            plot_title : "Q3 electricity output",
-            order : 3            
+            config_file : require("./plot_configs/prod_vs_goal.json"),
+            order : 3
         },
-
         {
             _id: 4,
-            JSONFile : {
-                "graph-type": "scatter",
-                "title": "USA GDP",
-                "x_axis_name": "Years",
-                "y_axis_name": "GPD (USD) Millions",
-                "colour": "purple",
-				"indicator" : "Production"
-            },
-            plot_title : "Q4 electricity output",
-            order : 1            
+            config_file : require("./plot_configs/revenue_breakdown.json"),
+            order : 1
         },
-
         {
             _id: 5,
-            JSONFile : {
-                "graph-type": "bar",
-                "title": "USA GDP",
-                "x_axis_name": "Years",
-                "y_axis_name": "GPD (USD) Millions",
-                "colour": "purple",
-				"indicator" : "OperationalAvailability"
-            },
-            plot_title : "Q1 uptime",
-            order : 2            
+            config_file : require("./plot_configs/wind_and_temp.json"),
+            order : 2
         },
-
-        {
-            _id: 6,
-            JSONFile : {
-                "graph-type": "scatter",
-                "title": "USA GDP",
-                "x_axis_name": "Years",
-                "y_axis_name": "GPD (USD) Millions",
-                "colour": "purple",
-				"indicator" : "OperationalLostProduction"
-            },
-            plot_title : "Q2 uptime",
-            order : 3            
-        },
-
-        {
-            _id: 7,
-            JSONFile : {
-                "graph-type": "bar",
-                "title": "USA GDP",
-                "x_axis_name": "Years",
-                "y_axis_name": "GPD (USD) Millions",
-                "colour": "purple",
-				"indicator" : "OperationalLostHours"
-            },
-            plot_title : "Q3 uptime",
-            order : 1            
-        },
-
-        {
-            _id: 8,
-            JSONFile : {
-                "graph-type": "bar",
-                "title": "USA GDP",
-                "x_axis_name": "Years",
-                "y_axis_name": "GPD (USD) Millions",
-                "colour": "purple",
-				"indicator" : "OperationalLostRevenue"
-            },
-            plot_title : "Q4 uptime",
-            order : 2            
-        },
-
-        {
-            _id: 9,
-            JSONFile : {
-                "graph-type": "bar",
-                "title": "USA GDP",
-                "x_axis_name": "Years",
-                "y_axis_name": "GPD (USD) Millions",
-                "colour": "purple",
-				"indicator" : "OperationalLostRevenue"
-            },
-            plot_title : "Q1 lost revenue",
-            order : 3            
-        },
-
-        {
-            _id: 10,
-            JSONFile : {
-                "graph-type": "pie",
-                "title": "USA GDP",
-                "x_axis_name": "Years",
-                "y_axis_name": "GPD (USD) Millions",
-                "colour": "purple",
-				"indicator" : "OperationalLostHours"
-            },
-            plot_title : "Q2 lost revenue",
-            order : 1            
-        },
-
-        {
-            _id: 11,
-            JSONFile : {
-                "graph-type": "bar",
-                "title": "USA GDP",
-                "x_axis_name": "Years",
-                "y_axis_name": "GPD (USD) Millions",
-                "colour": "purple",
-				"indicator" : "RunningLostProduction"
-            },
-            plot_title : "Q3 lost revenue",
-            order : 2            
-        },
-
-        {
-            _id: 12,
-            JSONFile : {
-                "graph-type": "pie",
-                "title": "USA GDP",
-                "x_axis_name": "Years",
-                "y_axis_name": "GPD (USD) Millions",
-                "colour": "purple",
-				"indicator" : "RunningLostProduction"
-            },
-            plot_title : "Q4 lost revenue",
-            order : 3            
-        }
-        
     ]
 
     for (const item of docs) {

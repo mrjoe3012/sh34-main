@@ -19,31 +19,13 @@ async function populateTemplates(client) {
     },
     {
       _id: 2,
-      PlotArray : [4,5,6],
+      PlotArray : [4,5],
       Name : "Slightly Rainy Template",
       Description: "Template to show efficiency of an asset",
-      Tags: ["Efficiency","Hydro"],
+      Tags: ["Efficiency","Hydro", "Wind"],
       LastModified : "18/09/2022",
       DateCreated : "04/07/2019"
     },
-    {
-      _id: 3,
-      PlotArray : [7,8,9],
-      Name : "Nice and Sunny Template",
-      Description: "Template to show general information of an asset",
-      Tags: ["Info","Sunny","Solar","Finance","Efficiency"],
-      LastModified : "20/01/2023",
-      DateCreated : "08/09/2020"
-    },
-    {
-      _id: 4,
-      PlotArray : [10,11,12],
-      Name : "Heavy Snow Template",
-      Description: "Template to show variation in productivity of an asset",
-      Tags: ["Nuclear","Variation","Efficiency"],
-      LastModified : "08/07/2022",
-      DateCreated : "10/11/2018"
-    }
   ]
   // Insert the defined document into the "Template_Data" collection
   for (const item of docs) {

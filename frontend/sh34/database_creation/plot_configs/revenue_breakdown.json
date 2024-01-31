@@ -1,0 +1,113 @@
+{
+  "numTraces": 2,
+  "traces": [
+    {
+      "id": 2,
+      "name": "New Trace",
+      "plotType": "Pie",
+      "plotIndicator": "/breakdown_by_indicator/RevenueFromProduction",
+      "markerColour": "#936b1e",
+      "orientation": "v"
+    }
+  ],
+  "numAnnotations": 0,
+  "annotations": [],
+  "generalOptions": {
+    "plotWidth": "800",
+    "plotHeight": "800",
+    "displayXAxisLines": false,
+    "displayYAxisLines": false,
+    "xAxisScale": "linear",
+    "yAxisScale": "linear"
+  },
+  "labellingOptions": {
+    "title": {
+      "plotTitle": "Revenue Breakdown",
+      "styling": {
+        "currentStylingMode": "custom",
+        "defaultFontStyle": {
+          "fontColour": "#000000",
+          "fontSize": 16,
+          "typeface": "Arial"
+        },
+        "customFontStyle": {
+          "fontColour": "#000000",
+          "fontSize": 45,
+          "typeface": "Verdana"
+        }
+      }
+    },
+    "xAxis": {
+      "xAxisText": "X Axis",
+      "styling": {
+        "currentStylingMode": "default",
+        "defaultFontStyle": {
+          "fontColour": "#000000",
+          "fontSize": 16,
+          "typeface": "Arial"
+        },
+        "customFontStyle": {
+          "fontColour": "#000000",
+          "fontSize": 16,
+          "typeface": "Arial"
+        }
+      },
+      "tickLabels": {
+        "tickAngle": 0,
+        "tickPosition": "bottom",
+        "styling": {
+          "currentStylingMode": "default",
+          "defaultFontStyle": {
+            "fontColour": "#000000",
+            "fontSize": 16,
+            "typeface": "Arial"
+          },
+          "customFontStyle": {
+            "fontColour": "#000000",
+            "fontSize": 16,
+            "typeface": "Arial"
+          }
+        }
+      }
+    },
+    "yAxis": {
+      "yAxisText": "Y Axis",
+      "styling": {
+        "currentStylingMode": "default",
+        "defaultFontStyle": {
+          "fontColour": "#000000",
+          "fontSize": 16,
+          "typeface": "Arial"
+        },
+        "customFontStyle": {
+          "fontColour": "#000000",
+          "fontSize": 16,
+          "typeface": "Arial"
+        }
+      },
+      "tickLabels": {
+        "tickAngle": 0,
+        "tickPosition": "left",
+        "styling": {
+          "currentStylingMode": "default",
+          "defaultFontStyle": {
+            "fontColour": "#000000",
+            "fontSize": 16,
+            "typeface": "Arial"
+          },
+          "customFontStyle": {
+            "fontColour": "#000000",
+            "fontSize": 16,
+            "typeface": "Arial"
+          }
+        }
+      }
+    }
+  },
+  "visualOptions": {
+    "colour": {
+      "plotBackgroundColourHex": "#e5ecf6",
+      "plotMarginColourHex": "#FFFFFF"
+    }
+  }
+}

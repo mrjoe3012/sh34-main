@@ -1,5 +1,5 @@
 import { useConfig } from "@app/graph-editor/ConfigContext"
-import { AnnotationType } from "@app/graph-editor/configjsoninterface"
+import { AnnotationType } from "@app/modules/Config"
 
 export const NewAnnotationButton = () => {
 
