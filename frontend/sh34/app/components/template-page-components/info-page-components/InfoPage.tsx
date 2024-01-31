@@ -1,15 +1,10 @@
 import { TemplateNameInput } from "./TemplateNameInput";
 import { TemplateDescriptionInput } from "./TemplateDescriptionInput";
 import { TemplateLastModified } from "./TemplateLastModified";
-import { WithId } from "mongodb";
-import { TemplateData } from "@app/modules/db";
+import { useTemplatePageContext } from "@app/template-page/TemplatePageContext";
 
-interface InfoPageProps {
-    template: WithId<TemplateData>;
-};
-
-export const InfoPage = (props: InfoPageProps) => {
-    const template = props.template;
+export const InfoPage = () => {
+    const {template} = useTemplatePageContext();
     return (
         <div className="">
             
