@@ -1,7 +1,7 @@
 import unittest
 import plotly.graph_objs as go
-from backend.plotly_interface import update_traces, generate_plot_html
-
+from backend.plotly_interface import update_traces, update_xaxis, update_yaxis, update_plotsize, update_plot_colours, build_property_dict
+from backend.plotly_interface import update_grid_lines, update_xaxis_ticklabels, update_yaxis_ticklabels, update_title, update_annotations
 import json
 import os
 
@@ -9,7 +9,7 @@ class TestEntireConfiguration(unittest.TestCase):
 
     def setUp(self):
         self.manual_fig = go.Figure()
-        self.test_figure = go.Figure()
+        self.test_fig = go.Figure()
 
     def test_configuration(self):
 
@@ -38,6 +38,7 @@ class TestEntireConfiguration(unittest.TestCase):
 
         #assign the traces to the graph
         self.manual_fig = update_traces(self.manual_fig, config_json, data_json)  
+        properties = build_property_dict(test_config_json)
 
         self.manual_fig.update_layout(
             xaxis_title_text="test_xaxis_name_default",
@@ -70,15 +71,25 @@ class TestEntireConfiguration(unittest.TestCase):
             title_font_color = "black"
         )
 
-        self.test_fig = generate_plot_html(test_config_json, data_json)
+        test_fig = update_traces(test_fig, properties, data_json)
+        test_fig = update_xaxis(test_fig, properties)
+        test_fig = update_yaxis(test_fig, properties)
+        test_fig = update_plot_colours(test_fig, properties)
+        test_fig = update_grid_lines(test_fig, properties)
+        test_fig = update_title(test_fig, properties)
+        test_fig = update_xaxis_ticklabels(test_fig, properties)
+        test_fig = update_yaxis_ticklabels(test_fig, properties)
+        test_fig = update_plotsize(test_fig, properties)
+        test_fig = update_annotations(test_fig, properties)
 
 
-        manual_html = self.manual_fig.to_html()
+        json_test = test_fig.to_json()
+        json_manual = self.manual_fig.to_json()
 
-        hashed_test = hash(self.test_fig)
-        hashed_manual = hash(manual_html)
+        self.assertEqual(json_test, json_manual)
 
-        self.assertEqual(hashed_test, hashed_manual)
+    def tearDown(self):
+        os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
 if __name__ == '__main__':
     unittest.main()
