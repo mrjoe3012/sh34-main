@@ -24,6 +24,8 @@ def load_indicators(filename: str = "mock.json") -> list[str]:
     indicators = list(data['month']['breakdown_by_indicator'].keys())
     return indicators
 
+
+
 @app.route("/api/plotfromconfig", methods=["GET", "POST"])
 def generate_plot():
     """
@@ -45,6 +47,8 @@ def generate_plot():
     plot_html = generate_plot_html(config_json,data_json)
     return Response(plot_html, mimetype="text/html")
 
+
+
 @app.route("/api/load-plot-previews", methods=["GET","POST"])
 def generate_plot_previews():
     """
@@ -64,6 +68,7 @@ def generate_plot_previews():
     html_list = generate_plot_htmls(config_json_list,data_json)
 
     return Response(html_list, mimetype="text/html")
+
 
 
 @app.route("/api/load-indicators", methods=['GET'])

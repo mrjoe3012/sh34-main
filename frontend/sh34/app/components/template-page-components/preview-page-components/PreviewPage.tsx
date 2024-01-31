@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react"
 import $ from "jquery"
 
-export const PreviewPage = () => {
 
-    const [plotHTMLList, setPlotHTMLList] = useState()
+export const PreviewPage = () => {
 
     const testConfigList = [
         {
@@ -126,8 +125,7 @@ export const PreviewPage = () => {
                 }
             }
 
-        },
-        {
+        },{
 
             "numTraces": 0,
             "traces": [
@@ -250,25 +248,54 @@ export const PreviewPage = () => {
         }
     ]
 
-    useEffect(()=> {
+    const [plotHTMLList, setPlotHTMLList] = useState<string[]>([]); // Initialize as an empty array
+
+    useEffect(() => {
         fetch('/api/load-plot-previews', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-              },
-              body: JSON.stringify(testConfigList),
-          })
-          .then(response => response.text())
-          .then(data => {
-            $("#plot-preview").html(data)
-          })
-          .catch((error) => {
-            console.error('Error:', error);
-          });
-    })
+            },
+            body: JSON.stringify(testConfigList),
+        })
+        .then(response => response.json())
+        .then(htmlList => {
+            setPlotHTMLList(htmlList);
+            $("#plot-preview").html(htmlList)
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+        });
 
-    return(
-        <div className="flex flex-col justify-content items-center" id="plot-preview"></div>
-    )
+    }, []); // Empty dependency array for the effect to run once after the initial render
+
+    // New useEffect to log the state after it's been updated
+    useEffect(() => {
+        console.log("plotHTMLList updated to:");
+        console.log(plotHTMLList);
+
+        console.log("Type of plotHTMLList")
+        console.log(typeof plotHTMLList)
+    }, [plotHTMLList]); // This effect runs whenever plotHTMLList changes
+
+
+
+    return (
+        <div className="flex flex-col justify-content items-center" id="plot-preview">
+
+        </div>
+    );
+
 
 }
+
+interface PlotPreviewProps {
+    html: string;
+}
+
+export const PlotPreview = ({ html }: PlotPreviewProps) => {
+    return (
+        <div className="rounded-lg border-4 border-gray-400 bg-[#edeef2]" id="plot-preview-content" dangerouslySetInnerHTML={{ __html: html }}>
+        </div>
+    );
+};

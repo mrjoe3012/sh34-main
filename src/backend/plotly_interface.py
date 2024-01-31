@@ -4,6 +4,7 @@
 from typing import Any
 import plotly.graph_objs as go
 import pandas as pd
+import json
 
 def generate_plot_htmls(config_json_list, data_json):
     """
@@ -15,7 +16,7 @@ def generate_plot_htmls(config_json_list, data_json):
     for config_json in config_json_list:
         plot_htmls.append(generate_plot_html(config_json,data_json))
 
-    return plot_htmls
+    return json.dumps(plot_htmls)
 
 def generate_plot_html(config_json, data_json):
     """ Takes in the config_json received from the frontend,
