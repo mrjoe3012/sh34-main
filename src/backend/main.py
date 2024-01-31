@@ -1,7 +1,7 @@
 """This file is the backend's entrypoint."""
 import json
 import os
-from flask import Flask, Response, request, send_file
+from flask import Flask, Response, request, send_file, make_response
 from backend import load_templates, load_plots_from_template, return_docx, generate_plot_html
 
 app = Flask(__name__)
@@ -69,13 +69,18 @@ def receive_template():
 
 
 
-        document_path = return_docx(config_files, unpack_data(), template_name)
+        document_bytes = return_docx(config_files, unpack_data(), template_name)
+        response = make_response(document_bytes)
+        response.headers.set('Content-Type', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document')
+        response.headers.set('Content-Disposition', 'attachment', filename = f"{template_name}")
 
-        if not os.path.exists(document_path):
-            return "File Not Found", 404
+        return response
+
+        #if not os.path.exists(document_path):
+        #    return "File Not Found", 404
 
 
-        return send_file(os.path.abspath(document_path), as_attachment=True)
+        #return send_file(document_bytes, as_attachment=True, mimetype='application/vnd.openxmlformats-officedocument.wordprocessingml.document', download_name=f'{template_name}.docx')
     except FileNotFoundError as e:
         print(f"File Not Found:{e}")
         return "File Not Found Error", 500

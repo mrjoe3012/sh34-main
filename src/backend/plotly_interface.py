@@ -4,7 +4,9 @@
 from typing import Any
 import os
 import shutil
+import io
 import plotly.graph_objs as go
+import plotly.io as pio
 from docx import Document
 from docx.shared import Inches, Pt
 from docx.enum.text import WD_ALIGN_PARAGRAPH
@@ -17,16 +19,11 @@ def generate_plot_html(config_json, data_json):
 
 
 def generate_plot_png(config_json, data_json):
-    """This is returns png of the plotly figure"""
+    """This is returns png byte stream of the plotly figure"""
     fig = generate_plot(config_json, data_json)
     plot_title = build_property_dict(config_json)['plot_title']
-    file_name = f'{plot_title}.png'
-    folder_name = 'src/backend/temp'
-    file_path = os.path.join(folder_name, file_name)
-    if not os.path.exists(folder_name):
-        os.makedirs(folder_name)
 
-    return fig.write_image(file_path)
+    return pio.to_image(fig,format='png'), plot_title
 
 
 def generate_plot(config_json, data_json):
@@ -518,44 +515,27 @@ def pascal_split_name(value:str) -> str:
 
 def return_docx(plots,data_json,template_name):
     """Takes in a list of plots and returns a docx file with the png's of those plots"""
-    print(os.getcwd())
 
-    docs_folder_path = os.path.join('src', 'backend', 'docs')
-    if not os.path.exists(docs_folder_path):
-        os.makedirs(docs_folder_path)
 
-    folder_path = 'src/backend/temp'
     doc = Document()
     main_title = doc.add_paragraph()
     main_title_run = main_title.add_run('Plots')
     main_title_run.font.size = Pt(32)
     main_title.alignment = WD_ALIGN_PARAGRAPH.CENTER
 
-    save_path = os.path.join(docs_folder_path, f'{template_name}.docx')
-
-
-    #Used to add space
-    #doc.add_paragraph()
-
-
     for plot in plots:
-        generate_plot_png(plot, data_json)
-    for file in sorted(os.listdir(folder_path)):
-        if file.endswith(".png"):
-            image_path = os.path.join(folder_path, file)
+        a,b = generate_plot_png(plot, data_json)
+        a = io.BytesIO(a)
+        plot_title = doc.add_paragraph()
+        plot_title_run = plot_title.add_run(b)
+        plot_title_run.font.size = Pt(21)
+        doc.add_picture(a, width = Inches(6))
 
-            plot_title = doc.add_paragraph()
-            plot_title_run = plot_title.add_run(file.replace('.png', ''))
-            plot_title_run.font.size = Pt(21)
+    doc_bytes = io.BytesIO()
+    doc.save(doc_bytes)
+    doc_bytes.seek(0)
 
-            doc.add_picture(image_path, width = Inches(6))
-
-            doc.add_paragraph()
-    doc.save(save_path)
-
-    delete_folder(folder_path)
-
-    return save_path
+    return doc_bytes
 
 
 def delete_folder(folder_path):
