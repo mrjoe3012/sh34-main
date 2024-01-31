@@ -1,7 +1,7 @@
 import unittest
 import plotly.graph_objs as go
 from backend.plotly_interface import update_traces, update_xaxis, update_yaxis, update_plotsize, update_plot_colours
-from backend.plotly_interface import update_grid_lines, update_xaxis_ticklabels, update_yaxis_ticklabels, update_title
+from backend.plotly_interface import update_grid_lines, update_xaxis_ticklabels, update_yaxis_ticklabels, update_title, update_annotations
 import json
 import os
 
@@ -170,11 +170,23 @@ class TestUpdateYAxis(unittest.TestCase):
         self.assertEqual(new_fig.layout.yaxis.title.font.family, "Times New Roman")
 
 
+"""
+The following function tests the update_plotsize function, it creates two dummy properties and feeds them and
+a dummy plotly figure to the function, checking whether assignment of atttributes is performed correctly
+
+"""
+
+
 class TestUpdatePlotSize(unittest.TestCase):
 
+
+    #Create a dummy plotly figure
     def setUp(self):
         self.fig = go.Figure()
 
+
+    
+    #Create the dummy properties and pass them and the figure to the function
     def test_update_plotsize(self):
 
         properties = {
@@ -184,16 +196,26 @@ class TestUpdatePlotSize(unittest.TestCase):
         
         new_fig = update_plotsize(self.fig, properties)
 
+
+        #Check the expected values set by the function are correct
         self.assertEqual(new_fig.layout.width, 800)
         self.assertEqual(new_fig.layout.height, 600)
 
 
+"""
+The following function tests the update_plot_colours function, it creates a dummy plotly figure and then passes
+test data to the function, then checking for correct assigment of attributes
+"""
+
+
 class TestUpdatePlotColour(unittest.TestCase):
 
-
+    #Create dummy plotly figure
     def setUp(self):
         self.fig = go.Figure()
 
+
+    #Create a dummy set of properties that are then passed to the function
     def test_update_plot_colour(self):
 
         properties = {
@@ -203,13 +225,24 @@ class TestUpdatePlotColour(unittest.TestCase):
 
         new_fig = update_plot_colours(self.fig, properties)
 
+
+        #Check for correct assigment of attributes
         self.assertEqual(new_fig.layout.plot_bgcolor, "red")
         self.assertEqual(new_fig.layout.paper_bgcolor, "blue")
 
+"""
+The following function tests the update_grid_lines function, creating a dummy plotly figure and
+passing it and dummy properties for the presence of girdlines to the function, it then checks
+for correct assigment of these proprties in the figure
+"""
+
 class TestUpdateGridLines(unittest.TestCase):
+
+    #Create a dummy plotly figure
     def setUp(self):
         self.fig = go.Figure()
 
+    #Create test data for plotlines and pass them to the function
     def test_update_grid_lines(self):
         properties = {
             "display_xaxis_gridlines" : True,
@@ -218,15 +251,27 @@ class TestUpdateGridLines(unittest.TestCase):
 
         new_fig = update_grid_lines(self.fig, properties)
 
+
+        #Check for correct assigment of variables to the properites within the figure
         self.assertEqual(new_fig.layout.xaxis.showgrid, True)
         self.assertEqual(new_fig.layout.yaxis.showgrid, False)
+
+
+"""
+The following function tests the update_x_axis_tick_labels function, it creates a dummy plotly
+figure and defines some properties to pass to the function, it then checks if these properties have been correctly assigned
+by the function, it first tests for default values and then tests custom values
+"""
         
 
 class TestXAxisTickLabels(unittest.TestCase):
     
+    #Create dummy plotly figure
     def setUp(self):
         self.fig = go.Figure()
 
+
+    #Create test values which will then be passed to the function and should be assigned to attributes of the plot
     def test_update_xaxis_tick_labels_default(self):
 
         properties = {
@@ -240,11 +285,15 @@ class TestXAxisTickLabels(unittest.TestCase):
 
         new_fig = update_xaxis_ticklabels(self.fig, properties)
 
+        #Check for correct asssignment of properties in the function
         self.assertEqual(new_fig.layout.xaxis.tickangle, 0)
         self.assertEqual(new_fig.layout.xaxis.side, "top")
         self.assertEqual(new_fig.layout.xaxis.tickfont.family, "Arial")
         self.assertEqual(new_fig.layout.xaxis.tickfont.size, 12)
         self.assertEqual(new_fig.layout.xaxis.tickfont.color, "black")
+
+
+        #This is then repeated for the custom values
 
     def test_update_xaxis_ticklabels_custom(self):
 
@@ -264,6 +313,12 @@ class TestXAxisTickLabels(unittest.TestCase):
         self.assertEqual(new_fig.layout.xaxis.tickfont.family, "Times New Roman")
         self.assertEqual(new_fig.layout.xaxis.tickfont.size, 14)
         self.assertEqual(new_fig.layout.xaxis.tickfont.color, "blue")
+
+
+"""
+The following function tests the functionality of the update_yaxis_ticklabels function, the way it operates
+is the same as the update_yaxis_ticklabels function
+"""
 
 class TestUpdateYAxisTickLabels(unittest.TestCase):
 
@@ -349,9 +404,55 @@ class TestUpdateTitle(unittest.TestCase):
         self.assertEqual(new_fig.layout.title.font.color, "red")
            
 
+class TestUpdateAnnotations(unittest.TestCase):
 
+    def setUp(self):
+        self.fig = go.Figure()
 
+    def test_update_annotations(self):
 
+        properties = {
+            "annotations" : [
+                {
+                    "xPos" : 0.5,
+                    "yPos" : 0.5,
+                    "xref" : "paper",
+                    "yref" : "paper",
+                    "text" : "annotation",
+                    "showArrow" : "false",
+                    "arrowColour" : "black",
+                    "arrowOffestX" : 20,
+                    "arrowOffsetY" : -20,
+                    "arrowWidth" : 2,
+                    "styling" : {
+                        "fontColour" : "black",
+                        "fontSize" : 12,
+                        "typeface" : "Arial"
+                    }
+
+                }
+            ]
+        }
+
+        new_fig = update_annotations(self.fig, properties)
+
+        for i,annotation in enumerate(properties["annotations"]):
+
+            current_fig_annotation = new_fig.layout.annotations[i]
+
+            self.assertEqual(current_fig_annotation.x, annotation["xPos"])
+            self.assertEqual(current_fig_annotation.y, annotation["yPos"])
+            self.assertEqual(current_fig_annotation.xref, annotation["xref"])
+            self.assertEqual(current_fig_annotation.yref, annotation["yref"])
+            self.assertEqual(current_fig_annotation.text, annotation["text"])
+            self.assertEqual(current_fig_annotation.showArrow, annotation["showArrow"])
+            self.assertEqual(current_fig_annotation.arrowcolor, annotation["arrowColour"])
+            self.assertEqual(current_fig_annotation.ax, annotation["arrowOffsetX"])
+            self.assertEqual(current_fig_annotation.ay, annotation["arrowOffsetY"])
+            self.assertEqual(current_fig_annotation.arrowwidth, annotation["arrowWidth"])
+            self.assertEqual(current_fig_annotation.font.color, annotation["styling"]["fontColour"])
+            self.assertEqual(current_fig_annotation.font.size, annotation["styling"]["fontSize"])
+            self.assertEqual(current_fig_annotation.font.family, annotation["styling"]["typeface"])
 
 if __name__ == '__main__':
     unittest.main()
