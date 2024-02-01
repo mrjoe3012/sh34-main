@@ -35,7 +35,10 @@ export const PreviewPage = () => {
     return (
         <div className="flex flex-col justify-content items-center">
             {plotConfigs.map((config, index) => (
-                <PlotPreview key={index} plotConfig={config} />
+                <>
+                <PlotPreview key={index} plotConfig={config} index={index} />
+                <hr className="w-[75%]"></hr>
+                </>
             ))}
         </div>
     );
@@ -43,7 +46,7 @@ export const PreviewPage = () => {
 
 }
 
-const PlotPreview = ({ plotConfig }: { plotConfig: any }) => {
+const PlotPreview = ({ plotConfig, index }: { plotConfig: any, index: number }) => {
     const [isLoading, setIsLoading] = useState(true); // Add a loading state
     const Plot = dynamic(() => import('react-plotly.js'), { ssr: false });
     const borderColor = plotConfig.layout.paper_bgcolor;
@@ -54,9 +57,9 @@ const PlotPreview = ({ plotConfig }: { plotConfig: any }) => {
     };
 
     return (
-        <div className="flex flex-row gap-x-3 pb-5">
-            <div className="self-center text-4xl">1</div>
-            <div className={`p-3 rounded-lg border-[5px] border-gray-400 my-2`} style={{ backgroundColor: borderColor }}>
+        <div className="flex flex-row gap-x-3 my-4">
+            <div className="text-4xl pt-3 font-semibold">{index+1}</div>
+            <div className={`p-3 rounded-lg border-[8px] border-gray-400 my-2`} style={{ backgroundColor: borderColor }}>
                 {isLoading && <ReactLoading type="spin" color="black" height={30} width={30} />} {/* Show loading message */}
                 <Plot
                     data={plotConfig.data}
