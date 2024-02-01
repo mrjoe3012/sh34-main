@@ -55,11 +55,12 @@ export const PreviewPage = () => {
 const PlotPreview = ({ plotConfig, onPlotLoad }: { plotConfig: any, onPlotLoad: ()=>void }) => { // typescript workaround
 
     const Plot = dynamic(() => import('react-plotly.js'), { ssr: false });
+    const borderColor = plotConfig.layout.paper_bgcolor;
 
     return (
         <div className="flex flex-row gap-x-3 pb-5">
             <div className="self-center text-4xl">1</div>
-            <div className="p-3 rounded-lg border-[5px] border-gray-400 my-2">
+            <div className={`p-3 rounded-lg border-[5px] border-gray-400 my-2`}  style={{ backgroundColor: borderColor }}>
                 <Plot data={plotConfig.data} layout={plotConfig.layout} onInitialized={onPlotLoad}/>
             </div>
         </div>
