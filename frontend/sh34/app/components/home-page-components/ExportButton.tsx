@@ -3,10 +3,11 @@ import { useState } from "react";
 
 interface ExportButtonProps {
   templateID: number;
+  page: string;
 
 };
 
-export const ExportButton = ({ templateID }:ExportButtonProps) =>{
+export const ExportButton = ({ templateID, page }:ExportButtonProps) =>{
   const [downloading, setDownloading] = useState(false);
 
   const handleExport = async() => {
@@ -44,11 +45,10 @@ export const ExportButton = ({ templateID }:ExportButtonProps) =>{
         link.href = url;
         link.setAttribute('download', filename);
         document.body.appendChild(link);
-        //document.body.appendChild(a);
         link.click();
 
-        //window.URL.revokeObjectURL(url);
-        //a.remove();
+        window.URL.revokeObjectURL(url);
+        link.remove();
         setDownloading(false);
       }else{
         console.error("Server Error", response.statusText);
@@ -60,54 +60,36 @@ export const ExportButton = ({ templateID }:ExportButtonProps) =>{
     }
   }
 
-  return(
-          <div>
+  if (page=="home") {
+    return(
+      <div>
 
-            <button onClick = {handleExport} className='text-center w-5/6'>
-              <div className="justify-center flex rounded-xl p-2 border-black border-2 relative bg-[#346DFF]">
-                <p className="text-slate-50 basis-10/11">Export</p>
-              </div>
-            </button>
+        <button onClick = {handleExport} className='text-center w-5/6'>
+          <div className="justify-center flex rounded-xl p-2 border-black border-2 relative bg-[#346DFF]">
+            <p className="text-slate-50 basis-10/11">Export</p>
+          </div>
+        </button>
 
-            {downloading &&(
-            <div className="popup">
-              Downloading File...
-            </div>
-            )}
-            </div>
-        );
-
-
-//   if (page=="home") {
-//     return(
-//       <div>
-
-//         <button onClick = {handleExport} className='text-center w-5/6'>
-//           <div className="justify-center flex rounded-xl p-2 border-black border-2 relative bg-[#346DFF]">
-//             <p className="text-slate-50 basis-10/11">Export</p>
-//           </div>
-//         </button>
-
-//         {downloading &&(
-//         <div className="popup">
-//           Downloading File...
-//         </div>
-//         )}
-//         </div>
-//     );
-//   } else if (page=="template") {
-//     return(
-//       <div>
-//       <button onClick = {handleExport} className={`text-center text-xl font-medium text-white h-[60px] w-[150px] bg-[#7D7D7D] rounded-xl flex justify-center items-center border-[2px] border-slate-700`}>
-//         <p> Export </p>
-//       </button>
-//       {downloading &&(
-//         <div className="popup">
-//           Downloading File...
-//         </div>
-//         )}
-//       </div>
-//     )
-//   }
+        {downloading &&(
+        <div className="popup">
+          Downloading File...
+        </div>
+        )}
+        </div>
+    );
+  } else if (page=="template") {
+    return(
+      <div>
+      <button onClick = {handleExport} className={`text-center text-xl font-medium text-white h-[60px] w-[150px] bg-[#7D7D7D] rounded-xl flex justify-center items-center border-[2px] border-slate-700`}>
+        <p> Export </p>
+      </button>
+      {downloading &&(
+        <div className="popup">
+          Downloading File...
+        </div>
+        )}
+      </div>
+    )
+  }
 
  }

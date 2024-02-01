@@ -28,7 +28,7 @@ export function Body() {
           <TemplatePageSwitcher switchTabFunction={setBodyContent}/>
           <div className='flex gap-3'>
             <TemplateSaveButton />
-            <ExportButton templateID={template._id}/>
+            <ExportButton page = 'template' templateID={template._id}/>
           </div>
         </div>
         <hr className='h-[10px] mb-3'></hr>

@@ -34,7 +34,7 @@ export const AssetElement = (props: AssetElementProps) => {
           </div>
 
           <div className='col-span-1 col-start-7 px-0.5'> {/* breakpoints needed to stop it from going over 2 lines on smaller screen OR more elegant solution */}
-            <ExportButton  templateID={template._id} />
+            <ExportButton page='home' templateID={template._id} />
           </div>
 
         </div>
