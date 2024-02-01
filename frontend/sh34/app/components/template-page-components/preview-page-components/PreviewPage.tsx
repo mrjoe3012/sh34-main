@@ -10,7 +10,6 @@ export const PreviewPage = () => {
 
     const {plots} = useTemplatePageContext();
     const [plotConfigs, setPlotConfigs] = useState([]);
-    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
 
@@ -33,18 +32,10 @@ export const PreviewPage = () => {
 
     }, []); // Empty dependency array for the effect to run once after the initial render
 
-
-    const handlePlotLoad = () => {
-        setLoading(false);
-        console.log("YIPPPEEEEE ")
-        console.log(loading)
-    }
-
     return (
         <div className="flex flex-col justify-content items-center">
-            {loading && <ReactLoading type="spin" color="black" height={30} width={30} />}
             {plotConfigs.map((config, index) => (
-                <PlotPreview key={index} plotConfig={config} onPlotLoad={handlePlotLoad} />
+                <PlotPreview key={index} plotConfig={config} />
             ))}
         </div>
     );
@@ -52,18 +43,28 @@ export const PreviewPage = () => {
 
 }
 
-const PlotPreview = ({ plotConfig, onPlotLoad }: { plotConfig: any, onPlotLoad: ()=>void }) => { // typescript workaround
-
+const PlotPreview = ({ plotConfig }: { plotConfig: any }) => {
+    const [isLoading, setIsLoading] = useState(true); // Add a loading state
     const Plot = dynamic(() => import('react-plotly.js'), { ssr: false });
     const borderColor = plotConfig.layout.paper_bgcolor;
+
+    // Function to handle plot initialization
+    const handlePlotInitialized = () => {
+        setIsLoading(false); // Set loading to false when the plot is initialized
+    };
 
     return (
         <div className="flex flex-row gap-x-3 pb-5">
             <div className="self-center text-4xl">1</div>
-            <div className={`p-3 rounded-lg border-[5px] border-gray-400 my-2`}  style={{ backgroundColor: borderColor }}>
-                <Plot data={plotConfig.data} layout={plotConfig.layout} onInitialized={onPlotLoad}/>
+            <div className={`p-3 rounded-lg border-[5px] border-gray-400 my-2`} style={{ backgroundColor: borderColor }}>
+                {isLoading && <ReactLoading type="spin" color="black" height={30} width={30} />} {/* Show loading message */}
+                <Plot
+                    data={plotConfig.data}
+                    layout={plotConfig.layout}
+                    onInitialized={handlePlotInitialized}
+                    style={{ display: isLoading ? 'none' : 'block' }} // Hide the plot until it's loaded
+                />
             </div>
         </div>
-
     );
 };
