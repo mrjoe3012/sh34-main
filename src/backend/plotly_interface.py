@@ -513,7 +513,7 @@ def pascal_split_name(value:str) -> str:
     return ''.join(result).strip()
 
 
-def return_docx(plots,data_json,template_name):
+def return_docx(plots,data_json):
     """Takes in a list of plots and returns a docx file with the png's of those plots"""
 
 
