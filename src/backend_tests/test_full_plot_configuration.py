@@ -10,7 +10,7 @@ import plotly.io as pio
 
 class TestEntireConfiguration(unittest.TestCase):
 
-    def plot_to_image_hash(fig):
+    def plot_to_image_hash(self, fig):
         bytes = pio.to_image(fig, format="png")
 
         image = Image.open(io.BytesIO(bytes))
