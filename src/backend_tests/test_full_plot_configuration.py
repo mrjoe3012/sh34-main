@@ -90,7 +90,6 @@ class TestEntireConfiguration(unittest.TestCase):
 
         self.assertEqual(test_hash, manual_hash)
 
-
     def tearDown(self):
         os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
