@@ -1,11 +1,24 @@
 import unittest
 import plotly.graph_objs as go
-from backend.plotly_interface import update_traces, update_xaxis, update_yaxis, update_plotsize, update_plot_colours, build_property_dict
-from backend.plotly_interface import update_grid_lines, update_xaxis_ticklabels, update_yaxis_ticklabels, update_title, update_annotations
+from backend.plotly_interface import generate_plot_html, update_traces
 import json
 import os
+import hashlib
+from PIL import Image
+import plotly.io as pio
+
 
 class TestEntireConfiguration(unittest.TestCase):
+
+    def plot_to_image_hash(fig):
+        bytes = pio.to_image(fig, format="png")
+
+        image = Image.open(io.BytesIO(bytes))
+
+        hash_function = hashlib.md5()
+        hash_function.update(image.tobytes())
+        return hash_function.hexdigest()
+
 
     def setUp(self):
         self.manual_fig = go.Figure()
@@ -37,8 +50,7 @@ class TestEntireConfiguration(unittest.TestCase):
             test_config_json = json.load(f)
 
         #assign the traces to the graph
-        self.manual_fig = update_traces(self.manual_fig, config_json, data_json)  
-        properties = build_property_dict(test_config_json)
+        self.manual_fig = update_traces(self.manual_fig, config_json, data_json)
 
         self.manual_fig.update_layout(
             xaxis_title_text="test_xaxis_name_default",
@@ -71,22 +83,13 @@ class TestEntireConfiguration(unittest.TestCase):
             title_font_color = "black"
         )
 
-        self.test_fig = update_traces(self.test_fig, properties, data_json)
-        self.test_fig = update_xaxis(self.test_fig, properties)
-        self.test_fig = update_yaxis(self.test_fig, properties)
-        self.test_fig = update_plot_colours(self.test_fig, properties)
-        self.test_fig = update_grid_lines(self.test_fig, properties)
-        self.test_fig = update_title(self.test_fig, properties)
-        self.test_fig = update_xaxis_ticklabels(self.test_fig, properties)
-        self.test_fig = update_yaxis_ticklabels(self.test_fig, properties)
-        self.test_fig = update_plotsize(self.test_fig, properties)
-        self.test_fig = update_annotations(self.test_fig, properties)
+        self.test_fig = generate_plot_html(test_config_json, data_json)
 
+        test_hash = self.plot_to_image_hash(self.test_fig)
+        manual_hash = self.plot_to_image_hash(self.manual_fig)
 
-        json_test = self.test_fig.to_json()
-        json_manual = self.manual_fig.to_json()
+        self.assertEqual(test_hash, manual_hash)
 
-        self.assertEqual(json_test, json_manual)
 
     def tearDown(self):
         os.chdir(os.path.dirname(os.path.abspath(__file__)))
