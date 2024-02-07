@@ -12,8 +12,8 @@ import io
 class TestEntireConfiguration(unittest.TestCase):
 
     def hash_image(self, image):
+        image = Image.open(io.BytesIO(image))
 
-        image = Image.open(io.BytesIO(bytes))
 
         hash_function = hashlib.md5()
         hash_function.update(image.tobytes())
@@ -86,8 +86,9 @@ class TestEntireConfiguration(unittest.TestCase):
         self.test_image = generate_plot_png(test_config_json, data_json)
 
         self.manual_image = pio.to_image(self.manual_fig,format='png')
+        self.manual_image_bytes = pio.to_image(self.manual_image, format="png")
 
-        hashed_manual = self.hash_image(self.manual_image)
+        hashed_manual = self.hash_image(self.manual_image_bytes)
         hashed_test = self.hash_image(self.test_image)
 
         self.assertEqual(hashed_manual, hashed_test)
