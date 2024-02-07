@@ -1,7 +1,7 @@
 """This file is the backend's entrypoint."""
 import json
 from flask import Flask, Response, request
-from backend import generate_plot_html, generate_plot_htmls, generate_plot_json, generate_plot_jsons
+from backend import generate_plot_html, generate_plot_json, generate_plot_jsons
 
 app = Flask(__name__)
 
@@ -44,6 +44,10 @@ def generate_plot():
 
 @app.route("/api/get-plot-json", methods=["GET","POST"])
 def generate_plotly_json():
+    """
+        Generates a plotly json representation of a
+        plot using the config_json.
+    """
 
     config_json = request.get_json()
 
@@ -57,12 +61,16 @@ def generate_plotly_json():
 @app.route("/api/load-plot-previews", methods=["GET","POST"])
 def generate_plot_previews():
     """
-        On the frontend, a list of configJSONS for each plot gets sent to this endpoint. This function then
-        generates JSON object representations for each configJSON it received. It then sends this list of
-        JSON representations back to the frontend, where using a Plotly library it generates the plot
-        back on the frontend.
-        The reason I have chose to do it this way, if I instead sent a list of HTML representations of the plots,
-        I would have to call dangerouslySetInnerHTML to get the plot to appear, a vulnerable way to set the content.
+        On the frontend, a list of configJSONS for each
+        plot gets sent to this endpoint. This function then
+        generates JSON object representations for each configJSON it
+        received. It then sends this list of JSON representations
+        back to the frontend, where using a Plotly library it
+        generates the plot back on the frontend. The reason I
+        have chose to do it this way, if I instead sent a list
+        of HTML representations of the plots, I would have to call
+        dangerouslySetInnerHTML to get the plot to appear, a
+        vulnerable way to set the content.
     """
 
     config_json_list = request.get_json()

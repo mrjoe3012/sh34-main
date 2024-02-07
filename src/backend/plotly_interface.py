@@ -1,14 +1,15 @@
 """Here we define all plotly-related interactions such as generating charts from json input."""
 
 #Mustafa Onur Cay - 19/10/2023
+import json
 from typing import Any
 import plotly.graph_objs as go
 import pandas as pd
-import json
 
 def generate_plot_jsons(config_json_list,data_json):
     """
-        Takes in the list of configJSONs and converts each of them to its respective JSON object form.
+        Takes in the list of configJSONs and converts each
+        of them to its respective JSON object form.
         Returns a list of JSON object representations of plots
     """
 
@@ -47,7 +48,8 @@ def generate_plot_json(config_json, data_json):
 
 def generate_plot_htmls(config_json_list, data_json):
     """
-        Takes in the list of configJSONs and converts each of them to its respective HTML figure form.
+        Takes in the list of configJSONs and converts each of
+        them to its respective HTML figure form.
         Returns a list of HTML representations of plots
     """
 
