@@ -33,9 +33,6 @@ export const NewTemplatePopup = (props: NewTemplatePopupProps) => {
         }
         // Handle submit logic here
 
-
-
-
         console.log({ templateName, templateDescription, templateTags });
         props.closeButtonFunction()
     };

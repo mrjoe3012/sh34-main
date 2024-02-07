@@ -116,7 +116,6 @@ def add_template():
 @app.route('/api/add-plot', methods=['POST'])
 def add_plot():
     print("")
-    
-
+    add_plot()
 if __name__ == "__main__":
     main()

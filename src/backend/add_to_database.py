@@ -36,7 +36,7 @@ def add_plot():
 
     document = {"_id": get_new_id(db,collection), #Increment of last elements ID
                 "config_file": "",
-                "order": 1 #?
+                "order": "" #Increment of last plot's order within this plots template
                 }
     
     result = collection.insert_one(document)
