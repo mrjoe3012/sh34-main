@@ -83,7 +83,7 @@ class TestEntireConfiguration(unittest.TestCase):
             title_font_color = "black"
         )
 
-        self.test_fig = generate_plot_html(test_config_json, data_json)
+        self.test_fig = generate_plot_html(test_config_json, data_json, False)
 
         test_hash = self.plot_to_image_hash(self.test_fig)
         manual_hash = self.plot_to_image_hash(self.manual_fig)
