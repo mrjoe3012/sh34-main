@@ -1,5 +1,7 @@
+
+
 async function populateTemplates(client) {
- 
+
   // Connect to the "Templates" database and access its "Template_Data" collection
   const database = client.db("SH34_DB");
 
@@ -14,7 +16,7 @@ async function populateTemplates(client) {
       Name : "Very Windy Template",
       Description : "Template to show Financial gains of an asset",
       Tags : ["Finance", "Wind"],
-      LastModified : "24/04/2022",
+      LastModified : new Date(2022,1,24),
       DateCreated : "18/12/2017"
     },
     {
@@ -23,7 +25,7 @@ async function populateTemplates(client) {
       Name : "Slightly Rainy Template",
       Description: "Template to show efficiency of an asset",
       Tags: ["Efficiency","Hydro", "Wind"],
-      LastModified : "18/09/2022",
+      LastModified : new Date (2025,9,18),
       DateCreated : "04/07/2019"
     },
   ]
