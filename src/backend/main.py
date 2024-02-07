@@ -50,5 +50,23 @@ def api_load_indicators():
     indicators_json = json.dumps(indicators)
     return Response(indicators_json, mimetype="application/json")
 
+@app.route('/api/add-template', methods=['POST'])
+def add_template():
+    data = request.json
+    template_name = data.get('templateName')
+    template_description = data.get('templateDescription')
+    template_tags = data.get('templateTags')
+
+    # Validate Data
+
+    # Call Function in add_to_database
+
+    # Send response
+    # return jsonify({"message": "Template added successfully", "template": new_template}), 201
+
+@app.route('/api/add-plot', methods=['POST'])
+def add_plot():
+    print("")
+    
 if __name__ == "__main__":
     main()
