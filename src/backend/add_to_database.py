@@ -2,11 +2,17 @@ from datetime import datetime
 from .database import get_client, load_collection
 
 def connect_to_database():
+    """
+    Connect to database.
+    """
     client = get_client()
     db = client['SH34_DB']
     return db
 
 def get_new_id(db, collection):
+    """
+    Given a collection, return the id that the next element added to the collection should have
+    """
     print("hello World")
     collection_data = load_collection(collection, {})
     last_id = collection_data[-1]['_id']
@@ -35,7 +41,7 @@ def add_plot():
     collection = db["Plots_Data"]
 
     document = {"_id": get_new_id(db,collection), #Increment of last elements ID
-                "config_file": "",
+                "config_file": "", #Include Name and Graph Type. 
                 "order": "" #Increment of last plot's order within this plots template
                 }
     
