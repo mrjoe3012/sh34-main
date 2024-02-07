@@ -1,9 +1,91 @@
-export const ExportButton = () => {
+'use client';
+import { useState } from "react";
+
+interface ExportButtonProps {
+  templateID: number;
+  page: string;
+
+};
+
+export const ExportButton = ({ templateID, page }:ExportButtonProps) =>{
+  const [downloading, setDownloading] = useState(false);
+
+  const handleExport = async() => {
+    setDownloading(true);
+    const url = '/api/generate-doc';
+    try{
+      const response = await fetch(url,{
+        method: 'POST',
+        headers:{
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ templateID })
+      });
+      const requestBody = JSON.stringify({ templateID });
+      console.log('Sending:', requestBody);
+      console.log(response);
+      if(response.ok){
+        const contentDisposition = response.headers.get('Content-Disposition');
+        let filename = 'downloaded_file.docx';
+        if (contentDisposition){
+          const filenameMatch = contentDisposition.match(/filename="([^"]+)"/);
+          if (filenameMatch && filenameMatch.length > 1){
+            filename = filenameMatch[1];
+          }
+        }
+        const blob = await response.blob();
+        const url = window.URL.createObjectURL(blob);
+        console.log(blob);
+        const link = document.createElement('a');
+
+        link.href = url;
+        link.setAttribute('download', filename);
+        document.body.appendChild(link);
+        link.click();
+
+        window.URL.revokeObjectURL(url);
+        link.remove();
+        setDownloading(false);
+      }else{
+        console.error("Server Error", response.statusText);
+        setDownloading(false);
+      }
+    }catch(error){
+      console.error('Network Error', error);
+      setDownloading(false);
+    }
+  }
+
+  if (page=="home") {
     return(
-        <div className='text-center w-5/6'>
+      <div>
+
+        <button onClick = {handleExport} className='text-center w-5/6'>
           <div className="justify-center flex rounded-xl p-2 border-black border-2 relative bg-[#346DFF]">
             <p className="text-slate-50 basis-10/11">Export</p>
           </div>
+        </button>
+
+        {downloading &&(
+        <div className="popup">
+          Downloading File...
+        </div>
+        )}
         </div>
     );
-}
+  } else if (page=="template") {
+    return(
+      <div>
+      <button onClick = {handleExport} className={`text-center text-xl font-medium text-white h-[60px] w-[150px] bg-[#7D7D7D] rounded-xl flex justify-center items-center border-[2px] border-slate-700`}>
+        <p> Export </p>
+      </button>
+      {downloading &&(
+        <div className="popup">
+          Downloading File...
+        </div>
+        )}
+      </div>
+    )
+  }
+
+ }

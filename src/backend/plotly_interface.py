@@ -3,7 +3,14 @@
 #Mustafa Onur Cay - 19/10/2023
 import json
 from typing import Any
+import os
+import shutil
+import io
 import plotly.graph_objs as go
+import plotly.io as pio
+from docx import Document
+from docx.shared import Inches, Pt
+from docx.enum.text import WD_ALIGN_PARAGRAPH
 import pandas as pd
 
 def generate_plot_jsons(config_json_list,data_json):
@@ -61,8 +68,22 @@ def generate_plot_htmls(config_json_list, data_json):
 
 
 def generate_plot_html(config_json, data_json):
+    """This function returns HTML form of a plotly figure"""
+    fig = generate_plot(config_json, data_json)
+    return fig.to_html()
+
+
+def generate_plot_png(config_json, data_json):
+    """This is returns png byte stream of the plotly figure"""
+    fig = generate_plot(config_json, data_json)
+    plot_title = build_property_dict(config_json)['plot_title']
+
+    return pio.to_image(fig,format='png'), plot_title
+
+
+def generate_plot(config_json, data_json):
     """ Takes in the config_json received from the frontend,
-        creates the plotly figure and returns its HTML form
+        creates the plotly figure and returns it
     """
 
     # Generate a Dictionary of Properties from config_json
@@ -81,8 +102,7 @@ def generate_plot_html(config_json, data_json):
     fig = update_plotsize(fig, properties)
     fig = update_annotations(fig, properties)
 
-    fig_html = fig.to_html()
-    return fig_html
+    return fig
 
 
 def update_traces(fig, properties,data_json):
@@ -546,3 +566,46 @@ def pascal_split_name(value:str) -> str:
         i += 1
 
     return ''.join(result).strip()
+
+
+def return_docx(plots,data_json):
+    """Takes in a list of plots and returns a docx file with the png's of those plots"""
+
+
+    doc = Document()
+    main_title = doc.add_paragraph()
+    main_title_run = main_title.add_run('Plots')
+    main_title_run.font.size = Pt(32)
+    main_title.alignment = WD_ALIGN_PARAGRAPH.CENTER
+
+    for plot in plots:
+        a,b = generate_plot_png(plot, data_json)
+        a = io.BytesIO(a)
+        plot_title = doc.add_paragraph()
+        plot_title_run = plot_title.add_run(b)
+        plot_title_run.font.size = Pt(21)
+        doc.add_picture(a, width = Inches(6))
+
+    doc_bytes = io.BytesIO()
+    doc.save(doc_bytes)
+    doc_bytes.seek(0)
+
+    return doc_bytes
+
+
+def delete_folder(folder_path):
+    """Delete a folder and all its contents."""
+    try:
+        # Check if the folder exists
+        if os.path.exists(folder_path):
+            # Remove the folder and all its contents
+            shutil.rmtree(folder_path)
+            print(f"Folder '{folder_path}' has been deleted.")
+        else:
+            print(f"Folder '{folder_path}' does not exist.")
+    except PermissionError as e:
+        print(f"Permission Denied: {e}")
+    except FileNotFoundError as e:
+        print(f"File Not Found: {e}")
+    except OSError as e:
+        print(f"OS Error: {e}")
