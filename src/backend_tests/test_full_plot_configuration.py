@@ -96,8 +96,8 @@ class TestEntireConfiguration(unittest.TestCase):
         hashed_3 = self.hash_image(test_image_3)
 
 
-        self.assertEqual(test_image, hashed_2)
-        self.assertEqual(test_image_2, hashed_3)
+        self.assertEqual(hashed_test, hashed_2)
+        self.assertEqual(hashed_2, hashed_3)
 
         self.assertEqual(hashed_manual, hashed_test)
 
