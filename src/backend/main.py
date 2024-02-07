@@ -114,7 +114,7 @@ def add_template_route():
     return response
 
 @app.route('/api/add-plot', methods=['POST'])
-def add_plot():
+def add_plot_route():
     print("")
     add_plot()
 
