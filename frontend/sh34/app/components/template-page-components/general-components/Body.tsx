@@ -7,10 +7,13 @@ import { TemplateSaveButton } from '@app/components/template-page-components/gen
 import { TemplateExportButton } from '@app/components/template-page-components/general-components/TemplateExportButton';
 import { StructurePage } from '@app/components/template-page-components/structure-page-components/StructurePage';
 import { useState } from 'react';
+import { ExportButton } from '@app/components/home-page-components/ExportButton';
+import { useTemplatePageContext } from '@app/template-page/TemplatePageContext';
 
 export function Body() {
 
   const [bodyContent,setBodyContent] = useState(<StructurePage/>);
+  const {template} = useTemplatePageContext();
 
   return (
     <div className="overflow-auto mx-10">
@@ -19,13 +22,13 @@ export function Body() {
         <TemplateInfo />
       </div>
 
-      <div className='mx-10'> 
+      <div className='mx-10'>
 
         <div className='mt-10 mb-5 flex justify-between'>
           <TemplatePageSwitcher switchTabFunction={setBodyContent}/>
-          <div className='flex gap-3'> 
+          <div className='flex gap-3'>
             <TemplateSaveButton />
-            <TemplateExportButton />
+            <ExportButton page = 'template' templateID={template._id}/>
           </div>
         </div>
         <hr className='h-[10px] mb-3'></hr>
