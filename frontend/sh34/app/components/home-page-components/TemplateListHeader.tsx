@@ -1,6 +1,10 @@
+'use client';
+import React, { useState } from 'react';
 import { SortButton } from "./SortButton";
 
 export const TemplateListHeader = () => {
+  const [selectedOption, setSelectedOption] = useState("_id");
+  
     return(
         <div className=''>
           <div className='grid grid-cols-7 p-4'>
@@ -26,17 +30,19 @@ export const TemplateListHeader = () => {
             </div>
     
             <div className='col-start-6 flex justify-center'>
-               <select placeholder="Select an option" className="font-medium placeholder-[#ACACAC] h-[35px] w-[150px] bg-[#DCDCDC] rounded-lg flex items-center pl-4 border-2 border-[#B3B3B3] focus:ring-2 focus:ring-RES_ORANGE focus:outline-none focus:border-none">
-                <option value="1">TemplateID</option>
-                <option value="2">Template Name</option>
-                <option value="3">Creation Date</option>
-                <option value="4">Last Modified</option>
+               <select placeholder="Select an option" className="font-medium placeholder-[#ACACAC] h-[35px] w-[150px] bg-[#DCDCDC] rounded-lg flex items-center pl-4 border-2 border-[#B3B3B3] focus:ring-2 focus:ring-RES_ORANGE focus:outline-none focus:border-none"
+                value={selectedOption}
+                onChange={(e) => setSelectedOption(e.target.value)}>
+                <option value="_id">TemplateID</option>
+                <option value="Name">Template Name</option>
+                <option value="DateCreated">Creation Date</option>
+                <option value="LastModified">Last Modified</option>
                 
               </select>
             </div>
     
             <div className='col-start-7 text-lg inline float-left'>
-                <SortButton />
+                <SortButton selectedOption={selectedOption} />
             </div>
     
           </div>

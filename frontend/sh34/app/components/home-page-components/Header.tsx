@@ -2,7 +2,6 @@ import { NewTemplateButton } from "./NewTemplateButton";
 import { SearchBar } from "./SearchBar";
 
 export default function Header(){
-    console.log("Header");
     return(
       <div>
         <div className='grid grid-cols-2 place-content-center'>

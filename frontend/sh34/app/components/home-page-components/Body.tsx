@@ -8,7 +8,6 @@ import { WithId } from "mongodb";
 interface bodyProps {templates: WithId<TemplateData>[]}
 
 export default function Body(props: bodyProps) {
-    console.log("Body");
     return (
         <HomePageContextProvider templates={props.templates}>
       <div className="bg-white mx-10">
