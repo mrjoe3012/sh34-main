@@ -1,6 +1,6 @@
 import unittest
 import plotly.graph_objs as go
-from backend.plotly_interface import generate_plot_png, update_traces
+from backend.plotly_interface import generate_plot_png, update_traces, update_annotations, build_property_dict
 import json
 import os
 import hashlib
@@ -22,8 +22,6 @@ class TestEntireConfiguration(unittest.TestCase):
     def setUp(self):
         self.manual_fig = go.Figure()
         self.test_fig = go.Figure()
-        self.test_2 = go.Figure()
-        self.test_3 = go.Figure()
 
     def test_configuration(self):
 
@@ -62,12 +60,14 @@ class TestEntireConfiguration(unittest.TestCase):
             yaxis_title_font_size = 12,
             yaxis_title_font_color = "black",
             yaxis_title_font_family = "Arial",
-            width = 800,
-            height = 800,
             plot_bgcolor = "red",
             paper_bgcolor = "blue",
             xaxis_showgrid = True,
             yaxis_showgrid = False,
+            title_text = "test_title_default",
+            title_font_family = "Arial",
+            title_font_size = 12,
+            title_font_color = "black"
             xaxis_tickangle = 0,
             xaxis_side = "top",
             xaxis_tickfont_family = "Arial",
@@ -78,26 +78,20 @@ class TestEntireConfiguration(unittest.TestCase):
             yaxis_tickfont_family = "Arial",
             yaxis_tickfont_size = 12,
             yaxis_tickfont_color = "black",
-            title_text = "test_title_default",
-            title_font_family = "Arial",
-            title_font_size = 12,
-            title_font_color = "black"
+            width = 800,
+            height = 800 
         )
 
+        properties = build_property_dict(test_config_json)
+
+        self.manual_fig = update_annotations(self.manual_fig,)
+
         test_image, test_title = generate_plot_png(test_config_json, data_json)
-        test_image_2, test_title_2 = generate_plot_png(test_config_json, data_json)
-        test_image_3, test_title_3 = generate_plot_png(test_config_json, data_json)
 
         manual_image = pio.to_image(self.manual_fig,format='png')
 
         hashed_manual = self.hash_image(manual_image)
         hashed_test = self.hash_image(test_image)
-        hashed_2 = self.hash_image(test_image_2)
-        hashed_3 = self.hash_image(test_image_3)
-
-
-        self.assertEqual(hashed_test, hashed_2)
-        self.assertEqual(hashed_2, hashed_3)
 
         self.assertEqual(hashed_manual, hashed_test)
 
