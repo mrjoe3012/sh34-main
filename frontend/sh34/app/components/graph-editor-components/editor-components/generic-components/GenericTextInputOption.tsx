@@ -42,8 +42,8 @@ export const GenericTextInputOption = (props : GenericTextInputOptionProps) => {
 
     return (
         <div className="flex items-center gap-x-1 ml-3 mr-3">
-            <div className="w-[70px] min-w-[70px] text-right pr-2">{props.labelName}</div>
-            <input value={inputValue} onChange={validateInput} onBlur={handleBlur} onKeyDown={handleKeyDown} type="text" placeholder={props.placeholder} className={`${props.width} ${props.textPos} px-4 font-medium placeholder-[#ACACAC] h-[35px] bg-[#DCDCDC] rounded-lg flex items-center  border-2 border-[#B3B3B3] focus:ring-2 focus:ring-RES_ORANGE focus:outline-none focus:border-none`} />
+            <div className="w-[50px] min-w-[50px] text-right pr-2">{props.labelName}</div>
+            <input value={inputValue} onChange={validateInput} onBlur={handleBlur} onKeyDown={handleKeyDown} type="text" placeholder={props.placeholder} className={`${props.width} ${props.textPos} px-4 w-[80%] font-medium placeholder-[#ACACAC] h-[35px] bg-[#DCDCDC] rounded-lg flex items-center  border-2 border-[#B3B3B3] focus:ring-2 focus:ring-RES_ORANGE focus:outline-none focus:border-none`} />
         </div>
     )
 }
