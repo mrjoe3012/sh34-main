@@ -57,7 +57,7 @@ const PlotPreview = ({ plotConfig, index }: { plotConfig: any, index: number }) 
     };
 
     return (
-        <div className="flex flex-row gap-x-3 my-4">
+        <div className="flex flex-row gap-x-3 my-4 scale-x-75 scale-y-75 ">
             <div className="text-4xl pt-3 font-semibold">{index+1}</div>
             <div className={`p-3 rounded-lg border-[8px] border-gray-400 my-2`} style={{ backgroundColor: borderColor }}>
                 {isLoading && <ReactLoading type="spin" color="black" height={30} width={30} />} {/* Show loading message */}
