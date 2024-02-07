@@ -12,9 +12,6 @@ import io
 class TestEntireConfiguration(unittest.TestCase):
 
     def hash_image(self, image):
-        image = Image.open(io.BytesIO(image))
-
-
         hash_function = hashlib.md5()
         hash_function.update(image.tobytes())
         return hash_function.hexdigest()
