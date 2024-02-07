@@ -13,7 +13,7 @@ class TestEntireConfiguration(unittest.TestCase):
 
     def hash_image(self, image):
         hash_function = hashlib.md5()
-        hash_function.update(image.tobytes())
+        hash_function.update(image)
         return hash_function.hexdigest()
 
 
