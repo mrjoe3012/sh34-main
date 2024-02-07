@@ -32,7 +32,7 @@
         },
         "customFontStyle": {
           "fontColour": "#000000",
-          "fontSize": 64,
+          "fontSize": 16,
           "typeface": "Arial"
         }
       }
