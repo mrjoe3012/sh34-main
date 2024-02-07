@@ -1,3 +1,4 @@
+"use client"
 import InfoIcon from "../../images/info-icon.png"
 import CloseIcon from "../../images/close-icon.png"
 import Image from "next/image";
@@ -7,21 +8,24 @@ interface NewTemplatePopupProps {
 }
 
 import React, { useState } from 'react';
+import { WithId } from "mongodb";
+import { TemplateData } from "@app/modules/db";
+import { useHomePageContext } from "@app/home/HomePageContext";
 
 export const NewTemplatePopup = (props: NewTemplatePopupProps) => {
-    const [templateName, setTemplateName] = useState('');
-    const [templateDescription, setTemplateDescription] = useState('');
+    const [templateName, setTemplateName] = useState('Test Name');
+    const [templateDescription, setTemplateDescription] = useState('Test Description');
     
-    const [templateTags, setTemplateTags] = useState<string[]>([]);
+    const [templateTags, setTemplateTags] = useState<string[]>(['Test','Testing']);
     const [tagInput, setTagInput] = useState('');
 
     // State for handling errors for TemplateNameField
     const [displayNameErrors, setDisplayNameErrors] = useState(false);
     const [nameErrors, setNameErrors] = useState<string[]>([])
-
-    const handleSubmit = (event: React.FormEvent) => {
+    const {templates, setTemplates} = useHomePageContext();
+    
+    const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
-
         // Input Validation for the Template Creation Form.
         setNameErrors([])
         if (templateName.trim() == "") {
@@ -32,9 +36,26 @@ export const NewTemplatePopup = (props: NewTemplatePopupProps) => {
             setDisplayNameErrors(false);
         }
         // Handle submit logic here
-
+        const response = await fetch(
+            '/api/add-template', {
+                method: 'POST',
+                headers: {
+                    'Content-Type' : 'application/json',
+                },
+                body: JSON.stringify({
+                    'Name': templateName,
+                    'Description': templateDescription,
+                    'Tags': templateTags
+                }),
+            }
+        );
+        if (response.status != 200) {
+            console.error(`Failed to add template to database.`);
+        }
+        const template: WithId<TemplateData> = await response.json();
+        setTemplates([...templates, template]);
         console.log({ templateName, templateDescription, templateTags });
-        props.closeButtonFunction()
+        props.closeButtonFunction();
     };
 
     const handleAddTagOnEnter = (event: React.KeyboardEvent<HTMLInputElement>) => {

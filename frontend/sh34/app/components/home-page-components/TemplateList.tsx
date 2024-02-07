@@ -1,9 +1,10 @@
+"use client"
 import { TemplateListHeader } from "./TemplateListHeader";
 import { AssetElement } from "./AssetElement";
-import { loadTemplates } from "@app/modules/db";
+import { useHomePageContext } from "@app/home/HomePageContext";
 
-export const TemplateList = async () => {
-    const templates = await loadTemplates({});
+export const TemplateList = () => {
+  const {templates} = useHomePageContext()
     return(
         <div className='my-20'>
           <div className='flex my-3'>

@@ -100,23 +100,23 @@ def unpack_data():
         raise
 
 @app.route('/api/add-template', methods=['POST'])
-def add_template():
+def add_template_route():
     data = request.json
-    template_name = data.get('templateName')
-    template_description = data.get('templateDescription')
-    template_tags = data.get('templateTags')
+    name = data.get('Name')
+    description = data.get('Description')
+    tags = data.get('Tags')
 
     # Validate Data
 
-    add_template()
-
-    # Send response
-    # return jsonify({"message": "Template added successfully", "template": new_template}), 201
+    document = add_template(name,description,tags)
+    response = Response(json.dumps(document))
+    response.headers.set('Content-Type', 'application/json')
+    return response
 
 @app.route('/api/add-plot', methods=['POST'])
 def add_plot():
     print("")
     add_plot()
-    
+
 if __name__ == "__main__":
     main()

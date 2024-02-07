@@ -2,13 +2,19 @@ import { Navbar } from '@app/components/navbar';
 import { TemplateList } from '@app/components/home-page-components/TemplateList';
 import { NewTemplateButton } from '@app/components/home-page-components/NewTemplateButton';
 import { SearchBar } from '@app/components/home-page-components/SearchBar';
+import { HomePageContextProvider } from './HomePageContext';
+import { loadTemplates } from '@app/modules/db';
 
-export default function Home() {
+
+export default async function Home() {
+  const templates = await loadTemplates({});
     return (
       <div className="text-black min-w-[1200px] h-screen bg-white font-league">
         <div className='bg-white'>
+          <HomePageContextProvider templates={templates}>
             <Navbar />
             <Body />
+          </HomePageContextProvider>
         </div>
       </div>
     );

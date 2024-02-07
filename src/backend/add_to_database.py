@@ -20,21 +20,23 @@ def get_new_id(db, collection):
     
 def add_template(name, description, tags):
     db = connect_to_database()
-    collection = db["Templates_Data"]
+    collection = "Templates_Data"
     current_date_time = datetime.now()
     dt_string = current_date_time.strftime("%d/%m/%Y")
+    print(dt_string)
 
     document = {"_id": get_new_id(db,collection), # Increment of last elements ID
                 "PlotArray": [], #Initially has 0 Plots
                 "Name": name,
                 "Description": description,
                 "Tags": tags,
-                "LastModified": current_date_time,
-                "DateCreated": current_date_time
+                "LastModified": dt_string,
+                "DateCreated": dt_string
                 }
     
-    result = collection.insert_one(document)
+    result = db[collection].insert_one(document)
     print(f"Inserted document id: {result.inserted_id}")
+    return document
 
 def add_plot():
     db = connect_to_database()
