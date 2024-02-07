@@ -1,6 +1,6 @@
 import unittest
 import plotly.graph_objs as go
-from backend.plotly_interface import generate_plot_png, update_traces
+from backend.plotly_interface import generate_plot, update_traces
 import json
 import os
 import hashlib
@@ -11,13 +11,6 @@ import piexif
 
 
 class TestEntireConfiguration(unittest.TestCase):
-
-    def hash_image(self, image):
-        image_data_without_metadata = piexif.remove(image)
-
-        hash_function = hashlib.md5()
-        hash_function.update(image_data_without_metadata)
-        return hash_function.hexdigest()
 
 
     def setUp(self):
@@ -83,14 +76,12 @@ class TestEntireConfiguration(unittest.TestCase):
             title_font_color = "black"
         )
 
-        test_image, test_title = generate_plot_png(test_config_json, data_json)
+        test_image = generate_plot(test_config_json, data_json)
 
-        manual_image = pio.to_image(self.manual_fig,format='png')
 
-        hashed_manual = self.hash_image(manual_image)
-        hashed_test = self.hash_image(test_image)
+        self.assertEqual(self.manual_fig.data, self.test_fig.data)
+        self.assertEqual(self.manual_fig.layout, self.test_fig.layout)
 
-        self.assertEqual(hashed_manual, hashed_test)
 
     def tearDown(self):
         os.chdir(os.path.dirname(os.path.abspath(__file__)))
