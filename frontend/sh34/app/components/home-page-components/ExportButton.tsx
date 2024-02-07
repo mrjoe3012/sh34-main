@@ -13,7 +13,6 @@ export const ExportButton = ({ templateID, page }:ExportButtonProps) =>{
   const handleExport = async() => {
     setDownloading(true);
     const url = '/api/generate-doc';
-    console.log('bruh');
     try{
       const response = await fetch(url,{
         method: 'POST',
@@ -26,18 +25,15 @@ export const ExportButton = ({ templateID, page }:ExportButtonProps) =>{
       console.log('Sending:', requestBody);
       console.log(response);
       if(response.ok){
-        console.log("awe");
         const contentDisposition = response.headers.get('Content-Disposition');
         let filename = 'downloaded_file.docx';
         if (contentDisposition){
-          console.log("awe");
           const filenameMatch = contentDisposition.match(/filename="([^"]+)"/);
           if (filenameMatch && filenameMatch.length > 1){
             filename = filenameMatch[1];
           }
         }
         const blob = await response.blob();
-        console.log("awd");
         const url = window.URL.createObjectURL(blob);
         console.log(blob);
         const link = document.createElement('a');
