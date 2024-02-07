@@ -7,17 +7,16 @@ import hashlib
 from PIL import Image
 import plotly.io as pio
 import io
+import piexif
 
 
 class TestEntireConfiguration(unittest.TestCase):
 
     def hash_image(self, image):
-        image_data = list(image.getdata())
-        image_without_exif = Image.new(image.mode, image.size)
-        image_without_exif.putdata(image_data)
+        image_data_without_metadata = piexif.remove(image)
 
         hash_function = hashlib.md5()
-        hash_function.update(image_without_exif)
+        hash_function.update(image_data_without_metadata)
         return hash_function.hexdigest()
 
 
