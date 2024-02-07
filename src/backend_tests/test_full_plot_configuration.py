@@ -6,6 +6,7 @@ import os
 import hashlib
 from PIL import Image
 import plotly.io as pio
+import io
 
 
 class TestEntireConfiguration(unittest.TestCase):
