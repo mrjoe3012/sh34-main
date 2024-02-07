@@ -12,8 +12,15 @@ import io
 class TestEntireConfiguration(unittest.TestCase):
 
     def hash_image(self, image):
+
+        if not isinstance(image, bytes):
+            image_data = image.read()
+        else:
+            image_data = image
+
+        
         hash_function = hashlib.md5()
-        hash_function.update(image)
+        hash_function.update(image_data)
         return hash_function.hexdigest()
 
 
