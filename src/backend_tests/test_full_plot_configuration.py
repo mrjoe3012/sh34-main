@@ -84,10 +84,10 @@ class TestEntireConfiguration(unittest.TestCase):
 
         self.test_image = generate_plot_png(test_config_json, data_json)
 
-        manual_image = pio.to_image(self.manual_fig,format='png')
+        self.manual_image = pio.to_image(self.manual_fig,format='png')
 
-        hashed_manual = self.hash_image(self, manual_image)
-        hashed_test = self.hash_image(self, self.test_image)
+        hashed_manual = self.hash_image(self.manual_image)
+        hashed_test = self.hash_image(self.test_image)
 
         self.assertEqual(hashed_manual, hashed_test)
 
