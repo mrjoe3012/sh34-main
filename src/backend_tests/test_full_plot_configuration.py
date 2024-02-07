@@ -1,6 +1,6 @@
 import unittest
 import plotly.graph_objs as go
-from backend.plotly_interface import generate_plot_html, update_traces
+from backend.plotly_interface import generate_plot_png, update_traces
 import json
 import os
 import hashlib
@@ -10,8 +10,7 @@ import plotly.io as pio
 
 class TestEntireConfiguration(unittest.TestCase):
 
-    def plot_to_image_hash(self, fig):
-        bytes = pio.to_image(fig, format="png")
+    def hash_image(self, image):
 
         image = Image.open(io.BytesIO(bytes))
 
@@ -83,12 +82,14 @@ class TestEntireConfiguration(unittest.TestCase):
             title_font_color = "black"
         )
 
-        self.test_fig = generate_plot_html(test_config_json, data_json, False)
+        self.test_image = generate_plot_png(test_config_json, data_json)
 
-        test_hash = self.plot_to_image_hash(self.test_fig)
-        manual_hash = self.plot_to_image_hash(self.manual_fig)
+        manual_image, title = pio.to_image(self.manual_fig,format='png')
 
-        self.assertEqual(test_hash, manual_hash)
+        hashed_manual = self.hash_image(self, manual_image)
+        hashed_test = self.hash_image(self, self.test_image)
+
+        self.assertEqual(hashed_manual, hashed_test)
 
     def tearDown(self):
         os.chdir(os.path.dirname(os.path.abspath(__file__)))
