@@ -79,9 +79,14 @@ export const PlotElement = (props: PlotElementProps) => {
               </div>
           </div>
 
+
+
         </div>
 
-        <div className={`mt-5 ${displayPreview ? 'border-4 border-gray-400 rounded-lg' : '' }`}>
+
+        {displayPreview && <div className='h-10 bg-gray-400 w-1 ml-auto mr-auto'></div>}
+        <div className={`${displayPreview ? 'border-4 border-gray-400 rounded-lg' : '' }`}>
+
                 {displayPreview &&
                   <Plot
                   data={plotlyJSON.data}
@@ -90,7 +95,6 @@ export const PlotElement = (props: PlotElementProps) => {
                   />
                 }
           </div>
-
 
 
       </div>

@@ -7,7 +7,7 @@ export const StructurePage = () => {
     const {plots} = useTemplatePageContext();
     return (
 
-        <div className="">
+        <div className="mb-10">
 
             <div className="mb-5 flex justify-between">
                 <NewPlotButton />
