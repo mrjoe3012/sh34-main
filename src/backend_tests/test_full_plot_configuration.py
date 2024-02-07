@@ -67,7 +67,7 @@ class TestEntireConfiguration(unittest.TestCase):
             title_text = "test_title_default",
             title_font_family = "Arial",
             title_font_size = 12,
-            title_font_color = "black"
+            title_font_color = "black",
             xaxis_tickangle = 0,
             xaxis_side = "top",
             xaxis_tickfont_family = "Arial",
@@ -84,7 +84,7 @@ class TestEntireConfiguration(unittest.TestCase):
 
         properties = build_property_dict(test_config_json)
 
-        self.manual_fig = update_annotations(self.manual_fig,)
+        self.manual_fig = update_annotations(self.manual_fig,properties)
 
         test_image, test_title = generate_plot_png(test_config_json, data_json)
 
