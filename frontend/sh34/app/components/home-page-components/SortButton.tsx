@@ -3,19 +3,22 @@ import { useState } from "react";
 import { useHomePageContext } from "@app/home/HomePageContext";
 
 export const SortButton = () => {
+    console.log("SortButton");
     const {templates, setTemplates} = useHomePageContext();
     const [ascendingClicked, setAscendingClicked] = useState(true);
     const [descendingClicked, setDescendingClicked] = useState(false);
       
     const handleAscendingClick = () => {
       console.log(templates);
-      // setTemplates([]);
+      setTemplates([...templates.sort((a, b) => a.Name.localeCompare(b.Name))]);
       console.log(templates);
       setAscendingClicked(true);
       setDescendingClicked(false);
     }
   
     const handleDescendingClick = () => {
+      setTemplates([...templates.sort((b,a) => a.Name.localeCompare(b.Name))]);
+      console.log(templates);
       setAscendingClicked(false);
       setDescendingClicked(true);
     }

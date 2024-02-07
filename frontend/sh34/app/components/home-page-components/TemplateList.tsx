@@ -3,7 +3,7 @@ import { TemplateListHeader } from "./TemplateListHeader";
 import { AssetElement } from "./AssetElement";
 import { useHomePageContext } from "@app/home/HomePageContext";
 
-export const TemplateList = async () => {
+export const TemplateList = () => {
   const {templates, setTemplates} = useHomePageContext();
   function onclick(){
     console.log(templates);
