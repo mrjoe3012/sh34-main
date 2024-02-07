@@ -1,7 +1,7 @@
 """This file is the backend's entrypoint."""
 import json
 from flask import Flask, Response, request, make_response
-from backend import load_templates, load_plots_from_template, return_docx, generate_plot_html
+from backend import load_templates, load_plots_from_template, return_docx, generate_plot_html, add_template, add_plot
 
 app = Flask(__name__)
 
@@ -108,7 +108,7 @@ def add_template():
 
     # Validate Data
 
-    # Call Function in add_to_database
+    add_template()
 
     # Send response
     # return jsonify({"message": "Template added successfully", "template": new_template}), 201
