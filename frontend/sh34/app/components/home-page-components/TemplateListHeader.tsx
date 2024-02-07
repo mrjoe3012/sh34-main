@@ -4,25 +4,25 @@ import { SortButton } from "./SortButton";
 
 export const TemplateListHeader = () => {
   const [selectedOption, setSelectedOption] = useState("_id");
-  
+
     return(
         <div className=''>
           <div className='grid grid-cols-7 p-4'>
     
             <div className='col-start-1'>
-              <h2 className="text-lg font-bold">TemplateID</h2>
+              <h2 className={`text-lg font-bold ${selectedOption === "_id" ? 'underline underline-offset-4 decoration-RES_ORANGE decoration-4' : ''}`}>TemplateID</h2>
             </div>
     
             <div className='col-start-2'>
-              <h2 className='text-lg font-bold'>Template Name</h2>
+              <h2 className={`text-lg font-bold ${selectedOption === "Name" ? 'underline underline-offset-4 decoration-RES_ORANGE decoration-4' : ''}`}>Template Name</h2>
             </div>
     
             <div className='col-start-3'>
-              <h2 className='text-lg font-bold'>Creation Date</h2>
+              <h2 className={`text-lg font-bold ${selectedOption === "DateCreated" ? 'underline underline-offset-4 decoration-RES_ORANGE decoration-4' : ''}`}>Creation Date</h2>
             </div>
     
             <div className='col-start-4'>
-              <h2 className='text-lg font-bold'>Last Modified</h2>  
+              <h2 className={`text-lg font-bold ${selectedOption === "LastModified" ? 'underline underline-offset-4 decoration-RES_ORANGE decoration-4' : ''}`}>Last Modified</h2>  
             </div>
     
             <div className='col-start-5 flex justify-end'>
