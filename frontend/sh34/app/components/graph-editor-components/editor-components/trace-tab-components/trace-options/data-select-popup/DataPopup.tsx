@@ -1,4 +1,6 @@
 import React, { use, useEffect, useState } from 'react';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 
 import { treeStructure, DataStructure, OptionsContainer, Option } from './treeStructure';
 
@@ -38,6 +40,17 @@ export const DataPopup = (props: DataPopupProps) => {
         setYFieldTag(tag ?? "Undefined")
     };
 
+        // State to keep track of which dropdowns are open
+        const [openDropdowns, setOpenDropdowns] = useState<{ [key: string]: boolean }>({});
+
+        // Toggles the open state of a dropdown
+        const toggleDropdown = (key: string) => {
+            setOpenDropdowns((prevOpenDropdowns) => ({
+                ...prevOpenDropdowns,
+                [key]: !prevOpenDropdowns[key],
+            }));
+        };
+
 
     const RenderOptions = ({ data, dataTitle }: { data: DataStructure | OptionsContainer, dataTitle: string }) => {
 
@@ -65,12 +78,22 @@ export const DataPopup = (props: DataPopupProps) => {
 
             return (
                 <>
-                    {Object.entries(data).map(([key, value]) => (
-                        <div key={key}>
-                            <p className="mb-2 font-bold">{key}</p>
-                            <RenderOptions data={value} dataTitle={dataTitle + " - " + key}/>
-                        </div>
-                    ))}
+                    {Object.entries(data).map(([key, value]) => {
+                        const isOpen = openDropdowns[key];
+                        return (
+                            <div key={key}>
+                                <p className="mb-2 font-bold cursor-pointer" onClick={() => toggleDropdown(key)}>
+                                    {isOpen ? <ExpandMoreIcon /> : <ChevronRightIcon />} {key}
+                                </p>
+                                {/* Only render the content if the dropdown is open */}
+                                {isOpen && (
+                                    <div style={{ marginLeft: '1em' }}> {/* Indent nested content */}
+                                        <RenderOptions data={value} dataTitle={dataTitle + " - " + key}/>
+                                    </div>
+                                )}
+                            </div>
+                        );
+                    })}
                 </>
             );
 
