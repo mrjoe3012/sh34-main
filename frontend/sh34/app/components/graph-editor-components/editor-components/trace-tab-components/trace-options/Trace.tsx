@@ -7,6 +7,13 @@ import { MarkerConstantOption } from "@app/components/graph-editor-components/ed
 import Image from "next/image";
 import TrashIcon from "@app/images/trash-icon.svg"
 import { TraceType } from "@app/modules/Config";
+import { DataPopup } from "./data-select-popup/DataPopup";
+
+import { TreeView } from '@mui/x-tree-view/TreeView';
+import { TreeItem } from '@mui/x-tree-view/TreeItem';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import { useState } from "react";
 
 interface TraceProps {
     trace: TraceType
@@ -15,6 +22,7 @@ interface TraceProps {
 export const Trace = (props : TraceProps) => {
 
     const {config,setConfig} = useConfig()
+    const [showDataPopup, setShowDataPopup] = useState(false);
 
     const changeTraceName = (inputValue: string) => {
 
@@ -31,13 +39,13 @@ export const Trace = (props : TraceProps) => {
             ...config,
             traces: updatedTraces
         });
-        
+
     }
 
     const changeTraceType = (newType: string) => {
         const updatedTraces = config.traces.map(trace => {
             if (trace.id === props.trace.id) {
-                return { ...trace, plotType: newType }; 
+                return { ...trace, plotType: newType };
             }
             return trace;
         });
@@ -50,10 +58,10 @@ export const Trace = (props : TraceProps) => {
 
     const changeTraceIndicator = (newIndicator: string) => {
         // Need to add this prefix as the value from the select is just the indicator, but the configJSON takes in "/breakdown_by_indicator/indicator"
-        newIndicator = "/breakdown_by_indicator/" + newIndicator 
+        newIndicator = "/breakdown_by_indicator/" + newIndicator
         const updatedTraces = config.traces.map(trace => {
             if (trace.id === props.trace.id) {
-                return { ...trace, plotIndicator: newIndicator }; 
+                return { ...trace, plotIndicator: newIndicator };
             }
             return trace;
         });
@@ -67,7 +75,7 @@ export const Trace = (props : TraceProps) => {
     const changeMarkerColourConstant = (inputValue: string) => {
         const updatedTraces = config.traces.map(trace => {
             if (trace.id === props.trace.id) {
-                return { ...trace, markerColour: "#" + inputValue }; 
+                return { ...trace, markerColour: "#" + inputValue };
             }
             return trace;
         });
@@ -77,10 +85,6 @@ export const Trace = (props : TraceProps) => {
             traces: updatedTraces
         });
     };
-
-    const changeMarkerColourScale = (inputValue: string) => {
-
-    }
 
     const deleteTrace = () => {
         // Filter out the trace with the id you want to delete
@@ -92,6 +96,12 @@ export const Trace = (props : TraceProps) => {
             traces: updatedTraces
         });
     };
+
+    const handleDataPopupButton = () => {
+        setShowDataPopup(!showDataPopup)
+    }
+
+
 
     return (
         <div className="bg-[#e6e7eb] py-3 rounded-md">
@@ -105,7 +115,11 @@ export const Trace = (props : TraceProps) => {
                 < GenericTextInputOption placeholder="" labelName="Name" displayLabel={true} width="w-full" textPos="" plotFunction={changeTraceName} contentOnRender={props.trace.name} />
                 < GenericIndicatorOption plotFunction={changeTraceIndicator} contentOnRender={props.trace.plotIndicator} labelName="Indicator" displayLabel={true}/>
                 < MarkerConstantOption trace={props.trace} plotFunction={changeMarkerColourConstant} />
+                <button onClick={handleDataPopupButton}>Open</button>
+                {showDataPopup && <DataPopup onClose={handleDataPopupButton}/>}
             </div>
+
+
         </div>
     )
 }
