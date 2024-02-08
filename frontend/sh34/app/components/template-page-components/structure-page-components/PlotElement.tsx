@@ -1,6 +1,7 @@
 import Image from 'next/image';
 
-import LineGraph from "@app/images/line-graph.png"
+import ScatterGraph from "@app/images/scatter-graph.svg"
+import LineGraph from "@app/images/line-graph.svg"
 import MultiGraph from "@app/images/multi-graph.svg"
 import PieChart from "@app/images/pie-chart.svg"
 import TrashIcon from "@app/images/trash-icon.svg"
@@ -44,7 +45,7 @@ export const PlotElement = (props: PlotElementProps) => {
         Images = LineGraph;
         break;
       case 'scatter':
-          Images = LineGraph;
+          Images = ScatterGraph;
           break;
       default:
         Images = BarGraph;
