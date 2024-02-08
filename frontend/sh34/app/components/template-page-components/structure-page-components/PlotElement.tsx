@@ -35,16 +35,16 @@ export const PlotElement = (props: PlotElementProps) => {
   let Images;
   if (plot.config_file.traces.length === 1) {
     switch(plot.config_file.traces[0].plotType) {
-      case 'bar':
+      case 'Bar':
         Images = BarGraph;
         break;
-      case 'pie':
+      case 'Pie':
         Images = PieChart;
         break;
-      case 'line':
+      case 'Line':
         Images = LineGraph;
         break;
-      case 'scatter':
+      case 'Scatter':
           Images = ScatterGraph;
           break;
       default:
