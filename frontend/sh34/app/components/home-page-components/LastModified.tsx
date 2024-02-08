@@ -9,7 +9,7 @@ interface AssetElementProps{
 export const LastModified = (props: AssetElementProps) => {
     const template = props.template;
     const [lastModifiedDate, setLastModifiedDate] = useState('');
-
+    console.log("----------------")
     console.log("Last Modified Date:", template.LastModified);
     console.log("Date Now:", new Date());
 
