@@ -1,5 +1,5 @@
 "use client";
-import React, { ReactNode} from "react";
+import React, { ReactNode, useEffect} from "react";
 import { useContext, useState } from "react";
 import { Config } from "@app/modules/Config";
 import { PlotData, TemplateData } from "@app/modules/db";
@@ -45,10 +45,31 @@ interface ConfigProviderProps {
     children: ReactNode; // This tells TypeScript that children can be any valid React node
 }
 
+async function updatePlotConfig(id: number, config: Config): Promise<void> {
+    const response = await fetch(
+        '/api/update-plot-config', {
+            method: 'POST',
+            headers: {
+                'Content-Type' : 'application/json',
+            },
+            body: JSON.stringify({
+                'plotId' : id,
+                'plotConfig' : config,
+            }),
+        }
+    );
+    if (response.status != 200) {
+        console.error(`Failed to update plot config. id: ${id} config: ${config}`);
+    }
+}
   
 export const ConfigProvider: React.FC<ConfigProviderProps> = (props: ConfigProviderProps) => {
     const [config, setConfig] = useState<Config>(props.plot.config_file);
     const template = props.template;
+
+    useEffect(() => {
+        updatePlotConfig(props.plot._id, config);
+    }, [config]);
 
     // At the top of this function, we created a config state with an initial state of {}.
     // This checks to see if the config state is still empty. If it is, instead of returning any components,

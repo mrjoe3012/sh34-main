@@ -44,6 +44,23 @@ export async function loadCollection<T extends Document>(dbName: string, collect
     return data;
 }
 
+export async function updateCollection<T extends Document>(dbName: string, collectionName: string, documents: WithId<T>[]) : Promise<void> {
+    const client = getMongoClient();
+    await client.connect();
+    const db = client.db(dbName);
+    const collection = db.collection(collectionName);
+    for (const document of documents) {
+        const filter = {
+            '_id' : document._id
+        };
+        const result = await collection.updateOne(
+            filter, {'$set' : document}
+        );
+        if (!result.acknowledged)
+            console.warn(`Failed to update database. Document: ${document}`);
+    }
+}
+
 export async function loadTemplates(filter: Filter<TemplateData>) : Promise<WithId<TemplateData>[]> {
     const templates = await loadCollection<TemplateData>(
         DB_NAME,
@@ -80,4 +97,16 @@ export async function loadTemplateFromPlot(plot: WithId<PlotData>): Promise<With
     };
     const templates = await loadTemplates(filter);
     return templates[0];
+}
+
+// update each plot passed into this function
+// assumes they already exist in the database
+export async function updatePlots(plots: WithId<PlotData>[]): Promise<void> {
+    await updateCollection<PlotData>(DB_NAME, PLOTS_COLLECTION, plots);
+}
+
+// update each template passed into this function
+// assumes they already exist in the database
+export async function updateTemplates(templates: WithId<TemplateData>[]): Promise<void> {
+    await updateCollection<TemplateData>(DB_NAME, TEMPLATES_COLLECTION, templates);
 }
