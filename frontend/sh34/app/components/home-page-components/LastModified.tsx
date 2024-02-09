@@ -9,9 +9,7 @@ interface AssetElementProps{
 export const LastModified = (props: AssetElementProps) => {
     const template = props.template;
     const [lastModifiedDate, setLastModifiedDate] = useState('');
-    console.log("----------------")
-    console.log("Last Modified Date:", template.LastModified);
-    console.log("Date Now:", new Date());
+
 
 
 
@@ -19,13 +17,17 @@ export const LastModified = (props: AssetElementProps) => {
         const lastModified = new Date(template.LastModified);
         const currentTime = new Date();
 
+        console.log("----------------")
+        console.log("Last Modified Date:", lastModified);
+        console.log("Date Now:", currentTime);
+
         if (lastModified > currentTime || isNaN(lastModified.getTime())) {
             setLastModifiedDate("Invalid date");
         }else{
-            const timeDifferenceInSeconds = Math.abs(currentTime.getTime() - lastModified.getTime()) ;
+            const timeDifferenceInSeconds = (currentTime.getTime() - lastModified.getTime()) /1000 ;
             console.log(timeDifferenceInSeconds);
         // Calculate years
-        const years = (timeDifferenceInSeconds / (365 * 24 * 60 * 60));
+        const years = Math.floor(timeDifferenceInSeconds / (365 * 24 * 60 * 60));
         // Remove years from the time difference
         let remainingSeconds = timeDifferenceInSeconds - years * (365 * 24 * 60 * 60);
         console.log(years);
@@ -52,33 +54,33 @@ export const LastModified = (props: AssetElementProps) => {
 
         // Calculate minutes based on 60 seconds per minute
         const minutes = Math.floor(remainingSeconds / 60);
-
+        console.log(months);
         let formattedTimeDifference = '';
 
             if (years > 1){
-                formattedTimeDifference = `over ${years} year${years > 1 ? 's' : ''} ago`;
+                formattedTimeDifference = `Over ${years} Year${years > 1 ? 's' : ''} Ago`;
+            }else if(years === 1 && months <= 1){
+                formattedTimeDifference = 'A Year Ago'
             }else if (months > 1){
-                formattedTimeDifference = `over ${months} month${months > 1 ? 's' : ''} ago`;
-            }else if (months === 1){
-                formattedTimeDifference = `a month ago`;
-            }else if (weeks > 1){
-                formattedTimeDifference = `over ${weeks} week${weeks > 1 ? 's' : ''} ago`;
-            }else if (weeks === 1){
-                formattedTimeDifference = `a week ago`;
+                formattedTimeDifference = `Over ${months} Month${months > 1 ? 's' : ''} Ago`;
+            }else if (months === 1 && weeks <= 1){
+                formattedTimeDifference = `A Month Ago`;
+            }else if (weeks > 1 && days <= 1){
+                formattedTimeDifference = `Over ${weeks} Week${weeks > 1 ? 's' : ''} Ago`;
+            }else if (weeks === 1 && days <= 1){
+                formattedTimeDifference = `A Week Ago`;
             }else if (days > 1){
-                formattedTimeDifference = `over ${days} day${days > 1 ? 's' : ''} ago`;
-            }else if (days === 1){
-                formattedTimeDifference = `a day ago`;
+                formattedTimeDifference = `Over ${days} Day${days > 1 ? 's' : ''} Ago`;
+            }else if (days === 1 && hours <= 2){
+                formattedTimeDifference = `A Day Ago`;
             }else if (hours > 1){
-                formattedTimeDifference = `over ${hours} hour${hours > 1 ? 's' : ''} ago`;
-            }else if (hours === 1){
-                formattedTimeDifference = `an hour ago`;
+                formattedTimeDifference = `Over ${hours} Hour${hours > 1 ? 's' : ''} Ago`;
+            }else if (hours === 1 && minutes <= 5){
+                formattedTimeDifference = `An Hour Ago`;
             }else if (minutes > 1){
-                formattedTimeDifference = `over ${minutes} minute${minutes > 1 ? 's' : ''} ago`;
-            }else if (minutes === 1){
-                formattedTimeDifference = `a minute ago`;
+                formattedTimeDifference = `Over ${minutes} Minute${minutes > 1 ? 's' : ''} Ago`;
             }else{
-                formattedTimeDifference = `just now`;
+                formattedTimeDifference = `Just Now`;
             }
             setLastModifiedDate(formattedTimeDifference);
         }
