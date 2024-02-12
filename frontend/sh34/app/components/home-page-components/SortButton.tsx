@@ -15,7 +15,7 @@ export const SortButton = (props: SortButtonProps) => {
       
     const handleAscendingClick = () => {
       if (selectedOption === "_id") {
-        setTemplates([...templates.sort((a, b) => String(a._id).localeCompare(String(b._id)))]);
+        setTemplates([...templates.sort((a, b) => a._id - b._id)]);
       } else if (selectedOption === "Name") { 
         setTemplates([...templates.sort((a, b) => a.Name.localeCompare(b.Name))]);
       } else if (selectedOption === "DateCreated") {
@@ -29,7 +29,7 @@ export const SortButton = (props: SortButtonProps) => {
   
     const handleDescendingClick = () => {
       if (selectedOption === "_id") {
-        setTemplates([...templates.sort((b,a) => String(a._id).localeCompare(String(b._id)))]);
+        setTemplates([...templates.sort((b,a) => a._id - b._id)]);
       } else if (selectedOption === "Name") { 
         setTemplates([...templates.sort((b,a) => a.Name.localeCompare(b.Name))]);
       } else if (selectedOption === "DateCreated") {
