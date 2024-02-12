@@ -9,7 +9,7 @@ interface SortButtonProps {
 
 export const SortButton = (props: SortButtonProps) => {
     const { selectedOption } = props;
-    const {templates, setTemplates} = useHomePageContext();
+    const {templates, setTemplates, plotsNeedSorting, setPlotsNeedSorting} = useHomePageContext();
     const [ascendingClicked, setAscendingClicked] = useState(true);
     const [descendingClicked, setDescendingClicked] = useState(false);
       
@@ -45,9 +45,18 @@ export const SortButton = (props: SortButtonProps) => {
       if (selectedOption === "LastModified" || selectedOption === "DateCreated") {
         handleDescendingClick();
       }else {
-      handleAscendingClick();
+        handleAscendingClick();
       }
     }, [selectedOption]);
+  
+    // sort if the templates are modified
+    useEffect(() => {
+      setPlotsNeedSorting(false);
+      if (ascendingClicked)
+        handleAscendingClick();
+      else
+        handleDescendingClick();
+    }, [plotsNeedSorting])
 
       return(
           <div className='flex flex-row bg-[#EAEAEA] w-[200px] h-[35px] justify-center rounded-xl'>

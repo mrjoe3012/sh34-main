@@ -7,6 +7,8 @@ import { useContext } from "react";
 export interface HomePageContextType { 
     templates: WithId<TemplateData>[],
     setTemplates: React.Dispatch<React.SetStateAction<WithId<TemplateData>[]>>,
+    plotsNeedSorting: boolean,
+    setPlotsNeedSorting: React.Dispatch<React.SetStateAction<boolean>>,
 };
 
 export const HomePageContext = React.createContext<HomePageContextType | undefined>(undefined);
@@ -26,8 +28,9 @@ export interface HomePageContextProps {
 
 export const HomePageContextProvider = (props: HomePageContextProps) => {
     const [templates, setTemplates] = useState<WithId<TemplateData>[]>(props.templates);
+    const [plotsNeedSorting, setPlotsNeedSorting] = useState<boolean>(false);
     return (
-        <HomePageContext.Provider value={{templates, setTemplates}}>
+        <HomePageContext.Provider value={{templates, setTemplates, plotsNeedSorting, setPlotsNeedSorting}}>
             {props.children}
         </HomePageContext.Provider>
     )
