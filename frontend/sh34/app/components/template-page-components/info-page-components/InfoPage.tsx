@@ -6,8 +6,8 @@ import { useTemplatePageContext } from "@app/template-page/TemplatePageContext";
 export const InfoPage = () => {
     const {template} = useTemplatePageContext();
     return (
-        <div className="">
-            
+        <div className="mb-10">
+
             <div className="flex flex-row mb-8 justify-between">
                 <TemplateNameInput name={template.Name} />
                 <TemplateLastModified lastModified={template.LastModified} />
@@ -15,6 +15,8 @@ export const InfoPage = () => {
 
             <TemplateDescriptionInput description={template.Description} />
 
+            <div className="flex justify-between">
+            <div>
             <p className="text-2xl"> Tags </p>
             <div className="flex justify-between">
                 <div className={`text-xl font-medium w-[700px] bg-[#E7E7E7] rounded-xl flex px-4 gap-x-1 overflow-x-auto`}>
@@ -25,9 +27,13 @@ export const InfoPage = () => {
                     })}
                 </div>
             </div>
-            <div className={`text-center text-xl font-medium text-white h-[60px] w-[150px] bg-[#D72A2A] rounded-xl flex justify-center items-center border-[2px] border-slate-700`}>
+            </div>
+
+            <div className={`self-end text-center text-xl font-medium text-white h-[60px] w-[150px] bg-[#D72A2A] rounded-xl flex justify-center items-center border-[2px] border-slate-700`}>
                 <p> Delete </p>
             </div>
+            </div>
+
 
         </div>
     )
