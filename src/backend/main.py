@@ -1,7 +1,7 @@
 """This file is the backend's entrypoint."""
 import json
 from flask import Flask, Response, request, make_response
-from backend import (load_templates, load_plots_from_template, return_docx, generate_plot_html, 
+from backend import (load_templates, load_plots_from_template, return_docx, generate_plot_html,
                      add_template, add_plot)
 
 app = Flask(__name__)
@@ -103,7 +103,9 @@ def unpack_data():
 @app.route('/api/add-template', methods=['POST'])
 def add_template_route():
     """
-        Receives json data for a new template, and calls the functions to add the template to the database, and returns a response
+    Receives json data for a new template,
+    and calls the functions to add the template
+    to the database, and returns a response
     """
     data = request.json
     name = data.get('Name')
@@ -120,7 +122,9 @@ def add_template_route():
 @app.route('/api/add-plot', methods=['POST'])
 def add_plot_route():
     """
-        Receives json data for a new Plot, and calls the functions to add the Plot to the database, and returns a response
+    Receives json data for a new Plot,
+    and calls the functions to add the Plot
+    to the database, and returns a response
     """
     data = request.json
     template_id = data['template_id']

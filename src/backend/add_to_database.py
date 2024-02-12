@@ -1,7 +1,14 @@
+"""
+Modules for adding/modifying database
+entries with new templates and plots.
+"""
 from datetime import datetime
-from .database import get_client, load_collection, load_plots_from_template, load_templates, PLOT_COLLECTION_NAME, TEMPLATE_COLLECTION_NAME
 from typing import Any
-
+from .database import (
+    get_client, load_collection,
+    load_plots_from_template, load_templates,
+    PLOT_COLLECTION_NAME, TEMPLATE_COLLECTION_NAME
+)
 def connect_to_database():
     """
     Connect to database.
@@ -15,7 +22,7 @@ def get_new_id(collection):
     Given a collection, return the id that the next element added to the collection should have
     """
     collection_data = load_collection(collection, {})
-    last_id = max([data['_id'] for data in collection_data])
+    last_id = max(data['_id'] for data in collection_data)
     return last_id + 1
 
 def get_next_order(template: dict[str, Any]) -> int:
@@ -27,7 +34,7 @@ def get_next_order(template: dict[str, Any]) -> int:
     :returns: The next ordering value.
     """
     plots = load_plots_from_template(template)
-    return max([plot['order'] for plot in plots]) + 1
+    return max(plot['order'] for plot in plots) + 1
 
 def add_template(name, description, tags):
     """
@@ -60,19 +67,19 @@ def add_plot(template_id: str, config_file: dict[str, Any]) -> dict[str, Any]:
     :param config_file: The plot's configuration.
     :returns: The added plot.
     """
-    id = get_new_id(PLOT_COLLECTION_NAME)
+    next_id = get_new_id(PLOT_COLLECTION_NAME)
     template = load_templates({'_id' : template_id})[0]
     order = get_next_order(template)
 
-    document = {"_id": id,
+    document = {"_id": next_id,
                 "config_file": config_file, 
                 "order": order
                 }
 
     db = connect_to_database()
     collection = db[PLOT_COLLECTION_NAME]
-    result = collection.insert_one(document)
+    collection.insert_one(document)
     collection = db[TEMPLATE_COLLECTION_NAME]
-    template['PlotArray'].append(id)
+    template['PlotArray'].append(next_id)
     collection.update_one({'_id' : template_id}, {"$set" : template})
     return document
