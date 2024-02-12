@@ -13,10 +13,10 @@ import { TemplateData } from "@app/modules/db";
 import { useHomePageContext } from "@app/home/HomePageContext";
 
 export const NewTemplatePopup = (props: NewTemplatePopupProps) => {
-    const [templateName, setTemplateName] = useState('Test Name');
-    const [templateDescription, setTemplateDescription] = useState('Test Description');
+    const [templateName, setTemplateName] = useState('');
+    const [templateDescription, setTemplateDescription] = useState('');
     
-    const [templateTags, setTemplateTags] = useState<string[]>(['Test','Testing']);
+    const [templateTags, setTemplateTags] = useState<string[]>([]);
     const [tagInput, setTagInput] = useState('');
 
     // State for handling errors for TemplateNameField
