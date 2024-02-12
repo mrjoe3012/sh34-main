@@ -122,8 +122,13 @@ def add_plot_route():
     """
         Receives json data for a new Plot, and calls the functions to add the Plot to the database, and returns a response
     """
-    print("")
-    add_plot()
+    data = request.json
+    template_id = data['template_id']
+    config_file = data['config_file']
+    plot = add_plot(template_id, config_file)
+    response = Response(json.dumps(plot))
+    response.headers.set("Content-Type", "application/json")
+    return response
 
 if __name__ == "__main__":
     main()
