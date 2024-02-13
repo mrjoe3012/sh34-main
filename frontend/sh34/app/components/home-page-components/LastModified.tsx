@@ -17,20 +17,18 @@ export const LastModified = (props: AssetElementProps) => {
         const lastModified = new Date(template.LastModified);
         const currentTime = new Date();
 
-        console.log("----------------")
-        console.log("Last Modified Date:", lastModified);
-        console.log("Date Now:", currentTime);
+
 
         if (lastModified > currentTime || isNaN(lastModified.getTime())) {
             setLastModifiedDate("Invalid date");
         }else{
             const timeDifferenceInSeconds = (currentTime.getTime() - lastModified.getTime()) /1000 ;
-            console.log(timeDifferenceInSeconds);
+
         // Calculate years
         const years = Math.floor(timeDifferenceInSeconds / (365 * 24 * 60 * 60));
         // Remove years from the time difference
         let remainingSeconds = timeDifferenceInSeconds - years * (365 * 24 * 60 * 60);
-        console.log(years);
+
 
         // Calculate months based on 30 days per month
         const months = Math.floor(remainingSeconds / (30 * 24 * 60 * 60));
@@ -54,7 +52,7 @@ export const LastModified = (props: AssetElementProps) => {
 
         // Calculate minutes based on 60 seconds per minute
         const minutes = Math.floor(remainingSeconds / 60);
-        console.log(months);
+
         let formattedTimeDifference = '';
 
             if (years > 1){
