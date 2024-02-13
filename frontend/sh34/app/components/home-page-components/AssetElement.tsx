@@ -2,8 +2,8 @@
 import { TemplateData } from "@app/modules/db";
 import { WithId } from "mongodb";
 import { EditButton } from "./EditButton";
-import { ExportButton } from "./ExportButton";
-import LastModified from "./LastModified";
+import { ExportButton } from "@app/components/home-page-components/ExportButton";
+import LastModified from "@app/components/home-page-components/LastModified";
 
 
 interface AssetElementProps {
