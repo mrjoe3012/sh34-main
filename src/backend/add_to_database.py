@@ -55,7 +55,7 @@ def add_template(name, description, tags):
                 "Name": name,
                 "Description": description,
                 "Tags": tags,
-                "LastModified": dt_string,
+                "LastModified": str(current_date_time),
                 "DateCreated": dt_string
                 }
 

@@ -38,7 +38,7 @@ export const SortButton = (props: SortButtonProps) => {
         );
       } else if (selectedOption === "LastModified") {
         setTemplates(
-          [...templates.sort((a, b) => dateCmp(stringToDate(a.LastModified), stringToDate(b.LastModified)))]
+          [...templates.sort((b, a) => dateCmp(new Date(Date.parse(a.LastModified)), new Date(Date.parse(b.LastModified))))]
         );
       }
       setAscendingClicked(true);
@@ -56,7 +56,7 @@ export const SortButton = (props: SortButtonProps) => {
         )
       } else if (selectedOption === "LastModified") {
         setTemplates(
-          [...templates.sort((b, a) => dateCmp(stringToDate(a.LastModified), stringToDate(b.LastModified)))]
+          [...templates.sort((a, b) => dateCmp(new Date(Date.parse(a.LastModified)), new Date(Date.parse(b.LastModified))))]
         );
       }
       setAscendingClicked(false);

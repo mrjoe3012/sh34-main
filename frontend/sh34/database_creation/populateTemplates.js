@@ -16,7 +16,7 @@ async function populateTemplates(client) {
       Name : "Very Windy Template",
       Description : "Template to show Financial gains of an asset",
       Tags : ["Finance", "Wind"],
-      LastModified : new Date(2024,1,8,23,13,0),
+      LastModified : new Date(2024,1,8,23,13,0).toString(),
       DateCreated : "18/12/2017"
     },
     {
@@ -25,7 +25,7 @@ async function populateTemplates(client) {
       Name : "Slightly Rainy Template",
       Description: "Template to show efficiency of an asset",
       Tags: ["Efficiency","Hydro", "Wind"],
-      LastModified : new Date (2022,9,18),
+      LastModified : new Date (2022,9,18).toString(),
       DateCreated : "04/07/2019"
     },
   ]
