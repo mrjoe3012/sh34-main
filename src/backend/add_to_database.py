@@ -25,8 +25,7 @@ def get_new_id(collection):
     if len(collection_data) > 0:
         last_id = max(data['_id'] for data in collection_data)
         return last_id + 1
-    else:
-        return 1
+    return 1
 
 def get_next_order(template: dict[str, Any]) -> int:
     """
@@ -39,8 +38,7 @@ def get_next_order(template: dict[str, Any]) -> int:
     plots = load_plots_from_template(template)
     if len(plots) > 0:
         return max(plot['order'] for plot in plots) + 1
-    else:
-        return 1
+    return 1
 
 def add_template(name, description, tags):
     """
