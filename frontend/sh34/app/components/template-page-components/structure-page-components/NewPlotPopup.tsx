@@ -1,3 +1,4 @@
+import { useTemplatePageContext } from "@app/template-page/TemplatePageContext";
 import InfoIcon from "../../../images/info-icon.png"
 import Image from "next/image";
 
@@ -6,8 +7,11 @@ interface NewPlotPopupProps {
 }
 
 import React, { useState } from 'react';
+import { PlotData } from "@app/modules/db";
+import { WithId } from "mongodb";
 
 export const NewPlotPopup = (props: NewPlotPopupProps) => {
+    const {template, plots, setPlots} = useTemplatePageContext();
     const [plotTitle, setPlotTitle] = useState('');
     const [plotType, setPlotType] = useState('');
 
@@ -42,9 +46,37 @@ export const NewPlotPopup = (props: NewPlotPopupProps) => {
         }
 
         if (errorRaised) {return}
-        // Handle submit logic here
 
-        console.log({ plotTitle, plotType });
+        // read the default config file
+        // populate the fields from the input data
+        // and send it to the backend so the record can
+        // be inserted into the database
+        var defaultConfig = require("@app/config.json");
+        defaultConfig['labellingOptions']['title']['plotTitle'] = plotTitle;
+        defaultConfig['traces'][0]['plotType'] = plotType;
+        const templateId = template._id;
+        const requestData = {
+            'template_id' : templateId,
+            'config_file' : defaultConfig,
+        };
+
+        fetch(
+            '/api/add-plot', {
+                method: 'POST',
+                headers: {
+                    'Content-Type' : 'application/json',
+                },
+                body: JSON.stringify(requestData),
+            }
+        ).then(async (response) => {
+            if (response.status != 200) {
+                console.error(`Failed to send request. Status: ${response.status}`);
+            } else {
+                const plot: WithId<PlotData> = await response.json();
+                setPlots([...plots, plot]);
+            }
+        });
+
         props.closeButtonFunction()
     };
 
