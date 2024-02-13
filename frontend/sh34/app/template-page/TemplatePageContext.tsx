@@ -4,7 +4,7 @@ import { WithId } from "mongodb";
 import React, { ReactNode, useState } from "react";
 import { useContext } from "react";
 
-export interface TemplatePageContextType { 
+export interface TemplatePageContextType {
     template: WithId<TemplateData>,
     setTemplate: React.Dispatch<React.SetStateAction<WithId<TemplateData>>>,
     plots: WithId<PlotData>[],
@@ -16,7 +16,7 @@ export const TemplatePageContext = React.createContext<TemplatePageContextType |
 export const useTemplatePageContext = () => {
     const context = useContext(TemplatePageContext);
     if (!context) {
-        throw new Error("useTemplatePageContext msut be used within a ConfigProvider");
+        throw new Error("useTemplatePageContext must be used within a ConfigProvider");
     }
     return context;
 };
