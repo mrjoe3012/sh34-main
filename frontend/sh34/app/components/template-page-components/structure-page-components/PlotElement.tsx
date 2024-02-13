@@ -1,5 +1,9 @@
 import Image from 'next/image';
 
+import ScatterGraph from "@app/images/scatter-graph.svg"
+import LineGraph from "@app/images/line-graph.svg"
+import MultiGraph from "@app/images/multi-graph.svg"
+import PieChart from "@app/images/pie-chart.svg"
 import TrashIcon from "@app/images/trash-icon.svg"
 import UpArrow from "@app/images/up-arrow.svg"
 import DownArrow from "@app/images/down-arrow.svg"
@@ -28,6 +32,27 @@ export const PlotElement = (props: PlotElementProps) => {
   const [displayPreview, setDisplayPreview] = useState(false);
   const [plotlyJSON, setPlotlyJSON] = useState(initialPlotlyJSON);
 
+  let Images;
+  if (plot.config_file.traces.length === 1) {
+    switch(plot.config_file.traces[0].plotType) {
+      case 'Bar':
+        Images = BarGraph;
+        break;
+      case 'Pie':
+        Images = PieChart;
+        break;
+      case 'Line':
+        Images = LineGraph;
+        break;
+      case 'Scatter':
+          Images = ScatterGraph;
+          break;
+      default:
+        Images = BarGraph;
+    } 
+  } else {
+      Images = MultiGraph;
+    }
   useEffect(()=>{
     fetch('/api/get-plot-json', {
       method: 'POST',
@@ -49,11 +74,8 @@ export const PlotElement = (props: PlotElementProps) => {
     setDisplayPreview(!displayPreview)
   }
 
-
   return(
       <div className='text-black ' >
-
-
 
         {/* The plot box div */}
         <div className='flex drop-shadow-lg'>
@@ -67,7 +89,7 @@ export const PlotElement = (props: PlotElementProps) => {
           <div className={`flex justify-between items-center w-[750px] h-[100px] border-gray-400 bg-[#edeef2] p-3 rounded-lg border-4 px-4`}>
               <div className='flex gap-x-5 items-center'>
                 <p className='text-3xl basis-[10%]'> {plot.order.toString() + "."} </p>
-                <Image src={BarGraph} alt='BarGraph' className='w-10 h-10 basis-[15%]'/>
+                <Image src={Images} alt='Graph' className='w-10 h-10 basis-[15%]'/>
               </div>
               <h1 className='text-2xl h-fit font-medium basis-[50%] truncate'> {plot.config_file.labellingOptions.title.plotTitle} </h1>
               <div className='flex gap-x-10'>
@@ -78,11 +100,7 @@ export const PlotElement = (props: PlotElementProps) => {
                 <Image src={TrashIcon} alt='TrashIcon' className='w-8 h-8'/>
               </div>
           </div>
-
-
-
         </div>
-
 
         {displayPreview && <div className='h-10 bg-gray-400 w-1 ml-auto mr-auto'></div>}
         <div className={`${displayPreview ? 'border-4 border-gray-400 rounded-lg' : '' }`}>
@@ -95,8 +113,6 @@ export const PlotElement = (props: PlotElementProps) => {
                   />
                 }
           </div>
-
-
       </div>
     )
 };
