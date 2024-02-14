@@ -12,6 +12,7 @@ export const YAxisTickLabelOption = () => {
 
     const { config, setConfig } = useConfig();
     const [yAxisTickLabelOptionMode, setYAxisTickLabelOptionMode] = useState(<YAxisTickLabelDefaultMode />)
+    const [tabOnRender, setTabOnRender] = useState(-1);
 
     const switchToDefault = () => {
         const newConfig = { ...config };
@@ -33,15 +34,17 @@ export const YAxisTickLabelOption = () => {
         const newConfig = { ...config };
 
         newConfig.labellingOptions.yAxis.tickLabels.tickAngle = Number(inputValue);
-        
+
         setConfig(newConfig);
     }
     // On Component Load, if Custom Mode is Selected, Switch to Custom Tab
     useEffect(()=> {
         if (config["labellingOptions"]["yAxis"]["tickLabels"]["styling"]["currentStylingMode"]=="default") {
             setYAxisTickLabelOptionMode(<YAxisTickLabelDefaultMode />)
+            setTabOnRender(0)
         } else if (config["labellingOptions"]["yAxis"]["tickLabels"]["styling"]["currentStylingMode"]=="custom") {
             setYAxisTickLabelOptionMode(<YAxisTickLabelCustomMode />)
+            setTabOnRender(1)
         }
     }, [])
 
@@ -53,12 +56,13 @@ export const YAxisTickLabelOption = () => {
                 <YAxisTickLabelPositionOption />
             </div>
             <TwoTabSwitcher switchTabFunction={setYAxisTickLabelOptionMode}
-                                firstTabContent={<YAxisTickLabelDefaultMode />} 
+                                firstTabContent={<YAxisTickLabelDefaultMode />}
                                 secondTabContent={<YAxisTickLabelCustomMode />}
                                 switcherLabel1="Default"
                                 switcherLabel2="Custom"
                                 firstOptionFunction={switchToDefault}
                                 secondOptionFunction={switchToCustom}
+                                tabOnRender={tabOnRender}
                                 />
             {yAxisTickLabelOptionMode}
         </div>

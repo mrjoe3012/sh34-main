@@ -8,12 +8,27 @@ interface TwoTabSwitcherProps {
     switcherLabel2: string;
     firstOptionFunction: ()=>void;
     secondOptionFunction: ()=>void;
+    tabOnRender?: number;
 }
 
 export const TwoTabSwitcher = (props : TwoTabSwitcherProps) => {
 
     const [option1Selected, setOption1Selected] = useState(true);
     const [option2Selected, setOption2Selected] = useState(false);
+
+    useEffect(()=>{
+
+        console.log("in twotabswitcher tabonrender is: " + props.tabOnRender)
+
+        if (props.tabOnRender==0) {
+            setOption1Selected(true);
+            setOption2Selected(false);
+        } else if (props.tabOnRender==1) {
+            setOption1Selected(false);
+            setOption2Selected(true);
+        }
+
+    },[props.tabOnRender])
 
     const handleOption1Clicked = () => {
         setOption1Selected(true);

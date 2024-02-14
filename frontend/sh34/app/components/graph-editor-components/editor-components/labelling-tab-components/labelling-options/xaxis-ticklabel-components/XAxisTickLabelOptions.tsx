@@ -12,6 +12,7 @@ export const XAxisTickLabelOption = () => {
 
     const { config, setConfig } = useConfig();
     const [xAxisTickLabelOptionMode, setXAxisTickLabelOptionMode] = useState(<XAxisTickLabelDefaultMode />)
+    const [tabOnRender, setTabOnRender] = useState(-1);
 
     const switchToDefault = () => {
         const newConfig = { ...config };
@@ -33,7 +34,7 @@ export const XAxisTickLabelOption = () => {
         const newConfig = { ...config };
 
         newConfig.labellingOptions.xAxis.tickLabels.tickAngle = Number(inputValue);
-        
+
         setConfig(newConfig);
     }
 
@@ -41,25 +42,28 @@ export const XAxisTickLabelOption = () => {
     useEffect(()=> {
         if (config["labellingOptions"]["xAxis"]["tickLabels"]["styling"]["currentStylingMode"]=="default") {
             setXAxisTickLabelOptionMode(<XAxisTickLabelDefaultMode />)
+            setTabOnRender(0);
         } else if (config["labellingOptions"]["xAxis"]["tickLabels"]["styling"]["currentStylingMode"]=="custom") {
             setXAxisTickLabelOptionMode(<XAxisTickLabelCustomMode />)
+            setTabOnRender(1);
         }
     }, [])
 
     return(
-        <div className="bg-[#e6e7eb] py-3 rounded-md"> 
+        <div className="bg-[#e6e7eb] py-3 rounded-md">
             <OptionComponentTitle optionName="X-Axis Tick Label Options" />
             <div className="flex flex-col gap-y-1">
                 < GenericAngleOption plotFunction={changeXAxisTickAngle} />
                 <XAxisTickLabelPositionOption />
             </div>
             <TwoTabSwitcher switchTabFunction={setXAxisTickLabelOptionMode}
-                                firstTabContent={<XAxisTickLabelDefaultMode />} 
+                                firstTabContent={<XAxisTickLabelDefaultMode />}
                                 secondTabContent={<XAxisTickLabelCustomMode />}
                                 switcherLabel1="Default"
                                 switcherLabel2="Custom"
                                 firstOptionFunction={switchToDefault}
-                                secondOptionFunction={switchToCustom}/>
+                                secondOptionFunction={switchToCustom}
+                                tabOnRender={tabOnRender}/>
             {xAxisTickLabelOptionMode}
         </div>
     )
