@@ -525,6 +525,31 @@ def data_extract(data_json:dict[str,Any],name:str,first_value:str) -> pd.DataFra
 
     data_dict = {"x":[],"y":[]}
     monthly_data = data_json["month"]
+
+    testString = "breakdown_by_indicator.Production.date"
+    keys = testString.split('.')
+
+    current_data = data_json
+    print(type(current_data))
+
+    for key in keys[:-1]:  # Navigate through the data structure
+        if isinstance(current_data, dict) and key in current_data:
+            current_data = current_data[key]
+        else:
+            # Handle the case where the key is not found or current_data is not a dictionary
+            current_data = None
+            break  # Exit the loop since we cannot go further
+
+    # Check if we have a valid list of dictionaries and extract the dates
+    if isinstance(current_data, list) and all(isinstance(item, dict) for item in current_data):
+        dates = [item.get('date') for item in current_data if 'date' in item]
+    else:
+        dates = []
+
+    print(dates)
+
+
+
     graph_name_split = name.split('/')
     level1 = graph_name_split[1]
     named_data = monthly_data[level1]

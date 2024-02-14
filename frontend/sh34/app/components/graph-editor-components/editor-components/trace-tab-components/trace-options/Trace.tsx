@@ -116,7 +116,7 @@ export const Trace = (props : TraceProps) => {
                 < GenericIndicatorOption plotFunction={changeTraceIndicator} contentOnRender={props.trace.plotIndicator} labelName="Indicator" displayLabel={true}/>
                 < MarkerConstantOption trace={props.trace} plotFunction={changeMarkerColourConstant} />
                 <button onClick={handleDataPopupButton}>Open</button>
-                {showDataPopup && <DataPopup onClose={handleDataPopupButton}/>}
+                {showDataPopup && <DataPopup onClose={handleDataPopupButton }/>}
             </div>
 
 

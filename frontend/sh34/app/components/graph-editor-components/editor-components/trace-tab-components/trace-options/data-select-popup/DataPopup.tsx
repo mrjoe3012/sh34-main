@@ -11,6 +11,8 @@ interface DataPopupProps {
 
 export const DataPopup = (props: DataPopupProps) => {
 
+    const [selectingX, setSelectingX] = useState(true);
+
     const [currentYOptions, setCurrentYOptions] = useState<Option[] | null>(null);
     const [currentTitle, setCurrentTitle] = useState<string>('');
 
@@ -31,6 +33,8 @@ export const DataPopup = (props: DataPopupProps) => {
 
         const tag = event.currentTarget.getAttribute('data-tag');
         setXFieldTag(tag ?? "Undefined")
+
+        setSelectingX(false);
     };
 
     const handleYOptionClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -40,16 +44,16 @@ export const DataPopup = (props: DataPopupProps) => {
         setYFieldTag(tag ?? "Undefined")
     };
 
-        // State to keep track of which dropdowns are open
-        const [openDropdowns, setOpenDropdowns] = useState<{ [key: string]: boolean }>({});
+    // State to keep track of which dropdowns are open
+    const [openDropdowns, setOpenDropdowns] = useState<{ [key: string]: boolean }>({});
 
-        // Toggles the open state of a dropdown
-        const toggleDropdown = (key: string) => {
-            setOpenDropdowns((prevOpenDropdowns) => ({
-                ...prevOpenDropdowns,
-                [key]: !prevOpenDropdowns[key],
-            }));
-        };
+    // Toggles the open state of a dropdown
+    const toggleDropdown = (key: string) => {
+        setOpenDropdowns((prevOpenDropdowns) => ({
+            ...prevOpenDropdowns,
+            [key]: !prevOpenDropdowns[key],
+        }));
+    };
 
 
     const RenderOptions = ({ data, dataTitle }: { data: DataStructure | OptionsContainer, dataTitle: string }) => {
@@ -59,13 +63,13 @@ export const DataPopup = (props: DataPopupProps) => {
 
             return (
                 <>
-                    <div>
+                    <div className='ml-3'>
                         {data.xoptions.map((option,index) => (
                             <button
                                 onClick={(event) => handleXOptionClick(data.yoptions, dataTitle, event)}
                                 key={index}
                                 data-tag={option.tag}
-                                className="mb-1 mr-1 px-2 py-1 bg-blue-500 text-white rounded hover:bg-blue-700">
+                                className="mb-3 mr-1 px-2 py-1 bg-blue-500 text-white rounded hover:bg-blue-700">
                                 {option.name}
                             </button>
                         ))}
@@ -81,8 +85,8 @@ export const DataPopup = (props: DataPopupProps) => {
                     {Object.entries(data).map(([key, value]) => {
                         const isOpen = openDropdowns[key];
                         return (
-                            <div key={key}>
-                                <p className="mb-2 font-bold cursor-pointer" onClick={() => toggleDropdown(key)}>
+                            <div key={key} className='select-none'>
+                                <p className="my-1 font-bold cursor-pointer" onClick={() => toggleDropdown(key)}>
                                     {isOpen ? <ExpandMoreIcon /> : <ChevronRightIcon />} {key}
                                 </p>
                                 {/* Only render the content if the dropdown is open */}
@@ -127,24 +131,39 @@ export const DataPopup = (props: DataPopupProps) => {
                 <div className='overflow-y-auto'>
                     <p className='text-3xl mb-5'> Data Field Selector </p>
 
-                    {xFieldName}
-                    {yFieldName}
+                    <p className='text-2xl'> Step 1/2 - Selecting X Axis Data </p>
+
+                    <div className='mb-4'>
+                        <div className='flex gap-x-2'>
+                            <p>X Axis Field: </p> {currentTitle} {xFieldName}
+                        </div>
+                        <div className='flex gap-x-2'>
+                            <p>Y Axis Field: </p> {currentTitle} {yFieldName}
+                        </div>
+                    </div>
 
                     {/* Conditional rendering based on whether currentYOptions is set */}
-                    {!currentYOptions ? (
+                    {selectingX ? (
                         <RenderOptions data={treeStructure} dataTitle='' />
-                    ) : (
+                    ) : currentYOptions && (
                         <>
-                            <p className='text-2xl mb-4'>{currentTitle}</p>
+                            <p className="my-1 font-bold cursor-pointer">{currentTitle}</p>
                             <RenderYOptions yOptions={currentYOptions}  />
                         </>
                     )}
 
 
                 </div>
-                <button onClick={props.onClose} className="mt-2 px-4 py-2 bg-RES_ORANGE text-white rounded hover:bg-[#f57607] w-[35%]">
-                    Close
-                </button>
+
+                <div className='flex gap-x-3'>
+                    <button onClick={props.onClose} className="mt-2 px-4 py-2 bg-gray-500 text-white rounded hover:bg-[#828282] w-[35%]">
+                        Cancel
+                    </button>
+                    <button className="mt-2 px-4 py-2 bg-RES_ORANGE text-white rounded hover:bg-[#f57607] w-[35%]">
+                        Submit
+                    </button>
+                </div>
+
             </div>
         </div>
     );
