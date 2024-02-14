@@ -1,11 +1,14 @@
 import React, { use, useEffect, useState } from 'react';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import { useConfig } from "@app/graph-editor/ConfigContext";
 
 import { treeStructure, DataStructure, OptionsContainer, Option } from './treeStructure';
+import { TraceType } from '@app/modules/Config';
 
 interface DataPopupProps {
     onClose: () => void;
+    trace: TraceType;
 }
 
 
@@ -21,6 +24,9 @@ export const DataPopup = (props: DataPopupProps) => {
 
     const [xFieldTag, setXFieldTag] = useState<string>("")
     const [yFieldTag, setYFieldTag] = useState<string>("")
+
+    const {config,setConfig} = useConfig()
+
 
     const isOptionsContainer = (data: any): data is OptionsContainer => {
         return 'xoptions' in data && 'yoptions' in data;
@@ -123,6 +129,23 @@ export const DataPopup = (props: DataPopupProps) => {
         )
     }
 
+    const handleSubmit = (event: React.MouseEvent<HTMLButtonElement>) => {
+
+
+        const updatedTraces = config.traces.map(trace => {
+            if (trace.id === props.trace.id) {
+                return { ...trace, plotDataX: xFieldTag, plotDataY: yFieldTag };
+            }
+            return trace;
+        });
+
+        setConfig({
+            ...config,
+            traces: updatedTraces
+        });
+
+    }
+
     return (
         <div>
             <div className="fixed inset-0 bg-black bg-opacity-50 z-40" />
@@ -159,7 +182,7 @@ export const DataPopup = (props: DataPopupProps) => {
                     <button onClick={props.onClose} className="mt-2 px-4 py-2 bg-gray-500 text-white rounded hover:bg-[#828282] w-[35%]">
                         Cancel
                     </button>
-                    <button className="mt-2 px-4 py-2 bg-RES_ORANGE text-white rounded hover:bg-[#f57607] w-[35%]">
+                    <button onClick={handleSubmit} className="mt-2 px-4 py-2 bg-RES_ORANGE text-white rounded hover:bg-[#f57607] w-[35%]">
                         Submit
                     </button>
                 </div>

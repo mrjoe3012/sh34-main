@@ -114,13 +114,17 @@ def update_traces(fig, properties,data_json):
 
     for trace in properties["traces"]:
         plot_type = trace["plotType"]
-        plot_indicator = trace["plotIndicator"]
         trace_name = trace["name"]
         trace_marker_colour = trace["markerColour"]
+        plotDataX = trace["plotDataX"]
+        plotDataY = trace["plotDataY"]
+        print("plotDataX: " + plotDataX)
+        print("plotDataY: " + plotDataY)
 
         # Generating the dataframe based on the plot_indicator field.
         # NB - still no idea what the 3rd parameter is for.
-        graphData = data_extract(data_json,plot_indicator,"value")
+
+        graphData = data_extract(data_json,plotDataX,plotDataY)
 
         x_data = graphData["x"]
         y_data = graphData["y"]
@@ -512,7 +516,7 @@ def build_property_dict(config_json):
     return properties
 
 
-def data_extract(data_json:dict[str,Any],name:str,first_value:str) -> dict:
+def data_extract(data_json, plotDataX, plotDataY) -> dict:
     """
     Extracts the data from json format to a numpy DataFrame.
     :param data_json: The Json file that data is to be extracted from.
@@ -522,13 +526,10 @@ def data_extract(data_json:dict[str,Any],name:str,first_value:str) -> dict:
     :returns: a Pandas Data Frame
     """
 
-    testX = "breakdown_by_indicator.Production.date"
-    testY = "breakdown_by_indicator.Production.value"
-
     graphData = {}
 
-    graphData = extract_data_for_dataframe(graphData, data_json["month"], testX, "x")
-    graphData = extract_data_for_dataframe(graphData, data_json["month"], testY, "y")
+    graphData = extract_data_for_dataframe(graphData, data_json["month"], plotDataX, "x")
+    graphData = extract_data_for_dataframe(graphData, data_json["month"], plotDataY, "y")
     print(graphData)
 
     return graphData

@@ -5,7 +5,8 @@
       "id": 2,
       "name": "New Trace",
       "plotType": "Pie",
-      "plotIndicator": "/breakdown_by_indicator/RevenueFromProduction",
+      "plotDataX": "generator_downtimes.GeneratorName",
+      "plotDataY": "generator_downtimes.Production",
       "markerColour": "#936b1e",
       "orientation": "v"
     }

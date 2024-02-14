@@ -5,7 +5,8 @@
       "id": 1,
       "name": "Production",
       "plotType": "Line",
-      "plotIndicator": "/breakdown_by_indicator/Production",
+      "plotDataX": "generator_downtimes.GeneratorName",
+      "plotDataY": "generator_downtimes.Production",
       "markerColour": "#00fe0d",
       "orientation": "v"
     },
@@ -13,7 +14,8 @@
       "id": 2,
       "name": "Goal",
       "plotType": "Line",
-      "plotIndicator": "/breakdown_by_indicator/IdealProduction",
+      "plotDataX": "generator_downtimes.GeneratorName",
+      "plotDataY": "generator_downtimes.Production",
       "markerColour": "#ffac05",
       "orientation": "v"
     },
@@ -21,7 +23,8 @@
       "id": 3,
       "name": "Consumption",
       "plotType": "Bar",
-      "plotIndicator": "/breakdown_by_indicator/TemperatureMean",
+      "plotDataX": "generator_downtimes.GeneratorName",
+      "plotDataY": "generator_downtimes.Production",
       "markerColour": "#ff0509",
       "orientation": "v"
     }

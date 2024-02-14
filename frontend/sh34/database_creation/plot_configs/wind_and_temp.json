@@ -5,7 +5,8 @@
       "id": 0,
       "name": "Mean Wind Speed",
       "plotType": "Bar",
-      "plotIndicator": "/breakdown_by_indicator/WindSpeedMean",
+      "plotDataX": "generator_downtimes.GeneratorName",
+      "plotDataY": "generator_downtimes.Production",
       "markerColour": "#2cff05",
       "orientation": "v"
     },
@@ -13,7 +14,8 @@
       "id": 1,
       "name": "Mean Temp",
       "plotType": "Bar",
-      "plotIndicator": "/breakdown_by_indicator/TemperatureMean",
+      "plotDataX": "generator_downtimes.GeneratorName",
+      "plotDataY": "generator_downtimes.Production",
       "markerColour": "#ffac05",
       "orientation": "v"
     }
