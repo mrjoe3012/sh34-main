@@ -523,50 +523,50 @@ def data_extract(data_json:dict[str,Any],name:str,first_value:str) -> pd.DataFra
     :returns: a Pandas Data Frame
     """
 
-    data_dict = {"x":[],"y":[]}
-    monthly_data = data_json["month"]
+    testX = "breakdown_by_indicator.Production.date"
+    testY = "breakdown_by_indicator.Production.value"
+    df = pd.DataFrame()
+    df = extract_data_for_dataframe(df, data_json["month"], testX, "x")
+    df = extract_data_for_dataframe(df, data_json["month"], testY, "y")
+    print(df)
 
-    testString = "breakdown_by_indicator.Production.date"
-    keys = testString.split('.')
-
-    current_data = data_json
-    print(type(current_data))
-
-    for key in keys[:-1]:  # Navigate through the data structure
-        if isinstance(current_data, dict) and key in current_data:
-            current_data = current_data[key]
-        else:
-            # Handle the case where the key is not found or current_data is not a dictionary
-            current_data = None
-            break  # Exit the loop since we cannot go further
-
-    # Check if we have a valid list of dictionaries and extract the dates
-    if isinstance(current_data, list) and all(isinstance(item, dict) for item in current_data):
-        dates = [item.get('date') for item in current_data if 'date' in item]
-    else:
-        dates = []
-
-    print(dates)
-
-
-
-    graph_name_split = name.split('/')
-    level1 = graph_name_split[1]
-    named_data = monthly_data[level1]
-    if len(graph_name_split)== 3:
-        level2 = graph_name_split[2]
-        named_data = named_data[level2]
-
-    for entry in named_data:
-        first_key = list(entry.keys())[0]
-
-        data_dict["x"].append(entry[first_key])
-        try:
-            data_dict["y"].append(entry[first_value])
-        except KeyError:
-            data_dict["y"].append(None)
-    df = pd.DataFrame(data_dict)
     return df
+
+
+
+
+def extract_data_for_dataframe(df, data_json, search_string, column):
+    """
+    Extracts values from a nested dictionary based on a given path.
+
+    :param data: The nested dictionary to search.
+    :param path: The string path representing the nested structure, separated by dots.
+    :return: A list of values found at the path, or an empty list if the path is invalid.
+    """
+    elements = search_string.split('.')
+    current_data = data_json
+    print("Here2")
+
+    for element in elements[:-1]:  # Iterate through the path except the last element
+        if isinstance(current_data, dict) and element in current_data:
+            current_data = current_data[element]
+        elif isinstance(current_data, list) and element.isdigit():
+            index = int(element)
+            if 0 <= index < len(current_data):
+                current_data = current_data[index]
+            else:
+                return []  # Invalid index
+        else:
+            return []  # Invalid path
+
+    # Extract the final values based on the last element in the path
+    final_element = elements[-1]
+    if isinstance(current_data, list):
+        myList = list(dict.fromkeys([item.get(final_element, None) for item in current_data if final_element in item]))
+        df[column] = myList
+        return df
+    else:
+        return []  # The path does not lead to a list
 
 
 def pascal_split_name(value:str) -> str:
