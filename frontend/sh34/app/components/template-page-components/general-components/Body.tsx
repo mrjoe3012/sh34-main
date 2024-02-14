@@ -4,16 +4,36 @@ import { PageTitle } from '@app/components/template-page-components/general-comp
 import { TemplateInfo } from '@app/components/template-page-components/general-components/TemplateInfo';
 import { TemplatePageSwitcher } from '@app/components/template-page-components/general-components/TemplatePageSwitcher';
 import { TemplateSaveButton } from '@app/components/template-page-components/general-components/TemplateSaveButton';
-import { TemplateExportButton } from '@app/components/template-page-components/general-components/TemplateExportButton';
 import { StructurePage } from '@app/components/template-page-components/structure-page-components/StructurePage';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ExportButton } from '@app/components/home-page-components/ExportButton';
 import { useTemplatePageContext } from '@app/template-page/TemplatePageContext';
+import { ClientHBManager } from '@app/modules/ClientHBManager';
+import { usePathname } from 'next/navigation';
+import { KickoutPopup } from './KickoutPopup';
+import Cookies from 'js-cookie';
 
 export function Body() {
-
+  const pathName = usePathname();
+  const lastKey = Cookies.get("key:"+pathName) !== undefined ? Cookies.get("key:"+pathName)!! : '';
+  console.log("lastKey", lastKey);
   const [bodyContent,setBodyContent] = useState(<StructurePage/>);
   const {template} = useTemplatePageContext();
+  const [kickout, setKickout] = useState(false);
+  const [hb, setHb] = useState(new ClientHBManager(pathName, lastKey));
+  useEffect(() => {
+      const heartbeat = async () => {
+          if(!kickout) {
+              const success = await hb.heartbeat();
+              if (success)
+                Cookies.set("key:"+pathName, hb.getKey());
+              setKickout(!success);
+          }
+      };
+      heartbeat();
+      const intervalId = setInterval(heartbeat, 5000);
+      return () => clearInterval(intervalId);
+  }, []);
 
   return (
     <div className="overflow-auto mx-10">
@@ -21,6 +41,8 @@ export function Body() {
         <PageTitle />
         <TemplateInfo />
       </div>
+
+      {kickout && <KickoutPopup/>}
 
       <div className='mx-10'>
 
