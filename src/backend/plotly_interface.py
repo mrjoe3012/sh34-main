@@ -11,7 +11,6 @@ import plotly.io as pio
 from docx import Document
 from docx.shared import Inches, Pt
 from docx.enum.text import WD_ALIGN_PARAGRAPH
-import pandas as pd
 
 def generate_plot_jsons(config_json_list,data_json):
     """
@@ -121,10 +120,10 @@ def update_traces(fig, properties,data_json):
 
         # Generating the dataframe based on the plot_indicator field.
         # NB - still no idea what the 3rd parameter is for.
-        df = data_extract(data_json,plot_indicator,"value")
+        graphData = data_extract(data_json,plot_indicator,"value")
 
-        x_data = df["x"]
-        y_data = df["y"]
+        x_data = graphData["x"]
+        y_data = graphData["y"]
 
 
         # Adding the appropriate trace
@@ -513,7 +512,7 @@ def build_property_dict(config_json):
     return properties
 
 
-def data_extract(data_json:dict[str,Any],name:str,first_value:str) -> pd.DataFrame:
+def data_extract(data_json:dict[str,Any],name:str,first_value:str) -> dict:
     """
     Extracts the data from json format to a numpy DataFrame.
     :param data_json: The Json file that data is to be extracted from.
@@ -525,17 +524,19 @@ def data_extract(data_json:dict[str,Any],name:str,first_value:str) -> pd.DataFra
 
     testX = "breakdown_by_indicator.Production.date"
     testY = "breakdown_by_indicator.Production.value"
-    df = pd.DataFrame()
-    df = extract_data_for_dataframe(df, data_json["month"], testX, "x")
-    df = extract_data_for_dataframe(df, data_json["month"], testY, "y")
-    print(df)
 
-    return df
+    graphData = {}
+
+    graphData = extract_data_for_dataframe(graphData, data_json["month"], testX, "x")
+    graphData = extract_data_for_dataframe(graphData, data_json["month"], testY, "y")
+    print(graphData)
+
+    return graphData
 
 
 
 
-def extract_data_for_dataframe(df, data_json, search_string, column):
+def extract_data_for_dataframe(graphData, data_json, search_string, column):
     """
     Extracts values from a nested dictionary based on a given path.
 
@@ -563,8 +564,8 @@ def extract_data_for_dataframe(df, data_json, search_string, column):
     final_element = elements[-1]
     if isinstance(current_data, list):
         myList = list(dict.fromkeys([item.get(final_element, None) for item in current_data if final_element in item]))
-        df[column] = myList
-        return df
+        graphData[column] = myList
+        return graphData
     else:
         return []  # The path does not lead to a list
 
