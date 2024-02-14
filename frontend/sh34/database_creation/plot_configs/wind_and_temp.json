@@ -6,7 +6,7 @@
       "name": "Mean Wind Speed",
       "plotType": "Bar",
       "plotDataX": "generator_downtimes.GeneratorName",
-      "plotDataY": "generator_downtimes.Production",
+      "plotDataY": "generator_downtimes.LostProduction",
       "markerColour": "#2cff05",
       "orientation": "v"
     },
@@ -15,7 +15,7 @@
       "name": "Mean Temp",
       "plotType": "Bar",
       "plotDataX": "generator_downtimes.GeneratorName",
-      "plotDataY": "generator_downtimes.Production",
+      "plotDataY": "generator_downtimes.LostProduction",
       "markerColour": "#ffac05",
       "orientation": "v"
     }

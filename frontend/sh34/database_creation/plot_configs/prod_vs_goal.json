@@ -6,7 +6,7 @@
       "name": "Production",
       "plotType": "Line",
       "plotDataX": "generator_downtimes.GeneratorName",
-      "plotDataY": "generator_downtimes.Production",
+      "plotDataY": "generator_downtimes.LostProduction",
       "markerColour": "#ff4400",
       "orientation": "v"
     },
@@ -15,7 +15,7 @@
       "name": "Ideal Production",
       "plotType": "Line",
       "plotDataX": "generator_downtimes.GeneratorName",
-      "plotDataY": "generator_downtimes.Production",
+      "plotDataY": "generator_downtimes.LostProduction",
       "markerColour": "#07f83e",
       "orientation": "v"
     }

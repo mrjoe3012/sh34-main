@@ -1,6 +1,5 @@
 import { OptionComponentTitle } from "@app/components/graph-editor-components/editor-components/OptionComponentTitle"
 import { GenericPlotTypeOption } from "@app/components/graph-editor-components/editor-components/generic-components/GenericPlotTypeOption";
-import { GenericIndicatorOption } from "@app/components/graph-editor-components/editor-components/generic-components/GenericIndicatorOption";
 import { GenericTextInputOption } from "@app/components/graph-editor-components/editor-components/generic-components/GenericTextInputOption";
 import { useConfig } from "@app/graph-editor/ConfigContext";
 import { MarkerConstantOption } from "@app/components/graph-editor-components/editor-components/trace-tab-components/trace-options/marker-colour-components/MarkerConstantOption";
@@ -8,11 +7,6 @@ import Image from "next/image";
 import TrashIcon from "@app/images/trash-icon.svg"
 import { TraceType } from "@app/modules/Config";
 import { DataPopup } from "./data-select-popup/DataPopup";
-
-import { TreeView } from '@mui/x-tree-view/TreeView';
-import { TreeItem } from '@mui/x-tree-view/TreeItem';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { useState } from "react";
 
 interface TraceProps {
@@ -113,7 +107,6 @@ export const Trace = (props : TraceProps) => {
                 < GenericPlotTypeOption traceID={props.trace.id} plotFunction={changeTraceType} contentOnRender={props.trace.plotType}/>
                 < OptionComponentTitle optionName="Trace Settings" />
                 < GenericTextInputOption placeholder="" labelName="Name" displayLabel={true} width="w-full" textPos="" plotFunction={changeTraceName} contentOnRender={props.trace.name} />
-                < GenericIndicatorOption plotFunction={changeTraceIndicator} contentOnRender={"nothing just now"} labelName="Indicator" displayLabel={true}/>
                 < MarkerConstantOption trace={props.trace} plotFunction={changeMarkerColourConstant} />
                 <button onClick={handleDataPopupButton}>Open</button>
                 {showDataPopup && <DataPopup onClose={handleDataPopupButton} trace={props.trace} />}

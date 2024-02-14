@@ -6,7 +6,7 @@
       "name": "New Trace",
       "plotType": "Pie",
       "plotDataX": "generator_downtimes.GeneratorName",
-      "plotDataY": "generator_downtimes.Production",
+      "plotDataY": "generator_downtimes.LostProduction",
       "markerColour": "#ffac05",
       "orientation": "v"
     }
