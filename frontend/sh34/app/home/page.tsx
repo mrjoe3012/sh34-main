@@ -6,39 +6,36 @@ import { HomePageContextProvider } from './HomePageContext';
 import { TemplateData } from '@app/modules/db';
 import { WithId } from 'mongodb';
 import { useEffect, useState } from 'react';
+import { TemplateLoader } from '@app/modules/TemplateLoader';
 
 export const dynamic = 'force-dynamic';
+export const fetchCache = 'force-no-store';
 
 export default function Home() {
   const [templates, setTemplates] = useState<WithId<TemplateData>[]>([]);
+  const [newTemplates, setNewTemplates] = useState<WithId<TemplateData>[]>([]);
   const [needSorting, setNeedSorting] = useState<boolean>(true);
   useEffect(() => {
-    const loadPlots = async () => {
-      const filter = {};
-      try {
-        const response = await fetch("/api/db/load-templates", {
-          method: 'POST',
-          headers: {
-            'Content-Type' : 'application/json',
-          },
-          body: JSON.stringify(filter),
-        });
-        const data = await response.json();
-        if (response.status == 200) {
-          const loadedTemplates: WithId<TemplateData>[] = data['templates'];
-          setTemplates([...loadedTemplates]);
-          setNeedSorting(true);
-        } else {
-          throw Error(`update-plots returned ${response.status}`);
-        }
-      } catch (e) {
-        console.error(`Error while trying to fetch templates: ${e}`);
-      }
+    const loadTemplates = async () => {
+      const loader = new TemplateLoader();
+      const templates = await loader.loadTemplates({});
+      if (templates.length > 0)
+        setNewTemplates([...templates]);
     };
-    loadPlots();
-    const interval = setInterval(loadPlots, 1000);
+    loadTemplates();
+    const interval = setInterval(loadTemplates, 5000);
     return () => clearInterval(interval);
   }, []);
+  useEffect(() => {
+    // only update rendered templates if they have changed
+    const currentIds = templates.map((t) => t._id).sort();
+    const newIds = newTemplates.map((t) => t._id).sort();
+    console.log(currentIds, newIds);
+    if (currentIds.length == 0 || !newIds.every((_, i) => currentIds[i] == newIds[i])) {
+      setTemplates([...newTemplates]);
+      setNeedSorting(true);
+    }
+  }, [newTemplates]);
   return (
     <div className="text-black min-w-[1200px] h-screen bg-white font-league">
       <div className='bg-white'>
