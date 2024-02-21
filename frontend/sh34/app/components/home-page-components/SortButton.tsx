@@ -23,7 +23,7 @@ function dateCmp(d1: Date, d2: Date): number {
 
 export const SortButton = (props: SortButtonProps) => {
     const { selectedOption } = props;
-    const {templates, setTemplates, plotsNeedSorting, setPlotsNeedSorting} = useHomePageContext();
+    const {templates, setTemplates, needSorting, setNeedSorting} = useHomePageContext();
     const [ascendingClicked, setAscendingClicked] = useState(true);
     const [descendingClicked, setDescendingClicked] = useState(false);
       
@@ -73,12 +73,12 @@ export const SortButton = (props: SortButtonProps) => {
   
     // sort if the templates are modified
     useEffect(() => {
-      setPlotsNeedSorting(false);
+      setNeedSorting(false);
       if (ascendingClicked)
         handleAscendingClick();
       else
         handleDescendingClick();
-    }, [plotsNeedSorting])
+    }, [needSorting])
 
       return(
           <div className='flex flex-row bg-[#EAEAEA] w-[200px] h-[35px] justify-center rounded-xl'>
