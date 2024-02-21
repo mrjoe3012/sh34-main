@@ -5,6 +5,7 @@ import json
 import os
 import shutil
 import io
+from typing import Any
 import plotly.graph_objs as go
 import plotly.io as pio
 from docx import Document
@@ -533,7 +534,7 @@ def data_extract(data_json, plot_data_x, plot_data_y) -> dict:
 
 
 
-def extract_data_for_dataframe(graph_data, data_json, search_string, column) -> list:
+def extract_data_for_dataframe(graph_data, data_json, search_string, column):
     """
     Extracts values from a nested dictionary based on a given path.
 
