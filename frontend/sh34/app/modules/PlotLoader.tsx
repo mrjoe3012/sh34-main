@@ -1,6 +1,7 @@
 import { LoadPlotsFromTemplatesResponseData } from "@app/api/db/load-plots-from-template/route";
+import { LoadPlotsResponseData } from "@app/api/db/load-plots/route";
 import { WithId } from "mongodb";
-import { PlotData } from "plotly.js";
+import { PlotData } from "./db";
 
 export class PlotLoader {
     constructor() {
@@ -30,6 +31,24 @@ export class PlotLoader {
     }
 
     async loadPlots(filter: Record<string, any>): Promise<WithId<PlotData>[]> {
-        return [];
+        const dbApiEndpoint = "/api/db/load-plots";
+        try {
+            const response = await fetch(dbApiEndpoint, {
+                'method' : 'POST',
+                headers: {
+                    'Content-Type' : 'application/json',
+                },
+                body: JSON.stringify({
+                    filter: filter
+                }),
+            });
+            if (response.status != 200)
+                throw new Error(`Failed to fetch plots. Status: ${response.status}`);
+            const data: LoadPlotsResponseData = await response.json();
+            return data.plots;
+        } catch(e) {
+            console.error(e);
+            return [];
+        }
     }
 }
