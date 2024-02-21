@@ -93,6 +93,7 @@ export const Trace = (props : TraceProps) => {
                 < GenericTextInputOption placeholder="" labelName="Name" displayLabel={true} width="w-full" textPos="" plotFunction={changeTraceName} contentOnRender={props.trace.name} />
                 < MarkerConstantOption trace={props.trace} plotFunction={changeMarkerColourConstant} />
                 < OptionComponentTitle optionName="Trace Data" />
+
                 <button className="bg-[#c9cacd] hover:bg-[#d8d9db] mx-4 py-2 rounded-md" onClick={handleDataPopupButton}>Open Options</button>
                 {showDataPopup && <DataPopup onClose={handleDataPopupButton} trace={props.trace} />}
             </div>

@@ -515,7 +515,7 @@ def build_property_dict(config_json):
     return properties
 
 
-def data_extract(data_json, plotDataX, plotDataY) -> dict:
+def data_extract(data_json, plot_data_x, plot_data_y) -> dict:
     """
     Extracts the data from json format to a numpy DataFrame.
     :param data_json: The Json file that data is to be extracted from.
@@ -527,15 +527,15 @@ def data_extract(data_json, plotDataX, plotDataY) -> dict:
 
     graph_data = {}
 
-    graph_data = extract_data_for_dataframe(graph_data, data_json["month"], plotDataX, "x")
-    graph_data = extract_data_for_dataframe(graph_data, data_json["month"], plotDataY, "y")
+    graph_data = extract_data_for_dataframe(graph_data, data_json["month"], plot_data_x, "x")
+    graph_data = extract_data_for_dataframe(graph_data, data_json["month"], plot_data_y, "y")
 
     return graph_data
 
 
 
 
-def extract_data_for_dataframe(graphData, data_json, search_string, column):
+def extract_data_for_dataframe(graph_data, data_json, search_string, column):
     """
     Extracts values from a nested dictionary based on a given path.
 
@@ -564,8 +564,8 @@ def extract_data_for_dataframe(graphData, data_json, search_string, column):
         my_list = list(dict.fromkeys(
             [item.get(final_element, None)
             for item in current_data if final_element in item]))
-        graphData[column] = my_list
-        return graphData
+        graph_data[column] = my_list
+        return graph_data
 
     return []  # The path does not lead to a list
 
