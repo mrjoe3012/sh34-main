@@ -1,10 +1,13 @@
-import React, { use, useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { useConfig } from "@app/graph-editor/ConfigContext";
+import InfoIcon from "@app/images/info-icon.png"
+import Image from 'next/image';
 
 import { treeStructure, DataStructure, OptionsContainer, Option } from './treeStructure';
 import { TraceType } from '@app/modules/Config';
+
 
 interface DataPopupProps {
     onClose: () => void;
@@ -16,6 +19,8 @@ export const DataPopup = (props: DataPopupProps) => {
 
     const [selectingX, setSelectingX] = useState(true);
 
+    const [openDropdowns, setOpenDropdowns] = useState<{ [key: string]: boolean }>({});
+
     const [currentYOptions, setCurrentYOptions] = useState<Option[] | null>(null);
     const [currentTitle, setCurrentTitle] = useState<string>('');
 
@@ -24,6 +29,8 @@ export const DataPopup = (props: DataPopupProps) => {
 
     const [xFieldTag, setXFieldTag] = useState<string>("")
     const [yFieldTag, setYFieldTag] = useState<string>("")
+
+    const [displayError, setDisplayError] = useState(false);
 
     const {config,setConfig} = useConfig()
 
@@ -50,10 +57,6 @@ export const DataPopup = (props: DataPopupProps) => {
         setYFieldTag(tag ?? "Undefined")
     };
 
-    // State to keep track of which dropdowns are open
-    const [openDropdowns, setOpenDropdowns] = useState<{ [key: string]: boolean }>({});
-
-    // Toggles the open state of a dropdown
     const toggleDropdown = (key: string) => {
         setOpenDropdowns((prevOpenDropdowns) => ({
             ...prevOpenDropdowns,
@@ -61,8 +64,7 @@ export const DataPopup = (props: DataPopupProps) => {
         }));
     };
 
-
-    const RenderOptions = ({ data, dataTitle }: { data: DataStructure | OptionsContainer, dataTitle: string }) => {
+    const RenderXOptions = ({ data, dataTitle }: { data: DataStructure | OptionsContainer, dataTitle: string }) => {
 
         if (isOptionsContainer(data)) {
             // Its an OptionsContainer - Render the Buttons
@@ -98,7 +100,7 @@ export const DataPopup = (props: DataPopupProps) => {
                                 {/* Only render the content if the dropdown is open */}
                                 {isOpen && (
                                     <div style={{ marginLeft: '1em' }}> {/* Indent nested content */}
-                                        <RenderOptions data={value} dataTitle={dataTitle + " - " + key}/>
+                                        <RenderXOptions data={value} dataTitle={dataTitle + " / " + key}/>
                                     </div>
                                 )}
                             </div>
@@ -131,8 +133,12 @@ export const DataPopup = (props: DataPopupProps) => {
 
     const handleSubmit = (event: React.MouseEvent<HTMLButtonElement>) => {
 
+        if (xFieldTag === "" || yFieldTag === "") {
+            setDisplayError(true);
+            return
+        }
 
-        const updatedTraces = config.traces.map(trace => {
+            const updatedTraces = config.traces.map(trace => {
             if (trace.id === props.trace.id) {
                 return { ...trace, plotDataX: xFieldTag, plotDataY: yFieldTag };
             }
@@ -144,6 +150,8 @@ export const DataPopup = (props: DataPopupProps) => {
             traces: updatedTraces
         });
 
+        props.onClose()
+
     }
 
     return (
@@ -154,20 +162,33 @@ export const DataPopup = (props: DataPopupProps) => {
                 <div className='overflow-y-auto'>
                     <p className='text-3xl mb-5'> Data Field Selector </p>
 
-                    <p className='text-2xl'> Step 1/2 - Selecting X Axis Data </p>
-
-                    <div className='mb-4'>
+                    <div className=''>
                         <div className='flex gap-x-2'>
-                            <p>X Axis Field: </p> {currentTitle} {xFieldName}
+                            <p className='font-semibold'>X-Axis Data: </p> {currentTitle} / {xFieldName}
                         </div>
                         <div className='flex gap-x-2'>
-                            <p>Y Axis Field: </p> {currentTitle} {yFieldName}
+                            <p className='font-semibold'>Y-Axis Data: </p> {currentTitle} / {yFieldName}
                         </div>
                     </div>
 
+                    <hr className='my-2'></hr>
+
+                    <div className='flex gap-x-1 self-center mb-3'>
+                        <div className='flex self-center'>
+                            <div className={`w-5 h-5 rounded-xl  ${selectingX ? 'bg-RES_ORANGE' : 'bg-white border-RES_ORANGE border-4'} `}></div>
+                            <div className={`w-5 h-5 rounded-xl  ${!selectingX ? 'bg-RES_ORANGE' : 'bg-white border-RES_ORANGE border-4'} `}></div>
+                        </div>
+                        {selectingX ? (
+                            <p className='text-xl self-center'> - Select Data to be Displayed on X-Axis </p>
+                        ) :
+                        <p className='text-xl self-center'> - Select Data to be Displayed on Y-Axis </p>
+                        }
+                    </div>
+
+
                     {/* Conditional rendering based on whether currentYOptions is set */}
                     {selectingX ? (
-                        <RenderOptions data={treeStructure} dataTitle='' />
+                        <RenderXOptions data={treeStructure} dataTitle='' />
                     ) : currentYOptions && (
                         <>
                             <p className="my-1 font-bold cursor-pointer">{currentTitle}</p>
@@ -178,13 +199,24 @@ export const DataPopup = (props: DataPopupProps) => {
 
                 </div>
 
-                <div className='flex gap-x-3'>
+
+
+                <div className=''>
+                    {displayError &&
+                        <div className='flex gap-x-2 items-center'>
+                            <Image src={InfoIcon} alt="Info" className='w-4 h-4'/>
+                            <div> Error - Please Ensure Both Fields are Selected. </div>
+                        </div>
+                    }
+                    <div className='flex gap-x-3'>
                     <button onClick={props.onClose} className="mt-2 px-4 py-2 bg-gray-500 text-white rounded hover:bg-[#828282] w-[35%]">
                         Cancel
                     </button>
                     <button onClick={handleSubmit} className="mt-2 px-4 py-2 bg-RES_ORANGE text-white rounded hover:bg-[#f57607] w-[35%]">
                         Submit
                     </button>
+                    </div>
+
                 </div>
 
             </div>

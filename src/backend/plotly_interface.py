@@ -532,7 +532,6 @@ def data_extract(data_json, plotDataX, plotDataY) -> dict:
 
     graphData = extract_data_for_dataframe(graphData, data_json["month"], plotDataX, "x")
     graphData = extract_data_for_dataframe(graphData, data_json["month"], plotDataY, "y")
-    print(graphData)
 
     return graphData
 
@@ -549,7 +548,6 @@ def extract_data_for_dataframe(graphData, data_json, search_string, column):
     """
     elements = search_string.split('.')
     current_data = data_json
-    print("Here2")
 
     for element in elements[:-1]:  # Iterate through the path except the last element
         if isinstance(current_data, dict) and element in current_data:
@@ -567,6 +565,7 @@ def extract_data_for_dataframe(graphData, data_json, search_string, column):
     final_element = elements[-1]
     if isinstance(current_data, list):
         myList = list(dict.fromkeys([item.get(final_element, None) for item in current_data if final_element in item]))
+        print("Printing myList:" + str(myList))
         graphData[column] = myList
         return graphData
     else:
