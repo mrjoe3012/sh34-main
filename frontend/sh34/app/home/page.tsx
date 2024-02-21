@@ -3,6 +3,7 @@ import { loadTemplates } from '@app/modules/db';
 import Body from '@app/components/home-page-components/Body';
 import { HomePageContextProvider } from './HomePageContext';
 
+export const dynamic = 'force-dynamic';
 
 export default async function Home() {
   const templates = await loadTemplates({});

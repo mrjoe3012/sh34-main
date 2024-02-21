@@ -6,6 +6,8 @@ import { ErrorComponent } from '@app/components/ErrorComponent';
 import { InvalidIdParam } from '@app/modules/InvalidIdParam';
 import { TemplatePageContextProvider } from '@app/template-page/TemplatePageContext';
 
+export const dynamic = 'force-dynamic';
+
 interface TemplateEditorProps {
   params: {
     id: string;

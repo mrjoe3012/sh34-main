@@ -6,6 +6,8 @@ import { PlotData, loadPlots, loadTemplateFromPlot, loadTemplates } from '@app/m
 import { WithId } from 'mongodb';
 import { InvalidIdParam } from '@app/modules/InvalidIdParam';
 
+export const dynamic = 'force-dynamic';
+
 async function tryRetrievePlot(id: string): Promise<WithId<PlotData>> {
   const idInt = Number.parseInt(id);
   const filter = {
