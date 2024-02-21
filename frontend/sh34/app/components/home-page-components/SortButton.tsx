@@ -7,21 +7,39 @@ interface SortButtonProps {
   selectedOption: string;
 }
 
+function stringToDate(datestr: string): Date {
+  const elements = datestr.split("/").map((x) => Number.parseInt(x));
+  return new Date(elements[2], elements[1]-1, elements[0]);
+}
+
+function dateCmp(d1: Date, d2: Date): number {
+  if (d1 > d2)
+    return 1;
+  else if (d1 < d2)
+    return -1;
+  else
+    return 0;
+}
+
 export const SortButton = (props: SortButtonProps) => {
     const { selectedOption } = props;
-    const {templates, setTemplates} = useHomePageContext();
+    const {templates, setTemplates, plotsNeedSorting, setPlotsNeedSorting} = useHomePageContext();
     const [ascendingClicked, setAscendingClicked] = useState(true);
     const [descendingClicked, setDescendingClicked] = useState(false);
       
     const handleAscendingClick = () => {
       if (selectedOption === "_id") {
-        setTemplates([...templates.sort((a, b) => String(a._id).localeCompare(String(b._id)))]);
+        setTemplates([...templates.sort((a, b) => a._id - b._id)]);
       } else if (selectedOption === "Name") { 
         setTemplates([...templates.sort((a, b) => a.Name.localeCompare(b.Name))]);
       } else if (selectedOption === "DateCreated") {
-        setTemplates([...templates.sort((b,a) => a.DateCreated.localeCompare(b.DateCreated))]);
+        setTemplates(
+          [...templates.sort((a, b) => dateCmp(stringToDate(a.DateCreated), stringToDate(b.DateCreated)))]
+        );
       } else if (selectedOption === "LastModified") {
-        setTemplates([...templates.sort((b,a) => a.LastModified.localeCompare(b.LastModified))]);
+        setTemplates(
+          [...templates.sort((b, a) => dateCmp(new Date(Date.parse(a.LastModified)), new Date(Date.parse(b.LastModified))))]
+        );
       }
       setAscendingClicked(true);
       setDescendingClicked(false);
@@ -29,13 +47,17 @@ export const SortButton = (props: SortButtonProps) => {
   
     const handleDescendingClick = () => {
       if (selectedOption === "_id") {
-        setTemplates([...templates.sort((b,a) => String(a._id).localeCompare(String(b._id)))]);
+        setTemplates([...templates.sort((b,a) => a._id - b._id)]);
       } else if (selectedOption === "Name") { 
         setTemplates([...templates.sort((b,a) => a.Name.localeCompare(b.Name))]);
       } else if (selectedOption === "DateCreated") {
-        setTemplates([...templates.sort((a,b) => a.DateCreated.localeCompare(b.DateCreated))]);
+        setTemplates(
+          [...templates.sort((b, a) => dateCmp(stringToDate(a.DateCreated), stringToDate(b.DateCreated)))]
+        )
       } else if (selectedOption === "LastModified") {
-        setTemplates([...templates.sort((a,b) => a.LastModified.localeCompare(b.LastModified))]);
+        setTemplates(
+          [...templates.sort((a, b) => dateCmp(new Date(Date.parse(a.LastModified)), new Date(Date.parse(b.LastModified))))]
+        );
       }
       setAscendingClicked(false);
       setDescendingClicked(true);
@@ -45,9 +67,18 @@ export const SortButton = (props: SortButtonProps) => {
       if (selectedOption === "LastModified" || selectedOption === "DateCreated") {
         handleDescendingClick();
       }else {
-      handleAscendingClick();
+        handleAscendingClick();
       }
     }, [selectedOption]);
+  
+    // sort if the templates are modified
+    useEffect(() => {
+      setPlotsNeedSorting(false);
+      if (ascendingClicked)
+        handleAscendingClick();
+      else
+        handleDescendingClick();
+    }, [plotsNeedSorting])
 
       return(
           <div className='flex flex-row bg-[#EAEAEA] w-[200px] h-[35px] justify-center rounded-xl'>

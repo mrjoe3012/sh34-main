@@ -37,7 +37,11 @@ const config: Config = {
       },
       screens: {
         "2xl":"1650px",
-        "new":"1764px"
+        "new":"1764px",
+        "test1": { 'raw': '(min-height: 640px)'},
+        "test2": { 'raw': '(min-height: 720px)'},
+        "test3": { 'raw': '(min-height: 920px)'},
+        "test4": { 'raw': '(max-width: 1320px)'},
       },
     },
   },
