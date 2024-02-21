@@ -87,8 +87,6 @@ def generate_plot(config_json, data_json):
     # Generate a Dictionary of Properties from config_json
     properties = build_property_dict(config_json)
 
-    print(config_json)
-
     fig = go.Figure()
 
     fig = update_traces(fig, properties, data_json)
