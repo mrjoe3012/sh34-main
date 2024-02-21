@@ -5,7 +5,7 @@ from backend.plotly_interface import update_grid_lines, update_xaxis_ticklabels,
 import json
 import os
 
-""" 
+"""
 The following test creates a dummy config_json file and passes it to the update_traces file,
 checking whether the correct number of traces have been assigned
 """
@@ -22,7 +22,8 @@ class TestUpdateTraces(unittest.TestCase):
                 "id" : 0,
                 "name" : "trace1",
                 "plotType" : "Bar",
-                "plotIndicator" : "/breakdown_by_indicator/TemperatureMean",
+                "plotDataX": "generator_downtimes.GeneratorName",
+                "plotDataY": "generator_downtimes.LostProduction",
                 "markerColour" : "#aabbcc",
                 "orientation" : "v"
             },
@@ -59,7 +60,7 @@ class TestUpdateTraces(unittest.TestCase):
 
 
 """
-The following class tests the update_x_axis function, it checks whether the correct 
+The following class tests the update_x_axis function, it checks whether the correct
 assignments are made to the values associated with the x axis label in the plot,
 checking both default and custom configurations
 
@@ -69,8 +70,8 @@ class TestUpdateXAxis(unittest.TestCase):
 
     #create a dummy figure to add data to
     def setUp(self):
-        self.fig = go.Figure() 
-    
+        self.fig = go.Figure()
+
     #Create some dummy data to feed to the update_xaxis function, the following tests whether default
     #values are correctly assigned
     def test_update_x_axis_default(self):
@@ -80,7 +81,7 @@ class TestUpdateXAxis(unittest.TestCase):
             "xaxis_size_default" : 12,
             "xaxis_colour_default" : "black",
             "xaxis_typeface_default" : "Arial"
-        }  
+        }
 
         #pass the function the dictionary from above containing the values
         new_fig = update_xaxis(self.fig, properties)
@@ -92,7 +93,7 @@ class TestUpdateXAxis(unittest.TestCase):
         self.assertEqual(new_fig.layout.xaxis.title.font.color, "black")
         self.assertEqual(new_fig.layout.xaxis.title.font.family, "Arial")
 
-    
+
     #now test with custom values
     def test_update_x_axis_custom(self):
 
@@ -124,7 +125,7 @@ are assigned to the properties of the y axis in the plot passed to the function
 """
 class TestUpdateYAxis(unittest.TestCase):
 
-    
+
     #set up a dummy figure to assign values to
     def setUp(self):
         self.fig = go.Figure()
@@ -185,7 +186,7 @@ class TestUpdatePlotSize(unittest.TestCase):
         self.fig = go.Figure()
 
 
-    
+
     #Create the dummy properties and pass them and the figure to the function
     def test_update_plotsize(self):
 
@@ -193,7 +194,7 @@ class TestUpdatePlotSize(unittest.TestCase):
             "plot_width" : 800,
             "plot_height" : 600
         }
-        
+
         new_fig = update_plotsize(self.fig, properties)
 
 
@@ -262,10 +263,10 @@ The following function tests the update_x_axis_tick_labels function, it creates 
 figure and defines some properties to pass to the function, it then checks if these properties have been correctly assigned
 by the function, it first tests for default values and then tests custom values
 """
-        
+
 
 class TestXAxisTickLabels(unittest.TestCase):
-    
+
     #Create dummy plotly figure
     def setUp(self):
         self.fig = go.Figure()
@@ -345,7 +346,7 @@ class TestUpdateYAxisTickLabels(unittest.TestCase):
         self.assertEqual(new_fig.layout.yaxis.tickfont.color, "black")
 
     def test_update_xaxis_ticklabels_custom(self):
-        
+
         properties = {
             "yaxis_ticks_angle": 90,
             "yaxis_ticks_position": "right",
@@ -361,7 +362,7 @@ class TestUpdateYAxisTickLabels(unittest.TestCase):
         self.assertEqual(new_fig.layout.yaxis.side, "right")
         self.assertEqual(new_fig.layout.yaxis.tickfont.family, "Times New Roman")
         self.assertEqual(new_fig.layout.yaxis.tickfont.size, 16)
-        self.assertEqual(new_fig.layout.yaxis.tickfont.color, "red") 
+        self.assertEqual(new_fig.layout.yaxis.tickfont.color, "red")
 
 
 """
@@ -417,11 +418,11 @@ class TestUpdateTitle(unittest.TestCase):
         self.assertEqual(new_fig.layout.title.font.family, "Times New Roman")
         self.assertEqual(new_fig.layout.title.font.size, 14)
         self.assertEqual(new_fig.layout.title.font.color, "red")
-           
+
 
 """
 This function tests the update_annotations function, it creates a dummy set of annotations which
-it will pass to the function, it then checks for correct assignment of these values, this is 
+it will pass to the function, it then checks for correct assignment of these values, this is
 performed in a loop as multiple annotations can be defined, however i have only defined one
 """
 class TestUpdateAnnotations(unittest.TestCase):
@@ -457,11 +458,11 @@ class TestUpdateAnnotations(unittest.TestCase):
             ]
         }
 
-    
+
         #Run the function
         new_fig = update_annotations(self.fig, properties)
 
-        
+
         #loop through each of the annotations of the figure, checking each attribute has been assigned correctly
         for i,annotation in enumerate(properties["annotations"]):
 
