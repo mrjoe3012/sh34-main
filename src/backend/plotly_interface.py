@@ -5,7 +5,6 @@ import json
 import os
 import shutil
 import io
-from typing import Any
 import plotly.graph_objs as go
 import plotly.io as pio
 from docx import Document
