@@ -2,7 +2,6 @@
 
 #Mustafa Onur Cay - 19/10/2023
 import json
-from typing import Any
 import os
 import shutil
 import io
@@ -118,18 +117,16 @@ def update_traces(fig, properties, data_json):
         plot_type = trace["plotType"]
         trace_name = trace["name"]
         trace_marker_colour = trace["markerColour"]
-        plotDataX = trace["plotDataX"]
-        plotDataY = trace["plotDataY"]
-        print("plotDataX: " + plotDataX)
-        print("plotDataY: " + plotDataY)
+        plot_data_x = trace["plotDataX"]
+        plot_data_y = trace["plotDataY"]
 
         # Generating the dataframe based on the plot_indicator field.
         # NB - still no idea what the 3rd parameter is for.
 
-        graphData = data_extract(data_json,plotDataX,plotDataY)
+        graph_data = data_extract(data_json,plot_data_x,plot_data_y)
 
-        x_data = graphData["x"]
-        y_data = graphData["y"]
+        x_data = graph_data["x"]
+        y_data = graph_data["y"]
 
 
         # Adding the appropriate trace
@@ -528,12 +525,12 @@ def data_extract(data_json, plotDataX, plotDataY) -> dict:
     :returns: a Pandas Data Frame
     """
 
-    graphData = {}
+    graph_data = {}
 
-    graphData = extract_data_for_dataframe(graphData, data_json["month"], plotDataX, "x")
-    graphData = extract_data_for_dataframe(graphData, data_json["month"], plotDataY, "y")
+    graph_data = extract_data_for_dataframe(graph_data, data_json["month"], plotDataX, "x")
+    graph_data = extract_data_for_dataframe(graph_data, data_json["month"], plotDataY, "y")
 
-    return graphData
+    return graph_data
 
 
 
@@ -564,12 +561,13 @@ def extract_data_for_dataframe(graphData, data_json, search_string, column):
     # Extract the final values based on the last element in the path
     final_element = elements[-1]
     if isinstance(current_data, list):
-        myList = list(dict.fromkeys([item.get(final_element, None) for item in current_data if final_element in item]))
-        print("Printing myList:" + str(myList))
-        graphData[column] = myList
+        my_list = list(dict.fromkeys(
+            [item.get(final_element, None)
+            for item in current_data if final_element in item]))
+        graphData[column] = my_list
         return graphData
-    else:
-        return []  # The path does not lead to a list
+
+    return []  # The path does not lead to a list
 
 
 def pascal_split_name(value:str) -> str:

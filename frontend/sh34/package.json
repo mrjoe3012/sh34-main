@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@mui/icons-material": "^5.15.10",
     "jqeury": "^0.0.1-security",
     "jquery": "^3.7.1",
     "mongodb": "^6.3.0",
