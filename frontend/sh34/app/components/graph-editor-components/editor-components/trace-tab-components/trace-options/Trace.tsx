@@ -79,7 +79,11 @@ export const Trace = (props : TraceProps) => {
         setShowDataPopup(!showDataPopup)
     }
 
-
+    const cleanTagString = (inputString: String) => {
+        return inputString.split(".").map((word)=>{
+            return word.charAt(0).toUpperCase() + word.slice(1).replaceAll("_"," ")
+        }).join(" / ")
+    }
 
     return (
         <div className="bg-[#e6e7eb] py-3 rounded-md">
@@ -94,6 +98,16 @@ export const Trace = (props : TraceProps) => {
                 < MarkerConstantOption trace={props.trace} plotFunction={changeMarkerColourConstant} />
                 < OptionComponentTitle optionName="Trace Data" />
 
+                <div className="ml-3 mr-3 flex-col">
+                    <div className="flex flex-col mb-2">
+                        <p>X Field -</p>
+                        <div className="px-4 font-medium placeholder-[#ACACAC]  bg-[#DCDCDC] rounded-lg flex items-center border-2 border-[#B3B3B3] ">{cleanTagString(props.trace.plotDataX)}</div>
+                    </div>
+                    <div className="flex flex-col mb-2">
+                        <p>Y Field -</p>
+                        <div className="px-4 font-medium placeholder-[#ACACAC]  bg-[#DCDCDC] rounded-lg flex items-center border-2 border-[#B3B3B3] ">{cleanTagString(props.trace.plotDataY)}</div>
+                    </div>
+                </div>
                 <button className="bg-[#c9cacd] hover:bg-[#d8d9db] mx-4 py-2 rounded-md" onClick={handleDataPopupButton}>Open Options</button>
                 {showDataPopup && <DataPopup onClose={handleDataPopupButton} trace={props.trace} />}
             </div>
