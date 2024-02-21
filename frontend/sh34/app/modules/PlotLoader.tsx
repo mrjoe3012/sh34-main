@@ -1,4 +1,4 @@
-import { LoadPlotsFromTemplatesResponseData } from "@app/api/load-plots-from-template/route";
+import { LoadPlotsFromTemplatesResponseData } from "@app/api/db/load-plots-from-template/route";
 import { WithId } from "mongodb";
 import { PlotData } from "plotly.js";
 
