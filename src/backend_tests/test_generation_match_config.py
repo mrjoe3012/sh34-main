@@ -22,8 +22,8 @@ class TestUpdateTraces(unittest.TestCase):
                 "id" : 0,
                 "name" : "trace1",
                 "plotType" : "Bar",
-                "plotDataX": "generator_downtimes.GeneratorName",
-                "plotDataY": "generator_downtimes.LostProduction",
+                "plotDataX": "breakdown_by_indicator.TemperatureMean.date",
+                "plotDataY": "breakdown_by_indicator.TemperatureMean.value",
                 "markerColour" : "#aabbcc",
                 "orientation" : "v"
             },
@@ -31,8 +31,8 @@ class TestUpdateTraces(unittest.TestCase):
                 "id" : 1,
                 "name" : "trace2",
                 "plotType" : "Scatter",
-                "plotDataX": "generator_downtimes.GeneratorName",
-                "plotDataY": "generator_downtimes.LostProduction",
+                "plotDataX": "breakdown_by_indicator.TemperatureMean.date",
+                "plotDataY": "breakdown_by_indicator.TemperatureMean.value",
                 "markerColour" : "#00cc11",
                 "orientation" : "v"
             }

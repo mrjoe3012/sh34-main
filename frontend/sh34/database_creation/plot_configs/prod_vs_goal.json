@@ -5,8 +5,8 @@
       "id": 0,
       "name": "Production",
       "plotType": "Line",
-      "plotDataX": "generator_downtimes.GeneratorName",
-      "plotDataY": "generator_downtimes.LostProduction",
+      "plotDataX": "breakdown_by_indicator.Production.date",
+      "plotDataY": "breakdown_by_indicator.Production.value",
       "markerColour": "#ff4400",
       "orientation": "v"
     },
@@ -14,8 +14,8 @@
       "id": 1,
       "name": "Ideal Production",
       "plotType": "Line",
-      "plotDataX": "generator_downtimes.GeneratorName",
-      "plotDataY": "generator_downtimes.LostProduction",
+      "plotDataX": "breakdown_by_indicator.IdealProduction.date",
+      "plotDataY": "breakdown_by_indicator.IdealProduction.value",
       "markerColour": "#07f83e",
       "orientation": "v"
     }

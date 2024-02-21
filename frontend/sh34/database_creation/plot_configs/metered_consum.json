@@ -5,8 +5,8 @@
       "id": 0,
       "name": "New Trace",
       "plotType": "Pie",
-      "plotDataX": "generator_downtimes.GeneratorName",
-      "plotDataY": "generator_downtimes.LostProduction",
+      "plotDataX": "breakdown_by_indicator.ConsumptionMetered.date",
+      "plotDataY": "breakdown_by_indicator.ConsumptionMetered.value",
       "markerColour": "#ffac05",
       "orientation": "v"
     }

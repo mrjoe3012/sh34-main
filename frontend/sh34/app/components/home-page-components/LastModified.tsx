@@ -17,7 +17,9 @@ export const LastModified = (props: AssetElementProps) => {
         const lastModified = new Date(template.LastModified);
         const currentTime = new Date();
 
-
+        console.log(template)
+        console.log(typeof template.LastModified)
+        console.log("Last Modified: " + lastModified)
 
         if (lastModified > currentTime || isNaN(lastModified.getTime())) {
             setLastModifiedDate("Invalid date");
