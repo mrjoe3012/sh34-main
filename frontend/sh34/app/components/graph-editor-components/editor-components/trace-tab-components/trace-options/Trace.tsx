@@ -50,22 +50,6 @@ export const Trace = (props : TraceProps) => {
         });
     };
 
-    const changeTraceIndicator = (newIndicator: string) => {
-        // Need to add this prefix as the value from the select is just the indicator, but the configJSON takes in "/breakdown_by_indicator/indicator"
-        newIndicator = "/breakdown_by_indicator/" + newIndicator
-        const updatedTraces = config.traces.map(trace => {
-            if (trace.id === props.trace.id) {
-                return { ...trace, plotIndicator: newIndicator };
-            }
-            return trace;
-        });
-
-        setConfig({
-            ...config,
-            traces: updatedTraces
-        });
-    };
-
     const changeMarkerColourConstant = (inputValue: string) => {
         const updatedTraces = config.traces.map(trace => {
             if (trace.id === props.trace.id) {
@@ -108,7 +92,8 @@ export const Trace = (props : TraceProps) => {
                 < OptionComponentTitle optionName="Trace Settings" />
                 < GenericTextInputOption placeholder="" labelName="Name" displayLabel={true} width="w-full" textPos="" plotFunction={changeTraceName} contentOnRender={props.trace.name} />
                 < MarkerConstantOption trace={props.trace} plotFunction={changeMarkerColourConstant} />
-                <button onClick={handleDataPopupButton}>Open</button>
+                < OptionComponentTitle optionName="Trace Data" />
+                <button className="bg-[#c9cacd] hover:bg-[#d8d9db] mx-4 py-2 rounded-md" onClick={handleDataPopupButton}>Open Options</button>
                 {showDataPopup && <DataPopup onClose={handleDataPopupButton} trace={props.trace} />}
             </div>
 
