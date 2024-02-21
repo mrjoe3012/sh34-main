@@ -31,7 +31,8 @@ class TestUpdateTraces(unittest.TestCase):
                 "id" : 1,
                 "name" : "trace2",
                 "plotType" : "Scatter",
-                "plotIndicator" : "/breakdown_by_indicator/TemperatureMean",
+                "plotDataX": "generator_downtimes.GeneratorName",
+                "plotDataY": "generator_downtimes.LostProduction",
                 "markerColour" : "#00cc11",
                 "orientation" : "v"
             }
