@@ -101,11 +101,11 @@ export const Trace = (props : TraceProps) => {
                 <div className="ml-3 mr-3 flex-col">
                     <div className="flex flex-col mb-2">
                         <p>X Field -</p>
-                        <div className="px-4 font-medium placeholder-[#ACACAC]  bg-[#DCDCDC] rounded-lg flex items-center border-2 border-[#B3B3B3] ">{cleanTagString(props.trace.plotDataX)}</div>
+                        <div className="hide-scrollbar overflow-x-auto whitespace-nowrap px-4 font-medium placeholder-[#ACACAC]  bg-[#DCDCDC] rounded-lg flex items-center border-2 border-[#B3B3B3] ">{cleanTagString(props.trace.plotDataX)}</div>
                     </div>
                     <div className="flex flex-col mb-2">
                         <p>Y Field -</p>
-                        <div className="px-4 font-medium placeholder-[#ACACAC]  bg-[#DCDCDC] rounded-lg flex items-center border-2 border-[#B3B3B3] ">{cleanTagString(props.trace.plotDataY)}</div>
+                        <div className="hide-scrollbar overflow-x-auto whitespace-nowrap px-4 font-medium placeholder-[#ACACAC] overflow-clip  bg-[#DCDCDC] rounded-lg flex items-center border-2 border-[#B3B3B3] ">{cleanTagString(props.trace.plotDataY)}</div>
                     </div>
                 </div>
                 <button className="bg-[#c9cacd] hover:bg-[#d8d9db] mx-4 py-2 rounded-md" onClick={handleDataPopupButton}>Open Options</button>
