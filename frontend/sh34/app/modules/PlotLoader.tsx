@@ -1,5 +1,4 @@
 import { LoadPlotsFromTemplatesResponseData } from "@app/api/load-plots-from-template/route";
-import { request } from "http";
 import { WithId } from "mongodb";
 import { PlotData } from "plotly.js";
 
@@ -22,7 +21,7 @@ export class PlotLoader {
             });
             if (response.status != 200)
                 throw new Error(`Failed to fetch plots for template id: ${id}.`);
-            const data: LoadPlotsFromTemplatesResponseData = await request.json();
+            const data: LoadPlotsFromTemplatesResponseData = await response.json();
             return data.plots;
         } catch(e) {
             console.error(e);
