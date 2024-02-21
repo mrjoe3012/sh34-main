@@ -1,23 +1,17 @@
 import { useState } from 'react';
 import { MarkerConstantOption } from './MarkerConstantOption';
 import { MarkerScaleOption } from './MarkerScaleOption';
+import { TraceType } from "@app/modules/Config";
 
 interface dataPointColourTabProps {
     switchTabFunction: (someComponent: JSX.Element) => void;
     plotFunctionConstant: (inputValue: string) => void;
     plotFunctionScale: (inputValue: string) => void;
-    trace: {
-        id: number,
-        name: string,
-        plotType: string,
-        plotIndicator: string,
-        markerColour: string,
-        orientation: string
-    }
+    trace: TraceType
 }
 
 export const MarkerColourTabSwitcher = (props : dataPointColourTabProps) => {
-    
+
     const [constantClicked, setConstantClicked] = useState(true);
     const [scaleClicked, setScaleClicked] = useState(false);
 
@@ -32,7 +26,7 @@ export const MarkerColourTabSwitcher = (props : dataPointColourTabProps) => {
         setScaleClicked(true);
         props.switchTabFunction(<MarkerScaleOption />)
     }
-    
+
     return (
         <div className="w-40 h-[35px] bg-[#EAEAEA] border-2 border-[#B3B3B3] rounded flex items-center mb-2 ml-3">
                 <button className={`w-[60%] flex-grow text-center h-full rounded ${constantClicked ? 'text-RES_ORANGE font-semibold' : ''}`} onClick={handleConstantClicked}>Constant</button>

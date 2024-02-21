@@ -5,7 +5,8 @@
       "id": 0,
       "name": "New Trace",
       "plotType": "Pie",
-      "plotIndicator": "/breakdown_by_indicator/ConsumptionMetered",
+      "plotDataX": "breakdown_by_indicator.ConsumptionMetered.date",
+      "plotDataY": "breakdown_by_indicator.ConsumptionMetered.value",
       "markerColour": "#ffac05",
       "orientation": "v"
     }

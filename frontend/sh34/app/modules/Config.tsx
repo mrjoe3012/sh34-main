@@ -4,12 +4,12 @@ export interface Config {
     traces: Array<TraceType>;
 
     numAnnotations: number;
-    annotations: Array<AnnotationType>; 
+    annotations: Array<AnnotationType>;
 
     generalOptions: GeneralOptionsType;
 
     labellingOptions: LabellingOptionsType;
-      
+
     visualOptions: VisualOptionsType;
 }
 
@@ -38,7 +38,8 @@ export interface TraceType {
     id: number;
     name: string;
     plotType: string;
-    plotIndicator: string;
+    plotDataX: string;
+    plotDataY: string;
     markerColour: string;
     orientation: string;
 }

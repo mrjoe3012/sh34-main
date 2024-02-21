@@ -7,10 +7,11 @@ export const NewTraceButton = () => {
 
     const addTrace = () => {
         const newTrace: TraceType = {
-            id: config["numTraces"]+1, 
+            id: config["numTraces"]+1,
             name: "New Trace",
-            plotType: 'Scatter', 
-            plotIndicator: '/breakdown_by_indicator/TemperatureMean',
+            plotType: 'Scatter',
+            plotDataX: "generator_downtimes.GeneratorName",
+            plotDataY: "generator_downtimes.LostProduction",
             markerColour: "#ffac05",
             orientation: "v"
         };

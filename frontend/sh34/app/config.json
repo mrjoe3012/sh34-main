@@ -6,7 +6,8 @@
             "id": 0,
             "name": "New Trace",
             "plotType": "Bar",
-            "plotIndicator": "/breakdown_by_indicator/TemperatureMean",
+            "plotDataX": "generator_downtimes.GeneratorName",
+            "plotDataY": "generator_downtimes.LostProduction",
             "markerColour": "#ffac05",
             "orientation": "v"
         }

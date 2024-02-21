@@ -2,7 +2,6 @@
 
 #Mustafa Onur Cay - 19/10/2023
 import json
-from typing import Any
 import os
 import shutil
 import io
@@ -11,7 +10,6 @@ import plotly.io as pio
 from docx import Document
 from docx.shared import Inches, Pt
 from docx.enum.text import WD_ALIGN_PARAGRAPH
-import pandas as pd
 
 def generate_plot_jsons(config_json_list,data_json):
     """
@@ -105,7 +103,7 @@ def generate_plot(config_json, data_json):
     return fig
 
 
-def update_traces(fig, properties,data_json):
+def update_traces(fig, properties, data_json):
     """
         Updates the figure with the specified traces from the trace array.
         Returns the updated figure after traces have been added.
@@ -115,16 +113,18 @@ def update_traces(fig, properties,data_json):
 
     for trace in properties["traces"]:
         plot_type = trace["plotType"]
-        plot_indicator = trace["plotIndicator"]
         trace_name = trace["name"]
         trace_marker_colour = trace["markerColour"]
+        plot_data_x = trace["plotDataX"]
+        plot_data_y = trace["plotDataY"]
 
         # Generating the dataframe based on the plot_indicator field.
         # NB - still no idea what the 3rd parameter is for.
-        df = data_extract(data_json,plot_indicator,"value")
 
-        x_data = df["x"]
-        y_data = df["y"]
+        graph_data = data_extract(data_json,plot_data_x,plot_data_y)
+
+        x_data = graph_data["x"]
+        y_data = graph_data["y"]
 
 
         # Adding the appropriate trace
@@ -513,7 +513,7 @@ def build_property_dict(config_json):
     return properties
 
 
-def data_extract(data_json:dict[str,Any],name:str,first_value:str) -> pd.DataFrame:
+def data_extract(data_json, plot_data_x, plot_data_y) -> dict:
     """
     Extracts the data from json format to a numpy DataFrame.
     :param data_json: The Json file that data is to be extracted from.
@@ -523,25 +523,49 @@ def data_extract(data_json:dict[str,Any],name:str,first_value:str) -> pd.DataFra
     :returns: a Pandas Data Frame
     """
 
-    data_dict = {"x":[],"y":[]}
-    monthly_data = data_json["month"]
-    graph_name_split = name.split('/')
-    level1 = graph_name_split[1]
-    named_data = monthly_data[level1]
-    if len(graph_name_split)== 3:
-        level2 = graph_name_split[2]
-        named_data = named_data[level2]
+    graph_data = {}
 
-    for entry in named_data:
-        first_key = list(entry.keys())[0]
+    graph_data = extract_data_for_dataframe(graph_data, data_json["month"], plot_data_x, "x")
+    graph_data = extract_data_for_dataframe(graph_data, data_json["month"], plot_data_y, "y")
 
-        data_dict["x"].append(entry[first_key])
-        try:
-            data_dict["y"].append(entry[first_value])
-        except KeyError:
-            data_dict["y"].append(None)
-    df = pd.DataFrame(data_dict)
-    return df
+    return graph_data
+
+
+
+
+def extract_data_for_dataframe(graph_data, data_json, search_string, column):
+    """
+    Extracts values from a nested dictionary based on a given path.
+
+    :param data: The nested dictionary to search.
+    :param path: The string path representing the nested structure, separated by dots.
+    :return: A list of values found at the path, or an empty list if the path is invalid.
+    """
+    elements = search_string.split('.')
+    current_data = data_json
+
+    for element in elements[:-1]:  # Iterate through the path except the last element
+        if isinstance(current_data, dict) and element in current_data:
+            current_data = current_data[element]
+        elif isinstance(current_data, list) and element.isdigit():
+            index = int(element)
+            if 0 <= index < len(current_data):
+                current_data = current_data[index]
+            else:
+                return []  # Invalid index
+        else:
+            return []  # Invalid path
+
+    # Extract the final values based on the last element in the path
+    final_element = elements[-1]
+    if isinstance(current_data, list):
+        my_list = list(dict.fromkeys(
+            [item.get(final_element, None)
+            for item in current_data if final_element in item]))
+        graph_data[column] = my_list
+        return graph_data
+
+    return []  # The path does not lead to a list
 
 
 def pascal_split_name(value:str) -> str:

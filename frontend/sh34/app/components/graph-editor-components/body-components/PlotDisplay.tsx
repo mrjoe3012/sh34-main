@@ -22,7 +22,7 @@ export const PlotDisplay = () => {
         .then(response => response.text())
         .then(data => {
           console.log("Received Plot as HTML")
-        // Im sure its dangerous to just be setting unverified HTML into the site but... 
+        // Im sure its dangerous to just be setting unverified HTML into the site but...
           $('#plot-container').html(data);
           $('#loading-icon').css("display", "none");
         })
@@ -35,7 +35,7 @@ export const PlotDisplay = () => {
     // Currently just output the config to the console
     const viewConfigJSON = () => {
         console.log(config);
-    } 
+    }
 
     return(
       <div className="basis-[110%] flex flex-col justify-center sm:scale-50 test2:scale-50 test3:scale-100 test4:scale-75 test1:scale-50 -z-2 max-w-[75%]">

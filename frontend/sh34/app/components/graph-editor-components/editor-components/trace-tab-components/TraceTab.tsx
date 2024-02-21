@@ -22,7 +22,7 @@ export const TraceTab = () => {
         )
     },[config])
 
-    
+
 
     return(
         <div className="w-full">

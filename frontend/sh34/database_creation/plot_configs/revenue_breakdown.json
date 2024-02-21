@@ -5,7 +5,8 @@
       "id": 2,
       "name": "New Trace",
       "plotType": "Pie",
-      "plotIndicator": "/breakdown_by_indicator/RevenueFromProduction",
+      "plotDataX": "breakdown_by_indicator.RevenueFromProduction.date",
+      "plotDataY": "breakdown_by_indicator.RevenueFromProduction.value",
       "markerColour": "#936b1e",
       "orientation": "v"
     }

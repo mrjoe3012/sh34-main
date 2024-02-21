@@ -11,6 +11,7 @@ export const YAxisLabelOption = () => {
 
     const { config, setConfig } = useConfig();
     const [yAxisOptionMode, setYAxisOptionMode] = useState(<YAxisLabelDefaultMode />)
+    const [tabOnRender, setTabOnRender] = useState(-1);
 
     const changeYAxisLabelText = (inputValue: string) => {
         // Enter logic here for changing of Y Axis Label Text
@@ -22,7 +23,7 @@ export const YAxisLabelOption = () => {
         const newConfig = { ...config };
 
         newConfig.labellingOptions.yAxis.yAxisText = inputValue;
-        
+
         setConfig(newConfig);
         console.log("Y-Axis Label Text Changed to " + inputValue);
     }
@@ -43,13 +44,15 @@ export const YAxisLabelOption = () => {
     useEffect(()=> {
         if (config["labellingOptions"]["yAxis"]["styling"]["currentStylingMode"]=="default") {
             setYAxisOptionMode(<YAxisLabelDefaultMode />)
+            setTabOnRender(0)
         } else if (config["labellingOptions"]["yAxis"]["styling"]["currentStylingMode"]=="custom") {
             setYAxisOptionMode(<YAxisLabelCustomMode />)
+            setTabOnRender(1)
         }
     }, [])
 
     return(
-        <div className="bg-[#e6e7eb] py-3 rounded-md"> 
+        <div className="bg-[#e6e7eb] py-3 rounded-md">
                 <OptionComponentTitle optionName="Y-Axis Label Options" />
                 <div className="mb-2"><GenericTextInputOption contentOnRender={config["labellingOptions"]["yAxis"]["yAxisText"]} plotFunction={changeYAxisLabelText} placeholder="" labelName={"Text"} displayLabel={true} width="" textPos=""/></div>
                 <div className="mx-3"><OptionComponentTitle optionName="Font Options" /></div>
@@ -59,7 +62,9 @@ export const YAxisLabelOption = () => {
                                 switcherLabel1="Default"
                                 switcherLabel2="Custom"
                                 firstOptionFunction={switchToDefault}
-                                secondOptionFunction={switchToCustom} />
+                                secondOptionFunction={switchToCustom}
+                                tabOnRender={tabOnRender}
+                                />
                 {yAxisOptionMode}
         </div>
     )
