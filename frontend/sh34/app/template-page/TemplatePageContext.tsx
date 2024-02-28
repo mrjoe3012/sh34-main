@@ -64,7 +64,31 @@ export const TemplatePageContextProvider = (props: TemplatePageContextProps) => 
 
     // Function to handle updating DB when changes are applied to the plots
     useEffect(()=> {
+        const updatePlots = async () => {
+            console.log("Attempting to update plots")
+            try {
+                const response = await fetch('/api/db/update-template-plots', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        'plotsToUpdate': plots
+                    }),
+                });
 
+                if (response.status !== 200) {
+                    console.error(`Failed to update template. Status: ${response.status}`);
+                } else {
+                    console.log("Seems good mate");
+                }
+            } catch (error) {
+                console.error(`Failed to update template. Error: ${error}`);
+            }
+        };
+
+        // Call the async function
+        updatePlots();
     }, [plots])
 
 
