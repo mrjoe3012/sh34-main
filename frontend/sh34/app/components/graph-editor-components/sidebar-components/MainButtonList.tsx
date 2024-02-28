@@ -5,7 +5,8 @@ import Link from "next/link";
 
 export const MainButtonList = () => {
     const {template} = useConfig(); 
-
+    if (template === null)
+        return <div></div>
     return (
         <div className='flex flex-col mt-auto mb-5'>
             <MainButton buttonName="View Config" buttonColour="bg-[#91a2a8]" imgSrc="" onClick={()=>{}}/>
