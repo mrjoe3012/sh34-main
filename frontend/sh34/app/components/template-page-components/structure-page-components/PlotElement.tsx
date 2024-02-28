@@ -135,8 +135,8 @@ export const PlotElement = (props: PlotElementProps) => {
 
                     {/* The movement control and delete div */}
           <div className='flex flex-col justify-center items-center '>
-              <Image onClick={handlePlotUpClick} src={UpArrow} alt='UpArrow' className='w-10 h-10'/>
-              <Image onClick={handlePlotDownClick} src={DownArrow} alt='DownArrow' className='w-10 h-10'/>
+              <button><Image onClick={handlePlotUpClick} src={UpArrow} alt='UpArrow' className='w-10 h-10'/></button>
+              <button><Image onClick={handlePlotDownClick} src={DownArrow} alt='DownArrow' className='w-10 h-10'/></button>
           </div>
 
           <div className={`flex justify-between items-center w-[750px] h-[100px] border-gray-400 bg-[#edeef2] p-3 rounded-lg border-4 px-4`}>
