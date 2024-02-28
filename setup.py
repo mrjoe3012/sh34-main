@@ -2,9 +2,9 @@
 from setuptools import setup, find_packages
 
 packages = [
-    'backend',
-    'backend_tests',
-    'standalone'
+    'src/backend',
+    'src/backend_tests',
+    'src/standalone'
 ]
 
 setup(
@@ -16,5 +16,8 @@ setup(
             'sh34-backend=backend.main:main',
             'sh34-standalone=standalone.standalone:main',
         ]
-    }
+    },
+    install_requires = [
+        x.strip() for x in open("src/requirements.txt", "r").readlines()
+    ]
 )
