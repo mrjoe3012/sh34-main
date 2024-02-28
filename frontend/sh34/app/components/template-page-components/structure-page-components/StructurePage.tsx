@@ -4,7 +4,10 @@ import { NewPlotButton } from "./NewPlotButton";
 import { useTemplatePageContext } from "@app/template-page/TemplatePageContext";
 
 export const StructurePage = () => {
-    const {plots} = useTemplatePageContext();
+    const {plots, setPlots} = useTemplatePageContext();
+
+    const sortedPlots = [...plots].sort((a, b) => a.order - b.order);
+
     return (
 
         <div className="mb-10">
@@ -15,10 +18,12 @@ export const StructurePage = () => {
             </div>
 
             <div className='flex flex-col gap-y-8 items-center'>
-                {plots.map((plot, idx) =>{
+                {sortedPlots.map((plot) =>{
                     return (<PlotElement
-                        key={idx}
+                        key={plot._id}
                         plot={plot}
+                        plots={plots}
+                        setPlots={setPlots}
                     />)
                 })}
             </div>

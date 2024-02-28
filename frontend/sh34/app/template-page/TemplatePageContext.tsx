@@ -32,12 +32,9 @@ export const TemplatePageContextProvider = (props: TemplatePageContextProps) => 
     const [plots, setPlots] = useState<WithId<PlotData>[]>([]);
     const [plotsLoaded, setPlotsLoaded] = useState<boolean>(false);
 
+    // Function to handle updating DB when changes are applied to the template
     useEffect(() => {
-        // Define an async function inside the effect
         const updateTemplate = async () => {
-            console.log("Temp");
-            console.log("Will call API to update template to: ");
-            console.log(template);
 
             try {
                 const response = await fetch('/api/db/update-template', {
@@ -64,6 +61,12 @@ export const TemplatePageContextProvider = (props: TemplatePageContextProps) => 
         // Call the async function
         updateTemplate();
     }, [template]);
+
+    // Function to handle updating DB when changes are applied to the plots
+    useEffect(()=> {
+
+    }, [plots])
+
 
     useEffect(() => {
         const loadPlots = async () => {
