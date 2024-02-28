@@ -11,6 +11,7 @@ export const AnnotationTab = () => {
     const [annotationList, setAnnotationList] = useState(<div></div>)
 
     useEffect(()=> {
+        if (config === null) return;
         var annotations = config.annotations
         setAnnotationList(
             <>
