@@ -4,16 +4,16 @@ import { TemplateLastModified } from "./TemplateLastModified";
 import { useTemplatePageContext } from "@app/template-page/TemplatePageContext";
 
 export const InfoPage = () => {
-    const {template} = useTemplatePageContext();
+    const {template, setTemplate} = useTemplatePageContext();
     return (
         <div className="mb-10">
 
             <div className="flex flex-row mb-8 justify-between">
-                <TemplateNameInput name={template.Name} />
+                <TemplateNameInput template={template} setTemplate={setTemplate} />
                 <TemplateLastModified lastModified={template.LastModified} />
             </div>
 
-            <TemplateDescriptionInput description={template.Description} />
+            <TemplateDescriptionInput template={template} setTemplate={setTemplate} />
 
             <div className="flex justify-between">
             <div>

@@ -31,6 +31,40 @@ export const TemplatePageContextProvider = (props: TemplatePageContextProps) => 
     const [template, setTemplate] = useState<WithId<TemplateData>>(props.template);
     const [plots, setPlots] = useState<WithId<PlotData>[]>([]);
     const [plotsLoaded, setPlotsLoaded] = useState<boolean>(false);
+
+    useEffect(() => {
+        // Define an async function inside the effect
+        const updateTemplate = async () => {
+            console.log("Temp");
+            console.log("Will call API to update template to: ");
+            console.log(template);
+
+            try {
+                const response = await fetch('/api/db/update-template', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        'templateID': template._id,
+                        'newTemplate': template,
+                    }),
+                });
+
+                if (response.status !== 200) {
+                    console.error(`Failed to update template. Status: ${response.status}`);
+                } else {
+                    console.log("Seems good mate");
+                }
+            } catch (error) {
+                console.error(`Failed to update template. Error: ${error}`);
+            }
+        };
+
+        // Call the async function
+        updateTemplate();
+    }, [template]);
+
     useEffect(() => {
         const loadPlots = async () => {
             if (plotsLoaded)
@@ -46,6 +80,7 @@ export const TemplatePageContextProvider = (props: TemplatePageContextProps) => 
         const intervalId = setInterval(loadPlots, 5000);
         return () => clearInterval(intervalId);
     }, []);
+
     return (
         <TemplatePageContext.Provider value={{template, setTemplate, plots, setPlots}}>
             {props.children}
