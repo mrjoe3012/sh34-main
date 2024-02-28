@@ -1,5 +1,4 @@
 import { NewTemplateButton } from "./NewTemplateButton";
-import { SearchBar } from "./SearchBar";
 
 export default function Header(){
     return(
@@ -10,11 +9,7 @@ export default function Header(){
         <div className='float-right'>
           <div className='inline-block'>
             <NewTemplateButton />
-          </div>
-          <div className='inline-block pl-4'>
-            <SearchBar />
-          </div>
-            
+          </div>            
         </div>
       </div>
     );
