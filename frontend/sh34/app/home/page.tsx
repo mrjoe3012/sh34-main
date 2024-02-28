@@ -30,7 +30,6 @@ export default function Home() {
     // only update rendered templates if they have changed
     const currentIds = templates.map((t) => t._id).sort();
     const newIds = newTemplates.map((t) => t._id).sort();
-    console.log(currentIds, newIds);
     if (currentIds.length == 0 || !newIds.every((_, i) => currentIds[i] == newIds[i])) {
       setTemplates([...newTemplates]);
       setNeedSorting(true);

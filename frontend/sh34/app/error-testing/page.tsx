@@ -9,7 +9,7 @@ export default function ErrorTesting() {
 
     const showError = () => {
         setErrorMessage(message);
-        console.log(message)
+        
     }
 
     const onClose = () => {
