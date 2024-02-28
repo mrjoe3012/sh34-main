@@ -79,7 +79,6 @@ export const NewTemplatePopup = (props: NewTemplatePopupProps) => {
     const handleRemoveTag = (event: React.MouseEvent<HTMLDivElement, MouseEvent>, indexToRemove: number) => {
         event.preventDefault()
         setTemplateTags(templateTags.filter((_, tagIndex) => indexToRemove !== tagIndex));
-        console.log("removing tag")
     }
 
     return (

@@ -15,7 +15,6 @@ import Cookies from 'js-cookie';
 export function Body() {
   const pathName = usePathname();
   const lastKey = Cookies.get("key:"+pathName) !== undefined ? Cookies.get("key:"+pathName)!! : '';
-  console.log("lastKey", lastKey);
   const [bodyContent,setBodyContent] = useState(<StructurePage/>);
   const {template} = useTemplatePageContext();
   const [kickout, setKickout] = useState(false);
