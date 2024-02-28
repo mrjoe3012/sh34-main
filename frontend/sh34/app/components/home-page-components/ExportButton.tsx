@@ -93,14 +93,14 @@ export const ExportButton = ({ templateID, page }:ExportButtonProps) =>{
       <div className="justify-center items-center ">
 
         <div>
-        <button onClick = {DOCXExport} className='text-center w-3/6'>
+        <button onClick = {DOCXExport} className='text-center w-3/6 '>
           <div className="justify-center flex rounded-s-lg p-2 border-black border-2 relative bg-[#346DFF]">
-            <p className="text-slate-50 basis-10/11">Export DOCX</p>
+            <p className="text-slate-50 basis-10/11 whitespace-nowrap overflow-hidden overflow-elipsis" >Export DOCX</p>
           </div>
         </button>
         <button onClick = {JSONExport} className='text-center w-3/6'>
           <div className="justify-center flex rounded-r-lg p-2 border-black border-2 relative bg-[#346DFF]">
-            <p className="text-slate-50 basis-10/11">Export JSON</p>
+            <p className="text-slate-50 basis-10/11 whitespace-nowrap overflow-hidden overflow-elipsis">Export JSON</p>
           </div>
         </button>
 
