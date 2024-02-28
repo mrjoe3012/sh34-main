@@ -3,7 +3,6 @@
 import { PageTitle } from '@app/components/template-page-components/general-components/PageTitle';
 import { TemplateInfo } from '@app/components/template-page-components/general-components/TemplateInfo';
 import { TemplatePageSwitcher } from '@app/components/template-page-components/general-components/TemplatePageSwitcher';
-import { TemplateSaveButton } from '@app/components/template-page-components/general-components/TemplateSaveButton';
 import { StructurePage } from '@app/components/template-page-components/structure-page-components/StructurePage';
 import { useEffect, useState } from 'react';
 import { ExportButton } from '@app/components/home-page-components/ExportButton';
@@ -49,7 +48,6 @@ export function Body() {
         <div className='mt-10 mb-5 flex justify-between'>
           <TemplatePageSwitcher switchTabFunction={setBodyContent}/>
           <div className='flex gap-3'>
-            <TemplateSaveButton />
             <ExportButton page = 'template' templateID={template._id}/>
           </div>
         </div>
