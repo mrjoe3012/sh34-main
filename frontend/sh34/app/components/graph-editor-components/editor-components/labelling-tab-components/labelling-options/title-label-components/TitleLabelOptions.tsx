@@ -15,6 +15,7 @@ export const TitleLabelOptions = () => {
 
     const changeTitleText = (inputValue: string) => {
         // Create a deep copy of config and update the specific value
+        if (config === null) return;
         const newConfig = { ...config };
         newConfig.labellingOptions.title.plotTitle = inputValue;
         setConfig(newConfig); // Update the config context
@@ -22,12 +23,14 @@ export const TitleLabelOptions = () => {
     }
 
     const switchToDefault = () => {
+        if (config === null) return;
         const newConfig = { ...config };
         newConfig.labellingOptions.title.styling.currentStylingMode = "default";
         setConfig(newConfig); // Update the config context
     }
 
     const switchToCustom = () => {
+        if (config === null) return;
         const newConfig = { ...config };
         newConfig.labellingOptions.title.styling.currentStylingMode = "custom";
         setConfig(newConfig); // Update the config context
@@ -35,6 +38,7 @@ export const TitleLabelOptions = () => {
 
     // On Component Load, if Custom Mode is Selected, Switch to Custom Tab
     useEffect(()=> {
+        if (config === null) return;
         if (config["labellingOptions"]["title"]["styling"]["currentStylingMode"]=="default") {
             setTitleOptionMode(<TitleLabelDefaultMode />)
             setTabOnRender(0);
@@ -44,7 +48,8 @@ export const TitleLabelOptions = () => {
         }
         console.log("tabonrender: " + tabOnRender)
     }, [])
-
+    if (config === null)
+        return;
     return(
         <div className="bg-[#e6e7eb] py-3 rounded-md">
                 <OptionComponentTitle optionName="Title Label Options" />

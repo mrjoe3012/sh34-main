@@ -1,7 +1,8 @@
 "use client";
+import { PlotLoader } from "@app/modules/PlotLoader";
 import { PlotData, TemplateData } from "@app/modules/db";
 import { WithId } from "mongodb";
-import React, { ReactNode, useState } from "react";
+import React, { ReactNode, useEffect, useState } from "react";
 import { useContext } from "react";
 
 export interface TemplatePageContextType {
@@ -24,12 +25,27 @@ export const useTemplatePageContext = () => {
 export interface TemplatePageContextProps {
     children: ReactNode,
     template: WithId<TemplateData>,
-    plots: WithId<PlotData>[]
 };
 
 export const TemplatePageContextProvider = (props: TemplatePageContextProps) => {
     const [template, setTemplate] = useState<WithId<TemplateData>>(props.template);
-    const [plots, setPlots] = useState<WithId<PlotData>[]>(props.plots);
+    const [plots, setPlots] = useState<WithId<PlotData>[]>([]);
+    const [plotsLoaded, setPlotsLoaded] = useState<boolean>(false);
+    useEffect(() => {
+        const loadPlots = async () => {
+            if (plotsLoaded)
+                return;
+            const loader = new PlotLoader();
+            const plots = await loader.loadPlotsFromTemplate(template._id);
+            if (plots.length > 0) {
+                setPlots([...plots]);
+                setPlotsLoaded(true);
+            }
+        };
+        loadPlots();
+        const intervalId = setInterval(loadPlots, 5000);
+        return () => clearInterval(intervalId);
+    }, []);
     return (
         <TemplatePageContext.Provider value={{template, setTemplate, plots, setPlots}}>
             {props.children}

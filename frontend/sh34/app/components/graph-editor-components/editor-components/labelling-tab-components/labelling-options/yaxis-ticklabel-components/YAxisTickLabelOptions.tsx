@@ -15,18 +15,21 @@ export const YAxisTickLabelOption = () => {
     const [tabOnRender, setTabOnRender] = useState(-1);
 
     const switchToDefault = () => {
+        if (config === null) return;
         const newConfig = { ...config };
         newConfig.labellingOptions.yAxis.tickLabels.styling.currentStylingMode = "default";
         setConfig(newConfig); // Update the config context
     }
 
     const switchToCustom = () => {
+        if (config === null) return;
         const newConfig = { ...config };
         newConfig.labellingOptions.yAxis.tickLabels.styling.currentStylingMode = "custom";
         setConfig(newConfig); // Update the config context
     }
 
     const changeYAxisTickAngle = (inputValue: string) => {
+        if (config === null) return;
         if (inputValue === "") {
             return
         }
@@ -39,6 +42,7 @@ export const YAxisTickLabelOption = () => {
     }
     // On Component Load, if Custom Mode is Selected, Switch to Custom Tab
     useEffect(()=> {
+        if (config === null) return;
         if (config["labellingOptions"]["yAxis"]["tickLabels"]["styling"]["currentStylingMode"]=="default") {
             setYAxisTickLabelOptionMode(<YAxisTickLabelDefaultMode />)
             setTabOnRender(0)

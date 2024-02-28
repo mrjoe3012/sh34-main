@@ -6,17 +6,7 @@ import { PlotData, loadPlots, loadTemplateFromPlot, loadTemplates } from '@app/m
 import { WithId } from 'mongodb';
 import { InvalidIdParam } from '@app/modules/InvalidIdParam';
 
-async function tryRetrievePlot(id: string): Promise<WithId<PlotData>> {
-  const idInt = Number.parseInt(id);
-  const filter = {
-    '_id' : idInt
-  };
-  const plots = await loadPlots(filter);
-  if (plots.length == 0) {
-    throw new InvalidIdParam(`The ID param was invalid: ${id}`);
-  }
-  return plots[0];
-}
+export const dynamic = 'force-dynamic';
 
 interface GraphEditorProps {
   params: {
@@ -25,10 +15,8 @@ interface GraphEditorProps {
 };
 
 export default async function GraphEditorPage(props: GraphEditorProps) {
-  const plot = await tryRetrievePlot(props.params.id);
-  const template = await loadTemplateFromPlot(plot);
   return (
-    <ConfigProvider plot={plot} template={template}>
+    <ConfigProvider id={Number.parseInt(props.params.id)}>
       <div className="text-black flex flex-col h-screen">
         <Navbar />
         <hr className='h-[1.5px] bg-[#D3D3D3]'></hr>

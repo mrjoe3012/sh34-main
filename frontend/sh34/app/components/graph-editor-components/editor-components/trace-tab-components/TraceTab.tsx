@@ -10,6 +10,7 @@ export const TraceTab = () => {
     const [traceList, setTraceList] = useState(<div></div>)
 
     useEffect(()=> {
+        if (config === null) return;
         var traces = config.traces
         setTraceList(
             <>

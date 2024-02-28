@@ -4,6 +4,8 @@ import { useContext, useState } from "react";
 import { Config } from "@app/modules/Config";
 import { PlotData, TemplateData } from "@app/modules/db";
 import { WithId } from "mongodb";
+import { PlotLoader } from "@app/modules/PlotLoader";
+import { TemplateLoader } from "@app/modules/TemplateLoader";
 // This ConfigContext is created so that any children will have access to the ConfigJSON that is loaded into this Config's state.
 // It has been created this way so that when any children modify the config state from this context, React will know this,
 // meaning that elsewhere we can use a useEffect that runs when config changes. This is very useful in our case, ie when
@@ -17,9 +19,9 @@ import { WithId } from "mongodb";
 
 // Define the Generic Type that the Config Context will be
 export interface ConfigContextType {
-    config: Config;
-    template: WithId<TemplateData>;  // the parent template for the plot
-    setConfig: React.Dispatch<React.SetStateAction<Config>>;
+    config: Config | null;
+    template: WithId<TemplateData> | null;  // the parent template for the plot
+    setConfig: React.Dispatch<React.SetStateAction<Config | null>>;
 }
 
 
@@ -40,9 +42,8 @@ export const useConfig = () => {
 
 
 interface ConfigProviderProps {
-    plot: WithId<PlotData>;
-    template: WithId<TemplateData>;
-    children: ReactNode; // This tells TypeScript that children can be any valid React node
+    children: ReactNode, // This tells TypeScript that children can be any valid React node
+    id: number, // plot id
 }
 
 async function updatePlotConfig(id: number, config: Config): Promise<void> {
@@ -64,17 +65,53 @@ async function updatePlotConfig(id: number, config: Config): Promise<void> {
 }
   
 export const ConfigProvider: React.FC<ConfigProviderProps> = (props: ConfigProviderProps) => {
-    const [config, setConfig] = useState<Config>(props.plot.config_file);
-    const template = props.template;
+    const [plot, setPlot] = useState<WithId<PlotData> | null>(null);
+    const [config, setConfig] = useState<Config | null>(null);
+    const [template, setTemplate] = useState<WithId<TemplateData> | null>(null);
+    const [loadedPlot, setLoadedPlot] = useState<boolean>(false);
+    const [loadedTemplate, setLoadedTemplate] = useState<boolean>(false);
 
     useEffect(() => {
-        updatePlotConfig(props.plot._id, config);
+        const loadPlot = async () => {
+            if (loadedPlot)
+                return;
+            const loader = new PlotLoader();
+            const plots = await loader.loadPlots({'_id' : props.id});
+            if (plots.length > 0) {
+                setPlot(plots[0]);
+                setConfig(plots[0].config_file)
+                setLoadedPlot(true);
+            }
+        };
+        const loadTemplate = async () => {
+            if (loadedTemplate)
+                return;
+            const loader = new TemplateLoader();
+            const template = await loader.loadTemplateFromPlot(props.id);
+            if (template != null) {
+                setTemplate(template);
+                setLoadedTemplate(true);
+            }
+        };
+        loadPlot();
+        loadTemplate();
+        const id1 = setInterval(loadPlot, 5000);
+        const id2 = setInterval(loadTemplate, 5000);
+        return () => {
+            clearInterval(id1);
+            clearInterval(id2);
+        }
+    }, []);
+
+    useEffect(() => {
+        if (plot != null && config != null)
+            updatePlotConfig(plot._id, config);
     }, [config]);
 
     // At the top of this function, we created a config state with an initial state of {}.
     // This checks to see if the config state is still empty. If it is, instead of returning any components,
     // return a simple loading div.
-    if (Object.keys(config).length === 0) {
+    if (config == null || plot == null || template == null) {
         return <div className="bg-red-500"></div>;
     }
 

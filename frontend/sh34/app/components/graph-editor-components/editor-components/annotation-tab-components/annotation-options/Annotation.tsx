@@ -21,7 +21,7 @@ export const Annotation = (props: AnnotationProps) => {
 
     const changeAnnotationFontColour = (inputValue: string) => {
 
-        if (inputValue=="") { return }
+        if (inputValue=="" || config === null) { return }
 
         const updatedAnnotations = config.annotations.map(annotation => {
             if (annotation.id === props.annotation.id) {
@@ -46,6 +46,7 @@ export const Annotation = (props: AnnotationProps) => {
 
     const changeAnnotationXPos = (inputValue: string) => {
         // Enter logic for changing the annotation's x pos
+        if (config === null) return;
 
         const updatedAnnotations = config.annotations.map(annotation => {
             if (annotation.id === props.annotation.id) {
@@ -67,7 +68,7 @@ export const Annotation = (props: AnnotationProps) => {
 
     const changeAnnotationYPos = (inputValue: string) => {
         // Enter logic for changing annotations y pos
-
+        if (config === null) return;
         const updatedAnnotations = config.annotations.map(annotation => {
             if (annotation.id === props.annotation.id) {
                 return {
@@ -88,7 +89,7 @@ export const Annotation = (props: AnnotationProps) => {
 
     const changeAnnotationFontSize = (inputValue: string) => {
         // Enter logic for changing annotation font size
-
+        if (config === null) return;
         const updatedAnnotations = config.annotations.map(annotation => {
             if (annotation.id === props.annotation.id) {
                 return {
@@ -112,7 +113,7 @@ export const Annotation = (props: AnnotationProps) => {
 
     const changeAnnotationText = (inputValue: string) => {
         // Enter logic for changing annotation text
-
+        if (config === null) return;
         const updatedAnnotations = config.annotations.map(annotation => {
             if (annotation.id === props.annotation.id) {
                 return {
@@ -132,7 +133,7 @@ export const Annotation = (props: AnnotationProps) => {
     }
 
     const showAnnotationArrow = () => {
-
+        if (config ===null) return;
         const updatedAnnotations = config.annotations.map(annotation => {
             if (annotation.id === props.annotation.id) {
                 return {
@@ -151,7 +152,7 @@ export const Annotation = (props: AnnotationProps) => {
     }
 
     const hideAnnotationArrow = () => {
-
+        if (config === null) return;
         const updatedAnnotations = config.annotations.map(annotation => {
             if (annotation.id === props.annotation.id) {
                 return {
@@ -170,8 +171,8 @@ export const Annotation = (props: AnnotationProps) => {
     }
 
     const deleteAnnotation = () => {
+        if (config === null) return;
         const updatedAnnotations = config.annotations.filter(annotation => annotation.id !== props.annotation.id);
-
         setConfig({
             ...config,
             annotations: updatedAnnotations

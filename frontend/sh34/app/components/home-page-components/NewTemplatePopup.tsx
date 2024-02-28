@@ -22,7 +22,7 @@ export const NewTemplatePopup = (props: NewTemplatePopupProps) => {
     // State for handling errors for TemplateNameField
     const [displayNameErrors, setDisplayNameErrors] = useState(false);
     const [nameErrors, setNameErrors] = useState<string[]>([])
-    const {templates, setTemplates, setPlotsNeedSorting} = useHomePageContext();
+    const {templates, setTemplates, setNeedSorting} = useHomePageContext();
     
     const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
@@ -56,7 +56,7 @@ export const NewTemplatePopup = (props: NewTemplatePopupProps) => {
         setTemplates([...templates, template]);
         console.log({ templateName, templateDescription, templateTags });
         // trigger templates to get sorted
-        setPlotsNeedSorting(true);
+        setNeedSorting(true);
         props.closeButtonFunction();
     };
 

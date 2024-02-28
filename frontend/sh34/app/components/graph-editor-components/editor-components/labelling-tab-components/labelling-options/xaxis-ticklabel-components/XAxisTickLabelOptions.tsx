@@ -15,18 +15,21 @@ export const XAxisTickLabelOption = () => {
     const [tabOnRender, setTabOnRender] = useState(-1);
 
     const switchToDefault = () => {
+        if (config === null) return;
         const newConfig = { ...config };
         newConfig.labellingOptions.xAxis.tickLabels.styling.currentStylingMode = "default";
         setConfig(newConfig); // Update the config context
     }
 
     const switchToCustom = () => {
+        if (config === null) return;
         const newConfig = { ...config };
         newConfig.labellingOptions.xAxis.tickLabels.styling.currentStylingMode = "custom";
         setConfig(newConfig); // Update the config context
     }
 
     const changeXAxisTickAngle = (inputValue: string) => {
+        if (config === null) return;
         if (inputValue === "") {
             return
         }
@@ -40,6 +43,7 @@ export const XAxisTickLabelOption = () => {
 
     // On Component Load, if Custom Mode is Selected, Switch to Custom Tab
     useEffect(()=> {
+        if (config === null) return;
         if (config["labellingOptions"]["xAxis"]["tickLabels"]["styling"]["currentStylingMode"]=="default") {
             setXAxisTickLabelOptionMode(<XAxisTickLabelDefaultMode />)
             setTabOnRender(0);

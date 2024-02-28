@@ -8,6 +8,7 @@ export const XAxisTickLabelPositionOption = () => {
     const changePositionBottom = (inputValue: string) => {
         // Enter logic here for toggling tick labels to the bottom
 
+        if (config === null) return;
         const newConfig = { ...config };
         newConfig.labellingOptions.xAxis.tickLabels.tickPosition = inputValue.toLowerCase()
         setConfig(newConfig); // Update the config context
@@ -17,7 +18,7 @@ export const XAxisTickLabelPositionOption = () => {
 
     const changePositionTop = (inputValue: string) => {
         // Enter logic here for toggling tick labels to the top
-
+        if (config === null) return;
         const newConfig = { ...config };
         newConfig.labellingOptions.xAxis.tickLabels.tickPosition = inputValue.toLowerCase()
         setConfig(newConfig); // Update the config context

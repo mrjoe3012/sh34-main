@@ -10,6 +10,7 @@ export const YAxisLabelCustomMode = () => {
     const changeYAxisLabelFontColour = (inputValue: string) => {
         // Enter logic here for changing of Y Axis Label Font Colour
 
+        if (config === null) return;
         if (inputValue === "") {
             return
         }
@@ -25,6 +26,7 @@ export const YAxisLabelCustomMode = () => {
     const changeYAxisLabelFontSize = (inputValue: string) => {
         // Enter logic here for changing of Y Axis Label Font Size
 
+        if (config === null) return;
         if (inputValue === "") {
             return
         }
@@ -40,6 +42,7 @@ export const YAxisLabelCustomMode = () => {
     const changeYAxisLabelTypeface = (inputValue: string) => {
         // Enter logic for changing the YAxis label typeface
 
+        if (config === null) return;
         if (inputValue === "") {
             return
         }
@@ -51,7 +54,7 @@ export const YAxisLabelCustomMode = () => {
         setConfig(newConfig);
         console.log("YAxis Label Typeface changed to " + inputValue);  
     }
-
+    if (config === null) return <div></div>
     return(
         <div className="flex flex-col gap-y-1">
             <GenericSizeIncrementerOption contentOnRender={config["labellingOptions"]["yAxis"]["styling"]["customFontStyle"]["fontSize"]} plotFunction={changeYAxisLabelFontSize} labelName={"Font Size"} displayLabel={true} />

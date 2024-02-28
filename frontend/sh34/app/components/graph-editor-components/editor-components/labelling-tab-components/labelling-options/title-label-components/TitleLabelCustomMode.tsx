@@ -10,7 +10,8 @@ export const TitleLabelCustomMode = () => {
 
     const changeTitleLabelFontColour = (inputValue: string) => {
         // Enter logic here for changing of title font colour
-
+        if (config === null)
+            return;
         if (inputValue === "") {
             return
         }
@@ -26,7 +27,7 @@ export const TitleLabelCustomMode = () => {
 
     const changeTitleLabelFontSize = (inputValue: string) => {
         // Enter logic here for changing of title font size
-        if (inputValue === "") {
+        if (inputValue === "" || config === null) {
             return
         }
 
@@ -41,7 +42,7 @@ export const TitleLabelCustomMode = () => {
     const changeTitleLabelTypeface = (inputValue: string) => {
         // Enter logic for changing the title label typeface
 
-        if (inputValue === "") {
+        if (inputValue === "" || config === null) {
             return
         }
 
@@ -52,7 +53,8 @@ export const TitleLabelCustomMode = () => {
         setConfig(newConfig);
         console.log("Title Label Typeface changed to " + inputValue);  
     }
-
+    if (config === null)
+        return <div></div>
     return (
         <div className="flex flex-col gap-y-1">
             <GenericSizeIncrementerOption contentOnRender={config["labellingOptions"]["title"]["styling"]["customFontStyle"]["fontSize"]} plotFunction={changeTitleLabelFontSize} labelName={"Font Size"} displayLabel={true} />

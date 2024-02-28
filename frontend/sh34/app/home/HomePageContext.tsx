@@ -1,14 +1,14 @@
 "use client";
 import { TemplateData } from "@app/modules/db";
 import { WithId } from "mongodb";
-import React, { ReactNode, useState } from "react";
+import React, { ReactNode, SetStateAction, useState } from "react";
 import { useContext } from "react";
 
 export interface HomePageContextType { 
     templates: WithId<TemplateData>[],
     setTemplates: React.Dispatch<React.SetStateAction<WithId<TemplateData>[]>>,
-    plotsNeedSorting: boolean,
-    setPlotsNeedSorting: React.Dispatch<React.SetStateAction<boolean>>,
+    needSorting: boolean,
+    setNeedSorting: React.Dispatch<React.SetStateAction<boolean>>,
 };
 
 export const HomePageContext = React.createContext<HomePageContextType | undefined>(undefined);
@@ -24,13 +24,18 @@ export const useHomePageContext = () => {
 export interface HomePageContextProps {
     children: ReactNode,
     templates: WithId<TemplateData>[],
+    setTemplates: React.Dispatch<SetStateAction<WithId<TemplateData>[]>>,
+    needSorting: boolean,
+    setNeedSorting: React.Dispatch<React.SetStateAction<boolean>>,
 };
 
 export const HomePageContextProvider = (props: HomePageContextProps) => {
-    const [templates, setTemplates] = useState<WithId<TemplateData>[]>(props.templates);
-    const [plotsNeedSorting, setPlotsNeedSorting] = useState<boolean>(false);
+    const needSorting = props.needSorting;
+    const setNeedSorting = props.setNeedSorting;
+    const templates = props.templates;
+    const setTemplates = props.setTemplates;
     return (
-        <HomePageContext.Provider value={{templates, setTemplates, plotsNeedSorting, setPlotsNeedSorting}}>
+        <HomePageContext.Provider value={{templates, setTemplates, needSorting, setNeedSorting}}>
             {props.children}
         </HomePageContext.Provider>
     )
