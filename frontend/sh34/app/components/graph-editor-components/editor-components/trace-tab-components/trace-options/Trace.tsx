@@ -22,6 +22,7 @@ export const Trace = (props : TraceProps) => {
 
         if (inputValue=="") { return }
 
+        if (config === null) return;
         const updatedTraces = config.traces.map(trace => {
             if (trace.id === props.trace.id) {
                 return { ...trace, name: inputValue };
@@ -37,6 +38,7 @@ export const Trace = (props : TraceProps) => {
     }
 
     const changeTraceType = (newType: string) => {
+        if (config === null) return;
         const updatedTraces = config.traces.map(trace => {
             if (trace.id === props.trace.id) {
                 return { ...trace, plotType: newType };
@@ -51,6 +53,7 @@ export const Trace = (props : TraceProps) => {
     };
 
     const changeMarkerColourConstant = (inputValue: string) => {
+        if (config === null) return;
         const updatedTraces = config.traces.map(trace => {
             if (trace.id === props.trace.id) {
                 return { ...trace, markerColour: "#" + inputValue };
@@ -66,6 +69,7 @@ export const Trace = (props : TraceProps) => {
 
     const deleteTrace = () => {
         // Filter out the trace with the id you want to delete
+        if (config === null) return;
         const updatedTraces = config.traces.filter(trace => trace.id !== props.trace.id);
 
         // Update the config with the new traces array

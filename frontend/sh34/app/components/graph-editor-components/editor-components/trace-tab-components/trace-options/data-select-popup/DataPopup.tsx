@@ -133,6 +133,7 @@ export const DataPopup = (props: DataPopupProps) => {
 
     const handleSubmit = (event: React.MouseEvent<HTMLButtonElement>) => {
 
+        if (config === null) return;
         if (xFieldTag === "" || yFieldTag === "") {
             setDisplayError(true);
             return

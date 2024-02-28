@@ -13,7 +13,7 @@ export const AnnotationLineOptions = (props: AnnotationProps) => {
 
     const changeAnnotationLineColour = (inputValue: string) => {
         // Enter logic for changing the annotation line colour
-
+        if (config === null) return;
         const updatedAnnotations = config.annotations.map(annotation => {
             if (annotation.id === props.annotation.id) {
                 return {
@@ -34,7 +34,7 @@ export const AnnotationLineOptions = (props: AnnotationProps) => {
 
     const changeAnnotationLineWidth = (inputValue: string) => {
         // Enter logic for changing the annotation line width
-
+        if (config === null) return;
         const updatedAnnotations = config.annotations.map(annotation => {
             if (annotation.id === props.annotation.id) {
                 return {
@@ -55,7 +55,7 @@ export const AnnotationLineOptions = (props: AnnotationProps) => {
 
     const changeAnnotationLineXOffset = (inputValue: string) => {
         // Enter logic for changing the annotation line x offset
-
+        if (config === null) return;
         const updatedAnnotations = config.annotations.map(annotation => {
             if (annotation.id === props.annotation.id) {
                 return {
@@ -76,7 +76,7 @@ export const AnnotationLineOptions = (props: AnnotationProps) => {
 
     const changeAnnotationLineYOffset = (inputValue: string) => {
         // Enter logic for changing the annotation line Y offset
-
+        if (config === null) return;
         const updatedAnnotations = config.annotations.map(annotation => {
             if (annotation.id === props.annotation.id) {
                 return {

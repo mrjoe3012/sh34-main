@@ -8,7 +8,7 @@ export const PlotMarginOption = () => {
 
     const changePlotMarginColour = (inputValue: string) => {
         // Enter logic here for changing of Plot Margin Colour
-
+        if (config === null) return;
         const newConfig = {
             ...config,
             visualOptions: {
@@ -24,7 +24,8 @@ export const PlotMarginOption = () => {
 
         console.log("Plot Margin Colour Changed to " + inputValue);
     }
-    
+    if (config === null)
+        return <div></div> 
     return(
         <div className="bg-[#e6e7eb] py-3 rounded-md">
             <OptionComponentTitle optionName="Plot Margin Colour" />

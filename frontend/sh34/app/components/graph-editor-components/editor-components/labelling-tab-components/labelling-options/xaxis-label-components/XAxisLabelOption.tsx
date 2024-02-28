@@ -17,7 +17,7 @@ export const XAxisLabelOption = () => {
         // Enter logic for changing x axis label text
 
 
-        if (inputValue === "") {
+        if (inputValue === "" || config === null) {
             return
         }
 
@@ -31,12 +31,14 @@ export const XAxisLabelOption = () => {
     }
 
     const switchToDefault = () => {
+        if (config === null) return;
         const newConfig = { ...config };
         newConfig.labellingOptions.xAxis.styling.currentStylingMode = "default";
         setConfig(newConfig); // Update the config context
     }
 
     const switchToCustom = () => {
+        if (config === null) return;
         const newConfig = { ...config };
         newConfig.labellingOptions.xAxis.styling.currentStylingMode = "custom";
         setConfig(newConfig); // Update the config context
@@ -44,6 +46,7 @@ export const XAxisLabelOption = () => {
 
     // On Component Load, if Custom Mode is Selected, Switch to Custom Tab
     useEffect(()=> {
+        if (config === null) return;
         if (config["labellingOptions"]["xAxis"]["styling"]["currentStylingMode"]=="default") {
             setXAxisOptionMode(<XAxisLabelDefaultMode />)
             setTabOnRender(0);
@@ -52,7 +55,7 @@ export const XAxisLabelOption = () => {
             setTabOnRender(1);
         }
     }, [])
-
+    if (config === null) return <div></div>
     return(
         <div className="bg-[#e6e7eb] py-3 rounded-md">
                 <OptionComponentTitle optionName="X-Axis Label Options" />

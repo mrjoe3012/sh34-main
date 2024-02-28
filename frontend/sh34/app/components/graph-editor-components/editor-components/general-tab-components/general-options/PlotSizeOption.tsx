@@ -8,11 +8,12 @@ export const PlotSizeOption = () => {
 
     const changePlotWidth = (inputValue: string) => {
         // Enter logic here for changing of Plot Width
-
+        if (config === null)
+            return;
         const newConfig = {
             ...config,
             generalOptions: {
-                ...config?.generalOptions,
+                ...config.generalOptions,
                 plotWidth: inputValue
             }
         };
@@ -24,11 +25,12 @@ export const PlotSizeOption = () => {
 
     const changePlotHeight = (inputValue: string) => {
         // Enter logic here for changing of Plot Width
-
+        if (config === null)
+            return;
         const newConfig = {
             ...config,
             generalOptions: {
-                ...config?.generalOptions,
+                ...config.generalOptions,
                 plotHeight: inputValue
             }
         };
@@ -38,7 +40,8 @@ export const PlotSizeOption = () => {
  
         console.log("Plot Height Changed to " + inputValue);
     }
-
+    if (config === null)
+        return <div></div>
     return(
         <div className="bg-[#e6e7eb] py-3 rounded-md">
                 <OptionComponentTitle optionName="Plot Size" />

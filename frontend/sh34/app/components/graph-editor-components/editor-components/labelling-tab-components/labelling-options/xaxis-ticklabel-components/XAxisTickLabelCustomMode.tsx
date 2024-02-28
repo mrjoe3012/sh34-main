@@ -10,7 +10,7 @@ export const XAxisTickLabelCustomMode = () => {
     const changeTickLabelFontColour = (inputValue: string) => {
         // Enter logic for changing the X-Axis tick label font colour here
 
-        if (inputValue === "") {
+        if (inputValue === "" || config === null) {
             return
         }
 
@@ -23,7 +23,7 @@ export const XAxisTickLabelCustomMode = () => {
     const changeTickLabelFontSize = (inputValue: string) => {
         // Enter logic for changing the X-Axis tick label font size
 
-        if (inputValue === "") {
+        if (inputValue === "" || config === null) {
             return
         }
 
@@ -36,7 +36,7 @@ export const XAxisTickLabelCustomMode = () => {
     const changeTickLabelTypeface = (inputValue: string) => {
         // Enter logic for changing the X-Axis tick label typeface
 
-        if (inputValue === "") {
+        if (inputValue === "" || config === null) {
             return
         }
 
@@ -45,7 +45,7 @@ export const XAxisTickLabelCustomMode = () => {
         setConfig(newConfig);
         console.log("X-Axis Tick Label Typeface changed to " + inputValue);  
     }
-
+    if (config === null) return <div></div>
     return (
         <div className="flex flex-col gap-y-1">
             <GenericSizeIncrementerOption contentOnRender={config["labellingOptions"]["xAxis"]["tickLabels"]["styling"]["customFontStyle"]["fontSize"]} plotFunction={changeTickLabelFontSize} labelName={"Font Size"} displayLabel={true}/>

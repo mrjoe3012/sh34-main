@@ -16,6 +16,7 @@ export const YAxisLabelOption = () => {
     const changeYAxisLabelText = (inputValue: string) => {
         // Enter logic here for changing of Y Axis Label Text
 
+        if (config === null) return;
         if (inputValue === "") {
             return
         }
@@ -29,12 +30,14 @@ export const YAxisLabelOption = () => {
     }
 
     const switchToDefault = () => {
+        if (config === null) return;
         const newConfig = { ...config };
         newConfig.labellingOptions.yAxis.styling.currentStylingMode = "default";
         setConfig(newConfig); // Update the config context
     }
 
     const switchToCustom = () => {
+        if (config === null) return;
         const newConfig = { ...config };
         newConfig.labellingOptions.yAxis.styling.currentStylingMode = "custom";
         setConfig(newConfig); // Update the config context
@@ -42,6 +45,7 @@ export const YAxisLabelOption = () => {
 
     // On Component Load, if Custom Mode is Selected, Switch to Custom Tab
     useEffect(()=> {
+        if (config === null) return;
         if (config["labellingOptions"]["yAxis"]["styling"]["currentStylingMode"]=="default") {
             setYAxisOptionMode(<YAxisLabelDefaultMode />)
             setTabOnRender(0)
@@ -51,6 +55,7 @@ export const YAxisLabelOption = () => {
         }
     }, [])
 
+    if (config === null) return <div></div>
     return(
         <div className="bg-[#e6e7eb] py-3 rounded-md">
                 <OptionComponentTitle optionName="Y-Axis Label Options" />

@@ -8,7 +8,7 @@ export const PlotColourOption = () => {
 
     const changePlotBackgroundColour = (inputValue: string) => {
         // Enter logic here for changing of Plot Background Colour
-
+        if (config === null) return;
         const newConfig = {
             ...config,
             visualOptions: {
@@ -25,7 +25,8 @@ export const PlotColourOption = () => {
 
         console.log("Plot Background Colour Changed to " + inputValue);
     }
-    
+    if (config === null)
+        return <div></div>; 
     return(
         <div className="bg-[#e6e7eb] py-3 rounded-md">
             <OptionComponentTitle optionName="Plot Background Colour" />

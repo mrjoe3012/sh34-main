@@ -6,6 +6,7 @@ export const NewAnnotationButton = () => {
     const {config,setConfig} = useConfig()
 
     const newAnnotation = () => {
+        if (config === null) return;
         const newAnnotation: AnnotationType = {
             id: config["numAnnotations"]+1, 
             name: "New Annotation",

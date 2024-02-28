@@ -6,6 +6,7 @@ export const NewTraceButton = () => {
     const {config,setConfig} = useConfig()
 
     const addTrace = () => {
+        if (config === null) return;
         const newTrace: TraceType = {
             id: config["numTraces"]+1,
             name: "New Trace",

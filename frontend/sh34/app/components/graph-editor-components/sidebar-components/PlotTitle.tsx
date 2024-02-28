@@ -2,6 +2,7 @@ import { useConfig } from "@app/graph-editor/ConfigContext";
 
 export const PlotTitle = () => {
   const {config} = useConfig();
+  if (config === null) return <div></div>
   return (
     <div className='flex p-2 my-2'>
       <div className='text-center w-full self-center'>

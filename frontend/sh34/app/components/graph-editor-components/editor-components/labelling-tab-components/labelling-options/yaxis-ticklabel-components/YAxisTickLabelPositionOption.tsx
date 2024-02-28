@@ -9,6 +9,7 @@ export const YAxisTickLabelPositionOption = () => {
     const changePosition = (inputValue: string) => {
         // Ensure the necessary nested properties exist in the config object
         // Create a deep copy of config
+        if (config === null) return;
         const newConfig = { ...config };
 
         // Update the specific value
