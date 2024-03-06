@@ -17,8 +17,13 @@ import { WithId } from 'mongodb';
 import dynamic from 'next/dynamic';
 import { useState, useEffect } from 'react';
 
+import { TemplateData } from "@app/modules/db";
+import { Dispatch, SetStateAction } from 'react';
+
 interface PlotElementProps {
   plot: WithId<PlotData>;
+  plots: WithId<PlotData>[]
+  setPlots: Dispatch<SetStateAction<WithId<PlotData>[]>>;
 }
 
 export const PlotElement = (props: PlotElementProps) => {
@@ -49,7 +54,7 @@ export const PlotElement = (props: PlotElementProps) => {
           break;
       default:
         Images = BarGraph;
-    } 
+    }
   } else {
       Images = MultiGraph;
     }
@@ -74,6 +79,54 @@ export const PlotElement = (props: PlotElementProps) => {
     setDisplayPreview(!displayPreview)
   }
 
+  const handlePlotUpClick = () => {
+    let newPlots = [...props.plots]
+    let currentOrder = props.plot.order
+
+    if (currentOrder==1) {
+      // Can't move up a plot that is at the very start
+      console.log("Cannot move this plot upwards.")
+      return
+    }
+
+    let currentPlot = newPlots.find(el => el.order === currentOrder)
+    let plotBefore = newPlots.find(el => el.order == currentOrder-1)
+
+    if (currentPlot) {
+      currentPlot.order -= 1;
+    }
+    if (plotBefore) {
+      plotBefore.order += 1;
+    }
+
+    props.setPlots(newPlots)
+
+  }
+
+  const handlePlotDownClick = () => {
+    let newPlots = [...props.plots]
+    let currentOrder = props.plot.order
+
+    if (currentOrder==props.plots.length) {
+      // Can't move down a plot that is at the very end
+      console.log("Cannot move this plot downwards.")
+      return
+    }
+
+    let currentPlot = newPlots.find(el => el.order === currentOrder)
+    let plotAfter = newPlots.find(el => el.order == currentOrder+1)
+
+    if (currentPlot) {
+      currentPlot.order += 1;
+    }
+    if (plotAfter) {
+      plotAfter.order -= 1;
+    }
+
+    props.setPlots(newPlots)
+
+  }
+
   return(
       <div className='text-black ' >
 
@@ -82,8 +135,8 @@ export const PlotElement = (props: PlotElementProps) => {
 
                     {/* The movement control and delete div */}
           <div className='flex flex-col justify-center items-center '>
-              <Image src={UpArrow} alt='UpArrow' className='w-10 h-10'/>
-              <Image src={DownArrow} alt='DownArrow' className='w-10 h-10'/>
+              <button><Image onClick={handlePlotUpClick} src={UpArrow} alt='UpArrow' className='w-10 h-10'/></button>
+              <button><Image onClick={handlePlotDownClick} src={DownArrow} alt='DownArrow' className='w-10 h-10'/></button>
           </div>
 
           <div className={`flex justify-between items-center w-[750px] h-[100px] border-gray-400 bg-[#edeef2] p-3 rounded-lg border-4 px-4`}>

@@ -31,6 +31,66 @@ export const TemplatePageContextProvider = (props: TemplatePageContextProps) => 
     const [template, setTemplate] = useState<WithId<TemplateData>>(props.template);
     const [plots, setPlots] = useState<WithId<PlotData>[]>([]);
     const [plotsLoaded, setPlotsLoaded] = useState<boolean>(false);
+
+    // Function to handle updating DB when changes are applied to the template
+    useEffect(() => {
+        const updateTemplate = async () => {
+
+            try {
+                const response = await fetch('/api/db/update-template', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        'templateID': template._id,
+                        'newTemplate': template,
+                    }),
+                });
+
+                if (response.status !== 200) {
+                    console.error(`Failed to update template. Status: ${response.status}`);
+                } else {
+                    console.log("Succesfully updated template.");
+                }
+            } catch (error) {
+                console.error(`Failed to update template. Error: ${error}`);
+            }
+        };
+
+        // Call the async function
+        updateTemplate();
+    }, [template]);
+
+    // Function to handle updating DB when changes are applied to the plots
+    useEffect(()=> {
+        const updatePlots = async () => {
+            try {
+                const response = await fetch('/api/db/update-template-plots', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        'plotsToUpdate': plots
+                    }),
+                });
+
+                if (response.status !== 200) {
+                    console.error(`Failed to update template. Status: ${response.status}`);
+                } else {
+                    console.log("Successfully updated plots.");
+                }
+            } catch (error) {
+                console.error(`Failed to update template. Error: ${error}`);
+            }
+        };
+
+        // Call the async function
+        updatePlots();
+    }, [plots])
+
+
     useEffect(() => {
         const loadPlots = async () => {
             if (plotsLoaded)
@@ -46,6 +106,7 @@ export const TemplatePageContextProvider = (props: TemplatePageContextProps) => 
         const intervalId = setInterval(loadPlots, 5000);
         return () => clearInterval(intervalId);
     }, []);
+
     return (
         <TemplatePageContext.Provider value={{template, setTemplate, plots, setPlots}}>
             {props.children}
