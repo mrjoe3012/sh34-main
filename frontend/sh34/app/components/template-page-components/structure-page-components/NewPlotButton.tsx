@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { NewPlotPopup } from "./NewPlotPopup";
+import PlusIcon from "@app/images/plus-icon.svg"
+import Image from "next/image";
 
 export const NewPlotButton = () => {
 
@@ -11,8 +13,9 @@ export const NewPlotButton = () => {
 
     return (
         <div>
-            <button onClick={togglePopup} className={`text-center text-xl font-medium text-white h-[60px] w-[170px] bg-[#44C125] rounded-xl flex justify-center items-center border-[2px] border-slate-700`}>
-                <p> New Plot </p>
+            <button onClick={togglePopup} className={`shadow-lg text-center text-xl font-medium text-white h-[45px] px-[30px] bg-[#44C125] hover:bg-[#73de49] rounded-lg flex gap-x-2 justify-center items-center border-[0px] border-slate-700`}>
+                <Image src={PlusIcon} alt="new" className="mb-[2px] w-4 h-4 self-center"/>
+                <p> Plot </p>
             </button>
             {showNewPlotPopup && <NewPlotPopup closeButtonFunction={togglePopup}/> }
         </div>
