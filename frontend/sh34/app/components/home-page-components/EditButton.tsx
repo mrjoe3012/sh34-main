@@ -11,9 +11,9 @@ export const EditButton = (props: EditButtonProps) => {
     return(
       <div className='text-center w-[80px] ml-[50px]'>
             <Link href={"/template-page/" + props.templateId.toString()}>
-            <div className="justify-center flex gap-x-1 rounded-3xl p-2 px-3 border-black border-2 relative bg-[#FFFFFF]">
+            <div className="justify-center flex gap-x-1 rounded-3xl p-2 px-3 border-black border-2 relative bg-[#f3f3f3]">
               <Image src={EditIcon} alt="Edit" />
-              <p> Edit </p>
+              <p className="font-bold"> Edit </p>
             </div>
         </Link>
           </div>

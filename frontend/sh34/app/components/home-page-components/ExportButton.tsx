@@ -98,13 +98,13 @@ export const ExportButton = ({ templateID, page }:ExportButtonProps) =>{
         <button onClick = {DOCXExport} className='text-center w-3/6 '>
           <div className="justify-center flex rounded-lg p-2 border-black  relative bg-[#346DFF] hover:bg-[#5887ff] gap-x-2  h-[45px] items-center">
             <Image src={ExportIcon} alt="export" className="text-white w-5 h-5"/>
-            <p className="text-slate-50 basis-10/11 whitespace-nowrap overflow-hidden overflow-elipsis" >DOCX</p>
+            <p className="text-slate-50 basis-10/11 whitespace-nowrap overflow-hidden overflow-elipsis font-bold" >DOCX</p>
           </div>
         </button>
         <button onClick = {JSONExport} className='text-center w-3/6'>
           <div className="justify-center flex rounded-lg p-2 border-black relative bg-[#346DFF] hover:bg-[#5887ff] gap-x-2 h-[45px] items-center">
             <Image src={ExportIcon} alt="export" className="text-white w-5 h-5"/>
-            <p className="text-slate-50 basis-10/11 whitespace-nowrap overflow-hidden overflow-elipsis">JSON</p>
+            <p className="text-slate-50 basis-10/11 whitespace-nowrap overflow-hidden overflow-elipsis font-bold">JSON</p>
           </div>
         </button>
 
@@ -125,11 +125,11 @@ export const ExportButton = ({ templateID, page }:ExportButtonProps) =>{
         <div className="flex gap-x-1">
           <button onClick = {DOCXExport} className={`text-center text-xl font-medium text-white h-[60px] w-[150px] bg-[#346DFF] hover:bg-[#5887ff] rounded-lg flex gap-x-2 justify-center items-center border-[0px] border-slate-700`}>
             <Image src={ExportIcon} alt="export" className="text-white w-5 h-5"/>
-            <p>DOCX</p>
+            <p className="font-bold">DOCX</p>
           </button>
           <button onClick = {JSONExport} className={`text-center text-xl font-medium text-white h-[60px] w-[150px] bg-[#346DFF] hover:bg-[#5887ff] rounded-lg flex gap-x-2 justify-center items-center border-[0px] border-slate-700`}>
             <Image src={ExportIcon} alt="export" className="text-white w-5 h-5"/>
-            <p>JSON</p>
+            <p className="font-bold">JSON</p>
           </button>
         </div>
 
