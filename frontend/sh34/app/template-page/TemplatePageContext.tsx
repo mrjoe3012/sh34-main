@@ -66,6 +66,7 @@ export const TemplatePageContextProvider = (props: TemplatePageContextProps) => 
     // Function to handle updating DB when changes are applied to the plots
     useEffect(()=> {
         const updatePlots = async () => {
+
             try {
                 const response = await fetch('/api/db/update-template-plots', {
                     method: 'POST',
