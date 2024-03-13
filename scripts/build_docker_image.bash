@@ -3,6 +3,20 @@ PROJECT_ROOT="$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd
 IMG_TAG='stgit.dcs.gla.ac.uk:5050/team-project-h/2023/sh34/sh34-main'
 REPO_URL='git@stgit.dcs.gla.ac.uk:team-project-h/2023/sh34/sh34-main.git'
 pushd "${PROJECT_ROOT}" || exit 1
+
+# gather commandline arguments
+while getopts ":r:" opt; do
+  case $opt in
+    r)
+      REPO_URL="${OPTARG}"
+      ;;
+    \?)
+      echo "Invalid option: -$OPTARG"
+      exit 1
+      ;;
+  esac
+done
+
 if [[ -e docker/setup-files/sh34 ]]; then
     read -rp "Deleting 'docker/setup-files/' and re-cloning, this is recommended. Continue? (y/n): "
     if [[ "${REPLY}" != "y" ]]; then

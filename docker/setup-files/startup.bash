@@ -4,6 +4,30 @@
 # It updates all project dependencies.          #
 #################################################
 
+deploy=0
+clone=""
+
+# gather commandline arguments
+while getopts ":dc:" opt; do
+  case $opt in
+    d)
+      deploy=1
+      ;;
+    c)
+      clone="${OPTARG}"
+      ;;
+    \?)
+      echo "Invalid option: -$OPTARG"
+      exit 1
+      ;;
+  esac
+done
+
+# clone repo if necessary
+if [[ -n "${clone}" ]]; then
+    git clone --recursive "${clone}" /sh34
+fi
+
 # ensure the project code is in the right place
 if [[ ! -d /sh34 ]]; then
     echo "ERROR: The /sh34 directory was not located."
@@ -37,5 +61,9 @@ tmux new-session -d -s "SH34 Session"
 tmux rename-window -t 0 "Backend"
 tmux send-keys "sh34-backend" Enter
 tmux split-window -h
-tmux send-keys -t 1 "cd frontend/sh34; node database_creation/initialise_database.js; npm run dev" Enter
+if [[ "${deploy}" -eq 0 ]]; then
+    tmux send-keys -t 1 "cd frontend/sh34; node database_creation/initialise_database.js; npm run dev" Enter
+else
+    tmux send-keys -t 1 "cd frontend/sh34; node database_creation/initialise_database.js; npm run build; npm start" Enter
+fi
 tmux attach-session -t "SH34 Session"
