@@ -23,8 +23,8 @@ export default function Home() {
         setNewTemplates([...templates]);
     };
     loadTemplates();
-    const interval = setInterval(loadTemplates, 5000);
-    return () => clearInterval(interval);
+    //const interval = setInterval(loadTemplates, 5000);
+    //return () => clearInterval(interval);
   }, []);
   useEffect(() => {
     // only update rendered templates if they have changed

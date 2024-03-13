@@ -2,6 +2,8 @@
 import { PlotLoader } from "@app/modules/PlotLoader";
 import { error } from "console";
 import { useState } from "react";
+import ExportIcon from "@app/images/export-icon.svg"
+import Image from "next/image";
 
 interface ExportButtonProps {
   templateID: number;
@@ -86,21 +88,23 @@ export const ExportButton = ({ templateID, page }:ExportButtonProps) =>{
       }
   }
 
-  
+
 
   if (page=="home") {
     return(
       <div className="justify-center items-center ">
 
-        <div>
+        <div className="flex flex-row gap-x-1">
         <button onClick = {DOCXExport} className='text-center w-3/6 '>
-          <div className="justify-center flex rounded-s-lg p-2 border-black border-2 relative bg-[#346DFF]">
-            <p className="text-slate-50 basis-10/11 whitespace-nowrap overflow-hidden overflow-elipsis" >Export DOCX</p>
+          <div className="justify-center flex rounded-lg p-2 border-black  relative bg-[#346DFF] hover:bg-[#5887ff] gap-x-2  h-[45px] items-center">
+            <Image src={ExportIcon} alt="export" className="text-white w-5 h-5"/>
+            <p className="text-slate-50 basis-10/11 whitespace-nowrap overflow-hidden overflow-elipsis font-bold" >DOCX</p>
           </div>
         </button>
         <button onClick = {JSONExport} className='text-center w-3/6'>
-          <div className="justify-center flex rounded-r-lg p-2 border-black border-2 relative bg-[#346DFF]">
-            <p className="text-slate-50 basis-10/11 whitespace-nowrap overflow-hidden overflow-elipsis">Export JSON</p>
+          <div className="justify-center flex rounded-lg p-2 border-black relative bg-[#346DFF] hover:bg-[#5887ff] gap-x-2 h-[45px] items-center">
+            <Image src={ExportIcon} alt="export" className="text-white w-5 h-5"/>
+            <p className="text-slate-50 basis-10/11 whitespace-nowrap overflow-hidden overflow-elipsis font-bold">JSON</p>
           </div>
         </button>
 
@@ -118,13 +122,14 @@ export const ExportButton = ({ templateID, page }:ExportButtonProps) =>{
   } else if (page=="template") {
     return(
       <div className ="">
-        <div className="flex">
-
-            <button onClick = {DOCXExport} className={`text-center text-xl font-medium text-white h-[60px] w-[150px] bg-[#7D7D7D] rounded-s-lg flex justify-center items-center border-[2px] border-slate-700`}>
-            <p> Export DOCX</p>
+        <div className="flex gap-x-1">
+          <button onClick = {DOCXExport} className={`text-center text-xl font-medium text-white h-[60px] w-[150px] bg-[#346DFF] hover:bg-[#5887ff] rounded-lg flex gap-x-2 justify-center items-center border-[0px] border-slate-700`}>
+            <Image src={ExportIcon} alt="export" className="text-white w-5 h-5"/>
+            <p className="font-bold">DOCX</p>
           </button>
-          <button onClick = {JSONExport} className={`text-center text-xl font-medium text-white h-[60px] w-[150px] bg-[#7D7D7D] rounded-r-lg flex justify-center items-center border-[2px] border-slate-700`}>
-            <p> Export JSON</p>
+          <button onClick = {JSONExport} className={`text-center text-xl font-medium text-white h-[60px] w-[150px] bg-[#346DFF] hover:bg-[#5887ff] rounded-lg flex gap-x-2 justify-center items-center border-[0px] border-slate-700`}>
+            <Image src={ExportIcon} alt="export" className="text-white w-5 h-5"/>
+            <p className="font-bold">JSON</p>
           </button>
         </div>
 
