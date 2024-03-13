@@ -36,6 +36,7 @@ export const TemplatePageContextProvider = (props: TemplatePageContextProps) => 
     useEffect(() => {
         const updateTemplate = async () => {
 
+
             try {
                 const response = await fetch('/api/db/update-template', {
                     method: 'POST',

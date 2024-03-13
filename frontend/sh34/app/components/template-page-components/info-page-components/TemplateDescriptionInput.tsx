@@ -34,7 +34,8 @@ export const TemplateDescriptionInput = (props: TemplateDescriptionInputProps) =
         if (debouncedDesc) {
             props.setTemplate(currentTemplate => ({
                 ...currentTemplate,
-                Description: debouncedDesc
+                Description: debouncedDesc,
+                LastModified: String(new Date())
             }));
         }
     },[debouncedDesc])
