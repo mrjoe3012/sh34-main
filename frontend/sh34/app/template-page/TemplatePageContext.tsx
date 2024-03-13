@@ -103,8 +103,8 @@ export const TemplatePageContextProvider = (props: TemplatePageContextProps) => 
             }
         };
         loadPlots();
-        const intervalId = setInterval(loadPlots, 5000);
-        return () => clearInterval(intervalId);
+        //const intervalId = setInterval(loadPlots, 5000);
+        //return () => clearInterval(intervalId);
     }, []);
 
     return (
