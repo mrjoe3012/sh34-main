@@ -23,6 +23,7 @@ export async function POST(request: Request) {
     }
     let template = templates[0];
     template = requestData.newTemplate
+
     await updateTemplates([template]);
     return new Response();
 };

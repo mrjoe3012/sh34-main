@@ -13,7 +13,7 @@ import { TemplateLoader } from "@app/modules/TemplateLoader";
 // need a refresh button anymore.
 // Also, the way it has been created, it ensures that ConfigJSON has been loaded in (it is being loaded locally just now,
 // but this will soon be from the database), and if ConfigJSON has not been loaded in then it blocks the rendering of children.
-// This means you do not need to check if config isnt null in every single child component that uses the config from this context, 
+// This means you do not need to check if config isnt null in every single child component that uses the config from this context,
 // because it is guaranteed to have been loaded already.
 
 
@@ -46,7 +46,8 @@ interface ConfigProviderProps {
     id: number, // plot id
 }
 
-async function updatePlotConfig(id: number, config: Config): Promise<void> {
+async function updatePlotConfig(id: number, config: Config, correspondingTemplateID: number): Promise<void> {
+
     const response = await fetch(
         '/api/update-plot-config', {
             method: 'POST',
@@ -56,6 +57,7 @@ async function updatePlotConfig(id: number, config: Config): Promise<void> {
             body: JSON.stringify({
                 'plotId' : id,
                 'plotConfig' : config,
+                'templateId': correspondingTemplateID,
             }),
         }
     );
@@ -63,7 +65,7 @@ async function updatePlotConfig(id: number, config: Config): Promise<void> {
         console.error(`Failed to update plot config. id: ${id} config: ${config}`);
     }
 }
-  
+
 export const ConfigProvider: React.FC<ConfigProviderProps> = (props: ConfigProviderProps) => {
     const [plot, setPlot] = useState<WithId<PlotData> | null>(null);
     const [config, setConfig] = useState<Config | null>(null);
@@ -104,8 +106,8 @@ export const ConfigProvider: React.FC<ConfigProviderProps> = (props: ConfigProvi
     }, []);
 
     useEffect(() => {
-        if (plot != null && config != null)
-            updatePlotConfig(plot._id, config);
+        if (plot != null && config != null && template?._id != null)
+            updatePlotConfig(plot._id, config, template._id);
     }, [config]);
 
     // At the top of this function, we created a config state with an initial state of {}.

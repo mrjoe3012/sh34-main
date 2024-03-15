@@ -34,7 +34,8 @@ export const TemplateNameInput = (props: TemplateNameInputProps) => {
         if (debouncedName) {
             props.setTemplate(currentTemplate => ({
                 ...currentTemplate,
-                Name: debouncedName
+                Name: debouncedName,
+                LastModified: String(new Date())
             }));
         }
     },[debouncedName])
